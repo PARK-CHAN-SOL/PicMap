@@ -4,4 +4,34 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
   
  <configuration>
+ 
+ 	<typeAliases>
+  		<typeAlias type="com.picmap.app.board.BoardDTO" alias="BoardDTO"/>	
+ 	
+ 		<typeAlias type="com.picmap.app.comment.CommentDTO" alias="CommentDTO"/>
+ 		
+ 		<typeAlias type="com.picmap.app.comments.CommentsDTO" alias="CommentsDTO"/>
+ 		
+ 		<typeAlias type="com.picmap.app.follow.FollowDTO" alias="FollowDTO"/>
+ 		
+ 		<typeAlias type="com.picmap.app.heart.HeartDTO" alias="HeartDTO"/>
+ 		
+ 		<typeAlias type="com.picmap.app.kakaomember.KakaoMemberDTO" alias="KakaoMemberDTO"/>
+ 		
+ 		<typeAlias type="com.picmap.app.member.MemberDTO" alias="MemberDTO"/>
+ 		
+ 		<typeAlias type="com.picmap.app.ping.PingDTO" alias="PingDTO"/>
+ 		
+ 		<typeAlias type="com.picmap.app.reply.ReplyDTO" alias="ReplyDTO"/>
+ 		
+ 		<typeAlias type="com.picmap.app.savepost.SavePostDTO" alias="SavePostDTO"/>
+ 	
+ 		<typeAlias type="com.picmap.app.notice.NoticeDTO" alias="NoticeDTO"/>
+ 		
+ 		<typeAlias type="com.picmap.app.travel.TravelDTO" alias="TravelDTO"/>
+ 		
+ 		
+ 		
+ 	</typeAliases>
+ 	
  </configuration>
