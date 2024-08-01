@@ -310,11 +310,11 @@
 	// }
 	// });
 
-	var waypoint = new Waypoint({
-		element: document.getElementById('box-search'),
-		handler: function handler(direction) {
-			console.log('Scrolled to waypoint!');
-		}
-	});
+	// var waypoint = new Waypoint({
+	// 	element: document.getElementById('box-search'),
+	// 	handler: function handler(direction) {
+	// 		console.log('Scrolled to waypoint!');
+	// 	}
+	// });
 	
 })(jQuery);

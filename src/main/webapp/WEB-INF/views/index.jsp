@@ -13,9 +13,29 @@ by Awe7 (http://awe7.com/freebies)
 </head>
 
 <body>
-  <div class="page-wrap" id="root">
 
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" id="exampleModal"   aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goesㅌㅍㅌㅍㅌㅍ here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="page-wrap" id="root">
     <c:import url="./template/header_nav.jsp"></c:import>
+
 
     <!-- Content-->
     <div class="md-content">
@@ -40,10 +60,7 @@ by Awe7 (http://awe7.com/freebies)
               </div>
 
             </div>
-            <div class="swiper-button-custom">
-              <div class="swiper-button-prev-custom"></div>
-              <div class="swiper-button-next-custom"></div>
-            </div>
+
           </div>
           <!-- End / swiper__module swiper-container -->
         </div>
