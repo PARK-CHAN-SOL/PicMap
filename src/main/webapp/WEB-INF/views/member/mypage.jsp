@@ -9,21 +9,19 @@ Mercury travel - free HTML5 templates!
 by Awe7 (http://awe7.com/freebies)
 -->
 <c:import url="../template/header_css.jsp"></c:import>
-
-</head>
-
-<body>
-  <div class="page-wrap" id="root">
-
     <c:import url="../template/header_nav.jsp"></c:import>
 
-    <!-- Content-->
-    <div class="md-content">
+</head>
+<body>
+<h1>로그인페이지</h1>
 
-    </div>
-    <!-- End / Content-->
-</div>
+
+
+
+
     <c:import url="../template/footer.jsp"></c:import>
+
 </body>
 </html>
+
 

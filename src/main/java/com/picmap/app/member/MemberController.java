@@ -17,10 +17,7 @@ public class MemberController {
 @Autowired
 	private MemberService memberService;
 	
-@RequestMapping(value = "Modal", method = RequestMethod.GET)
-public void Modal() throws Exception {
 
-}
 @RequestMapping(value = "login", method = RequestMethod.GET)
 public void login(Model model, @CookieValue(name = "remember ", required = false, defaultValue = "") String value)
 		throws Exception {

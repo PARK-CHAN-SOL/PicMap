@@ -20,7 +20,7 @@ by Awe7 (http://awe7.com/freebies)
 
 
     <c:import url="../template/footer.jsp"></c:import>
-    <script type="/resources/assets/js/kakao.js"></script>
+
 </body>
 </html>
 

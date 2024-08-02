@@ -9,32 +9,72 @@ Mercury travel - free HTML5 templates!
 by Awe7 (http://awe7.com/freebies)
 -->
 <c:import url="./template/header_css.jsp"></c:import>
+<style>
+.my-div {
+  height : 80px;
+  text-align : center;
+  line-height : 0px;
+}
+.my-div1 {
+  height : 30px;
+  text-align : center;
+  line-height : 0px;
+}
+</style>
 
 </head>
 
 <body>
+  <c:import url="./template/header_nav.jsp"></c:import>
 
 
 <!-- Modal -->
-<div class="modal" tabindex="-1" id="exampleModal"   aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" tabindex="-1" id="exampleModal"   aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
      <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+      <div class="modal-header mb-5" >
+        <h5 class="fs-1 text-center" style="width:1000px;height:px;">로그인</h5>
+        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
+
       <div class="modal-body">
-        <p>Modal body text goesㅌㅍㅌㅍㅌㅍ here.</p>
+        <div class="member_login">
+          <form   action="/member/login" method="POST" >
+              <div class="member_login_input my-div fs-4">
+                  <input type="text" name="username" placeholder="아이디" style="border-radius:30px;width:400px;height:px;">
+              </div>
+  
+              <div class="member_login_input my-div">
+                  <input type="password" name="password" placeholder="비밀번호" style="border-radius:30px; width:400px">
+              </div>
+  
+              <div class="member_login_btn  my-div" >
+  
+                  <input type="submit" style="width:80px;height:40px " class="btn btn-primary fs-5 me-5"  id="btn-login" value="로그인" >
+  
+                  <input type="button" style="width:80px;height:40px"  class="btn btn-primary fs-5" value="회원가입" onclick="location.href='/member/join'">
+  
+              </div>
+  
+              <div class="find_password my-div1 fs-5">
+                  <a href="/forgot-password">아이디 또는 비밀번호를 잊으셨나요?</a>
+              </div>
+  
+              <div class="login_api my-div">
+                  <a href="https://kauth.kakao.com/oauth/authorize?client_id=c60f018c14754ebbc3b0111a23287be3&redirect_uri=http://localhost/kakao/oauth&response_type=code"><img src="/resources/assets/img/kakao_login_medium_narrow.png"></a>
+              </div>
+  
+            
+          </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
+     
     </div>
   </div>
 </div>
   <div class="page-wrap" id="root">
-    <c:import url="./template/header_nav.jsp"></c:import>
 
 
     <!-- Content-->
