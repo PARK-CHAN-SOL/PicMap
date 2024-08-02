@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
   
  <configuration>
-
+	<typeAliases>
   		<typeAlias type="com.picmap.app.board.BoardDTO" alias="BoardDTO"/>	
  	
  		<typeAlias type="com.picmap.app.comment.CommentDTO" alias="CommentDTO"/>
@@ -28,5 +28,5 @@
  		<typeAlias type="com.picmap.app.notice.NoticeDTO" alias="NoticeDTO"/>
  		
  		<typeAlias type="com.picmap.app.travel.TravelDTO" alias="TravelDTO"/>
-
+	</typeAliases>
  </configuration>
