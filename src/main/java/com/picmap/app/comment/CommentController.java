@@ -23,11 +23,14 @@ public class CommentController {
 	
 	// 특정 게시글의 댓글 목록을 조회합니다.
 	@GetMapping("/list")
-	public String getCommentsByBoard(@RequestParam Long boardNum, Model model) throws Exception {
+	public String getCommentsByBoard(@RequestParam Long boardNum, Model model, HttpSession session) throws Exception {
 	    List<CommentDTO> comments = commentService.getCommentsByBoard(boardNum); // 서비스 계층을 호출하여 댓글 목록을 조회합니다.
 	    model.addAttribute("comments", comments); // 조회된 댓글 목록을 모델에 추가합니다.
+	    model.addAttribute("boardNum", boardNum); // 게시글 번호를 모델에 추가합니다.
+	    MemberDTO member = (MemberDTO) session.getAttribute("member"); // 세션에서 로그인한 사용자 정보를 가져옵니다.
+	    model.addAttribute("member", member); // 로그인한 사용자 정보를 모델에 추가합니다.
 	    return "comments/list"; // 댓글 목록 페이지로 이동합니다.
-	}
+  }
 	// 댓글을 추가하는 메서드입니다 (로그인한 사용자만 가능).
 	@PostMapping("/add")
 	public String addComment(@RequestParam Long boardNum, @RequestParam String content, HttpSession session, Model model) throws Exception {
