@@ -11,6 +11,14 @@ by Awe7 (http://awe7.com/freebies)
 -->
 <c:import url="../template/header_css.jsp"></c:import>
 
+<!-- summernote -->
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="/resources/summernote/summernote-lite.js"></script>
+<script src="/resources/summernote/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
+
 </head>
 
 <body>
@@ -20,7 +28,7 @@ by Awe7 (http://awe7.com/freebies)
 
 		<!-- Content-->
 		<div class="md-content">
-		
+
 			<!-- hero -->
 			<div class="hero" id="id-1">
 				<div class="hero__wrapper">
@@ -55,31 +63,31 @@ by Awe7 (http://awe7.com/freebies)
 			</div>
 			<!-- End / hero -->
 
-			
-			<h5>${board} 게시글 write 페이지</h5>
 
 
-<%-- 			<div>
-				<form method="post">
-					<div>
-						<table>
-							<thead>
-								<input type="text" value="${memberNum}" id="" name="" hidden>
-								<tr>
-									<th>제목</th>
-									<th><input type="text" id="boardTitle" name="boardTitle" value="${dto.boardTitle}"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><textarea id="boardContent" name="boardContent">${dto.boardContent}</textarea></td>
-								</tr>
-							</tbody>
-						</table>
-						<button type="submit">작성</button>
-					</div>
-				</form>
-			</div> --%>
+
+
+
+			<h1>${board}게시글 write 페이지</h1>
+
+
+			<form method="post">
+				
+				<input type="text" id="memberNum" name="memberNum" value="${member.memberNum}" placeholder="작성자">
+				
+				<input type="text" id="boardTitle" name="boardTitle" placeholder="제목">
+				
+				<textarea id="summernote" name="boardContent"></textarea>
+				
+				<input type="text" name="rootBoard"
+				value="${dto.rootBoard}">
+				
+				
+				
+				
+				
+				
+			</form>
 
 
 
@@ -91,6 +99,47 @@ by Awe7 (http://awe7.com/freebies)
 		</div>
 		<!-- End / Content-->
 	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script>
+		$('#summernote').summernote({
+			  height: 300,                 // 에디터 높이
+			  minHeight: null,             // 최소 높이
+			  maxHeight: null,             // 최대 높이
+			  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+			  lang: "ko-KR",					// 한글 설정
+			  placeholder: '내용'	,//placeholder 설정
+			  toolbar: [
+					    // [groupName, [list of button]]
+					    ['fontname', ['fontname']],
+					    ['fontsize', ['fontsize']],
+					    ['color', ['color']],
+					    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+					    ['para', ['ul', 'ol', 'paragraph']],
+					    ['height', ['height']]
+					  ],
+					fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+					fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+		          
+		});
+	</script>
+
+
+
+
 
 	<c:import url="../template/footer.jsp"></c:import>
 </body>

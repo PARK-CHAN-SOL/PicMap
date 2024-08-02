@@ -2,8 +2,11 @@ package com.picmap.app.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
 import com.picmap.app.board.BoardService;
@@ -27,7 +30,7 @@ public class NoticeService implements BoardService{
 
 	//게시글 작성
 	@Override
-	public int add() throws Exception {
+	public int add(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -13,6 +13,20 @@
 		ORDER BY BOARDNUM DESC
 	</select>
 	
+	<insert id="add" parameterType="TravelDTO">
+		<selectKey order="BEFORE" resultType="Long" keyProperty="boardNum">
+  			SELECT BOARDNUM_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO TRAVEL
+  		VALUES
+  		(#{boardNum}, #{memberNum}, #{boardTitle}, #{boardContent}, SYSDATE, SYSDATE, 0,
+  		#{fileName}, 0, #{rootBoard}, #{parentBoard}, #{childBoard}, #{pingNum})
+	</insert>
+	
+	<insert id="addFile">
+	
+	</insert>
+	
 
 
 
