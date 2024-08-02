@@ -1,6 +1,11 @@
 
+// 지번 input
 const loc = document.getElementById('loc');
+
+// latitude input(hidden)
 const lat = document.getElementById('lat');
+
+// longitude input(hidden)
 const lon = document.getElementById('lon');
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -74,8 +79,8 @@ kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
             // //지번 주소
             // console.log(result[0].address.address_name);  
 
-            lat.value = mouseEvent.latLng.La;
-            lon.value = mouseEvent.latLng.Ma;
+            lat.value = mouseEvent.latLng.Ma;
+            lon.value = mouseEvent.latLng.La;
             loc.value = result[0].address.address_name;
             // //
             // console.log(result[0].road_address);
@@ -116,3 +121,4 @@ function displayCenterInfo(result, status) {
         }
     }
 }
+

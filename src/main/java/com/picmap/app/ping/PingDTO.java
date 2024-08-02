@@ -2,8 +2,8 @@ package com.picmap.app.ping;
 
 public class PingDTO {
 	private Long pingNum;
-	private Long latitude;
-	private Long longitude;
+	private Double latitude;
+	private Double longitude;
 	private String address;
 	public Long getPingNum() {
 		return pingNum;
@@ -11,16 +11,16 @@ public class PingDTO {
 	public void setPingNum(Long pingNum) {
 		this.pingNum = pingNum;
 	}
-	public Long getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(Long latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
-	public Long getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(Long longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 	public String getAddress() {
@@ -29,4 +29,6 @@ public class PingDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+
 }

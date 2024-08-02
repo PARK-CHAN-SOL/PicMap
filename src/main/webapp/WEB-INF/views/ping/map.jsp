@@ -47,9 +47,15 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
+                                  <div>
+                                    <input type="text" id="searchPing">
+                                    <button type="button" class="btn btn-primary" id="searchButton">검색</button>
+                                  </div>
+                                  <div>
                                     <button type="button" class="btn btn-primary" id="mapButton">등록</button>
                                     <button type="button" class="btn btn-secondary" id="mapClose"
                                         data-bs-dismiss="modal">취소</button>
+                                  </div>
                                 </div>
                             </div>
                         </div>
@@ -72,6 +78,7 @@
                     <script type="text/javascript"
                         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
                     <script src="/resources/assets/js/ping/ping.js"></script>
+                    <script src="/resources/assets/js/ping/pingesearch.js"></script>
                     <script src="/resources/assets/js/ping/modal.js"></script>
         </body>
 
