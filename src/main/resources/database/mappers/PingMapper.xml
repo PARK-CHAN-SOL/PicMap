@@ -4,6 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- mapper는 테이블 별로 하나씩 만들 거다. namespace는 중복되면 안된다. -->
-<mapper namespace="sampleMapper">
-	<!-- SELECT * FROM ITEMS WHERE ITEM_ID = ? -->
+<mapper namespace="PingMapper">
+	<insert id="addPing" parameterType="PingDTO">
+		INSERT INTO PING
+		VALUES (PING_SEQ.NEXTVAL, #{latitude}, #{longitude}, #{address})
+	</insert>
 </mapper>

@@ -55,11 +55,12 @@
                         </div>
                     </div>
                 </div>
-
-                <div>
-                    <input type="text" id="loc"> <input type="hidden" id="lat"> <input type="hidden" id="lon">
-                </div>
-
+                <form action="/ping/addPing" method="post" id="frm">
+                    <div>
+                        <input type="text" id="loc" name="address"> <input type="hidden" id="lat" name="latitude"> <input type="hidden" id="lon" name="longitude">
+                    </div>
+                </form>
+                    
 
                 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
                     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

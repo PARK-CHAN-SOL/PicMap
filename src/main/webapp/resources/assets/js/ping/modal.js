@@ -2,8 +2,14 @@
  * 댓글 관리
  */
 const modalButton = document.getElementById("modalButton");
-
 const mapModal = document.getElementById("mapModal");
+
+const mapButton = document.getElementById("mapButton");
+const frm = document.getElementById("frm");
+
+mapButton.addEventListener("click", ()=>{
+    frm.submit();
+})
 
 // modalButton.addEventListener("click", function(){
 // 	setTimeout(() => {
