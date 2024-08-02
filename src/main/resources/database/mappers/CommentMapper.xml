@@ -6,7 +6,7 @@
 <mapper namespace="com.picmap.app.comment.CommentMapper">
 
   <!-- 댓글 목록 조회 -->
-  <select id="findByBoardNum" parameterType="long" resultType="CommentDTO">
+  <select id="findByBoardNum" parameterType="long" resultType="CommentsDTO">
     SELECT * FROM COMMENTS WHERE BOARDNUM = #{boardNum}
   </select>
   
@@ -16,20 +16,20 @@
   </select>
   
  <!-- 댓글 추가 -->
-  <insert id="insertComment" parameterType="CommentDTO">
+  <insert id="insertComment" parameterType="CommentsDTO">
     INSERT INTO COMMENTS (COMMENTNUM, BOARDNUM, MEMBERNUM, CONTENT, CREATEDATE, UPDATEDATE)
     VALUES (COMMENTNUM_SEQ.NEXTVAL, #{boardNum}, #{memberNum}, #{content}, SYSDATE, SYSDATE)
   </insert>
  
  <!-- 댓글 수정 -->
-  <update id="updateComment" parameterType="CommentDTO">
+  <update id="updateComment" parameterType="CommentsDTO">
     UPDATE COMMENTS
     SET CONTENT = #{content}, UPDATEDATE = SYSDATE
     WHERE COMMENTNUM = #{commentNum} AND MEMBERNUM = #{memberNum}
   </update>
   
  <!-- 댓글 삭제 -->
-  <delete id="deleteComment" parameterType="CommentDTO">
+  <delete id="deleteComment" parameterType="CommentsDTO">
     DELETE FROM COMMENTS WHERE COMMENTNUM = #{commentNum} AND MEMBERNUM = #{memberNum}
   </delete>
   

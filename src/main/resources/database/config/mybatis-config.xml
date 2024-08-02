@@ -31,9 +31,5 @@
  		<typeAlias type="com.picmap.app.travel.TravelDTO" alias="TravelDTO"/>
  		 		 		
  	</typeAliases>
- 	
-	<mappers>	
-    <mapper resource="com/picmap/app/comment/CommentMapper.xml"/>
- 	</mappers>	
  
  </configuration>
