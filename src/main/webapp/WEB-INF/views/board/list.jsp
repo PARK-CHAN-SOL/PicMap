@@ -20,7 +20,7 @@ by Awe7 (http://awe7.com/freebies)
 
 		<!-- Content-->
 		<div class="md-content">
-		
+
 			<!-- hero -->
 			<div class="hero" id="id-1">
 				<div class="hero__wrapper">
@@ -55,36 +55,101 @@ by Awe7 (http://awe7.com/freebies)
 			</div>
 			<!-- End / hero -->
 
-			<h1>${board}게시판</h1>
 
-			<div style="margin-left: 50px;">
-				<table style="width: 800px;">
-					<thead>
-						<tr>
-							<th>글번호</th>
-							<th>글제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>수정일</th>
-							<th>조회수</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${list}" var="dto">
-							<tr>
-								<td>${dto.boardNum}</td>
-								<td>${dto.boardTitle}</td>
-								<td>${dto.memberNickname}</td>
-								<td>${dto.createDate}</td>
-								<td>${dto.updateDate}</td>
-								<td>${dto.hit}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
 
-			<h5><a href="add">${board}게시글 작성</a></h5>
+
+
+
+
+
+
+
+
+
+
+
+
+			<!-- Section -->
+			<section class="awe-section">
+				<div class="container">
+
+					<!-- title -->
+					<div class="title title__style-02">
+						<h2 class="title__title">${board}게시판</h2>
+					</div>
+					<!-- End / title -->
+
+					<div class="grid-css grid_css_style_02 grid-css--masonry"
+						data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1"
+						data-gap="30">
+						<div class="filter">
+							<ul class="filter__list">
+								<li><a href="#" data-filter="*">All</a></li>
+								<li><a href="#" data-filter=".cat1">추천순</a></li>
+								<li><a href="#" data-filter=".cat2">최신순</a></li>
+							</ul>
+						</div>
+						<div class="grid__inner">
+							<div class="grid-sizer"></div>
+							
+							
+							<c:forEach items="${list}" var="dto">
+								<div class="grid-item cat1">
+									<div class="grid-item__inner">
+										<div class="grid-item__content-wrapper">
+	
+											<!-- box-image2 -->
+											<div class="box-image2">
+												<div>
+													<a class="box-image2__bg" href="#"
+													style="background-image: url('/resources/assets/img/image_box_2/3.jpg');">
+														<img src="/resources/assets/img/image_box_2/1.jpg" alt="" />
+													</a>
+													<div class="box-image2__info">
+														<p class="box-image2__writer">${dto.memberNickname}</p>
+														<p class="box-image2__title">${dto.boardTitle}</p>
+													</div>
+													<div class="box-image2__info_bot">
+														<span class="box-image2__date">${dto.createDate}</span>
+														<span class="box-image2__like">좋아요</span> 
+													</div>
+												</div>
+											</div>
+											<!-- End / box-image2 -->
+	
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+
+
+						</div>
+					</div>
+					<div class="text-center">
+						<a class="md-btn mt-60 md-btn--primary md-btn--pill " href="#">Explore
+							more </a>
+					</div>
+				</div>
+			</section>
+			<!-- End / Section -->
+
+
+
+
+
+			<h5>
+				<a href="add">${board}게시글 작성</a>
+			</h5>
+
+
+
+
+
+
+
+
+
+
 
 
 
