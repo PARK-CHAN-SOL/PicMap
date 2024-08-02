@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper	namespace="com.picmap.app.notice.NoticeDAO">
+
+	<select id="getMemberDTO" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT MEMBERID, MEMBERNAME, MEMBERNICKNAME, PROFILEPATH FROM MEMBER WHERE MEMBERNUM=#{boardNum}
+	</select>
+	
+	<select id="getList" resultType="NoticeDTO">
+		SELECT N.*, M.MEMBERID, M.MEMBERNICKNAME 
+		FROM NOTICE N
+			 RIGHT JOIN
+			 MEMBER M
+			 ON N.MEMBERNUM = M.MEMBERNUM
+		ORDER BY BOARDNUM DESC
+	</select>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
+

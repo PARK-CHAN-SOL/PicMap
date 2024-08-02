@@ -7,10 +7,13 @@ public class BoardDTO {
 	private String boardTitle;
 	private String boardContent;
 	private Long memberNum;
+	private String memberId;
+	private String memberNickname;
 	private Date createDate;
 	private Date updateDate;
 	private Long hit;
 	private String fileName;
+	
 	public Long getBoardNum() {
 		return boardNum;
 	}
@@ -34,6 +37,18 @@ public class BoardDTO {
 	}
 	public void setMemberNum(Long memberNum) {
 		this.memberNum = memberNum;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public String getMemberNickname() {
+		return memberNickname;
+	}
+	public void setMemberNickname(String memberNickname) {
+		this.memberNickname = memberNickname;
 	}
 	public Date getCreateDate() {
 		return createDate;
