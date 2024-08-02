@@ -19,3 +19,15 @@
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <![endif]-->
+    <style>
+.my-div {
+  height : 80px;
+  text-align : center;
+  line-height : 0px;
+}
+.my-div1 {
+  height : 30px;
+  text-align : center;
+  line-height : 0px;
+}
+</style>
