@@ -2621,10 +2621,10 @@ ul {
 
 .footer {
     position: relative;
-    background-color: #bd1e2d;
+    background-color: #000000;
     color: #fff;
     padding: 40px 0;
-    background: #bd1e2d;
+    background: #000000;
 }
 
 .footer #back-to-top {
@@ -2732,6 +2732,8 @@ ul {
     position: fixed;
     top: 0;
     left: 0;
+      box-shadow: 0 2px 50px 0 rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, .2);
     width: 100%;
     z-index: 999;
 }

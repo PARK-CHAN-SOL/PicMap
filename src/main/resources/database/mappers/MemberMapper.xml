@@ -31,11 +31,22 @@
    
    </select>
    
+	<update id="update" parameterType="MemberDTO" >
+		UPDATE MEMBER SET MEMBERNAME=#{memberName} ,MEMBERBIRTH=#{memberBirth},
+		MEMBERNICKNAME=#{memberNickName},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},
+		PROFILEPATH=#{profilePath}
+		WHERE MEMBERID = #{memberId}
+	</update>
+	
+  <select id="detail" parameterType="MemberDTO"   resultType="MemberDTO">
+		SELECT MEMBERNAME,MEMBERPASSWORD,MEMBERBIRTH,MEMBERNICKNAME,MEMBEREMAIL,MEMBERPHONE,PROFILEPATH
+		FROM MEMBER
+		WHERE MEMBERID = #{memberId} 
+</select>
+		
+
   
-  
-  
-  
-  
-  
-  
+ 	<delete id="delete" parameterType="MemberDTO">
+		DELETE MEMBER WHERE MEMBERID= #{memberId}
+	</delete> 
   </mapper>

@@ -3,12 +3,12 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- header -->
 
-<header class="header awe-skin-dark header--fixed">
+<header class="header awe-skin-dark header--fixed ">
 	<div class="container-fluid pd-0">
 		<div class="header__inner">
 			<div class="header__logo_menu_wrap">
 				<div class="header__logo">
-					<a href="/"><img src="/resources/assets/img/logo-white.png"
+					<a href="/"><img src="/resources/assets/img/logopm1.png"
 						alt="" /></a>
 				</div>
 				<div class="header__menu">
@@ -17,7 +17,7 @@
 					<nav class="onepage-nav">
 
 						<!-- onepage-menu -->
-						<ul class="onepage-menu">
+						<ul class="onepage-menu mt-4">
 							<li class="current-menu-item"><a href="/">홈</a></li>
 							<li><a href="/notice/list">공지사항</a></li>
 							<li><a href="city.html">베스트 게시글</a></li>
@@ -126,11 +126,11 @@
 
 
       <div class="modal-body">
-    <form action="/member/join" method="POST" id="frm">
+    <form action="/member/join" method="POST" id="frm" enctype="multipart/form-data">
 <div class="col-12  fs-4">
-
-					<button type="button" id="add" class="btn btn-light">프로필사진추가</button>
-				</div>
+	<input type="file"  name="files">
+			</div>
+			
 				<div id="result"></div>
    
 <div class="col-md-6">
