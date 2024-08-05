@@ -18,7 +18,7 @@
 
 						<!-- onepage-menu -->
 						<ul class="onepage-menu mt-4">
-							<li class="current-menu-item"><a href="/">홈</a></li>
+							<li ><a href="/">Home</a></li>
 							<li><a href="/notice/list">공지사항</a></li>
 							<li><a href="city.html">베스트 게시글</a></li>
 							<li><a href="/travel/list">전체 게시글</a></li>
