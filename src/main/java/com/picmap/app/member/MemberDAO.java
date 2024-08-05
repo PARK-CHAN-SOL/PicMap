@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
+
 @Repository
 public class MemberDAO {
 
@@ -35,14 +36,19 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	public MemberDTO mypage(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "mypage", memberDTO);
 	}
+	public MemberDTO detail(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "detail", memberDTO);
+	}	
+	public int update(MemberDTO memberDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "update", memberDTO);
+	}
+
+	public int delete(MemberDTO memberDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "delete", memberDTO);
+	}
 	
 	
-	
-	
-	
-	
-	
-	
+
 	
 	
 }
