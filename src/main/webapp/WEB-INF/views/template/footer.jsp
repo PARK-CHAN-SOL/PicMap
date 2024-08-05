@@ -119,7 +119,7 @@
     </span>
   </div>
 </div>
-</div>
+
 <!-- Vendors-->
 <script type="text/javascript" src="/resources/assets/vendors/_jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/assets/vendors/imagesloaded/imagesloaded.pkgd.js"></script>
