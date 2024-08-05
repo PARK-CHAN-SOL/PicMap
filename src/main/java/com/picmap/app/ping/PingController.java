@@ -31,17 +31,22 @@ public class PingController {
 	}
 
 	// 검색한 지번과 유사한 지역의 지도를 띄움
-	@PostMapping("searchPing")
+	@PostMapping("getPingList")
 	@ResponseBody
-	public Map<String, Double> searchPing(PingDTO pingDTO) throws Exception {
+	public Map<String, Object> getPingList(PingDTO pingDTO) throws Exception {
 		System.out.println(pingDTO.getAddress());
-		pingService.searchPing(pingDTO);
-		Map<String, Double> map = new HashMap<String, Double>();
-		map.put("lat", pingDTO.getLatitude());
-		map.put("lon", pingDTO.getLongitude());
-		return map;
+
+		return pingService.getPingList(pingDTO);
 	}
-	// 위도 latitude +- 0.0011 만큼 검색
+	
+	
+	// 위도 latitude +- 0.0011 만큼 검색 (가로 세로 250m 범위)
 	// 경도 longitude +- 0.0014
-	// 15개씩
+	// 리턴은 HTML 형식(String), 비동기 형식으로 호출됨
+	@PostMapping("getRecommendList")
+	@ResponseBody
+	public String getRecommendList(PingDTO pingDTO) throws Exception {
+		return pingService.getRecommendList(pingDTO);
+	}
+	
 }

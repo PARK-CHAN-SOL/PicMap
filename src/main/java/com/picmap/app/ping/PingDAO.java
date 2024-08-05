@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.picmap.app.travel.TravelDTO;
+
 @Repository
 public class PingDAO {
 	@Autowired
@@ -17,7 +19,19 @@ public class PingDAO {
 		return sqlSession.insert(NAMESPACE + "addPing", pingDTO);
 	}
 	
-	public List<PingDTO> searchPing(PingDTO pingDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE + "searchPing", pingDTO);
+	public List<PingDTO> getPingList(PingDTO pingDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getPingList", pingDTO);
+	}
+	
+	public List<TravelDTO> getTravelList (List<PingDTO> list) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getTravelList", list);
+	}
+	
+	public List<TravelDTO> getRecommendList(PingDTO pingDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getRecommendList", pingDTO);
+	}
+	
+	public PingDTO getDetail(PingDTO pingDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getDetail", pingDTO);
 	}
 }

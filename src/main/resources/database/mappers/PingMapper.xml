@@ -7,14 +7,53 @@
 <mapper namespace="com.picmap.app.ping.PingDAO">
 	<insert id="addPing" parameterType="PingDTO">
 		INSERT INTO PING
-		VALUES (PING_SEQ.NEXTVAL, #{longitude}, #{latitude}, #{address})
+		VALUES
+		(PING_SEQ.NEXTVAL, #{longitude}, #{latitude}, #{address})
 	</insert>
-	
-	<select id="searchPing" parameterType="PingDTO" resultType="PingDTO">
-		SELECT	LATITUDE, LONGITUDE
+
+	<select id="getPingList" parameterType="PingDTO"
+		resultType="PingDTO">
+		SELECT	*
 		FROM	PING
-		<where>
-			ADDRESS LIKE '%'||#{address}||'%'
-		</where>
+		WHERE	ADDRESS LIKE '%'||#{address}||'%'
 	</select>
+
+	<select id="getTravelList" resultType="TravelDTO">
+		SELECT	*
+		FROM 	(
+			SELECT 		ROWNUM r, t.*
+			FROM 		TRAVEL t
+			<where>
+				<foreach item="pingDTO" index="index" collection="list" open="AND PINGNUM IN (" separator="," close=")">
+					#{pingDTO.pingNum}
+				</foreach>
+			</where>
+			ORDER BY	HIT DESC
+		)
+		WHERE 15 >= r
+	</select>
+	
+	<select id="getRecommendList" parameterType="PingDTO" resultType="TravelDTO">
+		SELECT	*
+		FROM 	(
+			SELECT		ROWNUM r, t.BOARDNUM, t.FILENAME
+			FROM		TRAVEL t
+			WHERE		CHILDBOARD IS NOT NULL
+						AND PINGNUM IN (
+					SELECT	PINGNUM
+					FROM	PING
+					WHERE	LATITUDE BETWEEN (#{latitude}-0.0011) AND (#{latitude}+0.0011)
+							AND LONGITUDE BETWEEN (#{longitude}-0.0014) AND (#{longitude}+0.0014)
+			)
+			ORDER BY	HIT DESC
+		)
+		WHERE 4 >= r
+	</select>
+	
+	<select id="getDetail" parameterType="PingDTO" resultType="PingDTO">
+		SELECT	*
+		FROM	PING
+		WHERE	PINGNUM = #{pingNum}
+	</select>
+
 </mapper>
