@@ -6,35 +6,40 @@
     <meta charset="UTF-8">
     <title>댓글 목록</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/comments.css">
+    <link rel="stylesheet" type="text/css" id="app-stylesheet" href="/resources/assets/css/main.css">
+    <c:import url="../template/header_css.jsp"></c:import>
 </head>
 <body>
-    <div class="comments-container">
+    <c:import url="../template/header_nav.jsp"></c:import>
+    <div class="comments-container mt-5">
         <h2>댓글 목록</h2>
-        <div class="login-prompt">
-            <a href="${pageContext.request.contextPath}/login" class="login-link">로그인 후 댓글을 남겨주세요</a>
-            <a href="${pageContext.request.contextPath}/login" class="login-button">로그인</a>
+        <div>
+            <c:choose>
+                <c:when test="${empty member}">
+                    <button type="button" class="md-btn md-btn--primary" data-bs-toggle="modal" data-bs-target="#exampleModal">로그인 후 댓글을 남겨주세요</button>
+                </c:when>
+                <c:otherwise>
+                    <textarea id="commentContents" name="comment" placeholder="댓글을 입력하세요" class="comment-textarea"></textarea>
+                    <button id="commentButton" type="button" class="comment-button" data-id="${boardNum}">댓글 남기기</button>
+                </c:otherwise>
+            </c:choose>
         </div>
-        <c:forEach var="comment" items="${comments}">
-            <div class="comment">
-                <p>작성자: ${comment.memberNum}</p>
-                <p>${comment.content}</p>
-                <p>작성일: ${comment.createDate}</p>
-                <c:if test="${member.memberNum == comment.memberNum}">
-                    <form method="post" action="${pageContext.request.contextPath}/comments/update" class="comment-form">
-                        <input type="hidden" name="commentNum" value="${comment.commentNum}" />
-                        <input type="hidden" name="boardNum" value="${boardNum}" />
-                        <textarea name="content" class="comment-textarea">${comment.content}</textarea>
-                        <input type="submit" value="수정" class="comment-button"/>
-                    </form>
-                    <form method="post" action="${pageContext.request.contextPath}/comments/delete" class="comment-form">
-                        <input type="hidden" name="commentNum" value="${comment.commentNum}" />
-                        <input type="hidden" name="boardNum" value="${boardNum}" />
-                        <input type="submit" value="삭제" class="comment-button"/>
-                    </form>
-                </c:if>
-            </div>
-        </c:forEach>
+        <div id="commentList">    
+            <c:forEach var="comment" items="${comments}">
+                <div class="comment">
+                    <p>작성자: ${comment.memberNum}</p>
+                    <p class="comment-content">${comment.content}</p>
+                    <p>작성일: ${comment.createDate}</p>
+                    <c:if test="${member.memberNum == comment.memberNum}">
+                        <button data-comment-num="${comment.commentNum}" class="comment-button">수정</button>
+                        <button data-comment-num="${comment.commentNum}" class="comment-button">삭제</button>
+                    </c:if>
+                </div>
+            </c:forEach>
+        </div>
     </div>
+    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/commentslist.js"></script>
 </body>
 </html>
 

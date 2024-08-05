@@ -36,8 +36,13 @@ public class CommentController {
 	public String addComment(@RequestParam Long boardNum, @RequestParam String content, HttpSession session, Model model) throws Exception {
 	    // 세션에서 로그인한 사용자의 정보를 가져옵니다.
 	    MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-	    // 사용자의 회원 번호를 가져옵니다.
+	    if (memberDTO == null) {
+	        throw new Exception("로그인이 필요합니다.");
+	    }
 	    Long memberNum = memberDTO.getMemberNum();
+	    if (memberNum == null) {
+	        throw new Exception("회원 정보가 잘못되었습니다.");
+	    }
 
 	    // CommentsDTO 객체를 생성하고 데이터를 설정합니다.
 	    CommentsDTO commentsDTO = new CommentsDTO();
@@ -46,11 +51,15 @@ public class CommentController {
 	    commentsDTO.setContent(content);
 
 	    // 서비스 계층을 호출하여 댓글을 추가합니다.
-	    commentService.addComment(commentsDTO);
+	    int result = commentService.addComment(commentsDTO);
+	    if (result <= 0) {
+	        throw new Exception("댓글 추가 실패");
+	    }
 
 	    // 댓글 목록 페이지로 리다이렉트합니다.
 	    return "redirect:/comments/list?boardNum=" + boardNum;
 	}
+
 	
 	// 댓글을 수정하는 메서드입니다 (자신의 댓글만 수정 가능).
     @PostMapping("/update")
