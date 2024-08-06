@@ -1,14 +1,19 @@
 package com.picmap.app.member;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.files.FileManager;
+import com.picmap.app.follow.FollowDTO;
 
 
 
@@ -53,7 +58,7 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 		if(null==files){
 			memberDTO.setProfilePath("default");
 		}else {
-		fm.fileSave(files, path, memberDTO);
+			memberDTO.setProfilePath(fm.fileSave(files, path));
 		}
 		int result = memberDAO.join(memberDTO);
 		return result;
@@ -83,7 +88,7 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 		if(null==files){
 			memberDTO.setProfilePath("default");
 		}else {
-		fm.fileSave(files, path, memberDTO);
+			memberDTO.setProfilePath(fm.fileSave(files, path));
 		}
 		int result = memberDAO.update(memberDTO);
 		return result;
@@ -94,7 +99,15 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 		return memberDAO.delete(memberDTO);
 	}
 	
-	
+	public int follow(FollowDTO followDTO,HttpSession session)throws Exception {
+
+		MemberDTO memberDTO=(MemberDTO)session.getAttribute("member");
+		followDTO.setFromFollow(memberDTO.getMemberNum());
+		return	memberDAO.follow(followDTO);
+	}
+	public Long fromFollow(MemberDTO memberDTO) throws Exception {
+		return memberDAO.fromFollow(memberDTO);
+	}
 	
 	
 }

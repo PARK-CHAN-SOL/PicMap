@@ -22,8 +22,8 @@
 							<li><a href="/notice/list">공지사항</a></li>
 							<li><a href="city.html">베스트 게시글</a></li>
 							<li><a href="/travel/list">전체 게시글</a></li>
-							 <c:if test="${not empty member}">
-							<li><a href="/member/mypage">마이페이지</a></li>
+							 <c:if test="${not empty sessionScope.member}">
+							<li><a href="/member/mypage?memberNum=${sessionScope.member.memberNum}">마이페이지</a></li>
 							</c:if>
 				
 						</ul>
@@ -40,19 +40,19 @@
 			</div>
 			<div class="header__hotline_book_wrap">	
 				<div class="header__lang">
-				 <c:if test="${empty member}">
+				 <c:if test="${empty sessionScope.member}">
         	<p>로그인을 해주세요</p>
 			</c:if>
-				<c:if test="${not empty member}">
-					 <p>${member.memberName} 님 </p>
+				<c:if test="${not empty sessionScope.member}">
+					 <p>${sessionScope.member.memberName} 님 </p>
 			</c:if>
 				</div>
 
 				<div class="header__booking">
-				<c:if test="${empty member}">
+				<c:if test="${empty sessionScope.member}">
 				<button type="button"  class="md-btn md-btn--primary md-btn--pill " data-bs-toggle="modal" data-bs-target="#exampleModal">로그인</button>
 				  </c:if>
-			<c:if test="${not empty member}">
+			<c:if test="${not empty sessionScope.member}">
 				<button type="button"  class="md-btn md-btn--primary md-btn--pill "  onclick="location.href='/member/logout' " >로그아웃</button>
 				  </c:if>
 				</div>
@@ -127,10 +127,12 @@
 
       <div class="modal-body">
     <form action="/member/join" method="POST" id="frm" enctype="multipart/form-data">
-<div class="col-12  fs-4">
-	<input type="file"  name="files">
-			</div>
-			
+      <div class="mb-3">
+      <label for="formFileSm" class="form-label">프로필 사진</label>
+      <input class="form-control form-control-sm" type="file" name="files" onchange="readURL(this);" >
+      <br /><br />
+      <img id="preview"  style="width: 20%; height: 20%; object-fit:cover;"/>
+    </div>
 				<div id="result"></div>
    
 <div class="col-md-6">
