@@ -12,7 +12,7 @@
 			 ON T.MEMBERNUM = M.MEMBERNUM
 		ORDER BY BOARDNUM DESC
 	</select>
-
+	
 
 
 

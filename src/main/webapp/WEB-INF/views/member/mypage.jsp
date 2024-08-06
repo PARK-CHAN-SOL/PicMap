@@ -40,7 +40,7 @@ by Awe7 (http://awe7.com/freebies)
             </div>
             <div class="text-center">
               <i class="fa fa-check fs-6 d-block mb-2"></i>
-              <h4 class="mb-0 fw-semibold lh-1">2,659</h4>
+              <h4 class="mb-0 fw-semibold lh-1">${result}</h4>
               <p class="mb-0 fs-4">팔로잉</p>
             </div>
           </div>
@@ -71,10 +71,13 @@ by Awe7 (http://awe7.com/freebies)
         </div>
         <div class="col-lg-4 order-last">
           <ul class="list-unstyled d-flex align-items-center justify-content-center justify-content-lg-start my-3 gap-3">
-            <li>  <a href="/member/update"><button class="btn btn-secondary">프로필 편집</button></a></li>
-            <li><a href="/notice/add"><button class="btn btn-secondary">게시글 쓰기</button></a></li>
-            <li><a href="/member/delete"><button class="btn btn-danger">탈퇴하기</button></a></li>
+           <li>  <button class="btn btn-primary fs-4" type="button" id="follow" data-to-follow="${param.memberNum}">팔로우</button></li>
+            <li>  <a href="/member/update"><button class="btn btn-secondary fs-4">프로필 편집</button></a></li>
+            <li><a href="/notice/add"><button class="btn btn-secondary fs-4">게시글 쓰기</button></a></li>
+            <li><a href="/member/delete"><button class="btn btn-danger fs-4">탈퇴하기</button></a></li>
+        
           </ul>
+          <div id="wishResult"></div>
         </div>
       </div>
       <ul class="nav nav-pills user-profile-tab justify-content-end mt-2 bg-light-info rounded-2" id="pills-tab" role="tablist">
@@ -734,7 +737,9 @@ by Awe7 (http://awe7.com/freebies)
 
 
 	<c:import url="../template/footer.jsp"></c:import>
+  <script type="text/javascript" src="/resources/assets/js/member/memberFollow.js"></script>
 
+  <script type="text/javascript" src="/resources/assets/js/member/memberJoinCheck.js"></script>
 </body>
 </html>
 
