@@ -457,6 +457,7 @@ by Awe7 (http://awe7.com/freebies)
     <!-- End / Content-->
 
     <c:import url="./template/footer.jsp"></c:import>
+
 </body>
 </html>
 

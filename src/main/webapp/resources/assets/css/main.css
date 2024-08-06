@@ -3974,3 +3974,13 @@ ul {
     position: absolute;
     right: -100px;
 }
+
+.md-content{
+    height: auto;
+    min-height: 1000px;
+}
+
+.card-body{
+    height: auto;
+    min-height: 1000px;
+}

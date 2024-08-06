@@ -16,6 +16,7 @@ by Awe7 (http://awe7.com/freebies)
 </head>
 <body>
 
+  <div class="md-content">
 <div class="container">
   <div class="card overflow-hidden">
     <div class="card-body p-0">
@@ -46,33 +47,33 @@ by Awe7 (http://awe7.com/freebies)
        
     <form action="/member/update" method="post"  enctype="multipart/form-data">
     <div>
-       <div class="col-12">
+       <div class="col-md-6">
         <label for="inputName" class="form-label">이름</label>
-        <input type="text" class="form-control" id="inputName" name="memberName" value="${member.memberName}">
+        <input type="text" class="form-control" id="inputName" name="memberName" value="${member.memberName}"  style="border-radius:30px;width:400px;height:px;">
       </div>
-          <div class="col-12">
+          <div class="col-md-6">
         <label for="inputPhone" class="form-label">생년월일</label>
-        <input type="date" class="form-control" id="memberBirth" name="memberBirth" value="${member.memberBirth}">
+        <input type="date" class="form-control" id="memberBirth" name="memberBirth" value="${member.memberBirth}"  style="border-radius:30px;width:400px;height:px;">
       </div>
-          <div class="col-12">
+          <div class="col-md-6">
         <label for="inputPhone" class="form-label">닉네임</label>
-        <input type="text" class="form-control" id="memberNickName" name="memberNickName" value="${member.memberNickName}">
+        <input type="text" class="form-control" id="memberNickName" name="memberNickName" value="${member.memberNickName}" style="border-radius:30px;width:400px;height:px;">
       </div>
-          <div class="col-12">
+          <div class="col-md-6">
         <label for="inputPhone" class="form-label">이메일</label>
-        <input type="email" class="form-control" id="memberEmail" name="memberEmail" value="${member.memberEmail}">
+        <input type="email" class="form-control" id="memberEmail" name="memberEmail" value="${member.memberEmail}" style="border-radius:30px;width:400px;height:px;">
       </div>
-       <div class="col-12">
+       <div class="col-md-6">
         <label for="inputPhone" class="form-label">전화번호</label>
-        <input type="text" class="form-control" id="inputPhone" name="memberPhone" value="${member.memberPhone}">
+        <input type="text" class="form-control" id="inputPhone" name="memberPhone" value="${member.memberPhone}" style="border-radius:30px;width:400px;height:px;">
       </div>
-        <div class="col-12">
-	<input type="file"  name="filesUpdate" >
+        <div class="col-md-6">
+	<input type="file"  name="filesUpdate"  style="border-radius:30px;width:400px;height:px;">
 		
       </div>
       
-      <div class="col-12">
-        <button class="btn btn-primary" type="submit">수정하기</button>
+      <div class="col-md-6">
+        <button style="width:80px;height:40px " class="btn btn-primary fs-5 me-5" type="submit">수정하기</button>
       </div>
      
     </div>
@@ -85,6 +86,7 @@ by Awe7 (http://awe7.com/freebies)
 
     
     </div>
+</div>
 </div>
 </div>
 </div>
