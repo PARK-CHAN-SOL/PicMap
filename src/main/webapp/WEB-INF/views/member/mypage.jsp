@@ -20,10 +20,10 @@ by Awe7 (http://awe7.com/freebies)
 
 
 
-
+<div class="md-content">
 <div class="container">
   <div class="card overflow-hidden">
-    <div class="card-body p-0">
+    <div class="p-0">
       <img src="/resources/assets/img/mypageback.png" alt="" class="img-fluid">
       <div class="row align-items-center">
         <div class="col-lg-4 order-lg-1 order-2">
@@ -72,8 +72,8 @@ by Awe7 (http://awe7.com/freebies)
         <div class="col-lg-4 order-last">
           <ul class="list-unstyled d-flex align-items-center justify-content-center justify-content-lg-start my-3 gap-3">
             <li>  <a href="/member/update"><button class="btn btn-secondary">프로필 편집</button></a></li>
-                            <li><a href="/member/delete"><button class="btn btn-danger">탈퇴하기</button></a></li>
-                <li><a href="/notice/add"><button class="btn btn-secondary">게시글 쓰기</button></a></li>
+            <li><a href="/notice/add"><button class="btn btn-secondary">게시글 쓰기</button></a></li>
+            <li><a href="/member/delete"><button class="btn btn-danger">탈퇴하기</button></a></li>
           </ul>
         </div>
       </div>
@@ -729,7 +729,7 @@ by Awe7 (http://awe7.com/freebies)
    
   </div>
 </div>
-  
+</div>
 
 
 
