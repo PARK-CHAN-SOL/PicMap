@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="/ping/addPing" method="post" id="frm">
+                <form action="/ping/addPing" method="post" id="pingFrm">
                     <div>
                         <input type="text" id="loc" name="address"> <input type="hidden" id="lat" name="latitude"> <input type="hidden" id="lon" name="longitude">
                     </div>

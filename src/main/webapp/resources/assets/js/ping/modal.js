@@ -5,10 +5,10 @@ const modalButton = document.getElementById("modalButton");
 const mapModal = document.getElementById("mapModal");
 
 const mapButton = document.getElementById("mapButton");
-const frm = document.getElementById("frm");
+const pingFrm = document.getElementById("pingFrm");
 
 mapButton.addEventListener("click", ()=>{
-    frm.submit();
+    // pingFrm.submit();
 })
 
 // modalButton.addEventListener("click", function(){

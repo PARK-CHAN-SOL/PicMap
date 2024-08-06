@@ -7,13 +7,16 @@
 	<select id="getList" resultType="TravelDTO">
 		SELECT T.*, M.MEMBERID, M.MEMBERNICKNAME 
 		FROM TRAVEL T
-			 RIGHT JOIN
+			 LEFT JOIN
 			 MEMBER M
 			 ON T.MEMBERNUM = M.MEMBERNUM
 		ORDER BY BOARDNUM DESC
 	</select>
 	
-
+	<insert id="add" parameterType="TravelDTO">
+		INSERT INTO TRAVEL
+		VALUES (BOARDNUM_SEQ.NEXTVAL, #{}, )
+	</insert>
 
 
 

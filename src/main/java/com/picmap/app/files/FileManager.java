@@ -22,7 +22,7 @@ public class FileManager {
 	//fileSave
 	//1. 저장할 폴더 지정
 
-public void fileSave (MultipartFile mf, String path, MemberDTO memberDTO)throws Exception {
+public String fileSave (MultipartFile mf, String path)throws Exception {
 		
 		File file = new File(path);
 		
@@ -41,7 +41,7 @@ public void fileSave (MultipartFile mf, String path, MemberDTO memberDTO)throws 
 		File f = new File(file, fileName);
 		mf.transferTo(f);
 		
-		memberDTO.setProfilePath(fileName);
+		return fileName;
 		
 }
 }

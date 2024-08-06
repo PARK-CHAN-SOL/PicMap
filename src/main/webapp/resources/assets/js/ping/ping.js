@@ -1,4 +1,7 @@
 
+// 지번을 표시할 span
+const locSpan = document.getElementById("locSpan");
+
 // 지번 input
 const loc = document.getElementById('loc');
 
@@ -52,6 +55,7 @@ kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
             lat.value = mouseEvent.latLng.Ma;
             lon.value = mouseEvent.latLng.La;
             loc.value = result[0].address.address_name;
+            locSpan.innerText = loc.value;
 
         }
     });

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
 
@@ -45,7 +46,7 @@ public class TravelController {
 		return "board/write";
 	}
 	@PostMapping("add")
-	public void add(HttpSession session) throws Exception {
+	public void add(HttpSession session, MultipartFile files, TravelDTO travelDTO) throws Exception {
 		
 	}
 	

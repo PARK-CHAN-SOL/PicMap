@@ -26,5 +26,8 @@ public class TravelDAO implements BoardDAO{
 		return sqlSession.selectList(NAMESPACE+"getList");
 	}
 	
+	public int add(BoardDTO travelDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "add", travelDTO);
+	}
 	
 }
