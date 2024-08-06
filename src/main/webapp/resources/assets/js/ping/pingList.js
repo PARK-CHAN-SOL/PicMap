@@ -6,7 +6,22 @@ const searchButton = document.getElementById("searchButton");
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places();
 
+// 마커를 담을 배열
+let markers = [];
+
+// 지도 위에 표시되고 있는 마커를 모두 제거
+function removeMarker() {
+    for ( var i = 0; i < markers.length; i++ ) {
+        markers[i].setMap(null);
+    }   
+    markers = [];
+}
+
 searchButton.addEventListener("click", () => {
+
+    // 지도 위에 표시되고 있는 마커를 모두 제거
+    removeMarker();
+
     let searchForm = new FormData();
     searchForm.append("address", searchPing.value);
     fetch('/ping/getPingList', {
@@ -67,6 +82,8 @@ searchButton.addEventListener("click", () => {
                         console.log(board);
                         location.href = board;
                     });
+
+                    markers.push(marker);
                 }
 
             } else {

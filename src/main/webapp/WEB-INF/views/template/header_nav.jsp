@@ -72,7 +72,7 @@
 
       <div class="modal-header mb-5" >
         <h5 class="fs-1 text-center" style="width:1000px;height:px;">로그인</h5>
-        <button type="button" class="btn-close " data-bs-dismiss="modal"  aria-label="Close" ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close" ></button>
       </div>
 
 
@@ -92,7 +92,7 @@
   
                   <input type="submit" style="width:80px;height:40px " class="btn btn-primary fs-5 me-5"  id="btn-login" value="로그인" >
   
-                  <input type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width:80px;height:40px"  class="btn btn-primary fs-5" value="회원가입" >
+                  <input type="button"  id="joinBtn" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#exampleModal1" style="width:80px;height:40px"  class="btn btn-primary fs-5" value="회원가입" >
   
               </div>
   
@@ -121,7 +121,7 @@
 
       <div class="modal-header mb-5" >
         <h5 class="fs-1 text-center" style="width:1000px;height:px;">회원가입</h5>
-        <button type="button" class="btn-close " data-bs-dismiss="modal"  aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
       </div>
 
 
