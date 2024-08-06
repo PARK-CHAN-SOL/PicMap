@@ -2,6 +2,22 @@
  * 
  */
 
+//모달 close 버튼에 뒷 배경 삭제하는 이벤트 리스너 생성
+const btnClose = document.getElementsByClassName("btn-close");
+
+const modalBackdrop = document.getElementsByClassName("modal-backdrop fade show");
+
+for(let btn of btnClose){
+    btn.addEventListener("click", ()=>{
+        console.log('me');
+        console.log(modalBackdrop);
+        for(let child of modalBackdrop){
+            child.remove();
+        }
+    })
+}
+
+
 //submit button id
 const btn = document.getElementById("btn");
 
