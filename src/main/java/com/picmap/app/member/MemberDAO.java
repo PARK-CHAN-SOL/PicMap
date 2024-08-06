@@ -1,8 +1,12 @@
 package com.picmap.app.member;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.picmap.app.follow.FollowDTO;
 
 
 
@@ -47,8 +51,12 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE + "delete", memberDTO);
 	}
 	
-	
-
+	public int follow(FollowDTO followDTO)throws Exception {
+		return sqlSession.insert(NAMESPACE + "follow", followDTO);
+	}	
+	public Long fromFollow(MemberDTO memberDTO)throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "fromFollow", memberDTO);
+	}	
 	
 	
 }

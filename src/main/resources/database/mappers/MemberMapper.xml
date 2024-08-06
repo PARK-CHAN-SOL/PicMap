@@ -7,7 +7,7 @@
   <select id="idCheck" parameterType="MemberDTO" resultType="java.lang.Integer">
   		SELECT	COUNT(MEMBERID)
   		FROM	MEMBER
-  		WHERE	MEMBERID = #{memberId}
+  		WHERE MEMBERNUM = #{memberNum} 
   	</select>
   	
   	  <select id="memberNickName" parameterType="MemberDTO" resultType="java.lang.Integer">
@@ -25,9 +25,9 @@
    
    <select id="login" parameterType="MemberDTO" resultType="MemberDTO">
    	
-   	SELECT MEMBERID,MEMBERPASSWORD,MEMBERNAME 
+   	SELECT MEMBERNUM,MEMBERID,MEMBERPASSWORD,MEMBERNAME 
    	FROM MEMBER 
-   	WHERE MEMBERID = #{memberId}
+   		WHERE MEMBERID= #{memberId} 
    
    </select>
    
@@ -35,18 +35,29 @@
 		UPDATE MEMBER SET MEMBERNAME=#{memberName} ,MEMBERBIRTH=#{memberBirth},
 		MEMBERNICKNAME=#{memberNickName},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},
 		PROFILEPATH=#{profilePath}
-		WHERE MEMBERID = #{memberId}
+			WHERE MEMBERNUM = #{memberNum} 
 	</update>
 	
   <select id="detail" parameterType="MemberDTO"   resultType="MemberDTO">
-		SELECT MEMBERNAME,MEMBERPASSWORD,MEMBERBIRTH,MEMBERNICKNAME,MEMBEREMAIL,MEMBERPHONE,PROFILEPATH
+		SELECT MEMBERNUM,MEMBERNAME,MEMBERPASSWORD,MEMBERBIRTH,MEMBERNICKNAME,MEMBEREMAIL,MEMBERPHONE,PROFILEPATH
 		FROM MEMBER
-		WHERE MEMBERID = #{memberId} 
+		WHERE MEMBERNUM = #{memberNum} 
 </select>
 		
-
-  
  	<delete id="delete" parameterType="MemberDTO">
-		DELETE MEMBER WHERE MEMBERID= #{memberId}
+		DELETE MEMBER 	WHERE MEMBERNUM = #{memberNum} }
 	</delete> 
+	
+	<insert id="follow" parameterType="FollowDTO"	>
+		INSERT INTO FOLLOW
+		VALUES(FOLLOW_SEQ.NEXTVAL,#{fromFollow},#{toFollow})
+	
+	</insert>
+	
+	<select id="fromFollow" parameterType="MemberDTO"  resultType="java.lang.Long">
+	SELECT COUNT(FOLLOWNUM) FROM FOLLOW  WHERE FROMFOLLOW =#{memberNum}
+	</select>
+	
+	
+	
   </mapper>

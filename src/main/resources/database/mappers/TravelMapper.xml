@@ -13,10 +13,6 @@
 		ORDER BY BOARDNUM DESC
 	</select>
 	
-	<insert id="add" parameterType="TravelDTO">
-		INSERT INTO TRAVEL
-		VALUES (BOARDNUM_SEQ.NEXTVAL, #{}, )
-	</insert>
 
 
 

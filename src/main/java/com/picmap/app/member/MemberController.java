@@ -1,5 +1,7 @@
 package com.picmap.app.member;
 
+import java.util.Set;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.picmap.app.follow.FollowDTO;
+
 
 
 
@@ -97,10 +102,11 @@ public String logout(HttpSession session) {
 }
 //마이페이지
 @RequestMapping(value = "mypage", method = RequestMethod.GET)
-public void mypage(HttpSession session, Model model) throws Exception {
-	MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+public void mypage(MemberDTO memberDTO,Model model) throws Exception {
 	memberDTO = memberService.detail(memberDTO);
+	Long result = memberService.fromFollow(memberDTO);
 	model.addAttribute("member", memberDTO);
+	model.addAttribute("result", result);
 }
 @RequestMapping(value = "update", method = RequestMethod.GET)
 public void update(HttpSession session, Model model) throws Exception {
@@ -134,6 +140,14 @@ public String delete(Model model, HttpSession httpSession) throws Exception {
 		model.addAttribute("url", "/");
 	}
 	return "/commons/message";
+}
+
+
+@GetMapping("follow")
+public String follow(FollowDTO followDTO, HttpSession session,Model model)throws Exception {
+int result = memberService.follow(followDTO,session);
+model.addAttribute("msg",result);
+return "commons/result";
 }
 
 }

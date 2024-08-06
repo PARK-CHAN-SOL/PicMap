@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -9,89 +10,110 @@ Mercury travel - free HTML5 templates!
 by Awe7 (http://awe7.com/freebies)
 -->
 <link rel="stylesheet" href="/resources/assets/css/mypage.css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet">
 <c:import url="../template/header_css.jsp"></c:import>
-    <c:import url="../template/header_nav.jsp"></c:import>
-
+<c:import url="../template/header_nav.jsp"></c:import>
+<style>
+.card-body {
+	height: auto;
+	min-height: 1000px;
+}
+</style>
 </head>
 <body>
 
-  <div class="md-content">
-<div class="container">
-  <div class="card overflow-hidden">
-    <div class="card-body p-0">
-      <img src="/resources/assets/img/mypageback.png" alt="" class="img-fluid">
-      <div class="row align-items-center">
+	<div class="md-content">
+		<div class="container">
+			<div class="card overflow-hidden">
+				<div class="card-body p-0">
+					<img src="/resources/assets/img/mypageback.png" alt=""
+						class="img-fluid">
+					<div class="row align-items-center">
 
-       <div >
-          <div class="mt-n5">
-            <div class="d-flex align-items-center justify-content-center mb-2">
-              <div class="linear-gradient d-flex align-items-center justify-content-center rounded-circle" style="width: 110px; height: 110px;">
-                <div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden" style="width: 100px; height: 100px;">
-              <c:if test="${not empty member.profilePath}">
-                <img src="/resources/upload/members/${member.profilePath}" onerror="this.src='/resources/upload/members/default.png'" alt="" class="w-100 h-100">
-              </c:if>
-              <c:if test="${empty member.profilePath}"> 
-                <img src="/resources/upload/members/default.png" alt="" class="w-100 h-100">
-            </c:if>
-                  
-                </div>
-              </div>
-            </div>
-            <div class="text-center">
-              <h5 class="fs-5 mb-0 fw-semibold">${member.memberNickName}</h5>
-              <p class="mb-0 fs-4">${member.memberEmail}</p>
-            </div>
-          </div>
-        </div>
-       
-    <form action="/member/update" method="post"  enctype="multipart/form-data">
-    <div>
-       <div class="col-md-6">
-        <label for="inputName" class="form-label">이름</label>
-        <input type="text" class="form-control" id="inputName" name="memberName" value="${member.memberName}"  style="border-radius:30px;width:400px;height:px;">
-      </div>
-          <div class="col-md-6">
-        <label for="inputPhone" class="form-label">생년월일</label>
-        <input type="date" class="form-control" id="memberBirth" name="memberBirth" value="${member.memberBirth}"  style="border-radius:30px;width:400px;height:px;">
-      </div>
-          <div class="col-md-6">
-        <label for="inputPhone" class="form-label">닉네임</label>
-        <input type="text" class="form-control" id="memberNickName" name="memberNickName" value="${member.memberNickName}" style="border-radius:30px;width:400px;height:px;">
-      </div>
-          <div class="col-md-6">
-        <label for="inputPhone" class="form-label">이메일</label>
-        <input type="email" class="form-control" id="memberEmail" name="memberEmail" value="${member.memberEmail}" style="border-radius:30px;width:400px;height:px;">
-      </div>
-       <div class="col-md-6">
-        <label for="inputPhone" class="form-label">전화번호</label>
-        <input type="text" class="form-control" id="inputPhone" name="memberPhone" value="${member.memberPhone}" style="border-radius:30px;width:400px;height:px;">
-      </div>
-        <div class="col-md-6">
-	<input type="file"  name="filesUpdate"  style="border-radius:30px;width:400px;height:px;">
-		
-      </div>
-      
-      <div class="col-md-6">
-        <button style="width:80px;height:40px " class="btn btn-primary fs-5 me-5" type="submit">수정하기</button>
-      </div>
-     
-    </div>
-   
-    </form>
-    
-    <div>
-  
+						<div class="mb-3">
+							<div class="mt-n5">
+								<div
+									class="d-flex align-items-center justify-content-center mb-2">
+									<div
+										class="linear-gradient d-flex align-items-center justify-content-center rounded-circle"
+										style="width: 110px; height: 110px;">
+										<div
+											class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden"
+											style="width: 100px; height: 100px;">
+											<c:if test="${not empty member.profilePath}">
+												<img src="/resources/upload/members/${member.profilePath}"
+													onerror="this.src='/resources/upload/members/default.png'"
+													alt="" class="w-100 h-100">
+											</c:if>
+											<c:if test="${empty member.profilePath}">
+												<img src="/resources/upload/members/default.png" alt=""
+													class="w-100 h-100">
+											</c:if>
+
+										</div>
+									</div>
+								</div>
+								<div class="d-flex align-items-center justify-content-center mb-2">
 
 
-    
-    </div>
+									<button style="width: 80px; height: 40px"
+										class="btn btn-primary fs-5 " type="submit">수정하기</button>
+
+								</div>
+							</div>
+						</div>
+
+							<form action="/member/update" method="post" enctype="multipart/form-data">
+						<div class="container overflow-hidden">
+						 <div class="row gy-5">
+								<div class="col-6 ">
+									<label for="inputName" class="form-label fs-4">이름</label> <input
+										type="text" class="form-control " id="inputName"  style="width:500px;"
+										name="memberName" value="${member.memberName}">
+								</div>
+								<div class="col-6">
+									<label for="inputPhone" class="form-label fs-4">생년월일</label> <input
+										type="date" class="form-control" id="memberBirth"  style="width:500px;"
+										name="memberBirth" value="${member.memberBirth}">
+								</div>
+								<div class="col-6">
+									<label for="inputPhone" class="form-label fs-4">닉네임</label> <input
+										type="text" class="form-control" id="memberNickName"  style="width:500px;"
+										name="memberNickName" value="${member.memberNickName}">
+								</div>
+								<div class="col-6">
+									<label for="inputPhone" class="form-label fs-4">이메일</label> <input
+										type="email" class="form-control" id="memberEmail" style="width:500px;"
+										name="memberEmail" value="${member.memberEmail}">
+								</div>
+								<div class="col-6">
+									<label for="inputPhone" class="form-label fs-4">전화번호</label> <input
+										type="text" class="form-control" id="inputPhone" style="width:500px;"
+										name="memberPhone" value="${member.memberPhone}">
+								</div>
+								<div class="col-6">
+									<label for="formFileSm" class="form-label fs-4">프로필 사진</label>
+									<input class="form-control form-control-sm" type="file" style="width:500px;"
+										name="files" onchange="readURL(this);"> <br /> <br />
+								</div>
+								<img id="preview"
+									style="width: 20%; height: 20%; object-fit: cover;" />
 </div>
-</div>
-</div>
-</div>
-</div>
-    <c:import url="../template/footer.jsp"></c:import>
+
+
+						</div>
+
+							</form>
+
+						<div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<c:import url="../template/footer.jsp"></c:import>
 
 </body>
 </html>
