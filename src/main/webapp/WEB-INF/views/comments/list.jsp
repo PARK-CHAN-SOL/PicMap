@@ -30,17 +30,25 @@
     <c:forEach var="comment" items="${comments}">
     <div class="comment">
         <p>작성자: ${comment.memberNum}</p>
-        <p class="comment-content">${comment.content}</p>
+        <p id="${comment.commentNum}" class="comment-content">${comment.content}</p>
         <p>작성일: ${comment.createDate}</p>
         <c:if test="${member.memberNum == comment.memberNum}">
-            <button data-comment-num="${comment.commentNum}" class="comment-button update-button">수정</button>
+        	<button data-comment-num="${comment.commentNum}" class="comment-button update-button">수정</button>
             <button data-comment-num="${comment.commentNum}" class="comment-button delete-button">삭제</button>
         </c:if>
+        <c:if test="${member.memberNum != null}">
+        	<button data-comment-num="${comment.commentNum}" class="comment-button reply-button">답글</button>
+        	<div id="replyForm${comment.commentNum}" class="reply-form" style="display:none;">
+                    <textarea id="replyContents${comment.commentNum}" name="reply" placeholder="답글을 입력하세요" class="comment-textarea"></textarea>
+                    <button data-comment-num="${comment.commentNum}" class="comment-button reply-submit-button">답글 남기기</button>
+            </div>
+    	</c:if>
+    	
     </div>
 </c:forEach>
-    
+</div>    
 
-    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/reply.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/commentslist.js"></script>
 </body>
 </html>

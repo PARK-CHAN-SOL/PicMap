@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.picmap.app.comments.CommentsDTO;
 import com.picmap.app.member.MemberDTO;
+import com.picmap.app.reply.ReplyService;
 
 @Controller
 @RequestMapping("/comments") //컨트롤러 기본 URL 경로 설정	
@@ -22,6 +23,7 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
+		
 	// 특정 게시글의 댓글 목록을 조회합니다.
 	@GetMapping("/list")
 	public String getCommentsByBoard(@RequestParam Long boardNum, Model model, HttpSession session) throws Exception {
@@ -61,37 +63,44 @@ public class CommentController {
 
 	
 	// 댓글을 수정하는 메서드입니다 (자신의 댓글만 수정 가능).
-    @PostMapping("/update")
-    public String updateComment(@RequestParam Long commentNum, @RequestParam Long boardNum, @RequestParam String content, HttpSession session, Model model) throws Exception {
-        // 세션에서 로그인한 사용자의 정보를 가져옵니다.
-        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-        // 사용자의 회원 번호를 가져옵니다.
-        Long memberNum = memberDTO.getMemberNum();
+	@PostMapping("/update")
+	public ResponseEntity<String> updateComment(@RequestParam Long commentNum, @RequestParam Long boardNum, @RequestParam String content, HttpSession session) throws Exception {
+	    MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	    if (memberDTO == null) {
+	        return ResponseEntity.status(401).body("로그인이 필요합니다.");
+	    }
+	    Long memberNum = memberDTO.getMemberNum();
+	    if (memberNum == null) {
+	        return ResponseEntity.status(400).body("회원 정보가 잘못되었습니다.");
+	    }
 
-        // 서비스 계층을 호출하여 댓글을 수정합니다.
-        CommentDTO updatedComment = commentService.updateComment(commentNum, memberNum, content);
-        // 수정된 댓글을 모델에 추가하여 뷰로 전달합니다.
-        model.addAttribute("comment", updatedComment);
+	    // 서비스 계층을 호출하여 댓글을 수정합니다.
+	    CommentDTO updatedComment = commentService.updateComment(commentNum, memberNum, content);
+	    if (updatedComment == null) {
+	        return ResponseEntity.status(500).body("댓글 수정 실패");
+	    }
 
-        // 결과 페이지로 이동합니다.
-        return "redirect:/comments/list?boardNum=" + boardNum;
-    }
+	    return ResponseEntity.ok("success");
+	}
     
     // 댓글을 삭제하는 메서드입니다 (자신의 댓글만 삭제 가능).
-    @PostMapping("/delete")
-    public String deleteComment(@RequestParam Long commentNum, @RequestParam Long boardNum, HttpSession session, Model model) throws Exception {
-        // 세션에서 로그인한 사용자의 정보를 가져옵니다.
-        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-        // 사용자의 회원 번호를 가져옵니다.
-        Long memberNum = memberDTO.getMemberNum();
+	@PostMapping("/delete")
+	public ResponseEntity<String> deleteComment(@RequestParam Long commentNum, HttpSession session) throws Exception {
+	    MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	    if (memberDTO == null) {
+	        return ResponseEntity.status(401).body("로그인이 필요합니다.");
+	    }
+	    Long memberNum = memberDTO.getMemberNum();
+	    if (memberNum == null) {
+	        return ResponseEntity.status(400).body("회원 정보가 잘못되었습니다.");
+	    }
 
-        // 서비스 계층을 호출하여 댓글을 삭제합니다.
-        commentService.deleteComment(commentNum, memberNum);
-        // 삭제 결과 메시지를 모델에 추가하여 뷰로 전달합니다.
-        model.addAttribute("msg", "댓글이 삭제되었습니다.");
+	    int result = commentService.deleteComment(commentNum, memberNum);
+	    if (result <= 0) {
+	        throw new Exception("댓글 삭제 실패");
+	    }
 
-        // 결과 페이지로 이동합니다.
-        return "redirect:/comments/list?boardNum=" + boardNum;
-    }
+	    return ResponseEntity.ok("success");
+	}
 
 }
