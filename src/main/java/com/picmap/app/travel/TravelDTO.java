@@ -8,6 +8,7 @@ public class TravelDTO extends BoardDTO{
 	private Long parentBoard;
 	private Long childBoard;
 	private Long pingNum;
+
 	public Long getBoardLike() {
 		return boardLike;
 	}

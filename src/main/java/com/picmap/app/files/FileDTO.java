@@ -1,11 +1,11 @@
-package com.picmap.app.file;
+package com.picmap.app.files;
 
 public class FileDTO {
-
+	
 	private Long fileNum;
 	private String fileName;
 	private String oriName;
-
+	
 	public Long getFileNum() {
 		return fileNum;
 	}
@@ -29,5 +29,4 @@ public class FileDTO {
 	public void setOriName(String oriName) {
 		this.oriName = oriName;
 	}
-	
 }

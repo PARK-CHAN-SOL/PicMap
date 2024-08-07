@@ -23,10 +23,6 @@
   		#{fileName}, 0, #{rootBoard}, #{parentBoard}, #{childBoard}, #{pingNum})
 	</insert>
 	
-	<insert id="addFile">
-	
-	</insert>
-	
 
 
 
