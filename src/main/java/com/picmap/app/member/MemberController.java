@@ -104,9 +104,11 @@ public String logout(HttpSession session) {
 @RequestMapping(value = "mypage", method = RequestMethod.GET)
 public void mypage(MemberDTO memberDTO,Model model) throws Exception {
 	memberDTO = memberService.detail(memberDTO);
-	Long result = memberService.fromFollow(memberDTO);
+	Long following = memberService.fromFollow(memberDTO);
+	Long follower = memberService.toFollow(memberDTO);
 	model.addAttribute("member", memberDTO);
-	model.addAttribute("result", result);
+	model.addAttribute("follower", follower);
+	model.addAttribute("following", following);
 }
 @RequestMapping(value = "update", method = RequestMethod.GET)
 public void update(HttpSession session, Model model) throws Exception {

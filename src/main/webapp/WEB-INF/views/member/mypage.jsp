@@ -35,12 +35,12 @@ by Awe7 (http://awe7.com/freebies)
             </div>
             <div class="text-center">
               <i class="fa fa-user fs-6 d-block mb-2"></i>
-              <h4 class="mb-0 fw-semibold lh-1">3,586</h4>
+              <h4 class="mb-0 fw-semibold lh-1">${follower}</h4>
               <p class="mb-0 fs-4">팔로워</p>
             </div>
             <div class="text-center">
               <i class="fa fa-check fs-6 d-block mb-2"></i>
-              <h4 class="mb-0 fw-semibold lh-1">${result}</h4>
+              <h4 class="mb-0 fw-semibold lh-1">${following}</h4>
               <p class="mb-0 fs-4">팔로잉</p>
             </div>
           </div>

@@ -108,6 +108,8 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	public Long fromFollow(MemberDTO memberDTO) throws Exception {
 		return memberDAO.fromFollow(memberDTO);
 	}
-	
+	public Long toFollow(MemberDTO memberDTO) throws Exception {
+		return memberDAO.toFollow(memberDTO);
+	}
 	
 }

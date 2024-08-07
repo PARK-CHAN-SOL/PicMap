@@ -55,17 +55,16 @@ by Awe7 (http://awe7.com/freebies)
 										</div>
 									</div>
 								</div>
+							<form action="/member/update" method="post" enctype="multipart/form-data">
 								<div class="d-flex align-items-center justify-content-center mb-2">
 
 
-									<button style="width: 80px; height: 40px"
-										class="btn btn-primary fs-5 " type="submit">수정하기</button>
+									<button style="width: 80px; height: 40px" class="btn btn-primary fs-5 " type="submit">수정하기</button>
 
 								</div>
 							</div>
 						</div>
 
-							<form action="/member/update" method="post" enctype="multipart/form-data">
 						<div class="container overflow-hidden">
 						 <div class="row gy-5">
 								<div class="col-6 ">
@@ -103,11 +102,12 @@ by Awe7 (http://awe7.com/freebies)
 </div>
 
 
+							</form>
 						</div>
 
-							</form>
 
-						<div></div>
+						<div>
+						</div>
 					</div>
 				</div>
 			</div>
