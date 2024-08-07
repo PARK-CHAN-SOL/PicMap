@@ -29,7 +29,7 @@ public class NoticeService implements BoardService{
 
 	
 	@Override
-	public int add(HttpSession session, MultipartFile files, BoardDTO boardDTO) throws Exception {
+	public int add(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}

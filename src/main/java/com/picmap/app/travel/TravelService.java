@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
+import com.picmap.app.board.BoardFileDTO;
 import com.picmap.app.board.BoardService;
 import com.picmap.app.files.FileManager;
 import com.picmap.app.member.MemberDTO;
