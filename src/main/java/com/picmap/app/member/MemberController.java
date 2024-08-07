@@ -1,5 +1,7 @@
 package com.picmap.app.member;
 
+import java.util.Set;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.picmap.app.follow.FollowDTO;
+
+
+
 
 
 
@@ -93,9 +100,58 @@ public String logout(HttpSession session) {
 	session.invalidate(); 
 	return "redirect:/";
 }
-	
-	
-	
-	
-	
+//마이페이지
+@RequestMapping(value = "mypage", method = RequestMethod.GET)
+public void mypage(MemberDTO memberDTO,Model model) throws Exception {
+	memberDTO = memberService.detail(memberDTO);
+	Long result = memberService.fromFollow(memberDTO);
+	model.addAttribute("member", memberDTO);
+	model.addAttribute("result", result);
 }
+@RequestMapping(value = "update", method = RequestMethod.GET)
+public void update(HttpSession session, Model model) throws Exception {
+	MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	memberDTO = memberService.detail(memberDTO);
+	model.addAttribute("member", memberDTO);
+}
+
+@RequestMapping(value = "update", method = RequestMethod.POST)
+public String update(MemberDTO memberDTO,  MultipartFile filesUpdate,HttpSession session, Model model) throws Exception {
+	MemberDTO dtoTmp = (MemberDTO) session.getAttribute("member");
+	memberDTO.setMemberPassword(dtoTmp.getMemberPassword());
+	memberDTO.setMemberId(dtoTmp.getMemberId());
+
+	int num = memberService.update(memberDTO, filesUpdate, session);
+
+	return "redirect:/";
+}
+
+
+@RequestMapping(value = "delete", method = RequestMethod.GET)
+public String delete(Model model, HttpSession httpSession) throws Exception {
+	MemberDTO dto = (MemberDTO) httpSession.getAttribute("member");
+	int num = memberService.delete(dto);
+	if (num > 0) {
+		model.addAttribute("result", "계정이 삭제되었습니다.");
+		model.addAttribute("url", "/");
+		httpSession.setAttribute("member", null);
+	} else {
+		model.addAttribute("result", "계정이 삭제실패.");
+		model.addAttribute("url", "/");
+	}
+	return "/commons/message";
+}
+
+
+@GetMapping("follow")
+public String follow(FollowDTO followDTO, HttpSession session,Model model)throws Exception {
+int result = memberService.follow(followDTO,session);
+model.addAttribute("msg",result);
+return "commons/result";
+}
+
+}
+	
+	
+	
+	

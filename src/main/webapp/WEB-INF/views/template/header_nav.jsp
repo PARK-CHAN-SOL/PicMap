@@ -3,12 +3,12 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- header -->
 
-<header class="header awe-skin-dark header--fixed">
+<header class="header awe-skin-dark header--fixed ">
 	<div class="container-fluid pd-0">
 		<div class="header__inner">
 			<div class="header__logo_menu_wrap">
 				<div class="header__logo">
-					<a href="/"><img src="/resources/assets/img/logo-white.png"
+					<a href="/"><img src="/resources/assets/img/logopm1.png"
 						alt="" /></a>
 				</div>
 				<div class="header__menu">
@@ -17,13 +17,13 @@
 					<nav class="onepage-nav">
 
 						<!-- onepage-menu -->
-						<ul class="onepage-menu">
-							<li class="current-menu-item"><a href="/">홈</a></li>
+						<ul class="onepage-menu mt-4">
+							<li ><a href="/">Home</a></li>
 							<li><a href="/notice/list">공지사항</a></li>
 							<li><a href="city.html">베스트 게시글</a></li>
 							<li><a href="/travel/list">전체 게시글</a></li>
-							 <c:if test="${not empty member}">
-							<li><a href="/member/mypage">마이페이지</a></li>
+							 <c:if test="${not empty sessionScope.member}">
+							<li><a href="/member/mypage?memberNum=${sessionScope.member.memberNum}">마이페이지</a></li>
 							</c:if>
 				
 						</ul>
@@ -40,19 +40,19 @@
 			</div>
 			<div class="header__hotline_book_wrap">	
 				<div class="header__lang">
-				 <c:if test="${empty member}">
+				 <c:if test="${empty sessionScope.member}">
         	<p>로그인을 해주세요</p>
 			</c:if>
-				<c:if test="${not empty member}">
-					 <p>${member.memberName} 님 </p>
+				<c:if test="${not empty sessionScope.member}">
+					 <p>${sessionScope.member.memberName} 님 </p>
 			</c:if>
 				</div>
 
 				<div class="header__booking">
-				<c:if test="${empty member}">
+				<c:if test="${empty sessionScope.member}">
 				<button type="button"  class="md-btn md-btn--primary md-btn--pill " data-bs-toggle="modal" data-bs-target="#exampleModal">로그인</button>
 				  </c:if>
-			<c:if test="${not empty member}">
+			<c:if test="${not empty sessionScope.member}">
 				<button type="button"  class="md-btn md-btn--primary md-btn--pill "  onclick="location.href='/member/logout' " >로그아웃</button>
 				  </c:if>
 				</div>
@@ -72,7 +72,7 @@
 
       <div class="modal-header mb-5" >
         <h5 class="fs-1 text-center" style="width:1000px;height:px;">로그인</h5>
-        <button type="button" class="btn-close " data-bs-dismiss="modal"  aria-label="Close" ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close" ></button>
       </div>
 
 
@@ -92,7 +92,7 @@
   
                   <input type="submit" style="width:80px;height:40px " class="btn btn-primary fs-5 me-5"  id="btn-login" value="로그인" >
   
-                  <input type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal1" style="width:80px;height:40px"  class="btn btn-primary fs-5" value="회원가입" >
+                  <input type="button"  id="joinBtn" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#exampleModal1" style="width:80px;height:40px"  class="btn btn-primary fs-5" value="회원가입" >
   
               </div>
   
@@ -121,16 +121,18 @@
 
       <div class="modal-header mb-5" >
         <h5 class="fs-1 text-center" style="width:1000px;height:px;">회원가입</h5>
-        <button type="button" class="btn-close " data-bs-dismiss="modal"  aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
       </div>
 
 
       <div class="modal-body">
-    <form action="/member/join" method="POST" id="frm">
-<div class="col-12  fs-4">
-
-					<button type="button" id="add" class="btn btn-light">프로필사진추가</button>
-				</div>
+    <form action="/member/join" method="POST" id="frm" enctype="multipart/form-data">
+      <div class="mb-3">
+      <label for="formFileSm" class="form-label">프로필 사진</label>
+      <input class="form-control form-control-sm" type="file" name="files" onchange="readURL(this);" >
+      <br /><br />
+      <img id="preview"  style="width: 20%; height: 20%; object-fit:cover;"/>
+    </div>
 				<div id="result"></div>
    
 <div class="col-md-6">

@@ -2,11 +2,17 @@ package com.picmap.app.travel;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
 import com.picmap.app.board.BoardService;
+import com.picmap.app.files.FileManager;
+import com.picmap.app.member.MemberDTO;
 
 @Service
 public class TravelService implements BoardService{
@@ -14,7 +20,7 @@ public class TravelService implements BoardService{
 	@Autowired
 	private TravelDAO travelDAO;
 	
-	
+	private String name = "travels";
 	
 	//게시판(게시글 리스트)
 	@Override
@@ -26,9 +32,22 @@ public class TravelService implements BoardService{
 
 	//게시글 작성
 	@Override
-	public int add() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int add(HttpSession session, MultipartFile files, BoardDTO travelDTO) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		travelDTO.setMemberNum(memberDTO.getMemberNum());
+		ServletContext servletContext =	session.getServletContext();
+		//1. 어디에 저장? (운영체제가 알고 있는 경로에 써줘야한다)
+		String path = servletContext.getRealPath("resources/upload/" + name);
+		System.out.println(path);
+		FileManager fm = new FileManager();
+
+		if(null==files){
+			travelDTO.setFileName("default");
+		}else {
+			travelDTO.setFileName(fm.fileSave(files, path));
+		}
+		int result = travelDAO.add(travelDTO);
+		return result;
 	}
 
 

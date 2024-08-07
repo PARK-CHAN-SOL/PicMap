@@ -61,12 +61,14 @@
                         </div>
                     </div>
                 </div>
-                <form action="/ping/addPing" method="post" id="frm">
+                <form action="/ping/addPing" method="post" id="pingFrm">
                     <div>
                         <input type="text" id="loc" name="address"> <input type="hidden" id="lat" name="latitude"> <input type="hidden" id="lon" name="longitude">
                     </div>
                 </form>
                     
+
+                <div id="recommendResultTest"></div>
 
                 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
                     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -78,8 +80,9 @@
                     <script type="text/javascript"
                         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
                     <script src="/resources/assets/js/ping/ping.js"></script>
-                    <script src="/resources/assets/js/ping/pingesearch.js"></script>
+                    <script src="/resources/assets/js/ping/pingList.js"></script>
                     <script src="/resources/assets/js/ping/modal.js"></script>
+                    <script src="/resources/assets/js/ping/recommendList.js"></script>
         </body>
 
         </html>
