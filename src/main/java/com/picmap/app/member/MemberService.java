@@ -1,6 +1,7 @@
 package com.picmap.app.member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.files.FileManager;
 import com.picmap.app.follow.FollowDTO;
+
 
 @Service
 public class MemberService {
@@ -70,7 +72,7 @@ public class MemberService {
 
 	// 마이페이지
 	public MemberDTO mypage(MemberDTO memberDTO) throws Exception {
-		
+
 		return memberDTO;
 	}
 
@@ -100,11 +102,17 @@ public class MemberService {
 	}
 
 	public int follow(FollowDTO followDTO, HttpSession session) throws Exception {
-
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		followDTO.setFromFollow(memberDTO.getMemberNum());
-		
-		return memberDAO.follow(followDTO);
+		int result = followCheck(followDTO);
+		if (result == 0) {
+			return 0;
+		}
+		if (result == 1) {
+			return memberDAO.follow(followDTO);
+		} else {
+			return memberDAO.followDelete(followDTO);
+		}
 	}
 
 	public Long fromFollow(MemberDTO memberDTO) throws Exception {
@@ -115,15 +123,22 @@ public class MemberService {
 		return memberDAO.toFollow(memberDTO);
 	}
 
-	public int followCheck(FollowDTO followDTO) throws Exception {
+	public Integer followCheck(FollowDTO followDTO) throws Exception {
 		if (followDTO.getToFollow().equals(followDTO.getFromFollow())) {
 			return 0;
 		}
-		int result =memberDAO.followCheck(followDTO);
-		if(result==0) {
+		int result = memberDAO.followCheck(followDTO);
+		if (result == 0) {
 			return 1;
-		}else {
+		} else {
 			return -1;
 		}
+	}
+	
+	public List<MemberDTO> fromFollowList(FollowDTO followDTO) throws Exception {
+		return memberDAO.fromFollowList(followDTO);
+	}
+	public List<MemberDTO> toFollowList(FollowDTO followDTO) throws Exception {
+		return memberDAO.toFollowList(followDTO);
 	}
 }
