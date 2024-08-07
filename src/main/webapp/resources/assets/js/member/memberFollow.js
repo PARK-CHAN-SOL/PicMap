@@ -1,5 +1,5 @@
 
-//팔로우
+
 
 const follow = document.getElementById("follow");
 console.log(follow);
@@ -15,6 +15,8 @@ const followerList = document.getElementById("followerList");
 //function [함수명] (){}
 //()=>{}
 
+
+//팔로워 리스트를 가지고 옴
 followerList.addEventListener("click", (event) => {
    if(event.target.dataset.toFollow != null){
       let follow = event.target;
@@ -45,6 +47,9 @@ followerList.addEventListener("click", (event) => {
    }
 })
 
+
+
+//팔로우 되어있으면 버튼이 팔로잉으로 바뀜
 if (follow) {
    follow.addEventListener("click", (e) => {
       let toFollow = follow.getAttribute("data-to-follow")
@@ -78,6 +83,9 @@ if (follow) {
    })
 };
 
+
+
+//팔로우 리스트 안에 버튼과 리스트
 followerDiv.addEventListener("click", function () {
    fetch("/member/fromFollowList?toFollow=" + followerDiv.getAttribute("data-to-follow"), {
       method: "GET"
