@@ -51,7 +51,6 @@
 	<insert id="follow" parameterType="FollowDTO"	>
 		INSERT INTO FOLLOW
 		VALUES(FOLLOW_SEQ.NEXTVAL,#{fromFollow},#{toFollow})
-	
 	</insert>
 	
 	<select id="fromFollow" parameterType="MemberDTO"  resultType="java.lang.Long">
@@ -65,8 +64,19 @@
 	<select id="followCheck" parameterType="FollowDTO" resultType="java.lang.Integer">
 	SELECT COUNT(FOLLOWNUM) FROM FOLLOW WHERE FROMFOLLOW = #{fromFollow} AND TOFOLLOW = #{toFollow}
 	</select>
-	
-	
-	
+		<delete id="followDelete" parameterType="FollowDTO">
+		DELETE FOLLOW 	WHERE FROMFOLLOW = #{fromFollow} AND TOFOLLOW = #{toFollow}
+	</delete> 
+	<select id="fromFollowList" resultType="MemberDTO" parameterType="FollowDTO">
+SELECT * FROM MEMBER WHERE MEMBERNUM IN
+(SELECT FROMFOLLOW FROM FOLLOW
+WHERE TOFOLLOW = #{toFollow})
+	 
+</select>
+		<select id="toFollowList" resultType="MemberDTO" parameterType="FollowDTO">
+	SELECT * FROM MEMBER WHERE MEMBERNUM IN
+(SELECT TOFOLLOW FROM FOLLOW
+WHERE FROMFOLLOW =#{fromFollow})
+</select>
 
   </mapper>

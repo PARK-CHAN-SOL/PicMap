@@ -1,5 +1,6 @@
 package com.picmap.app.member;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.picmap.app.follow.FollowDTO;
+
 
 
 
@@ -60,8 +62,16 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	public Long toFollow(MemberDTO memberDTO)throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "toFollow", memberDTO);
 	}	
-	public int followCheck(FollowDTO followDTO)throws Exception {
+	public Integer followCheck(FollowDTO followDTO)throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "followCheck", followDTO);
 	}	
-	
+	public int followDelete(FollowDTO followDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "followDelete", followDTO);
+	}
+	public List<MemberDTO> fromFollowList(FollowDTO followDTO)throws Exception {
+		return sqlSession.selectList(NAMESPACE + "fromFollowList", followDTO);
+	}	
+	public List<MemberDTO> toFollowList(FollowDTO followDTO)throws Exception {
+		return sqlSession.selectList(NAMESPACE + "toFollowList", followDTO);
+	}	
 }
