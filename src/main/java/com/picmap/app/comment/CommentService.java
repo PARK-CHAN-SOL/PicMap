@@ -21,12 +21,9 @@ public class CommentService {
     // 새로운 댓글을 추가합니다.
     public int addComment(CommentsDTO commentsDTO) throws Exception {
         // DAO를 호출하여 댓글을 추가합니다.
-        int result = commentDAO.addComment(commentsDTO);
-        if (result <= 0) {
-            throw new Exception("댓글 추가 실패");
-        }
-        return result; // 추가된 댓글 객체를 반환합니다.
+        return commentDAO.addComment(commentsDTO);
     }
+
 
     // 댓글을 수정합니다 (자신의 댓글만 수정 가능).
     public CommentDTO updateComment(Long commentNum, Long memberNum, String content) throws Exception {

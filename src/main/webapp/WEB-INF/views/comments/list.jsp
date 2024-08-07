@@ -13,7 +13,7 @@
     <c:import url="../template/header_nav.jsp"></c:import>
     <div class="comments-container mt-5">
         <h2>댓글 목록</h2>
-        <div>
+        <div id="commentForm">
             <c:choose>
                 <c:when test="${empty member}">
                     <button type="button" class="md-btn md-btn--primary" data-bs-toggle="modal" data-bs-target="#exampleModal">로그인 후 댓글을 남겨주세요</button>
@@ -24,21 +24,10 @@
                 </c:otherwise>
             </c:choose>
         </div>
-        <div id="commentList">    
-            <c:forEach var="comment" items="${comments}">
-                <div class="comment">
-                    <p>작성자: ${comment.memberNum}</p>
-                    <p class="comment-content">${comment.content}</p>
-                    <p>작성일: ${comment.createDate}</p>
-                    <c:if test="${member.memberNum == comment.memberNum}">
-                        <button data-comment-num="${comment.commentNum}" class="comment-button">수정</button>
-                        <button data-comment-num="${comment.commentNum}" class="comment-button">삭제</button>
-                    </c:if>
-                </div>
-            </c:forEach>
-        </div>
+        <div id="commentList"></div>
     </div>
-    
+
+    <c:import url="../template/footer.jsp"></c:import>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/commentslist.js"></script>
 </body>
 </html>
