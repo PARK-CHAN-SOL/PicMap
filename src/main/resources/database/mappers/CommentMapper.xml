@@ -8,6 +8,7 @@
   <!-- 댓글 목록 조회 -->
   <select id="findByBoardNum" parameterType="long" resultType="CommentsDTO">
     SELECT * FROM COMMENTS WHERE BOARDNUM = #{boardNum}
+    ORDER BY CREATEDATE DESC , UPDATEDATE DESC
   </select>
   
   <!-- 특정 댓글 조회 by ID -->
