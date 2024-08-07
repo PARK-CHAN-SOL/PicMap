@@ -62,4 +62,11 @@
 	SELECT COUNT(FOLLOWNUM) FROM FOLLOW  WHERE TOFOLLOW =#{memberNum}
 	</select>
 	
+	<select id="followCheck" parameterType="FollowDTO" resultType="java.lang.Integer">
+	SELECT COUNT(FOLLOWNUM) FROM FOLLOW WHERE FROMFOLLOW = #{fromFollow} AND TOFOLLOW = #{toFollow}
+	</select>
+	
+	
+	
+
   </mapper>

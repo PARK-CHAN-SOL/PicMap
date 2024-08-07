@@ -29,5 +29,15 @@
        .catch(()=>{
           alert("오류발생");
        })
+       if(follow.innerText == '팔로우'){
+         follow.innerText = '언팔로우';
+         follow.classList.remove('btn-primary');
+         follow.classList.add('btn-secondary');
+       } else {
+         follow.innerText = '팔로우';
+         follow.classList.remove('btn-secondary');
+         follow.classList.add('btn-primary');
+       }
+
   })
     

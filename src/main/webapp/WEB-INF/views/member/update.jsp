@@ -51,70 +51,71 @@ by Awe7 (http://awe7.com/freebies)
 												<img src="/resources/upload/members/default.png" alt=""
 													class="w-100 h-100">
 											</c:if>
-
 										</div>
 									</div>
 								</div>
-							<form action="/member/update" method="post" enctype="multipart/form-data">
-								<div class="d-flex align-items-center justify-content-center mb-2">
-
-
-									<button style="width: 80px; height: 40px" class="btn btn-primary fs-5 " type="submit">수정하기</button>
-
-								</div>
+									</div>
 							</div>
-						</div>
+								<form action="/member/update" method="post" enctype="multipart/form-data">
+									<div class="d-flex align-items-center justify-content-center mb-2">
+										<button style="width: 80px; height: 40px" class="btn btn-primary fs-5 " type="submit">수정하기</button>
+									</div>
+
 
 						<div class="container overflow-hidden">
-						 <div class="row gy-5">
+							<div class="row gy-5">
 								<div class="col-6 ">
 									<label for="inputName" class="form-label fs-4">이름</label> <input
-										type="text" class="form-control " id="inputName"  style="width:500px;"
-										name="memberName" value="${member.memberName}">
+										type="text" class="form-control " id="inputName"
+										style="width: 500px;" name="memberName"
+										value="${member.memberName}">
 								</div>
 								<div class="col-6">
 									<label for="inputPhone" class="form-label fs-4">생년월일</label> <input
-										type="date" class="form-control" id="memberBirth"  style="width:500px;"
-										name="memberBirth" value="${member.memberBirth}">
+										type="date" class="form-control" id="memberBirth"
+										style="width: 500px;" name="memberBirth"
+										value="${member.memberBirth}">
 								</div>
 								<div class="col-6">
 									<label for="inputPhone" class="form-label fs-4">닉네임</label> <input
-										type="text" class="form-control" id="memberNickName"  style="width:500px;"
-										name="memberNickName" value="${member.memberNickName}">
+										type="text" class="form-control" id="memberNickName"
+										style="width: 500px;" name="memberNickName"
+										value="${member.memberNickName}">
 								</div>
 								<div class="col-6">
 									<label for="inputPhone" class="form-label fs-4">이메일</label> <input
-										type="email" class="form-control" id="memberEmail" style="width:500px;"
-										name="memberEmail" value="${member.memberEmail}">
+										type="email" class="form-control" id="memberEmail"
+										style="width: 500px;" name="memberEmail"
+										value="${member.memberEmail}">
 								</div>
 								<div class="col-6">
 									<label for="inputPhone" class="form-label fs-4">전화번호</label> <input
-										type="text" class="form-control" id="inputPhone" style="width:500px;"
-										name="memberPhone" value="${member.memberPhone}">
+										type="text" class="form-control" id="inputPhone"
+										style="width: 500px;" name="memberPhone"
+										value="${member.memberPhone}">
 								</div>
 								<div class="col-6">
 									<label for="formFileSm" class="form-label fs-4">프로필 사진</label>
-									<input class="form-control form-control-sm" type="file" style="width:500px;"
-										name="files" onchange="readURL(this);"> <br /> <br />
+									<input class="form-control form-control-sm" type="file"
+										style="width: 500px;" name="files" onchange="readURL(this);">
+									<br /> <br />
 								</div>
-								<img id="preview"
-									style="width: 20%; height: 20%; object-fit: cover;" />
-</div>
+								<img id="previewProfile" style="width: 20%; height: 20%; object-fit: cover;" />
+							</div>
 
-
+							</div>
 							</form>
 						</div>
 
 
-						<div>
-						</div>
+		
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<c:import url="../template/footer.jsp"></c:import>
 
+	<c:import url="../template/footer.jsp"></c:import>
+ <script type="text/javascript" src="/resources/assets/js/member/memberUpdate.js"></script>
 </body>
 </html>
 
