@@ -32,19 +32,22 @@ public class CommentService {
         commentDTO.setCommentNum(commentNum);
         commentDTO.setMemberNum(memberNum);
         commentDTO.setContent(content);
+
         // DAO를 호출하여 댓글을 수정합니다.
         commentDAO.updateComment(commentDTO);
+
         // 수정된 댓글 객체를 반환합니다.
         return commentDAO.getCommentById(commentNum);
     }
 
+
+
     // 댓글을 삭제합니다 (자신의 댓글만 삭제 가능).
-    public void deleteComment(Long commentNum, Long memberNum) throws Exception {
-        // 삭제할 댓글 객체를 생성하고 데이터를 설정합니다.
+    public int deleteComment(Long commentNum, Long memberNum) throws Exception {
         CommentDTO commentDTO = new CommentDTO();
         commentDTO.setCommentNum(commentNum);
         commentDTO.setMemberNum(memberNum);
-        // DAO를 호출하여 댓글을 삭제합니다.
-        commentDAO.deleteComment(commentDTO);
+        return commentDAO.deleteComment(commentDTO);
     }
+
 }
