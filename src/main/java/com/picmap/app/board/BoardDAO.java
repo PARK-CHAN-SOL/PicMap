@@ -8,7 +8,11 @@ public interface BoardDAO{
 	
 	public List<BoardDTO> getList() throws Exception;
 	
+	public int add(BoardDTO boardDTO) throws Exception;
 	
+	public int addFile(BoardFileDTO boardFileDTO) throws Exception;
+	
+	public int update(BoardDTO boardDTO) throws Exception;
 	
 	
 }

@@ -13,7 +13,7 @@ public interface BoardService {
 	
 	public List<BoardDTO> getList() throws Exception;
 	
-	public int add(HttpSession session, MultipartFile files, BoardDTO boardDTO) throws Exception;
+	public int add(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception;
 	
 	public int update() throws Exception;
 

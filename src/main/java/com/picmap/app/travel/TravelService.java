@@ -19,6 +19,8 @@ public class TravelService implements BoardService{
 	
 	@Autowired
 	private TravelDAO travelDAO;
+	@Autowired
+	private FileManager fileManager;
 	
 	private String name = "travels";
 	
@@ -32,21 +34,25 @@ public class TravelService implements BoardService{
 
 	//게시글 작성
 	@Override
-	public int add(HttpSession session, MultipartFile files, BoardDTO travelDTO) throws Exception {
+	public int add(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		travelDTO.setMemberNum(memberDTO.getMemberNum());
+		boardDTO.setMemberNum(memberDTO.getMemberNum());
 		ServletContext servletContext =	session.getServletContext();
 		//1. 어디에 저장? (운영체제가 알고 있는 경로에 써줘야한다)
 		String path = servletContext.getRealPath("resources/upload/" + name);
 		System.out.println(path);
-		FileManager fm = new FileManager();
 
 		if(null==files){
-			travelDTO.setFileName("default");
+			boardDTO.setFileName("default");
 		}else {
-			travelDTO.setFileName(fm.fileSave(files, path));
-		}
-		int result = travelDAO.add(travelDTO);
+			for (MultipartFile f : files) {
+				if (f.isEmpty()) {
+					continue;
+				}
+				boardDTO.setFileName(fileManager.fileSave(f, path));
+			}
+		}		
+		int result = travelDAO.add(boardDTO);
 		return result;
 	}
 

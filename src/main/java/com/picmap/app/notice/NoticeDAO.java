@@ -8,10 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import com.picmap.app.board.BoardDAO;
 import com.picmap.app.board.BoardDTO;
+import com.picmap.app.board.BoardFileDTO;
 
 @Repository
 public class NoticeDAO implements BoardDAO{
 	
+
+
+
 	@Autowired
 	private SqlSession sqlSession;
 	
@@ -25,6 +29,31 @@ public class NoticeDAO implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"getList") ;
 	}
+
+
+	//게시글 작성
+	@Override
+	public int add(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int update(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
+	
+	
 	
 	
 }

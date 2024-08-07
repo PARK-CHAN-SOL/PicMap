@@ -1,6 +1,7 @@
 package com.picmap.app.board;
 
 import java.sql.Date;
+import java.util.List;
 
 public class BoardDTO {
 	private Long boardNum;
@@ -13,6 +14,9 @@ public class BoardDTO {
 	private Date updateDate;
 	private Long hit;
 	private String fileName;
+	private List<BoardFileDTO> boardFileDTOs;
+
+
 	
 	public Long getBoardNum() {
 		return boardNum;
@@ -73,5 +77,11 @@ public class BoardDTO {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	public List<BoardFileDTO> getBoardFileDTOs() {
+		return boardFileDTOs;
+	}
+	public void setBoardFileDTOs(List<BoardFileDTO> boardFileDTOs) {
+		this.boardFileDTOs = boardFileDTOs;
 	}
 }

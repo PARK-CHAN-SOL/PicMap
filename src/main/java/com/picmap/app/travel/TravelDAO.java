@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.picmap.app.board.BoardDAO;
 import com.picmap.app.board.BoardDTO;
+import com.picmap.app.board.BoardFileDTO;
 
 @Repository
 public class TravelDAO implements BoardDAO{
@@ -25,9 +26,35 @@ public class TravelDAO implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"getList");
 	}
+
+
 	
-	public int add(BoardDTO travelDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE + "add", travelDTO);
+	//게시글 작성
+	@Override
+	public int add(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESPACE+"add", boardDTO);
 	}
+
+
+	
+	//첨부파일 추가(Travel에선 사용하지 않음)
+	@Override
+	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	//게시글 수정
+	@Override
+	public int update(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
+	
+	
 	
 }
