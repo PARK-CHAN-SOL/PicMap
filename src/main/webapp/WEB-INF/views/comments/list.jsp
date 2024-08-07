@@ -16,20 +16,31 @@
         <div id="commentForm">
             <c:choose>
                 <c:when test="${empty member}">
-                    <button type="button" class="md-btn md-btn--primary" data-bs-toggle="modal" data-bs-target="#exampleModal">로그인 후 댓글을 남겨주세요</button>
+                	<textarea id="commentContents" name="comment" placeholder="댓글을 입력하세요" class="comment-textarea" onclick="modalBtn.click()"></textarea>
+                    <button id="modalBtn" type="button" class="md-btn md-btn--primary" data-bs-toggle="modal" data-bs-target="#exampleModal">로그인 후 댓글을 남겨주세요</button>
                 </c:when>
                 <c:otherwise>
                     <textarea id="commentContents" name="comment" placeholder="댓글을 입력하세요" class="comment-textarea"></textarea>
                     <button id="commentButton" type="button" class="comment-button" data-id="${boardNum}">댓글 남기기</button>
                 </c:otherwise>
             </c:choose>
-        </div>
-        <div id="commentList"></div>
+       
     </div>
+    
+    <c:forEach var="comment" items="${comments}">
+    <div class="comment">
+        <p>작성자: ${comment.memberNum}</p>
+        <p class="comment-content">${comment.content}</p>
+        <p>작성일: ${comment.createDate}</p>
+        <c:if test="${member.memberNum == comment.memberNum}">
+            <button data-comment-num="${comment.commentNum}" class="comment-button update-button">수정</button>
+            <button data-comment-num="${comment.commentNum}" class="comment-button delete-button">삭제</button>
+        </c:if>
+    </div>
+</c:forEach>
+    
 
-    <c:import url="../template/footer.jsp"></c:import>
+    
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/commentslist.js"></script>
 </body>
 </html>
-
-
