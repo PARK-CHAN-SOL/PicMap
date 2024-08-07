@@ -35,7 +35,7 @@
 		UPDATE MEMBER SET MEMBERNAME=#{memberName} ,MEMBERBIRTH=#{memberBirth},
 		MEMBERNICKNAME=#{memberNickName},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},
 		PROFILEPATH=#{profilePath}
-			WHERE MEMBERNUM = #{memberNum} 
+			WHERE MEMBERID = #{memberId} 
 	</update>
 	
   <select id="detail" parameterType="MemberDTO"   resultType="MemberDTO">
@@ -58,6 +58,15 @@
 	SELECT COUNT(FOLLOWNUM) FROM FOLLOW  WHERE FROMFOLLOW =#{memberNum}
 	</select>
 	
+	<select id="toFollow" parameterType="MemberDTO"  resultType="java.lang.Long">
+	SELECT COUNT(FOLLOWNUM) FROM FOLLOW  WHERE TOFOLLOW =#{memberNum}
+	</select>
+	
+	<select id="followCheck" parameterType="FollowDTO" resultType="java.lang.Integer">
+	SELECT COUNT(FOLLOWNUM) FROM FOLLOW WHERE FROMFOLLOW = #{fromFollow} AND TOFOLLOW = #{toFollow}
+	</select>
 	
 	
+	
+
   </mapper>

@@ -35,12 +35,12 @@ by Awe7 (http://awe7.com/freebies)
             </div>
             <div class="text-center">
               <i class="fa fa-user fs-6 d-block mb-2"></i>
-              <h4 class="mb-0 fw-semibold lh-1">3,586</h4>
+              <h4 class="mb-0 fw-semibold lh-1">${follower}</h4>
               <p class="mb-0 fs-4">팔로워</p>
             </div>
             <div class="text-center">
               <i class="fa fa-check fs-6 d-block mb-2"></i>
-              <h4 class="mb-0 fw-semibold lh-1">${result}</h4>
+              <h4 class="mb-0 fw-semibold lh-1">${following}</h4>
               <p class="mb-0 fs-4">팔로잉</p>
             </div>
           </div>
@@ -55,11 +55,7 @@ by Awe7 (http://awe7.com/freebies)
               </c:if>
               <c:if test="${empty member.profilePath}"> 
                 <img src="/resources/upload/members/default.png" alt="" class="w-100 h-100">
-              </c:if>
-       
-                  
-                  
-                  
+              </c:if> 
                 </div>
               </div>
             </div>
@@ -71,11 +67,14 @@ by Awe7 (http://awe7.com/freebies)
         </div>
         <div class="col-lg-4 order-last">
           <ul class="list-unstyled d-flex align-items-center justify-content-center justify-content-lg-start my-3 gap-3">
+                 <c:if test="${sessionScope.member.memberNum ne member.memberNum}">
            <li>  <button class="btn btn-primary fs-4" type="button" id="follow" data-to-follow="${param.memberNum}">팔로우</button></li>
+           </c:if>
+          <c:if test="${sessionScope.member.memberNum eq member.memberNum}">
             <li>  <a href="/member/update"><button class="btn btn-secondary fs-4">프로필 편집</button></a></li>
             <li><a href="/notice/add"><button class="btn btn-secondary fs-4">게시글 쓰기</button></a></li>
             <li><a href="/member/delete"><button class="btn btn-danger fs-4">탈퇴하기</button></a></li>
-        
+        </c:if>
           </ul>
           <div id="wishResult"></div>
         </div>

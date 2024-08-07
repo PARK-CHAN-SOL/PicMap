@@ -57,6 +57,11 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	public Long fromFollow(MemberDTO memberDTO)throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "fromFollow", memberDTO);
 	}	
-	
+	public Long toFollow(MemberDTO memberDTO)throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "toFollow", memberDTO);
+	}	
+	public int followCheck(FollowDTO followDTO)throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "followCheck", followDTO);
+	}	
 	
 }

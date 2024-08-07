@@ -104,9 +104,11 @@ public String logout(HttpSession session) {
 @RequestMapping(value = "mypage", method = RequestMethod.GET)
 public void mypage(MemberDTO memberDTO,Model model) throws Exception {
 	memberDTO = memberService.detail(memberDTO);
-	Long result = memberService.fromFollow(memberDTO);
+	Long following = memberService.fromFollow(memberDTO);
+	Long follower = memberService.toFollow(memberDTO);
 	model.addAttribute("member", memberDTO);
-	model.addAttribute("result", result);
+	model.addAttribute("follower", follower);
+	model.addAttribute("following", following);
 }
 @RequestMapping(value = "update", method = RequestMethod.GET)
 public void update(HttpSession session, Model model) throws Exception {
@@ -116,12 +118,12 @@ public void update(HttpSession session, Model model) throws Exception {
 }
 
 @RequestMapping(value = "update", method = RequestMethod.POST)
-public String update(MemberDTO memberDTO,  MultipartFile filesUpdate,HttpSession session, Model model) throws Exception {
+public String update(MemberDTO memberDTO,  MultipartFile files,HttpSession session, Model model) throws Exception {
 	MemberDTO dtoTmp = (MemberDTO) session.getAttribute("member");
 	memberDTO.setMemberPassword(dtoTmp.getMemberPassword());
 	memberDTO.setMemberId(dtoTmp.getMemberId());
 
-	int num = memberService.update(memberDTO, filesUpdate, session);
+	int num = memberService.update(memberDTO, files, session);
 
 	return "redirect:/";
 }
@@ -136,7 +138,7 @@ public String delete(Model model, HttpSession httpSession) throws Exception {
 		model.addAttribute("url", "/");
 		httpSession.setAttribute("member", null);
 	} else {
-		model.addAttribute("result", "계정이 삭제실패.");
+		model.addAttribute("result", "계정 삭제실패.");
 		model.addAttribute("url", "/");
 	}
 	return "/commons/message";
