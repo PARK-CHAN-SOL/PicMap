@@ -23,6 +23,9 @@ public class PingController {
 
 	@PostMapping("addPing")
 	public String addPing(PingDTO pingDTO) throws Exception {
+		Long pingNum = pingService.savePingNum();
+		pingDTO.setPingNum(pingNum);
+		
 		int result = pingService.addPing(pingDTO);
 		String s = "성공";
 		if (result == 0) s = "실패";

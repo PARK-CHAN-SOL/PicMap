@@ -14,20 +14,40 @@
 	</select>
 	
 	<insert id="add" parameterType="TravelDTO">
-		<selectKey order="BEFORE" resultType="Long" keyProperty="boardNum">
-  			SELECT BOARDNUM_SEQ.NEXTVAL FROM DUAL
-  		</selectKey>
   		INSERT INTO TRAVEL
   		VALUES
   		(#{boardNum}, #{memberNum}, #{boardTitle}, #{boardContent}, SYSDATE, SYSDATE, 0,
-  		#{fileName}, 0, #{rootBoard}, #{parentBoard}, #{childBoard}, #{pingNum})
+  		#{fileName, jdbcType=VARCHAR}, 0, #{rootBoard}, #{parentBoard, jdbcType=BIGINT}, #{childBoard, jdbcType=BIGINT}, #{pingNum, jdbcType=BIGINT})
 	</insert>
 	
+	<select id="makeBoardNum" resultType="java.lang.Long">
+		SELECT BOARDNUM_SEQ.NEXTVAL FROM DUAL
+	</select>
+	
+	<update id="addPlus1" parameterType="TravelDTO">
+		UPDATE TRAVEL
+		SET
+		PARENTBOARD=#{parentBoard}
+		WHERE BOARDNUM=#{boardNum}
+	</update>
+	<update id="addPlus2" parameterType="TravelDTO">
+		UPDATE TRAVEL
+		SET
+		CHILDBOARD=#{childBoard}
+		WHERE BOARDNUM=#{parentBoard}
+	</update>
 
-
-
-
-
+	<select id="getRoot" resultType="TravelDTO">
+		SELECT BOARDNUM, PARENTBOARD, CHILDBOARD, ROOTBOARD
+		FROM TRAVEL
+		WHERE BOARDNUM=#{boardNum}
+	</select>
+	<update id="setRoot" parameterType="TravelDTO">
+		UPDATE TRAVEL
+		SET
+		ROOTBOARD=#{rootBoard}
+		WHERE BOARDNUM=#{boardNum}
+	</update>
 
 
 

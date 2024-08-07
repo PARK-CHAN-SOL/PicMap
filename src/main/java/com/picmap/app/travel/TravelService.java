@@ -10,12 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
-import com.picmap.app.board.BoardService;
 import com.picmap.app.files.FileManager;
 import com.picmap.app.member.MemberDTO;
 
 @Service
-public class TravelService implements BoardService{
+public class TravelService {
+	
+	//다른 부분이 너무 많아서 travel은 전부 board 상속 안하고 따로 씀
 	
 	@Autowired
 	private TravelDAO travelDAO;
@@ -25,42 +26,55 @@ public class TravelService implements BoardService{
 	private String name = "travels";
 	
 	//게시판(게시글 리스트)
-	@Override
 	public List<BoardDTO> getList() throws Exception {
-		// TODO Auto-generated method stub
 		return travelDAO.getList();
 	}
 
+	
+	//게시글 번호 boardNum 매기기 (부모글, 최상위 부모글 만들기용)
+	public Long makeBoardNum() throws Exception {
+		return travelDAO.makeBoardNum();
+	}
 
-	//게시글 작성
-	@Override
-	public int add(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
+
+	//게시글 작성(최상위 부모글)
+	public int add(TravelDTO travelDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		boardDTO.setMemberNum(memberDTO.getMemberNum());
+		travelDTO.setMemberNum(memberDTO.getMemberNum());
 		ServletContext servletContext =	session.getServletContext();
 		//1. 어디에 저장? (운영체제가 알고 있는 경로에 써줘야한다)
 		String path = servletContext.getRealPath("resources/upload/" + name);
 		System.out.println(path);
 
 		if(null==files){
-			boardDTO.setFileName("default");
+			travelDTO.setFileName("default");
 		}else {
 			for (MultipartFile f : files) {
 				if (f.isEmpty()) {
 					continue;
 				}
-				boardDTO.setFileName(fileManager.fileSave(f, path));
+				travelDTO.setFileName(fileManager.fileSave(f, path));
 			}
 		}		
-		int result = travelDAO.add(boardDTO);
+		int result = travelDAO.add(travelDTO);
 		return result;
 	}
-
-
+	
+	
+	//게시글 작성(자식글)
+	public int addPlus(TravelDTO travelDTO) throws Exception {
+		return travelDAO.addPlus(travelDTO);
+	}
+	
+	
+	//최상위 부모글 설정
+	public TravelDTO setRoot(TravelDTO travelDTO) throws Exception {
+		return travelDAO.setRoot(travelDTO);
+	}
+	
+	
 	//게시글 수정
-	@Override
 	public int update() throws Exception {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	

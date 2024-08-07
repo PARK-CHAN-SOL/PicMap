@@ -5,11 +5,15 @@
 
 <!-- mapper는 테이블 별로 하나씩 만들 거다. namespace는 중복되면 안된다. -->
 <mapper namespace="com.picmap.app.ping.PingDAO">
-	<insert id="addPing" parameterType="PingDTO">
+	<insert id="addPing" parameterType="PingDTO" >
 		INSERT INTO PING
 		VALUES
-		(PING_SEQ.NEXTVAL, #{longitude}, #{latitude}, #{address})
+		(#{pingNum}, #{longitude}, #{latitude}, #{address})
 	</insert>
+	
+	<select id="savePingNum" resultType="java.lang.Long">
+		SELECT PING_SEQ.NEXTVAL FROM DUAL
+	</select>
 
 	<select id="getPingList" parameterType="PingDTO"
 		resultType="PingDTO">

@@ -17,6 +17,10 @@ public class PingService {
 	public int addPing(PingDTO pingDTO) throws Exception {
 		return pingDAO.addPing(pingDTO);
 	}
+	
+	public Long savePingNum() throws Exception {
+		return pingDAO.savePingNum();
+	}
 
 	// 지번으로 핑 검색
 	public Map<String, Object> getPingList(PingDTO pingDTO) throws Exception {
@@ -144,4 +148,6 @@ public class PingService {
 	public PingDTO getDetail(PingDTO pingDTO) throws Exception {
 		return pingDAO.getDetail(pingDTO);
 	}
+	
+	
 }
