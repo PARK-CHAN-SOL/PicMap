@@ -8,7 +8,7 @@
 Mercury travel - free HTML5 templates!
 by Awe7 (http://awe7.com/freebies)
 -->
-<c:import url="../template/header_css.jsp"></c:import>
+<c:import url="../../template/header_css.jsp"></c:import>
 <link rel="stylesheet" href="/resources/assets/css/ping.css">
 
 <!-- include summernote css/js-->
@@ -28,7 +28,7 @@ by Awe7 (http://awe7.com/freebies)
 <body>
   <div class="page-wrap" id="root">
 
-    <c:import url="../template/header_nav.jsp"></c:import>
+    <c:import url="../../template/header_nav.jsp"></c:import>
 
     <!-- Content-->
     <div class="">
@@ -122,10 +122,19 @@ by Awe7 (http://awe7.com/freebies)
                   <td colspan="2"><button id="modalButton" type="button" class="btn btn-secondary me-2 fs-4" data-bs-toggle="modal" data-bs-target="#mapModal">위치</button><span id="locSpan" class="fs-4"></span></td>
                 </tr>
                 <tr>
-                  <td colspan="2"><textarea class="form-control fs-4" id="editor" name="boardContents" style="height: 100px;">${dto.boardContents}</textarea></td>
+                  <td colspan="2"><textarea class="form-control fs-4" id="editor" name="boardContent" style="height: 100px;">${dto.boardContent}</textarea></td>
                 </tr>
               </tbody>
             </table>
+			<div id="pingFrm">
+				<input type="hidden" id="loc" name="address"> <input type="hidden" id="lat" name="latitude"> <input type="hidden" id="lon" name="longitude">
+    		</div>
+    		<div>
+    			<input type="hidden" name="rootBoard" value="${dto.rootBoard}">
+    			<input type="hidden" name="parentBoard" value="${dto.parentBoard}">
+    			<input type="hidden" name="childBoard" value="${dto.childBoard}">
+    		</div>
+    		
             <div class="text-end">
               <button type="submit" class="btn btn-primary fs-4">등록</button>
             </div>
@@ -164,12 +173,8 @@ by Awe7 (http://awe7.com/freebies)
       </div>
     </div>
   </div>
-  <form action="/ping/addPing" method="post" id="pingFrm">
-    <div>
-      <input type="hidden" id="loc" name="address"> <input type="hidden" id="lat" name="latitude"> <input type="hidden" id="lon" name="longitude">
-    </div>
-  </form>
-  <c:import url="../template/footer.jsp"></c:import>
+
+  <c:import url="../../template/footer.jsp"></c:import>
   <script type="text/javascript" src="/resources/assets/js/board/boardImage.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 

@@ -19,6 +19,10 @@ public class PingDAO {
 		return sqlSession.insert(NAMESPACE + "addPing", pingDTO);
 	}
 	
+	public Long savePingNum() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"savePingNum");
+	}
+	
 	public List<PingDTO> getPingList(PingDTO pingDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "getPingList", pingDTO);
 	}
