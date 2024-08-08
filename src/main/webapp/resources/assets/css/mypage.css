@@ -83,8 +83,15 @@ body{padding-top:20px;}
 
 a {
     text-decoration: none;
+    text-decoration-line: none;
 }
 
+.followA {
+  text-decoration-color: black;
+  color: black;
+  font-size: medium;
+  margin-right: 140px;
+}
 .user-profile-tab .nav-item .nav-link.active {
     color: #5d87ff;
     border-bottom: 2px solid #5d87ff;
@@ -123,8 +130,7 @@ a {
   justify-content: center;
 }
 
-.explore__users {
-}
+
 
 .explore__users .explore__user {
   padding: 10px 15px;

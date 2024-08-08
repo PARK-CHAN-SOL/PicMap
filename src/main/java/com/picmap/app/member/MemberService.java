@@ -55,7 +55,7 @@ public class MemberService {
 		System.out.println(path);
 		FileManager fm = new FileManager();
 
-		if (null == files) {
+		if (null == files.getOriginalFilename() ||  files.getOriginalFilename().equals("")) {
 			memberDTO.setProfilePath("default");
 		} else {
 			memberDTO.setProfilePath(fm.fileSave(files, path));

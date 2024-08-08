@@ -9,15 +9,15 @@
 Mercury travel - free HTML5 templates!
 by Awe7 (http://awe7.com/freebies)
 -->
-<link rel="stylesheet" href="/resources/assets/css/mypage.css">
 <link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-	rel="stylesheet">
+href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+rel="stylesheet">
 
 <c:import url="../template/header_css.jsp"></c:import>
 <c:import url="../template/header_nav.jsp"></c:import>
-
+<link rel="stylesheet" href="/resources/assets/css/mypage.css">
 </head>
+
 <body>
 
 
@@ -91,18 +91,8 @@ by Awe7 (http://awe7.com/freebies)
 											</div>
 											<div class="modal-body">
 											<main id="explore">
-													<ul class="explore__users u-default-box">
-													<c:forEach var="follow" items="${toFollowList}">
-														<li class="explore__user">
-															<div class="explore__content">
-																<img src="/images/avatar.jpg" />
-																<div class="explore__info">
-																	<span class="explore__username">${toFollowList.member.memberId}</span>
-																</div>
-															</div>
-															<button class="following_btn">팔로워</button>
-														</li>
-														</c:forEach>
+													<ul class="explore__users u-default-box" id="followingList">
+													
 													</ul>
 												</main>
 											
