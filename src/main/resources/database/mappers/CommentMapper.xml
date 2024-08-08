@@ -7,8 +7,14 @@
 
   <!-- 댓글 목록 조회 -->
   <select id="findByBoardNum" parameterType="long" resultType="CommentsDTO">
-    SELECT * FROM COMMENTS WHERE BOARDNUM = #{boardNum}
-    ORDER BY CREATEDATE DESC , UPDATEDATE DESC
+   SELECT *
+	FROM (
+		SELECT ROWNUM r, c.*
+		FROM COMMENTS c 
+		WHERE BOARDNUM = 1
+		ORDER BY CREATEDATE DESC, UPDATEDATE DESC 
+		)
+	WHERE r BETWEEN 1 AND 10;
   </select>
   
   <!-- 특정 댓글 조회 by ID -->
@@ -32,6 +38,18 @@
     INSERT INTO REPLY (REPLYNUM, COMMENTNUM, MEMBERNUM, CONTENT, CREATEDATE, UPDATEDATE)
     VALUES (REPLY_SEQ.NEXTVAL, #{commentNum}, #{memberNum}, #{content}, SYSDATE, SYSDATE)
  	</insert>
+ 	
+<!-- 대댓글 수정 -->
+<update id="updateReply" parameterType="ReplyDTO">
+	UPDATE REPLY
+	SET CONTENT = #{content}, UPDATEDATE = SYSDATE	
+	WHERE REPLYNUM = #{replyNum} AND MEMBERNUM = #{memberNum}
+</update>	
+
+<!-- 대댓글 삭제 -->
+<delete id="deleteReply" parameterType="ReplyDTO">
+	DELETE FROM REPLY WHERE REPLYNUM = #{replyNum} AND MEMBERNUM = #{memberNum}
+</delete>
  
  <!-- 댓글 수정 -->
   <update id="updateComment" parameterType="CommentsDTO">

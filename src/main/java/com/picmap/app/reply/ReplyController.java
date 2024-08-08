@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,13 +20,11 @@ public class ReplyController {
 	@Autowired
 	private ReplyService replyService;
 
-	@GetMapping("/list")
-	public String getReplies(@RequestParam Long commentNum, Model model, HttpSession session) {
+	@PostMapping("/list")
+	public String getReplies(@RequestParam Long commentNum, Model model) {
 		List<ReplyDTO> replies = replyService.getRepliesByCommentNum(commentNum);
 		model.addAttribute("replies", replies);
 		model.addAttribute("commentNum", commentNum);
-		MemberDTO member = (MemberDTO) session.getAttribute("member");
-		model.addAttribute("member", member);
 		return "replies/list";
 	}
 
@@ -45,6 +42,42 @@ public class ReplyController {
 		replyDTO.setContent(content);
 
 		int result = replyService.addReply(replyDTO);
+		if (result <= 0) {
+			model.addAttribute("msg", "fail");
+		} else {
+			model.addAttribute("msg", "success");
+		}
+
+		return "commons/result";
+	}
+
+	@PostMapping("/update")
+	public String updateReply(@RequestParam Long replyNum, @RequestParam String content, HttpSession session,
+			Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		Long memberNum = memberDTO.getMemberNum();
+
+		ReplyDTO replyDTO = new ReplyDTO();
+		replyDTO.setReplyNum(replyNum);
+		replyDTO.setMemberNum(memberNum);
+		replyDTO.setContent(content);
+
+		int result = replyService.updateReply(replyDTO);
+		if (result <= 0) {
+			model.addAttribute("msg", "fail");
+		} else {
+			model.addAttribute("msg", "success");
+		}
+
+		return "commons/result";
+	}
+
+	@PostMapping("/delete")
+	public String deleteReply(@RequestParam Long replyNum, HttpSession session, Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		Long memberNum = memberDTO.getMemberNum();
+
+		int result = replyService.deleteReply(replyNum, memberNum);
 		if (result <= 0) {
 			model.addAttribute("msg", "fail");
 		} else {

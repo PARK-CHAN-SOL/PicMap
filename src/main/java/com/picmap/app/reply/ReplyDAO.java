@@ -24,4 +24,13 @@ public class ReplyDAO {
 		return sqlSession.selectList(NAMESPACE + "findRepliesByCommentNum", commentNum);
 	}
 
+	// 답글 수정
+	public int updateReply(ReplyDTO replyDTO) {
+		return sqlSession.update(NAMESPACE + "updateReply", replyDTO);
+	}
+
+	// 답글 삭제
+	public int deleteReply(ReplyDTO replyDTO) {
+		return sqlSession.delete(NAMESPACE + "deleteReply", replyDTO);
+	}
 }
