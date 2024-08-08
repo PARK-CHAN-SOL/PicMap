@@ -19,4 +19,16 @@ public class ReplyService {
 		return replyDAO.findRepliesByCommentNum(commentNum);
 	}
 
+	public int updateReply(ReplyDTO replyDTO) {
+		return replyDAO.updateReply(replyDTO);
+	}
+
+	public int deleteReply(Long replyNum, Long memberNum) {
+		ReplyDTO replyDTO = new ReplyDTO();
+		replyDTO.setReplyNum(replyNum);
+		replyDTO.setMemberNum(memberNum);
+
+		return replyDAO.deleteReply(replyDTO);
+	}
+
 }
