@@ -27,20 +27,15 @@
                 method: "POST",
                 body: formData
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(response => {
-                    if (response.trim() === "success") {
-                        alert("댓글 추가 성공");
-                        commentContents.value = "";
-
-                    } else {
-                        alert("댓글 추가 실패");
-                    }
+            .then(response => response.text())
+            .then(response => {
+                if (response.trim() === "success") {
+                    alert("댓글 추가 성공");
+                    commentContents.value = "";
+                    location.reload();
+                } else {
+                    alert(response); // 서버에서 반환된 메시지 표시
+                }
                 })
                 .catch(error => console.error("Error adding comment:", error));
         });
@@ -86,19 +81,15 @@
                             method: "POST", // 요청 방법 설정
                             body: formData // 요청 본문에 폼 데이터 추가
                         })
-                            .then(response => { // 응답 처리
-                                if (!response.ok) { // 응답이 성공적이지 않으면
-                                    throw new Error(`HTTP error! status: ${response.status}`); // 에러를 발생시킴
-                                }
-                                return response.text(); // 응답을 텍스트로 변환
-                            })
-                            .then(response => { // 변환된 응답 처리
-                                if (response.trim() === "success") { // 응답이 "success"이면
-                                    alert("댓글 수정 성공"); // 성공 메시지 표시
-
-                                } else { // 응답이 "success"가 아니면
-                                    alert("댓글 수정 실패"); // 실패 메시지 표시
-                                }
+                        .then(response => response.text())
+                        .then(response => {
+                            if (response.trim() === "success") {
+                                alert("댓글 수정 성공");
+                                commentContents.value = "";
+                                location.reload();
+                            } else {
+                                alert(response); // 서버에서 반환된 메시지 표시
+                            }
                             })
                             .catch(error => console.error("Error updating comment:", error)); // 에러 처리
 
@@ -126,19 +117,15 @@
                     method: "POST",
                     body: formData
                 })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        return response.text();
-                    })
-                    .then(response => {
-                        if (response.trim() === "success") {
-                            alert("댓글 삭제 성공");
-
-                        } else {
-                            alert("댓글 삭제 실패");
-                        }
+                .then(response => response.text())
+                .then(response => {
+                    if (response.trim() === "success") {
+                        alert("댓글 삭제 성공");
+                        commentContents.value = "";
+                        location.reload();
+                    } else {
+                        alert(response); // 서버에서 반환된 메시지 표시
+                    }
                     })
                     .catch(error => console.error("Error deleting comment:", error));
             }
