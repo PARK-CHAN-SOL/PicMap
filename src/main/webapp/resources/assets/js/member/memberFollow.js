@@ -4,10 +4,9 @@
 const follow = document.getElementById("follow");
 console.log(follow);
 
-const follower = document.getElementById("follower");
-
 const wishResult = document.getElementById("wishResult");
-
+const followingDiv = document.getElementById("followingDiv")
+const followingList = document.getElementById("followingList");
 const followerDiv = document.getElementById("followerDiv")
 const followerList = document.getElementById("followerList");
 //Arrow Function 화살표 함수 
@@ -48,6 +47,36 @@ followerList.addEventListener("click", (event) => {
 })
 
 
+followingList.addEventListener("click", (event) => {
+   if(event.target.dataset.fromFollow != null){
+      let follow = event.target;
+      let fromFollow = follow.getAttribute("data-from-follow")
+      console.log(fromFollow);
+      fetch("./follow?toFollow=" + fromFollow, {
+         method: "GET"
+      })
+         .then((res) => { return res.text() })
+         .then((res) => {
+            if (res > 0) {
+               if (follow.innerText == '팔로우') {
+                  follow.innerText = '팔로잉';
+                  follow.classList.remove('follow_btn');
+                  follow.classList.add('following_btn');
+               } else {
+                  follow.innerText = '팔로우';
+                  follow.classList.remove('following_btn');
+                  follow.classList.add('follow_btn');
+               }
+            } else {
+               alert("팔로우 실패")
+            }
+         })
+         .catch(() => {
+            alert("오류발생");
+         });
+   }
+   
+})
 
 //팔로우 되어있으면 버튼이 팔로잉으로 바뀜
 if (follow) {
@@ -84,7 +113,6 @@ if (follow) {
 };
 
 
-
 //팔로우 리스트 안에 버튼과 리스트
 followerDiv.addEventListener("click", function () {
    fetch("/member/fromFollowList?toFollow=" + followerDiv.getAttribute("data-to-follow"), {
@@ -106,38 +134,102 @@ followerDiv.addEventListener("click", function () {
                   if (checker == 0) {
                      console.log(element.profilePath);
                      exploreUser =
-                        '<li class="explore__user">'+
+                        '<li class="explore__user">'+'<a class="followA" href="./mypage?memberNum='+element.memberNum+'">'+
                            '<div class="explore__content">'+
                               '<img src="/resources/upload/members/'+ element.profilePath + '"/>'+
                               '<div class="explore__info">'+
                                  '<span class="explore__username">' + element.memberNickName + '</span>'+
                               '</div>'+
-                           '</div>'+
+                           '</div>'+'</a>'+
                         '</li>';
                   } else if (checker == 1) {
                      exploreUser =
-                        '<li class="explore__user">'+
+                        '<li class="explore__user">'+'<a class="followA"  href="./mypage?memberNum='+element.memberNum+'">'+
                            '<div class="explore__content">'+
                               '<img src="/resources/upload/members/'+ element.profilePath + '"/>'+
                               '<div class="explore__info">'+
                                  '<span class="explore__username">' + element.memberNickName + '</span>'+
                               '</div>'+
-                           '</div>'+
+                           '</div>'+'</a>'+
                            '<button class="follow_btn" data-to-follow="' + element.memberNum + '">팔로우</button>'+
                         '</li>';
                   } else {
                      exploreUser =
-                        '<li class="explore__user">'+
+                        '<li class="explore__user">'+'<a class="followA"  href="./mypage?memberNum='+element.memberNum+'">'+
                            '<div class="explore__content">'+
                               '<img src="/resources/upload/members/'+ element.profilePath + '"/>'+
                               '<div class="explore__info">'+
                                  '<span class="explore__username">' + element.memberNickName + '</span>'+
                               '</div>'+
-                           '</div>'+
+                           '</div>'+'</a>'+
                            '<button class="following_btn" data-to-follow="' + element.memberNum + '">팔로잉</button>'+
                         '</li>';
                   }
                   followerList.innerHTML = followerList.innerHTML + exploreUser;
+               })
+         });
+         console.log(res);
+      })
+      .catch((e) => {
+         console.log(e);
+         alert("오류");
+      })
+});
+
+
+
+followingDiv.addEventListener("click", function () {
+   fetch("/member/toFollowList?fromFollow=" + followingDiv.getAttribute("data-from-follow"), {
+      method: "GET"
+
+   })
+      .then((res) => { return res.json(); })
+      .then((res) => {
+         res.forEach(element => {
+            let isFollow;
+            fetch("/member/followCheck?toFollow=" + element.memberNum, {
+               method: "GET"
+            })
+               .then((checker) => { return checker.json(); })
+               .then((checker) => {
+                  let exploreUser;
+                  console.log(checker);
+                  if (element.profilePath == 'default') element.profilePath = 'default.png';
+                  if (checker == 0) {
+                     console.log(element.profilePath);
+                     exploreUser =
+                        '<li class="explore__user">'+'<a class="followA" href="./mypage?memberNum='+element.memberNum+'">'+
+                           '<div class="explore__content">'+
+                              '<img src="/resources/upload/members/'+ element.profilePath + '"/>'+
+                              '<div class="explore__info">'+
+                                 '<span class="explore__username">' + element.memberNickName + '</span>'+
+                              '</div>'+
+                           '</div>'+'</a>'+
+                        '</li>';
+                  } else if (checker == 1) {
+                     exploreUser =
+                        '<li class="explore__user">'+'<a class="followA"  href="./mypage?memberNum='+element.memberNum+'">'+
+                           '<div class="explore__content">'+
+                              '<img src="/resources/upload/members/'+ element.profilePath + '"/>'+
+                              '<div class="explore__info">'+
+                                 '<span class="explore__username">' + element.memberNickName + '</span>'+
+                              '</div>'+
+                           '</div>'+'</a>'+
+                           '<button class="follow_btn" data-from-follow="' + element.memberNum + '">팔로우</button>'+
+                        '</li>';
+                  } else {
+                     exploreUser =
+                        '<li class="explore__user">'+'<a class="followA"  href="./mypage?memberNum='+element.memberNum+'">'+
+                           '<div class="explore__content">'+
+                              '<img src="/resources/upload/members/'+ element.profilePath + '"/>'+
+                              '<div class="explore__info">'+
+                                 '<span class="explore__username">' + element.memberNickName + '</span>'+
+                              '</div>'+
+                           '</div>'+'</a>'+
+                           '<button class="following_btn" data-from-follow="' + element.memberNum + '">팔로잉</button>'+
+                        '</li>';
+                  }
+                  followingList.innerHTML = followingList.innerHTML + exploreUser;
                })
          });
          console.log(res);

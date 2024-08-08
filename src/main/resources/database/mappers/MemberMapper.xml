@@ -7,7 +7,7 @@
   <select id="idCheck" parameterType="MemberDTO" resultType="java.lang.Integer">
   		SELECT	COUNT(MEMBERID)
   		FROM	MEMBER
-  		WHERE MEMBERNUM = #{memberNum} 
+  		WHERE MEMBERID = #{memberId} 
   	</select>
   	
   	  <select id="memberNickName" parameterType="MemberDTO" resultType="java.lang.Integer">
@@ -68,15 +68,49 @@
 		DELETE FOLLOW 	WHERE FROMFOLLOW = #{fromFollow} AND TOFOLLOW = #{toFollow}
 	</delete> 
 	<select id="fromFollowList" resultType="MemberDTO" parameterType="FollowDTO">
-SELECT * FROM MEMBER WHERE MEMBERNUM IN
-(SELECT FROMFOLLOW FROM FOLLOW
-WHERE TOFOLLOW = #{toFollow})
-	 
+	SELECT *
+FROM
+(
+	SELECT ROWNUM R, M.*
+	FROM
+	(
+		SELECT  *
+		FROM MEMBER
+	) M
+	WHERE MEMBERNUM IN
+	(
+		SELECT FROMFOLLOW
+		FROM FOLLOW
+		WHERE TOFOLLOW =#{toFollow}
+	)
+)
+WHERE R BETWEEN 1 AND 10
+	
 </select>
 		<select id="toFollowList" resultType="MemberDTO" parameterType="FollowDTO">
-	SELECT * FROM MEMBER WHERE MEMBERNUM IN
-(SELECT TOFOLLOW FROM FOLLOW
-WHERE FROMFOLLOW =#{fromFollow})
+		
+			SELECT *
+FROM
+(
+	SELECT ROWNUM R, M.*
+	FROM
+	(
+		SELECT  *
+		FROM
+		(
+		SELECT *
+		FROM MEMBER
+		)
+	) M
+	WHERE MEMBERNUM IN
+	(
+		SELECT TOFOLLOW
+		FROM FOLLOW
+		WHERE FROMFOLLOW =#{fromFollow}
+	)
+)
+WHERE R BETWEEN 1 AND 10
+
 </select>
 
   </mapper>
