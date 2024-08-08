@@ -101,7 +101,7 @@
               </div>
   
               <div class="login_api my-div">
-                  <a href="https://kauth.kakao.com/oauth/authorize?client_id=580555887802ff728f2d9f964d6ad050&redirect_uri=http://localhost/kakao/oauth&response_type=code"><img src="/resources/assets/img/kakao_login_medium_narrow.png"></a>
+                  <a href="https://kauth.kakao.com/oauth/authorize?client_id=580555887802ff728f2d9f964d6ad050&redirect_uri=http://localhost/auth/kakao/callback&response_type=code"><img src="/resources/assets/img/kakao_login_medium_narrow.png"></a>
               </div>
   
             
