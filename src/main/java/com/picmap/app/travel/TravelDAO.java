@@ -62,6 +62,7 @@ public class TravelDAO {
 		while(child.getChildBoard() != null) {
 			child.setBoardNum(child.getChildBoard());
 			sqlSession.update(NAMESPACE+"setRoot", child);
+			child = sqlSession.selectOne(NAMESPACE+"getRoot", child);
 		}
 		
 		
@@ -77,7 +78,10 @@ public class TravelDAO {
 	}
 	
 	
-	
+	//게시글 디테일
+	public TravelDTO detail(TravelDTO travelDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"detail", travelDTO);
+	}
 	
 	
 }

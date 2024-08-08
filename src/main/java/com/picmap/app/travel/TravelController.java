@@ -1,6 +1,5 @@
 package com.picmap.app.travel;
 
-import java.lang.reflect.Parameter;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -16,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
 import com.picmap.app.member.MemberDTO;
+import com.picmap.app.member.MemberService;
 import com.picmap.app.ping.PingDTO;
 import com.picmap.app.ping.PingService;
 
@@ -27,6 +27,8 @@ public class TravelController {
 	private TravelService travelService;
 	@Autowired
 	private PingService pingService;
+	@Autowired
+	private MemberService memberService;
 	
 	
 	@ModelAttribute("board")
@@ -111,12 +113,7 @@ public class TravelController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
+
 	
 	@GetMapping("update")
 	public String update() throws Exception {
@@ -129,8 +126,24 @@ public class TravelController {
 	}
 	
 	
-	
-	
+	//게시글 디테일
+	@GetMapping
+	public String detail(TravelDTO travelDTO, Model model) throws Exception {
+		
+		TravelDTO travelDetail = travelService.detail(travelDTO);
+		model.addAttribute("dto", travelDetail);
+		System.out.println(travelDetail.getMemberNum());
+		
+		//작성자 프로필 사진 가져올거임
+		MemberDTO boardWriter = new MemberDTO();
+		boardWriter.setMemberNum(travelDetail.getMemberNum());
+		boardWriter = memberService.detail(boardWriter);
+		model.addAttribute("member", boardWriter);
+		
+		
+		
+		return "board/travel/detail";
+	}
 	
 	
 }

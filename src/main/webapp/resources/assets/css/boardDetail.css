@@ -1,0 +1,42 @@
+.boardTitle {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.boardTitle__title {
+	color: black;
+    line-height: 64px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 300;
+    z-index: 2;
+    position: relative;
+    font-size: 55px;
+    font-weight: bolder;
+}
+
+.boardContent {
+    margin:0 auto;
+}
+
+.picture {
+	margin:0 auto;
+	width: 1100px;
+    height: 618.75px;
+}
+
+.img-fluid {
+	width: 1100px;
+    height: 618.75px;
+    object-fit: contain;
+}
+
+.boardInfo {
+	margin:0 auto;
+	max-width: 900px;
+	font-size: 18px;
+}
+
+
+
+

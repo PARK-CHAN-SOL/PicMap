@@ -79,7 +79,10 @@ public class TravelService {
 	}
 	
 	
-	
+	//게시글 디테일
+	public TravelDTO detail(TravelDTO travelDTO) throws Exception {
+		return travelDAO.detail(travelDTO);
+	}
 	
 	
 	
