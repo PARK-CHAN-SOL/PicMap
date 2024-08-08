@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.files.FileManager;
 import com.picmap.app.follow.FollowDTO;
+import com.picmap.app.util.Scroller;
 
 
 @Service
@@ -115,12 +116,12 @@ public class MemberService {
 		}
 	}
 
-	public Long fromFollow(MemberDTO memberDTO) throws Exception {
-		return memberDAO.fromFollow(memberDTO);
+	public Long countFromFollow(MemberDTO memberDTO) throws Exception {
+		return memberDAO.countFromFollow(memberDTO);
 	}
 
-	public Long toFollow(MemberDTO memberDTO) throws Exception {
-		return memberDAO.toFollow(memberDTO);
+	public Long countToFollow(MemberDTO memberDTO) throws Exception {
+		return memberDAO.countToFollow(memberDTO);
 	}
 
 	public Integer followCheck(FollowDTO followDTO) throws Exception {
@@ -135,10 +136,16 @@ public class MemberService {
 		}
 	}
 	
-	public List<MemberDTO> fromFollowList(FollowDTO followDTO) throws Exception {
-		return memberDAO.fromFollowList(followDTO);
+	public List<MemberDTO> fromFollowList(FollowDTO followDTO, Scroller scroller) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("followDTO", followDTO);
+		map.put("scroller", scroller);
+		return memberDAO.fromFollowList(map);
 	}
-	public List<MemberDTO> toFollowList(FollowDTO followDTO) throws Exception {
-		return memberDAO.toFollowList(followDTO);
+	public List<MemberDTO> toFollowList(FollowDTO followDTO, Scroller scroller) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("followDTO", followDTO);
+		map.put("scroller", scroller);
+		return memberDAO.toFollowList(map);
 	}
 }

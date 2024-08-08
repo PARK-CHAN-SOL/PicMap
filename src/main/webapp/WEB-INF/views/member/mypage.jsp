@@ -62,6 +62,7 @@ rel="stylesheet">
 													<ul class="explore__users u-default-box" id="followerList">
 												
 													</ul>
+													<div id="followerObserverTarget" data-start-row="1" data-end-row="12"></div>
 												</main>
 											</div>
 
@@ -94,6 +95,7 @@ rel="stylesheet">
 													<ul class="explore__users u-default-box" id="followingList">
 													
 													</ul>
+													<div id="followingObserverTarget" data-start-row="1" data-end-row="12"></div>
 												</main>
 											
 											</div>

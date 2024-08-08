@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.follow.FollowDTO;
+import com.picmap.app.util.Scroller;
 
 
 @Controller
@@ -106,8 +107,8 @@ public class MemberController {
 	public void mypage(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
 		memberDTO = memberService.detail(memberDTO);
 
-		Long following = memberService.fromFollow(memberDTO);
-		Long follower = memberService.toFollow(memberDTO);
+		Long following = memberService.countFromFollow(memberDTO);
+		Long follower = memberService.countToFollow(memberDTO);
 		model.addAttribute("member", memberDTO);
 		model.addAttribute("follower", follower);
 		model.addAttribute("following", following);
@@ -165,14 +166,14 @@ public class MemberController {
 	}
 	@GetMapping("fromFollowList")
 	@ResponseBody
-	public List<MemberDTO> fromFollowList(FollowDTO followDTO) throws Exception{
-		List<MemberDTO>fromFollowList =memberService.fromFollowList(followDTO);
+	public List<MemberDTO> fromFollowList(FollowDTO followDTO, Scroller scroller) throws Exception{
+		List<MemberDTO>fromFollowList =memberService.fromFollowList(followDTO, scroller);
 		return fromFollowList;
 	}
 	@GetMapping("toFollowList")
 	@ResponseBody
-	public List<MemberDTO> toFollowList(FollowDTO followDTO) throws Exception{
-		List<MemberDTO>toFollowList =memberService.toFollowList(followDTO);
+	public List<MemberDTO> toFollowList(FollowDTO followDTO, Scroller scroller) throws Exception{
+		List<MemberDTO>toFollowList =memberService.toFollowList(followDTO, scroller);
 		return toFollowList;
 	}
 	@GetMapping("followCheck")
@@ -187,4 +188,17 @@ public class MemberController {
 		}
 		
 	}
+	
+	@GetMapping("countFromFollow")
+	@ResponseBody
+	public Long countFromFollow (MemberDTO memberDTO) throws Exception {
+		return memberService.countFromFollow(memberDTO);
+	}
+	
+	@GetMapping("countToFollow")
+	@ResponseBody
+	public Long toFollow (MemberDTO memberDTO) throws Exception {
+		return memberService.countToFollow(memberDTO);
+	}
+
 }

@@ -56,11 +56,11 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	public int follow(FollowDTO followDTO)throws Exception {
 		return sqlSession.insert(NAMESPACE + "follow", followDTO);
 	}	
-	public Long fromFollow(MemberDTO memberDTO)throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "fromFollow", memberDTO);
+	public Long countFromFollow(MemberDTO memberDTO)throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "countFromFollow", memberDTO);
 	}	
-	public Long toFollow(MemberDTO memberDTO)throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "toFollow", memberDTO);
+	public Long countToFollow(MemberDTO memberDTO)throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "countToFollow", memberDTO);
 	}	
 	public Integer followCheck(FollowDTO followDTO)throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "followCheck", followDTO);
@@ -68,10 +68,10 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	public int followDelete(FollowDTO followDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE + "followDelete", followDTO);
 	}
-	public List<MemberDTO> fromFollowList(FollowDTO followDTO)throws Exception {
-		return sqlSession.selectList(NAMESPACE + "fromFollowList", followDTO);
+	public List<MemberDTO> fromFollowList(Map<String, Object> map)throws Exception {
+		return sqlSession.selectList(NAMESPACE + "fromFollowList", map);
 	}	
-	public List<MemberDTO> toFollowList(FollowDTO followDTO)throws Exception {
-		return sqlSession.selectList(NAMESPACE + "toFollowList", followDTO);
+	public List<MemberDTO> toFollowList(Map<String, Object> map)throws Exception {
+		return sqlSession.selectList(NAMESPACE + "toFollowList", map);
 	}	
 }

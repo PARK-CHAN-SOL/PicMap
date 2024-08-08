@@ -53,11 +53,11 @@
 		VALUES(FOLLOW_SEQ.NEXTVAL,#{fromFollow},#{toFollow})
 	</insert>
 	
-	<select id="fromFollow" parameterType="MemberDTO"  resultType="java.lang.Long">
+	<select id="countFromFollow" parameterType="MemberDTO"  resultType="java.lang.Long">
 	SELECT COUNT(FOLLOWNUM) FROM FOLLOW  WHERE FROMFOLLOW =#{memberNum}
 	</select>
 	
-	<select id="toFollow" parameterType="MemberDTO"  resultType="java.lang.Long">
+	<select id="countToFollow" parameterType="MemberDTO"  resultType="java.lang.Long">
 	SELECT COUNT(FOLLOWNUM) FROM FOLLOW  WHERE TOFOLLOW =#{memberNum}
 	</select>
 	
@@ -67,7 +67,7 @@
 		<delete id="followDelete" parameterType="FollowDTO">
 		DELETE FOLLOW 	WHERE FROMFOLLOW = #{fromFollow} AND TOFOLLOW = #{toFollow}
 	</delete> 
-	<select id="fromFollowList" resultType="MemberDTO" parameterType="FollowDTO">
+	<select id="fromFollowList" resultType="MemberDTO" parameterType="java.util.Map">
 	SELECT *
 FROM
 (
@@ -81,13 +81,13 @@ FROM
 	(
 		SELECT FROMFOLLOW
 		FROM FOLLOW
-		WHERE TOFOLLOW =#{toFollow}
+		WHERE TOFOLLOW =#{followDTO.toFollow}
 	)
 )
-WHERE R BETWEEN 1 AND 10
+WHERE R BETWEEN #{scroller.startRow} AND #{scroller.endRow}
 	
 </select>
-		<select id="toFollowList" resultType="MemberDTO" parameterType="FollowDTO">
+		<select id="toFollowList" resultType="MemberDTO" parameterType="java.util.Map">
 		
 			SELECT *
 FROM
@@ -106,10 +106,10 @@ FROM
 	(
 		SELECT TOFOLLOW
 		FROM FOLLOW
-		WHERE FROMFOLLOW =#{fromFollow}
+		WHERE FROMFOLLOW =#{followDTO.fromFollow}
 	)
 )
-WHERE R BETWEEN 1 AND 10
+WHERE R BETWEEN #{scroller.startRow} AND #{scroller.endRow}
 
 </select>
 
