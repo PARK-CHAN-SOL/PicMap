@@ -8,8 +8,10 @@ const followerDiv = document.getElementById("followerDiv"); // 마이페이지 �
 const followerList = document.getElementById("followerList"); // 팔로잉 모달창 내부 div (list출력용)
 
 // 총 팔로워, 팔로잉 수를 담을 변수 선언
-const totalFollower = new Request("follower");
-const totalFollowing = new Request("following");
+const totalFollower = document.getElementById("follower").innerText;
+const totalFollowing = document.getElementById("following").innerText;
+
+console.log(totalFollower);
 
 // 피감시자 선언 (모달창 내부에 내용 없는 div로서 존재)
 const followerObserverTarget = document.getElementById("followerObserverTarget");
@@ -86,10 +88,10 @@ function appendList(res, observerTarget, listDiv) {
                   '</li>';
             }
             listDiv.innerHTML = listDiv.innerHTML + exploreUser; // 유저 리스트에 추가;
-            observerTarget.dataset.startRow = parseInt(observerTarget.dataset.startRow) + 12; // 다음에 조회할 리스트의 startRow 변경
-            observerTarget.dataset.endRow = parseInt(observerTarget.dataset.endRow) + 12; // 다음에 조회할 리스트의 endRow 변경
          })
    });
+   observerTarget.dataset.startRow = parseInt(observerTarget.dataset.startRow) + 12; // 다음에 조회할 리스트의 startRow 변경
+   observerTarget.dataset.endRow = parseInt(observerTarget.dataset.endRow) + 12; // 다음에 조회할 리스트의 endRow 변경
 };
 
 followerObserver.observe(followerObserverTarget);
