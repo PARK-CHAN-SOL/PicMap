@@ -27,9 +27,7 @@ public class CommentDAO {
 
     // 새로운 댓글을 추가합니다.
     public int addComment(CommentsDTO commentsDTO) throws Exception {
-        if (commentsDTO.getMemberNum() == null) {
-            throw new IllegalArgumentException("memberNum이 null입니다.");
-        }
+       
         return sqlSession.insert(NAMESPACE + "insertComment", commentsDTO);
     }
 

@@ -41,6 +41,7 @@
         	<div id="replyForm${comment.commentNum}" class="reply-form" style="display:none;">
                     <textarea id="replyContents${comment.commentNum}" name="reply" placeholder="답글을 입력하세요" class="comment-textarea"></textarea>
                     <button data-comment-num="${comment.commentNum}" class="comment-button reply-submit-button">답글 남기기</button>
+           			<div id="replyList${comment.commentNum}" class="reply-list"></div>
             </div>
     	</c:if>
     	
