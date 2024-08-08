@@ -101,10 +101,18 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image2 -->
 											<div class="box-image2">
 												<div>
-													<a class="box-image2__bg" href="#"
-													style="background-image: url('/resources/assets/img/image_box_2/3.jpg');">
-														<img src="/resources/assets/img/image_box_2/1.jpg" alt="" />
-													</a>
+													<c:if test="${empty dto.fileName}">
+														<a class="box-image2__bg" href="detail?boardNum=${dto.boardNum}"
+														style="background-image: url('/resources/upload/travels/default.png');">
+															<!-- <img src="/resources/assets/img/image_box_2/1.jpg" alt="" /> -->
+														</a>
+													</c:if>
+													<c:if test="${not empty dto.fileName}">
+														<a class="box-image2__bg" href="detail?boardNum=${dto.boardNum}"
+														style="background-image: url('/resources/upload/travels/${dto.fileName}');">
+															<!-- <img src="/resources/assets/img/image_box_2/1.jpg" alt="" /> -->
+														</a>
+													</c:if>
 													<div class="box-image2__info">
 														<p class="box-image2__writer">${dto.memberNickname}</p>
 														<p class="box-image2__title">${dto.boardTitle}</p>
