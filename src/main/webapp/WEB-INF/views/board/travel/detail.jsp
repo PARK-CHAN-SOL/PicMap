@@ -21,87 +21,55 @@ by Awe7 (http://awe7.com/freebies)
 
 		<!-- Content-->
 		<div class="md-content">
-
-			<!-- hero -->
-			<div class="hero" id="id-1">
-				<div class="hero__wrapper">
-
-					<!-- swiper__module swiper-container -->
-					<div
-						class="swiper__module swiper-container awe-skin-dark hero__main_slider"
-						data-options='{"spaceBetween":0}'>
-						<div class="swiper-wrapper">
-							<div class="hero__item"
-								style="background-image: url('/resources/assets/img/hero/1.jpg');">
-								<img src="/resources/assets/img/hero/1.jpg" alt="" />
-								<div class="hero__box_info">
-									<div class="container">
-										<h2 class="hero__title">지도</h2>
-										<p class="hero__info">
-											<span>3 Day 2 Night</span><span>Tokyo</span><span>709
-												Review</span>
-										</p>
-									</div>
-								</div>
-							</div>
-
-						</div>
-						<div class="swiper-button-custom">
-							<div class="swiper-button-prev-custom"></div>
-							<div class="swiper-button-next-custom"></div>
-						</div>
-					</div>
-					<!-- End / swiper__module swiper-container -->
-				</div>
-			</div>
-			<!-- End / hero -->
 			
-			
-			
-			
-			
-			
-			
-
-		
+	
+			<!-- 자식글 부모글 페이징 버튼 -->
 		    <div>
 		        <div class="nav-buttons">
-		            <button type="button" class="btn btn-outline-secondary" id="detailPrevPageBtn">&laquo;</button>
-		            <button type="button" class="btn btn-outline-secondary" id="detailNextPageBtn">&raquo;</button>
-		        </div>
+		        	<!-- 부모글로 가는 버튼 -->
+		        	<c:choose>
+		        		<c:when test="${dto.boardNum ne dto.rootBoard}">
+		        			<button type="button" class="btn btn-outline-secondary" id="detailPrevPageBtn"
+		        			onclick = "location.href = '/travel/detail?boardNum=${dto.parentBoard}'">&lt;</button>
+		        		</c:when>
+		        		<c:otherwise>
+		        			<button type="button" class="btn btn-outline-secondary" id="detailPrevPageBtn" style="visibility: hidden;">&lt;</button>
+		        		</c:otherwise>
+		        	</c:choose>
+		        	
+		        	<!-- 자식글로 가거나 자식글을 추가하는 버튼 -->
+		        	<c:choose>
+		        		<c:when test="${not empty dto.childBoard}">
+		        			<button type="button" class="btn btn-outline-secondary" id="detailNextPageBtn"
+		        			onclick = "location.href = '/travel/detail?boardNum=${dto.childBoard}'">&gt;</button>
+		        		</c:when>
+		        		<c:otherwise>
+		        			<button type="button" class="btn btn-outline-secondary" id="addPlusBoard"
+		        			onclick = "location.href = '/travel/addPlus?rootBoard=${dto.rootBoard}&parentBoard=${dto.boardNum}'">&#43;</button>
+		        		</c:otherwise>
+		        	</c:choose>
+		        </div>      
 		    </div>			
 			
-			
-			
 
 
-
-
-
-			<!-- Section -->
+			<!-- 메인 -->
 			<section class="awe-section">
 				<div class="container">
-					<div class="row">
+					<div class="row mainContent">
 
 						<!-- 게시글 제목 -->
-						<div
-							class="col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1 ">
-
+						<div class="col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1 ">
 							<!-- title -->
 							<div class="boardTitle">
 								<h2 class="boardTitle__title">${dto.boardTitle}</h2>
 							</div>
 							<!-- End / title -->
-
 						</div>
-
-
 
 						<!-- 게시글 전체 내용 -->
 						<div class="col-md-12 col-lg-12 ">
-
 							<div class="boardContent">
-
 								<!-- 게시한 사진 -->
 								<div class="picture">
 									<c:if test="${empty dto.fileName}">
@@ -113,33 +81,27 @@ by Awe7 (http://awe7.com/freebies)
 											class="img-fluid" />
 									</c:if>
 								</div>
-
-
-
-
-
-
-
-
-
-
+								
+								
+								
+								
+								
+								
+								
+								
 								<!-- 여기에 추천 관광지 넣으시면 됩니다 -->
+								
+								
+								
+								
+								
+								
+								
+								
+								<!-- 작성자, 작성날짜, 좋아요 -->
+								<div class="boardInfo" style="margin-top: 30px;">
 
-
-
-
-
-
-
-
-
-
-								<!-- 작성자, 게시글 정보 -->
-								<div class="boardInfo" style="margin-top: 35px;">
-
-									<div class="d-flex align-items-center justify-content-between"
-										style="width: 100%;">
-
+									<div class="d-flex align-items-center justify-content-between" style="width: 100%;">
 										<div class="d-flex align-items-center">
 											<span class="linear-gradient d-flex align-items-center justify-content-center rounded-circle"
 											style="width: 70px; height: 70px; display: inline-block;">
@@ -160,9 +122,7 @@ by Awe7 (http://awe7.com/freebies)
 										</div>
 
 										<span style="text-align: right;">좋아요(추후 수정)</span>
-
 									</div>
-
 								</div>
 
 
@@ -170,17 +130,28 @@ by Awe7 (http://awe7.com/freebies)
 								<div class="boardContent_text" style="margin-top: 30px;">
 									<div style="margin-left: 10px;">${dto.boardContent}</div>
 								</div>
-
+								
 
 							</div>
-
-
+							
+							
+							
+							
+							
+							
+							
+							
+							<!-- 여기에 댓글 작성 넣으시면 됩니다 -->
+							<!-- 댓글 리스트 넣으시면 됩니다 -->
+							
+							
+							
+							
+							
+							
+							
+							
 						</div>
-
-
-
-
-
 
 
 					</div>
@@ -190,32 +161,12 @@ by Awe7 (http://awe7.com/freebies)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 		</div>
 		<!-- End / Content-->
 	</div>
+	
+	
 
 	<c:import url="../../template/footer.jsp"></c:import>
-	
-	
-	
-	
-	
-	
-	
-	
 </body>
 </html>
-
