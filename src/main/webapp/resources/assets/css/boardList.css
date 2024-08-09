@@ -1,0 +1,40 @@
+
+.hero {
+	z-index: 200;
+}
+
+.header {
+	z-index: 999;
+}
+
+.footer {
+	z-index: 999;
+}
+
+.nav-buttons {
+	position: fixed;
+	z-index: 100;
+	top: 15%;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 10px;
+}
+
+@media (max-width: 1750px) {
+    .nav-buttons {
+        visibility: hidden;
+    }
+}
+
+#addBoard {
+	font-weight: bold;
+	width: 110px;
+	height: 40px;
+	font-size: 18px;
+	text-align: center;
+	margin-right: 80px;
+	border-radius: 20px;
+/* 	padding: 0 0 10px 0; */
+}
+

@@ -61,15 +61,9 @@ public class TravelService {
 	}
 	
 	
-	//게시글 작성(자식글)
+	//부모글, 자식글 설정
 	public int addPlus(TravelDTO travelDTO) throws Exception {
 		return travelDAO.addPlus(travelDTO);
-	}
-	
-	
-	//최상위 부모글 설정
-	public TravelDTO setRoot(TravelDTO travelDTO) throws Exception {
-		return travelDAO.setRoot(travelDTO);
 	}
 	
 	

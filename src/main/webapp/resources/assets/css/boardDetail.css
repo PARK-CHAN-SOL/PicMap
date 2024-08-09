@@ -1,3 +1,20 @@
+body {
+	margin-top: 60px;
+}
+
+
+.hero {
+	z-index: 200;
+}
+
+.header {
+	z-index: 999;
+}
+
+.footer {
+	z-index: 999;
+}
+
 .boardTitle {
 	margin-bottom: 40px;
 	text-align: center;
@@ -33,25 +50,31 @@
 
 .boardInfo {
 	margin: 0 auto;
-	max-width: 900px;
+	max-width: 720px;
 	font-size: 18px;
 }
 
 .boardContent_text {
 	margin: 0 auto;
-	max-width: 900px;
+	max-width: 720px;
 }
 
 
 
 .nav-buttons {
 	position: fixed;
+	z-index: 100;
 	top: 50%;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	padding: 0 10px;
-	align-items: center;
+}
+
+@media (max-width: 1750px) {
+    .nav-buttons {
+        visibility: hidden;
+    }
 }
 
 #detailPrevPageBtn {
@@ -61,6 +84,7 @@
 	text-align: center;
 	margin-left: 250px;
 	border-radius: 25px;
+	padding: 0 0 90px 0;
 }
 
 #detailNextPageBtn {
@@ -70,4 +94,16 @@
 	text-align: center;
 	margin-right: 250px;
 	border-radius: 25px;
+	padding: 0 0 90px 0;
 }
+
+#addPlusBoard {
+	width: 50px;
+	height: 50px;
+	font-size: 50px;
+	text-align: center;
+	margin-right: 250px;
+	border-radius: 25px;
+	padding: 0 0 90px 0;
+}
+
