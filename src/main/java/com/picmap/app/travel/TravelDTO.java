@@ -8,6 +8,8 @@ public class TravelDTO extends BoardDTO{
 	private Long parentBoard;
 	private Long childBoard;
 	private Long pingNum;
+	private String writeDate; //createDate에 년,월,일을 붙인 값
+
 
 	public Long getBoardLike() {
 		return boardLike;
@@ -38,5 +40,11 @@ public class TravelDTO extends BoardDTO{
 	}
 	public void setPingNum(Long pingNum) {
 		this.pingNum = pingNum;
+	}
+	public String getWriteDate() {
+		return writeDate;
+	}
+	public void setWriteDate(String writeDate) {
+		this.writeDate = writeDate;
 	}
 }
