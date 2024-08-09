@@ -55,8 +55,8 @@
 
 	
 	<select id="detail" parameterType="TravelDTO" resultType="TravelDTO">
-		SELECT *
-		FROM TRAVEL
+		SELECT T.*, TO_CHAR(CREATEDATE, 'YYYY"년" MM"월" DD"일"') AS writeDate
+		FROM TRAVEL T
 		WHERE BOARDNUM=#{boardNum}
 	</select>
 

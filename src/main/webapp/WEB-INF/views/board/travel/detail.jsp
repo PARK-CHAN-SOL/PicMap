@@ -55,102 +55,138 @@ by Awe7 (http://awe7.com/freebies)
 				</div>
 			</div>
 			<!-- End / hero -->
-
-
-
-
-
-      <!-- Section -->
-      <section class="awe-section bg-gray">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1 ">
-
-              <!-- title -->
-              <div class="boardTitle">
-                <h2 class="boardTitle__title">
-                  ${dto.boardTitle}
-                </h2>
-              </div>
-              <!-- End / title -->
-
-            </div>
-            
-			<div class="col-md-12 col-lg-12 ">
 			
-				<div class="boardContent">
-				
-					<div class="picture">
-						<c:if test="${empty dto.fileName}">
-							<img src="/resources/upload/travels/default.png" alt="" class="img-fluid"/>
-						</c:if>
-						<c:if test="${not empty dto.fileName}">
-							<img src="/resources/upload/travels/${dto.fileName}" alt="" class="img-fluid"/>
-						</c:if>
-					</div>
-					
-					
-					
-					
-					
-					
-					<!-- 여기에 추천 관광지 넣으시면 됩니다 -->
-					
-					
-					
-					
-					
-					
-					<div class="boardInfo" style="margin-top:35px;">
-					
-						<div class="d-flex align-items-center">
-							<span class="linear-gradient d-flex align-items-center justify-content-center rounded-circle"
-							style="width: 70px; height: 70px; display: inline-block;">
-								<span class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden"
-								style="width: 60px; height: 60px;">
-									<c:if test="${not empty member.profilePath}">
-										<img src="/resources/upload/members/${member.profilePath}"
-										onerror="this.src='/resources/upload/members/default.png'"
-										alt="" class="w-100 h-100">
-									</c:if>
-									<c:if test="${empty member.profilePath}">
-										<img src="/resources/upload/members/default.png" alt="" class="w-100 h-100">
-									</c:if>
-								</span>
-							</span>
-							
-							<span style="display: inline-block;">${member.memberNickName}</span>
-							<span style="display: inline-block;">&emsp;${dto.createDate}</span>
+			
+			
+			
+			
+			
+			
+
+		
+		    <div>
+		        <div class="nav-buttons">
+		            <button type="button" class="btn btn-outline-secondary" id="detailPrevPageBtn">&laquo;</button>
+		            <button type="button" class="btn btn-outline-secondary" id="detailNextPageBtn">&raquo;</button>
+		        </div>
+		    </div>			
+			
+			
+			
+
+
+
+
+
+			<!-- Section -->
+			<section class="awe-section">
+				<div class="container">
+					<div class="row">
+
+						<!-- 게시글 제목 -->
+						<div
+							class="col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1 ">
+
+							<!-- title -->
+							<div class="boardTitle">
+								<h2 class="boardTitle__title">${dto.boardTitle}</h2>
+							</div>
+							<!-- End / title -->
+
 						</div>
-						
-						
-						
+
+
+
+						<!-- 게시글 전체 내용 -->
+						<div class="col-md-12 col-lg-12 ">
+
+							<div class="boardContent">
+
+								<!-- 게시한 사진 -->
+								<div class="picture">
+									<c:if test="${empty dto.fileName}">
+										<img src="/resources/upload/travels/default.png" alt=""
+											class="img-fluid" />
+									</c:if>
+									<c:if test="${not empty dto.fileName}">
+										<img src="/resources/upload/travels/${dto.fileName}" alt=""
+											class="img-fluid" />
+									</c:if>
+								</div>
+
+
+
+
+
+
+
+
+
+
+								<!-- 여기에 추천 관광지 넣으시면 됩니다 -->
+
+
+
+
+
+
+
+
+
+
+								<!-- 작성자, 게시글 정보 -->
+								<div class="boardInfo" style="margin-top: 35px;">
+
+									<div class="d-flex align-items-center justify-content-between"
+										style="width: 100%;">
+
+										<div class="d-flex align-items-center">
+											<span class="linear-gradient d-flex align-items-center justify-content-center rounded-circle"
+											style="width: 70px; height: 70px; display: inline-block;">
+												<span class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden"
+												style="width: 60px; height: 60px;">
+													<c:if test="${not empty member.profilePath}">
+														<img src="/resources/upload/members/${member.profilePath}"
+														onerror="this.src='/resources/upload/members/default.png'" alt="" class="w-100 h-100">
+													</c:if>
+													<c:if test="${empty member.profilePath}">
+														<img src="/resources/upload/members/default.png" alt="" class="w-100 h-100">
+													</c:if>
+												</span>
+											</span>
+											
+											<span style="margin-left: 10px;">${member.memberNickName}</span>
+											<span style="margin-left: 10px;"> • ${dto.writeDate}</span>
+										</div>
+
+										<span style="text-align: right;">좋아요(추후 수정)</span>
+
+									</div>
+
+								</div>
+
+
+								<!-- 게시글 텍스트 내용 -->
+								<div class="boardContent_text" style="margin-top: 30px;">
+									<div style="margin-left: 10px;">${dto.boardContent}</div>
+								</div>
+
+
+							</div>
+
+
+						</div>
+
+
+
+
+
+
+
 					</div>
-					
-					
-					
-					
 				</div>
-			
-			
-			
-			
-			</div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-          </div>
-        </div>
-      </section>
-      <!-- End / Section -->
+			</section>
+			<!-- End / Section -->
 
 
 
@@ -167,35 +203,19 @@ by Awe7 (http://awe7.com/freebies)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	</div>
-	<!-- End / Content-->
+		</div>
+		<!-- End / Content-->
 	</div>
 
 	<c:import url="../../template/footer.jsp"></c:import>
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
 
