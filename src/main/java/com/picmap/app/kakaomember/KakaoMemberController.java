@@ -1,11 +1,18 @@
 package com.picmap.app.kakaomember;
 
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.datasource.UserCredentialsDataSourceAdapter;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,16 +20,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.picmap.app.member.MemberDTO;
+import com.picmap.app.member.MemberService;
 
-@RestController
+@Controller
 public class KakaoMemberController {
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private KakaoMemberService kakaoMemberService;
 
     @GetMapping("/auth/kakao/callback")
-    public String kakaoCallback(@RequestParam String code){
+    public String kakaoCallback(@RequestParam String code, MemberDTO memberDTO, MultipartFile files, HttpSession session) throws Exception{
         // RestTemplate 생성
         RestTemplate restTemplate = new RestTemplate();
         
@@ -55,6 +69,12 @@ public class KakaoMemberController {
 			e.printStackTrace();
 		}
         System.out.println(oaythToken.getAccess_token());   //W5zTaf3JA4mQHQ4iF-C30RBgwHX-HazUAAAAAQoqJREAAAGRMLESrrG7d-HwzTGR
+        
+        // DB에서 ID 있나 찾기
+        //없으면 회원가입 처리 후 로그인
+        
+        //있으면 바로 로그인
+        
        // RestTemplate 생성
        RestTemplate restTemplate2 = new RestTemplate();
        
@@ -71,6 +91,46 @@ public class KakaoMemberController {
        String url2 = "https://kapi.kakao.com/v2/user/me";
        ResponseEntity<String> response2 = restTemplate2.exchange(url2, HttpMethod.POST, kakaoProfileRequest, String.class);
      System.out.println(response2.getBody());
+     ObjectMapper objectMapper2=new ObjectMapper();
+     KakaoProfile kakaoProfile = null;
+		try {
+			kakaoProfile = objectMapper2.readValue(response2.getBody(),KakaoProfile.class);
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {	
+			e.printStackTrace();
+		}
+		
+		MemberDTO result = kakaoMemberService.kakaoMemberJoinCheck(kakaoProfile.getId());
+		System.out.println(result);
+		
+		if(result.getMemberNum() == 0L) {
+			System.out.println("카카오 아이디 (번호:)"+kakaoProfile.getId());
+		     System.out.println("닉네임:"+kakaoProfile.getProperties().getNickname());  
+		     System.out.println("프로필:"+kakaoProfile.getProperties().getProfile_image());  
+		     System.out.println("이메일"+kakaoProfile.getKakao_account().getEmail());
+		     UUID garbagePassword=UUID.randomUUID();
+		     String garbagePasswordString = garbagePassword.toString();
+		     System.out.println("패스워드"+garbagePasswordString);
+		     
+		     
+		     memberDTO.setMemberId(kakaoProfile.getId());
+		    memberDTO.setMemberPassword(garbagePasswordString);
+		     memberDTO.setMemberEmail(kakaoProfile.getKakao_account().getEmail());
+		     memberDTO.setMemberName(kakaoProfile.getProperties().getNickname());  
+		     memberDTO.setMemberNickName(kakaoProfile.getProperties().getNickname());  
+		     memberDTO.setProfilePath(kakaoProfile.getProperties().getProfile_image()); 
+		     memberService.join(memberDTO, files, session);
+		     memberService.login(memberDTO);
+		} else {
+			memberService.detail(memberDTO);
+			memberService.login(memberDTO);
+		}
+		
+     
+     
+
+     
         return "kakao:"+response2.getBody();
 
     }
