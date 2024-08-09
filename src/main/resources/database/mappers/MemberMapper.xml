@@ -8,8 +8,13 @@
   <select id="kakaoMemberJoinCheck" parameterType="java.lang.String" resultType="MemberDTO">
   	SELECT	MEMBERNUM
   	FROM		KAKAOMEMBER
-  	WHERE	KAKAOMEMBERID = #{id}
+  	WHERE	KAKAOMEMBERID = #{KAKAOMEMBERID}
   </select>
+  
+  <insert id="kakaoMemberJoin" parameterType="MemberDTO">
+  	INSERT INTO KAKAOMEMBER
+  	VALUES (KAKAOMEMBER_SEQ.NEXTVAL, #{memberId}, #{memberNum})
+  </insert>
   
   <select id="idCheck" parameterType="MemberDTO" resultType="java.lang.Integer">
   		SELECT	COUNT(MEMBERID)
@@ -46,7 +51,7 @@
 	</update>
 	
   <select id="detail" parameterType="MemberDTO"   resultType="MemberDTO">
-		SELECT MEMBERNUM,MEMBERNAME,MEMBERPASSWORD,MEMBERBIRTH,MEMBERNICKNAME,MEMBEREMAIL,MEMBERPHONE,PROFILEPATH
+		SELECT *
 		FROM MEMBER
 		WHERE MEMBERNUM = #{memberNum} 
 </select>

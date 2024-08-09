@@ -1,5 +1,8 @@
 package com.picmap.app.kakaomember;
 
+import java.lang.ProcessBuilder.Redirect;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -36,7 +39,7 @@ public class KakaoMemberController {
 	private KakaoMemberService kakaoMemberService;
 
     @GetMapping("/auth/kakao/callback")
-    public String kakaoCallback(@RequestParam String code, MemberDTO memberDTO, MultipartFile files, HttpSession session) throws Exception{
+    public String kakaoCallback(@RequestParam String code, HttpSession session) throws Exception{
         // RestTemplate 생성
         RestTemplate restTemplate = new RestTemplate();
         
@@ -101,10 +104,10 @@ public class KakaoMemberController {
 			e.printStackTrace();
 		}
 		
-		MemberDTO result = kakaoMemberService.kakaoMemberJoinCheck(kakaoProfile.getId());
-		System.out.println(result);
+		MemberDTO memberDTO = kakaoMemberService.kakaoMemberJoinCheck(kakaoProfile.getId());
 		
-		if(result.getMemberNum() == 0L) {
+		if(memberDTO == null) {
+			memberDTO = new MemberDTO(); 
 			System.out.println("카카오 아이디 (번호:)"+kakaoProfile.getId());
 		     System.out.println("닉네임:"+kakaoProfile.getProperties().getNickname());  
 		     System.out.println("프로필:"+kakaoProfile.getProperties().getProfile_image());  
@@ -113,26 +116,29 @@ public class KakaoMemberController {
 		     String garbagePasswordString = garbagePassword.toString();
 		     System.out.println("패스워드"+garbagePasswordString);
 		     
-		     
 		     memberDTO.setMemberId(kakaoProfile.getId());
 		    memberDTO.setMemberPassword(garbagePasswordString);
 		     memberDTO.setMemberEmail(kakaoProfile.getKakao_account().getEmail());
 		     memberDTO.setMemberName(kakaoProfile.getProperties().getNickname());  
 		     memberDTO.setMemberNickName(kakaoProfile.getProperties().getNickname());  
+		    Date sqlDate =Date.valueOf("1900-01-01");
+		    memberDTO.setMemberBirth(sqlDate);
+		    memberDTO.setMemberPhone("010-0000-0000");
 		     memberDTO.setProfilePath(kakaoProfile.getProperties().getProfile_image()); 
-		     memberService.join(memberDTO, files, session);
-		     memberService.login(memberDTO);
+		     memberService.join(memberDTO);
+		     kakaoMemberService.kakaoMemberJoin(memberDTO);
+		     memberService.login(memberDTO, session);
 		} else {
-			memberService.detail(memberDTO);
-			memberService.login(memberDTO);
+			memberDTO = memberService.detail(memberDTO);
+			System.out.println(memberDTO.getMemberId());
+			memberService.login(memberDTO, session);
 		}
 		
      
      
 
      
-        return "kakao:"+response2.getBody();
-
+        return "redirect:/";
     }
    
     }
