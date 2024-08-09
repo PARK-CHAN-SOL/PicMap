@@ -39,16 +39,37 @@
     border: 1px solid #ddd;
 }
 
-.comment-button {
-    align-self: flex-end;
-    padding: 5px 10px;
-    border: none;
+.comment-button, .reply-button {
+    padding: 5px 15px;
     border-radius: 5px;
     background-color: #007bff;
     color: white;
     cursor: pointer;
+    margin-right: 5px;
+    border: none; /* 테두리 제거 */
 }
 
-.comment-button:hover {
+.comment-button:hover, .reply-button:hover {
     background-color: #0056b3;
+}
+
+.reply-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.reply {
+    background: #f1f1f1; /* 원본 댓글과 구분되는 배경색 */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.05); /* 조금 더 연한 그림자 */
+}
+
+.reply-list {
+    margin-left: 20px; /* 원본 댓글과 구분을 위한 들여쓰기 */
+    padding-left: 10px;
+    border-left: 2px solid #ddd; /* 좌측 경계선 추가 */
+    margin-top: 10px;
 }
