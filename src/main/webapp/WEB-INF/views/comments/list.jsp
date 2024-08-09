@@ -11,7 +11,7 @@
 </head>
 <body>
     <c:import url="../template/header_nav.jsp"></c:import>
-    <div class="comments-container mt-5">
+    <div class="comments-container" style="margin-top: 200px;">
         <h2>댓글 목록</h2>
         <div id="commentForm">
             <c:choose>
@@ -21,7 +21,8 @@
                 </c:when>
                 <c:otherwise>
                     <textarea id="commentContents" name="comment" placeholder="댓글을 입력하세요" class="comment-textarea"></textarea>
-                    <button id="commentButton" type="button" class="comment-button" data-id="${boardNum}">댓글 남기기</button>
+
+                    <button id="commentButton" type="button" class="comment-button" data-id="${param.boardNum}">댓글 남기기</button>
                 </c:otherwise>
             </c:choose>
        

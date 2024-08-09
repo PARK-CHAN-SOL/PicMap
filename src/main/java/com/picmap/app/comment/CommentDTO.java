@@ -8,6 +8,15 @@ public class CommentDTO {
 	private String content;
 	private Date createDate;
 	private Date updateDate;
+	private String profilePath;
+
+	public String getProfilePath() {
+		return profilePath;
+	}
+
+	public void setProfilePath(String profilePath) {
+		this.profilePath = profilePath;
+	}
 
 	public Long getCommentNum() {
 		return commentNum;

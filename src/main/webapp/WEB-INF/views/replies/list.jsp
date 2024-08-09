@@ -4,6 +4,7 @@
 
 <c:forEach var="reply" items="${replies}">
 	<div class="reply">
+		<img src="${reply.profilePath}" alt="프로필 이미지" class="profile-image" />
 		<p>작성자: ${reply.memberNum}</p>
 		<p id="reply-${reply.replyNum}" class="replyContents">${reply.content}</p>
 		<p>작성일: ${reply.createDate}</p>

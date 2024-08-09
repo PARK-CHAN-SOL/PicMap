@@ -34,6 +34,7 @@ fetch('/comments/getTotalCount?boardNum=' + commentsObserverTarget.dataset.board
                         createDate = createDate.getFullYear() + '-' +  String(createDate.getMonth() + 1).padStart(2, '0') + '-' + String(createDate.getDate()).padStart(2, '0'); // 작성일을 YYYY-MM-DD 형식으로 변환
                         let comment =
                         '<div class="comment">' + // 댓글 컨테이너 시작
+                            '<img src="' + commentDTO.profilePath + '" alt="프로필 이미지" class="profile-image" />' + // 프로필 이미지 추가
                             '<p>작성자: ' + commentDTO.memberNum + '</p>' + // 댓글 작성자의 회원 번호를 표시
                             '<p id="' + commentDTO.commentNum + '" class="comment-content">' + commentDTO.content + '</p>' + // 댓글 내용을 표시
                             '<p>작성일: ' + createDate + '</p>'; // 댓글 작성일을 표시

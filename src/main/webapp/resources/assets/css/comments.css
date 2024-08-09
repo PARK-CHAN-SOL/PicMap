@@ -1,6 +1,6 @@
 .comments-container {
     max-width: 600px;
-    margin: 150px auto 0; /* 헤더의 높이를 고려하여 상단 마진 추가 */
+    margin: 200px auto 0; /* 헤더의 높이를 고려하여 상단 마진 추가 */
     padding: 20px;
     background: #f9f9f9;
     border-radius: 10px;
@@ -15,6 +15,7 @@
 
 
 .comment {
+    
     background: #fff;
     padding: 15px;
     margin-bottom: 10px;
@@ -72,4 +73,11 @@
     padding-left: 10px;
     border-left: 2px solid #ddd; /* 좌측 경계선 추가 */
     margin-top: 10px;
+}
+
+.profile-image {
+    width: 50px; /* 프로필 이미지의 너비 */
+    height: 50px; /* 프로필 이미지의 높이 */
+    border-radius: 50%; /* 원형으로 만들기 */
+    margin-right: 15px; /* 이미지와 텍스트 사이의 간격 */
 }
