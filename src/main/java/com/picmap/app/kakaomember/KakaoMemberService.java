@@ -10,7 +10,12 @@ public class KakaoMemberService {
 	@Autowired
 	private KakaoMemberDAO kakaoMemberDAO;
 	
-	public MemberDTO kakaoMemberJoinCheck(String token) throws Exception {
-		return kakaoMemberDAO.kakaoMemberJoinCheck(token);
+	public MemberDTO kakaoMemberJoinCheck(String memberId) throws Exception {
+		return kakaoMemberDAO.kakaoMemberJoinCheck(memberId);
 	}
+	
+	public Integer kakaoMemberJoin(MemberDTO memberDTO) throws Exception {
+		return kakaoMemberDAO.kakaoMemberJoin(memberDTO);
+	}
+	
 }

@@ -35,11 +35,12 @@ public class MemberService {
 	}
 
 	// 로그인
-	public MemberDTO login(MemberDTO memberDTO) throws Exception {
+	public MemberDTO login(MemberDTO memberDTO, HttpSession session) throws Exception {
 		MemberDTO result = memberDAO.login(memberDTO);
 		if (result != null) {
 			if (result.getMemberPassword().equals(memberDTO.getMemberPassword())) {
 				// 로그인 성공
+				session.setAttribute("member", result);
 				return result;
 			} else {
 				return null;
@@ -52,18 +53,23 @@ public class MemberService {
 	public int join(MemberDTO memberDTO, MultipartFile files, HttpSession session) throws Exception {
 		ServletContext servletContext = session.getServletContext();
 		// 1. 어디에 저장? (운영체제가 알고 있는 경로에 써줘야한다)
-		String path = servletContext.getRealPath("resources/upload/" + name);
+		String path = servletContext.getRealPath("/resources/upload/" + name);
 		System.out.println(path);
 		FileManager fm = new FileManager();
 
 		if (null == files.getOriginalFilename() ||  files.getOriginalFilename().equals("")) {
 			memberDTO.setProfilePath("default");
 		} else {
-			memberDTO.setProfilePath(fm.fileSave(files, path));
+			memberDTO.setProfilePath("/resources/upload/" + name + fm.fileSave(files, path));
 		}
 		int result = memberDAO.join(memberDTO);
 		return result;
 
+	}
+	// 카카오 회원가입
+	public int join(MemberDTO memberDTO) throws Exception {
+		int result = memberDAO.join(memberDTO);
+		return result;
 	}
 
 	// 로그아웃

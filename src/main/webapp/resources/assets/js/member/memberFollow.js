@@ -66,15 +66,15 @@ function appendList(res, observerTarget, listDiv) {
       })
          .then((checker) => { return checker.json(); })
          .then((checker) => {
+            if (element.profilePath == 'default') element.profilePath = '/resources/upload/members/default.png'; 
             let exploreUser =  // 유저 한 명에 해당하는 리스트 생성
-                  '<li class="explore__user">'+'<a class="followA" href="./mypage?memberNum='+element.memberNum+'">'+
-                     '<div class="explore__content">'+
-                        '<img src="/resources/upload/members/'+ element.profilePath + '"/>'+
-                        '<div class="explore__info">'+
-                           '<span class="explore__username">' + element.memberNickName + '</span>'+
-                        '</div>'+
-                     '</div>'+'</a>';
-            if (element.profilePath == 'default') element.profilePath = 'default.png'; 
+            '<li class="explore__user">'+'<a class="followA" href="./mypage?memberNum='+element.memberNum+'">'+
+            '<div class="explore__content">'+
+            '<img src="'+ element.profilePath + '">'+
+            '<div class="explore__info">'+
+            '<span class="explore__username">' + element.memberNickName + '</span>'+
+            '</div>'+
+            '</div>'+'</a>';
             if (checker == 0) { // 유저 리스트에 있는 사용자가 나 자신이거나 로그인 하지 않았을 경우 버튼 출력 X
                exploreUser = exploreUser +
                   '</li>';
