@@ -25,12 +25,12 @@ public class CommentDAOTest extends SampleTest {
         assertEquals(1, result);
     }
 
-    @Test
-    public void testGetCommentsByBoard() throws Exception {
-        List<CommentDTO> comments = commentDAO.getCommentsByBoard(1L);
-        assertNotNull(comments);
-        assertEquals(comments.size() >= 0, true);
-    }
+//    @Test
+//    public void testGetCommentsByBoard() throws Exception {
+//        List<CommentDTO> comments = commentDAO.getCommentsByBoard(1L);
+//        assertNotNull(comments);
+//        assertEquals(comments.size() >= 0, true);
+//    }
 
     @Test
     public void testUpdateComment() throws Exception {

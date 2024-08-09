@@ -13,7 +13,11 @@ public class KakaoMemberDAO {
 	
 	private final String NAMESPACE = "com.picmap.app.member.MemberDAO."; 
 	
-	public MemberDTO kakaoMemberJoinCheck(String token) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "kakaoMemberJoinCheck", token);
+	public MemberDTO kakaoMemberJoinCheck(String memberId) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "kakaoMemberJoinCheck", memberId);
+	}
+	
+	public Integer kakaoMemberJoin(MemberDTO memberDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "kakaoMemberJoin", memberDTO);
 	}
 }

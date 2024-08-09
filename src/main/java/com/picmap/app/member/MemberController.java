@@ -60,12 +60,11 @@ public class MemberController {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		memberDTO = memberService.login(memberDTO);
+		memberDTO = memberService.login(memberDTO, session);
 		String url = "/commons/message";
 
 		if (memberDTO != null) {
 
-			session.setAttribute("member", memberDTO);
 			model.addAttribute("result", "로그인 성공");
 			model.addAttribute("url", "/");
 
