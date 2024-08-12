@@ -33,14 +33,21 @@ const memberNickName = document.getElementById("memberNickName");
 const phone = document.getElementById("memberPhone");
 const email = document.getElementById("memberEmail");
 
+
+
+
+
 //form tag id
 const frm = document.getElementById("frm");
+
+
+
 
 //password validation div's id
 const passwordError = document.getElementById("password-error");
 btn.addEventListener("click", function () {
     passwordError.innerHTML = "";
-
+    
     //password validation
     if (pw.value == "") {
         passwordError.innerHTML = "pw is required";
@@ -69,16 +76,26 @@ btn.addEventListener("click", function () {
     }
 })
 
-memberId.addEventListener("change", function () {
-    console.log(memberId.value);
-    fetch("/member/idCheck?memberId=" + memberId.value, {
-        method: "GET"
-    })
+//memberId 영문자 포함 
+
+    memberId.addEventListener("change", function () {
+        var regId = /^[0-9a-z]{8,16}$/;
+        console.log(memberId.value);
+        fetch("/member/idCheck?memberId=" + memberId.value, {
+            method: "GET"
+        })
         .then((res) => { return res.text(); })
         .then((res) => {
             if (res == 0) {
                 return;
-            } else {
+            }
+                //1. 아이디 체크
+                if(!regId.exec(frm.memberId.value)){
+                    alert("아이디: 8-16자 소문자+숫자로 작성하세요.");
+                    frm.memberId.focus();
+                    return;
+                }
+             else {
                 alert("중복된 ID 입니다");
                 memberId.value = "";
                 memberId.focus();

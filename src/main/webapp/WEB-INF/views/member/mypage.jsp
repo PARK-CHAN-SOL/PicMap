@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 		<!DOCTYPE html>
 		<html>
 
@@ -14,6 +15,7 @@ by Awe7 (http://awe7.com/freebies)
 			<c:import url="../template/header_css.jsp"></c:import>
 			<c:import url="../template/header_nav.jsp"></c:import>
 			<link rel="stylesheet" href="/resources/assets/css/mypage.css">
+
 		</head>
 
 		<body>
@@ -28,11 +30,7 @@ by Awe7 (http://awe7.com/freebies)
 							<div class="row align-items-center">
 								<div class="col-lg-4 order-lg-1 order-2">
 									<div class="d-flex align-items-center justify-content-around m-4">
-										<div class="text-center">
-											<i class="fa fa-file fs-6 d-block mb-2"></i>
-											<h4 class="mb-0 fw-semibold lh-1">938</h4>
-											<p class="mb-0 fs-4">게시물</p>
-										</div>
+							
 
 										<div id="followerDiv" class="text-center" data-bs-toggle="modal"
 											data-bs-target="#staticBackdrop" data-to-follow="${param.memberNum}">
@@ -108,7 +106,6 @@ by Awe7 (http://awe7.com/freebies)
 
 
 
-
 									</div>
 								</div>
 								<div class="col-lg-4 mt-n3 order-lg-2 order-1">
@@ -137,8 +134,7 @@ by Awe7 (http://awe7.com/freebies)
 									</div>
 								</div>
 								<div class="col-lg-4 order-last">
-									<ul
-										class="list-unstyled d-flex align-items-center justify-content-center justify-content-lg-start my-3 gap-3">
+									<ul class="list-unstyled d-flex align-items-center justify-content-center justify-content-lg-start my-3 gap-3">
 										<c:if test="${sessionScope.member.memberNum ne member.memberNum}">
 											<c:if test="${followCheck eq 1}">
 												<li>
@@ -153,14 +149,21 @@ by Awe7 (http://awe7.com/freebies)
 												</li>
 											</c:if>
 										</c:if>
-										<c:if test="${sessionScope.member.memberNum eq member.memberNum}">
-											<li><a href="/member/update"><button class="btn btn-secondary fs-4">프로필
-														편집</button></a></li>
-											<li><a href="/notice/add"><button class="btn btn-secondary fs-4">게시글
-														쓰기</button></a></li>
-											<li><a href="/member/delete"><button
-														class="btn btn-danger fs-4">탈퇴하기</button></a></li>
-										</c:if>
+									
+									<c:if test="${sessionScope.member.memberNum eq member.memberNum}">
+    <li><a href="/travel/add"><button class="btn btn-secondary fs-4">게시글 쓰기</button></a></li>
+    
+            <li><a href="/member/delete"><button class="btn btn-danger fs-4">탈퇴하기</button></a></li>
+    <!-- 조건에 맞지 않는 경우에만 버튼을 표시 -->
+    <c:choose>
+        <c:when test="${ !sessionScope.member.memberId.matches('[0-9]*')}">
+            <li><a href="/member/update"><button class="btn btn-secondary fs-4">프로필 편집</button></a></li>
+        </c:when>
+        <c:otherwise>
+            <!-- 버튼을 보이지 않도록 설정: 아무 것도 출력하지 않음 -->
+        </c:otherwise>
+    </c:choose>
+</c:if>
 									</ul>
 									<div id="wishResult"></div>
 								</div>
@@ -170,20 +173,18 @@ by Awe7 (http://awe7.com/freebies)
 								<li class="nav-item" role="presentation">
 									<button
 										class="nav-link position-relative rounded-0 active d-flex align-items-center justify-content-center bg-transparent fs-3 py-6"
-										id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-										type="button" role="tab" aria-controls="pills-profile" aria-selected="true">
-										<i class="fa fa-user me-2 fs-6"></i> <span class="d-none d-md-block">내
-											게시글</span>
+										id="pills-friends-tab" data-bs-toggle="pill" data-bs-target="#pills-friends"
+										type="button" role="tab" aria-controls="pills-friends" aria-selected="false"
+										tabindex="-1">
+										<i class="fa fa-users me-2 fs-6"></i> <span class="d-none d-md-block">내 게시글</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button
-										class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-6"
-										id="pills-friends-tab" data-bs-toggle="pill" data-bs-target="#pills-friends"
-										type="button" role="tab" aria-controls="pills-friends" aria-selected="false"
-										tabindex="-1">
-										<i class="fa fa-users me-2 fs-6"></i> <span class="d-none d-md-block">저장한
-											글</span>
+										class="nav-link position-relative rounded-0  d-flex align-items-center justify-content-center bg-transparent fs-3 py-6"
+										id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+										type="button" role="tab" aria-controls="pills-profile" aria-selected="true">
+										<i class="fa fa-user me-2 fs-6"></i> <span class="d-none d-md-block">저장한 게시글</span>
 									</button>
 								</li>
 							</ul>
@@ -194,603 +195,73 @@ by Awe7 (http://awe7.com/freebies)
 						<div class="tab-pane fade show active" id="pills-friends" role="tabpanel"
 							aria-labelledby="pills-friends-tab" tabindex="0">
 							<div class="d-sm-flex align-items-center justify-content-between mt-3 mb-4">
-								<h3 class="mb-3 mb-sm-0 fw-semibold d-flex align-items-center">
-									작성한 글 <span class="badge text-bg-secondary fs-2 rounded-4 py-1 px-2 ms-2">20</span>
-								</h3>
+								
 								<form class="position-relative">
-
-									<i
-										class="ti ti-search position-absolute top-50 start-0 translate-middle-y text-dark ms-3"></i>
+									<i class="ti ti-search position-absolute top-50 start-0 translate-middle-y text-dark ms-3"></i>
 								</form>
 							</div>
-							<div class="row">
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Betty Adams</h5>
-											<span class="text-dark fs-2">Medical Secretary</span>
+										<!-- Section -->
+		
+				<div class="container">
+
+					<!-- title -->
+			
+					<!-- End / title -->
+
+					<div class="grid-css grid_css_style_02 grid-css--masonry"
+						data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1"
+						data-gap="30">
+					
+						<div class="grid__inner">
+							<div class="grid-sizer"></div>
+							
+							
+							<c:forEach items="${list}" var="dto">
+								<div class="grid-item cat1">
+									<div class="grid-item__inner">
+										<div class="grid-item__content-wrapper">
+	
+											<!-- box-image2 -->
+											<div class="box-image2">
+												<div>
+													<c:if test="${empty dto.fileName}">
+														<a class="box-image2__bg" href="/travel/detail?boardNum=${dto.boardNum}"
+														style="background-image: url('/resources/upload/travels/default.png');">
+															<!-- <img src="/resources/assets/img/image_box_2/1.jpg" alt="" /> -->
+														</a>
+													</c:if>
+													<c:if test="${not empty dto.fileName}">
+														<a class="box-image2__bg" href="/travel/detail?boardNum=${dto.boardNum}"
+														style="background-image: url('/resources/upload/travels/${dto.fileName}');">
+															<!-- <img src="/resources/assets/img/image_box_2/1.jpg" alt="" /> -->
+														</a>
+													</c:if>
+													<div class="box-image2__info">
+														<p class="box-image2__writer">${dto.memberNickname}</p>
+														<p class="box-image2__title">${dto.boardTitle}</p>
+													</div>
+													<div class="box-image2__info_bot">
+														<span class="box-image2__date">${dto.createDate}</span>
+														<span class="box-image2__like">좋아요</span> 
+													</div>
+												</div>
+											</div>
+											<!-- End / box-image2 -->
+	
 										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
 									</div>
 								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Inez Lyons</h5>
-											<span class="text-dark fs-2">Medical Technician</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Lydia Bryan</h5>
-											<span class="text-dark fs-2">Preschool Teacher</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Carolyn Bryant</h5>
-											<span class="text-dark fs-2">Legal Secretary</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Paul Benson</h5>
-											<span class="text-dark fs-2">Safety Engineer</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Robert Francis</h5>
-											<span class="text-dark fs-2">Nursing Administrator</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Billy Rogers</h5>
-											<span class="text-dark fs-2">Legal Secretary</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Rosetta Brewer</h5>
-											<span class="text-dark fs-2">Comptroller</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Patrick Knight</h5>
-											<span class="text-dark fs-2">Retail Store Manager</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Francis Sutton</h5>
-											<span class="text-dark fs-2">Astronomer</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Bernice Henry</h5>
-											<span class="text-dark fs-2">Security Consultant</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Estella Garcia</h5>
-											<span class="text-dark fs-2">Lead Software Test Engineer</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Norman Moran</h5>
-											<span class="text-dark fs-2">Engineer Technician</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Jessie Matthews</h5>
-											<span class="text-dark fs-2">Lead Software Engineer</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Elijah Perez</h5>
-											<span class="text-dark fs-2">Special Education Teacher</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Robert Martin</h5>
-											<span class="text-dark fs-2">Transportation Manager</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Elva Wong</h5>
-											<span class="text-dark fs-2">Logistics Manager</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Edith Taylor</h5>
-											<span class="text-dark fs-2">Union Representative</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Violet Jackson</h5>
-											<span class="text-dark fs-2">Agricultural Inspector</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6 col-lg-4">
-									<div class="card hover-img">
-										<div class="card-body p-4 text-center border-bottom">
-											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""
-												class="rounded-circle mb-3" width="80" height="80">
-											<h5 class="fw-semibold mb-0">Phoebe Owens</h5>
-											<span class="text-dark fs-2">Safety Engineer</span>
-										</div>
-										<ul
-											class="px-2 py-2 bg-light list-unstyled d-flex align-items-center justify-content-center mb-0">
-											<li class="position-relative"><a
-													class="text-primary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold"
-													href="javascript:void(0)"> <i class="ti ti-brand-facebook"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-danger d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-instagram"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-info d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-github"></i>
-												</a></li>
-											<li class="position-relative"><a
-													class="text-secondary d-flex align-items-center justify-content-center p-2 fs-5 rounded-circle fw-semibold "
-													href="javascript:void(0)"> <i class="ti ti-brand-twitter"></i>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
+
+
+						</div>
+					</div>
 						</div>
 
 					</div>
 				</div>
 			</div>
-
+</div>
 
 
 			<c:import url="../template/footer.jsp"></c:import>

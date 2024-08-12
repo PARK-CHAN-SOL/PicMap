@@ -57,7 +57,7 @@
 </select>
 		
  	<delete id="delete" parameterType="MemberDTO">
-		DELETE MEMBER 	WHERE MEMBERNUM = #{memberNum} }
+		DELETE MEMBER 	WHERE MEMBERNUM = #{memberNum} 
 	</delete> 
 	
 	<insert id="follow" parameterType="FollowDTO"	>
@@ -124,5 +124,16 @@ FROM
 WHERE R BETWEEN #{scroller.startRow} AND #{scroller.endRow}
 
 </select>
+<select id="getList" resultType="TravelDTO">
+		SELECT T.*, M.MEMBERID, M.MEMBERNICKNAME 
+		FROM TRAVEL T
+			 LEFT JOIN
+			 MEMBER M
+			 ON T.MEMBERNUM = M.MEMBERNUM
+			 WHERE M.MEMBERNUM=#{memberNum}
+		ORDER BY BOARDNUM DESC
+	</select>
+
+
 
   </mapper>
