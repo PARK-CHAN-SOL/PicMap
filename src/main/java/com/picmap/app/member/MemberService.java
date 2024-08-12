@@ -26,7 +26,7 @@ public class MemberService {
 	@Autowired
 	private FileManager fileManager;
 
-	private String name = "members";
+	private String name = "members/";
 
 	public int idCheck(MemberDTO memberDTO) throws Exception {
 		return memberDAO.idCheck(memberDTO);
@@ -96,10 +96,10 @@ public class MemberService {
 		System.out.println(path);
 		FileManager fm = new FileManager();
 
-		if (null == files) {
+		if (null == files.getOriginalFilename() ||  files.getOriginalFilename().equals("")) {
 			memberDTO.setProfilePath("default");
 		} else {
-			memberDTO.setProfilePath(fm.fileSave(files, path));
+			memberDTO.setProfilePath("/resources/upload/" + name + fm.fileSave(files, path));
 		}
 		int result = memberDAO.update(memberDTO);
 		return result;

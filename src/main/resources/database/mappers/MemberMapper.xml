@@ -57,7 +57,7 @@
 </select>
 		
  	<delete id="delete" parameterType="MemberDTO">
-		DELETE MEMBER 	WHERE MEMBERNUM = #{memberNum} }
+		DELETE MEMBER 	WHERE MEMBERNUM = #{memberNum} 
 	</delete> 
 	
 	<insert id="follow" parameterType="FollowDTO"	>

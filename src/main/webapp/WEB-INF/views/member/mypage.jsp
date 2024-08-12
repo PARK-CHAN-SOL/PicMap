@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 		<!DOCTYPE html>
 		<html>
 
@@ -14,6 +15,7 @@ by Awe7 (http://awe7.com/freebies)
 			<c:import url="../template/header_css.jsp"></c:import>
 			<c:import url="../template/header_nav.jsp"></c:import>
 			<link rel="stylesheet" href="/resources/assets/css/mypage.css">
+
 		</head>
 
 		<body>
@@ -132,8 +134,7 @@ by Awe7 (http://awe7.com/freebies)
 									</div>
 								</div>
 								<div class="col-lg-4 order-last">
-									<ul
-										class="list-unstyled d-flex align-items-center justify-content-center justify-content-lg-start my-3 gap-3">
+									<ul class="list-unstyled d-flex align-items-center justify-content-center justify-content-lg-start my-3 gap-3">
 										<c:if test="${sessionScope.member.memberNum ne member.memberNum}">
 											<c:if test="${followCheck eq 1}">
 												<li>
@@ -148,14 +149,21 @@ by Awe7 (http://awe7.com/freebies)
 												</li>
 											</c:if>
 										</c:if>
-										<c:if test="${sessionScope.member.memberNum eq member.memberNum}">
-											<li><a href="/member/update"><button class="btn btn-secondary fs-4">프로필
-														편집</button></a></li>
-											<li><a href="/travel/add"><button class="btn btn-secondary fs-4">게시글
-														쓰기</button></a></li>
-											<li><a href="/member/delete"><button
-														class="btn btn-danger fs-4">탈퇴하기</button></a></li>
-										</c:if>
+									
+									<c:if test="${sessionScope.member.memberNum eq member.memberNum}">
+    <li><a href="/travel/add"><button class="btn btn-secondary fs-4">게시글 쓰기</button></a></li>
+    
+            <li><a href="/member/delete"><button class="btn btn-danger fs-4">탈퇴하기</button></a></li>
+    <!-- 조건에 맞지 않는 경우에만 버튼을 표시 -->
+    <c:choose>
+        <c:when test="${ !sessionScope.member.memberId.matches('[0-9]*')}">
+            <li><a href="/member/update"><button class="btn btn-secondary fs-4">프로필 편집</button></a></li>
+        </c:when>
+        <c:otherwise>
+            <!-- 버튼을 보이지 않도록 설정: 아무 것도 출력하지 않음 -->
+        </c:otherwise>
+    </c:choose>
+</c:if>
 									</ul>
 									<div id="wishResult"></div>
 								</div>
@@ -253,7 +261,7 @@ by Awe7 (http://awe7.com/freebies)
 					</div>
 				</div>
 			</div>
-
+</div>
 
 
 			<c:import url="../template/footer.jsp"></c:import>
