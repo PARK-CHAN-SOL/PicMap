@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.picmap.app.board.BoardDTO;
+import com.picmap.app.util.Scroller;
 
 @Repository
 public class TravelDAO {
@@ -19,9 +20,9 @@ public class TravelDAO {
 	
 	
 	//게시판(게시글 리스트)
-	public List<BoardDTO> getList() throws Exception {
+	public List<BoardDTO> getList(Scroller scroller) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"getList");
+		return sqlSession.selectList(NAMESPACE+"getList", scroller);
 	}
 	
 	
