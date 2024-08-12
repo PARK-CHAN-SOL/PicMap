@@ -59,6 +59,10 @@
   </filter-mapping>
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
+    <url-pattern>/travel/addPlus</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
     <url-pattern>/travel/update</url-pattern>
   </filter-mapping>
   <filter-mapping>

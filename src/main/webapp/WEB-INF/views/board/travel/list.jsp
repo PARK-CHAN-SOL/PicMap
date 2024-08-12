@@ -10,6 +10,7 @@ Mercury travel - free HTML5 templates!
 by Awe7 (http://awe7.com/freebies)
 -->
 <c:import url="../../template/header_css.jsp"></c:import>
+<link rel="stylesheet" href="/resources/assets/css/boardList.css">
 
 </head>
 
@@ -19,7 +20,7 @@ by Awe7 (http://awe7.com/freebies)
 		<c:import url="../../template/header_nav.jsp"></c:import>
 
 		<!-- Content-->
-		<div class="md-content">
+		<div class="md-content" id="boardStartLocation">
 
 			<!-- hero -->
 			<div class="hero" id="id-1">
@@ -57,15 +58,13 @@ by Awe7 (http://awe7.com/freebies)
 
 
 
-
-
-
-
-
-
-
-
-
+			<!-- 글 작성 버튼 -->
+			<div>
+				<div class="nav-buttons">
+					<button type="button" class="btn btn-danger" id="addBoard"
+					onclick = "location.href = 'add'">글 작성</button>
+				</div>      
+			</div>
 
 
 
@@ -102,13 +101,13 @@ by Awe7 (http://awe7.com/freebies)
 											<div class="box-image2">
 												<div>
 													<c:if test="${empty dto.fileName}">
-														<a class="box-image2__bg" href="detail?boardNum=${dto.boardNum}"
+														<a class="box-image2__bg" href="detail?boardNum=${dto.boardNum}#boardStartLocation"
 														style="background-image: url('/resources/upload/travels/default.png');">
 															<!-- <img src="/resources/assets/img/image_box_2/1.jpg" alt="" /> -->
 														</a>
 													</c:if>
 													<c:if test="${not empty dto.fileName}">
-														<a class="box-image2__bg" href="detail?boardNum=${dto.boardNum}"
+														<a class="box-image2__bg" href="detail?boardNum=${dto.boardNum}#boardStartLocation"
 														style="background-image: url('/resources/upload/travels/${dto.fileName}');">
 															<!-- <img src="/resources/assets/img/image_box_2/1.jpg" alt="" /> -->
 														</a>
@@ -133,14 +132,6 @@ by Awe7 (http://awe7.com/freebies)
 
 						</div>
 					</div>
-					<div class="text-center">
-						<a class="md-btn mt-60 md-btn--primary md-btn--pill " href="#">Explore
-							more </a>
-					</div>
-					
-					<h1>
-						<a href="add">${board}게시글 작성</a>
-					</h1>
 					
 				</div>
 			</section>

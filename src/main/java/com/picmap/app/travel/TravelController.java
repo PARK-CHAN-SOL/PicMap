@@ -62,17 +62,16 @@ public class TravelController {
 		// 1. 게시글번호를 매기고,
 		Long boardNum = travelService.makeBoardNum();
 		travelDTO.setBoardNum(boardNum);
-		// 2. 부모글이 없으므로 해당 게시글의 최상위부모게시글을 자신으로 설정, 자식글,부모글은 일단 Null
-		if(travelDTO.getParentBoard() == null) {
-			travelDTO.setRootBoard(boardNum);
-		}
+		// 2. 최상위부모게시글을 자신으로 설정, 자식글,부모글은 일단 Null
+		travelDTO.setRootBoard(boardNum);
 
+		// 3. 위치정보 추가
 		Long pingNum = pingService.savePingNum();
 		travelDTO.setPingNum(pingNum);
 		pingDTO.setPingNum(pingNum);
-		
 		pingService.addPing(pingDTO);
 		
+		//4. 게시글 추가
 		int result = travelService.add(travelDTO, files, session);
 		
 		return "redirect:./list";
@@ -82,7 +81,9 @@ public class TravelController {
 	
 	//자식글 작성
 	@GetMapping("addPlus")
-	public String addPlus() throws Exception {
+	public String addPlus(TravelDTO travelDTO, Model model) throws Exception {
+		
+		model.addAttribute("dto", travelDTO);
 		
 		return "board/travel/write";
 	}
@@ -91,23 +92,25 @@ public class TravelController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		travelDTO.setMemberNum(memberDTO.getMemberNum());
 		
+		// add메서드와 거의 비슷하게 따라감
 		// 1. 게시글번호를 매기고,
 		Long boardNum = travelService.makeBoardNum();
 		travelDTO.setBoardNum(boardNum);
-		// 2. 부모글 값 설정, 그 부모글의 자식글 값 변경
-		travelService.addPlus(travelDTO);
-		// 3. 최상위부모글 설정
-		travelService.setRoot(travelDTO);
+		// 2. 최상위부모글과 부모글 값은 이미 넘겨받았음
 		
-		
-
+		// 3. 위치정보 추가
 		Long pingNum = pingService.savePingNum();
 		travelDTO.setPingNum(pingNum);
 		pingDTO.setPingNum(pingNum);
-		
 		pingService.addPing(pingDTO);
 		
+		// 4. 게시글 추가
 		int result = travelService.add(travelDTO, files, session);
+		
+		
+		// 5. 내 부모글의 자식글 값을 나로 변경
+		travelService.addPlus(travelDTO);
+
 		
 		return "redirect:./list";
 	}
