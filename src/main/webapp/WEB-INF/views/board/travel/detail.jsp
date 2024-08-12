@@ -43,9 +43,13 @@ by Awe7 (http://awe7.com/freebies)
 		        			<button type="button" class="btn btn-outline-secondary" id="detailNextPageBtn"
 		        			onclick = "location.href = '/travel/detail?boardNum=${dto.childBoard}'">&gt;</button>
 		        		</c:when>
+		        		<c:when test="${empty dto.childBoard && login.memberNum == dto.memberNum}">
+			        			<button type="button" class="btn btn-outline-secondary" id="addPlusBoard"
+			        			onclick = "location.href = '/travel/addPlus?rootBoard=${dto.rootBoard}&parentBoard=${dto.boardNum}'">&#43;</button>
+		        		</c:when>
 		        		<c:otherwise>
-		        			<button type="button" class="btn btn-outline-secondary" id="addPlusBoard"
-		        			onclick = "location.href = '/travel/addPlus?rootBoard=${dto.rootBoard}&parentBoard=${dto.boardNum}'">&#43;</button>
+		        			<button type="button" class="btn btn-outline-secondary" id="detailNextPageBtn"
+		        			onclick = "location.href = '/travel/detail?boardNum=${dto.childBoard}'" style="visibility: hidden;">&gt;</button>
 		        		</c:otherwise>
 		        	</c:choose>
 		        </div>      
@@ -108,7 +112,7 @@ by Awe7 (http://awe7.com/freebies)
 												<span class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden"
 												style="width: 60px; height: 60px;">
 													<c:if test="${not empty member.profilePath}">
-														<img src="/resources/upload/members/${member.profilePath}"
+														<img src="${member.profilePath}"
 														onerror="this.src='/resources/upload/members/default.png'" alt="" class="w-100 h-100">
 													</c:if>
 													<c:if test="${empty member.profilePath}">

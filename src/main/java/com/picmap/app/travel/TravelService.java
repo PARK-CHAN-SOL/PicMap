@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.picmap.app.board.BoardDTO;
 import com.picmap.app.files.FileManager;
 import com.picmap.app.member.MemberDTO;
+import com.picmap.app.util.Scroller;
 
 @Service
 public class TravelService {
@@ -26,8 +27,8 @@ public class TravelService {
 	private String name = "travels";
 	
 	//게시판(게시글 리스트)
-	public List<BoardDTO> getList() throws Exception {
-		return travelDAO.getList();
+	public List<BoardDTO> getList(Scroller scroller) throws Exception {
+		return travelDAO.getList(scroller);
 	}
 
 	

@@ -127,16 +127,18 @@
 					workContainer.find('.grid-item__content-wrapper').matchHeight();
 				}
 
-				workContainer.isotope({
-					layoutMode: 'masonry',
-					itemSelector: '.grid-item',
-					transitionDuration: duration + 's',
-					masonry: {
-						columnWidth: '.grid-sizer'
-					}
-					// hiddenStyle: {},
-					// visibleStyle: {}
-				});
+				// 이거 지우니까 리스트가 잘 나옴
+				// 왜 잘 나오는지는 모름 ㅋ
+				// workContainer.isotope({
+				// 	layoutMode: 'masonry',
+				// 	itemSelector: '.grid-item',
+				// 	transitionDuration: duration + 's',
+				// 	masonry: {
+				// 		columnWidth: '.grid-sizer'
+				// 	}
+				// 	// hiddenStyle: {},
+				// 	// visibleStyle: {}
+				// });
 			});
 			filters.on('click', 'a', function (e) {
 				e.preventDefault();

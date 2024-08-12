@@ -28,5 +28,7 @@
  		<typeAlias type="com.picmap.app.notice.NoticeDTO" alias="NoticeDTO"/>
  		
  		<typeAlias type="com.picmap.app.travel.TravelDTO" alias="TravelDTO"/>
+ 		
+ 		<typeAlias type="com.picmap.app.util.Scroller" alias="Scroller"/>
 	</typeAliases>
  </configuration>

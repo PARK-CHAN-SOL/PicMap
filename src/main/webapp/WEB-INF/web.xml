@@ -73,4 +73,29 @@
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/notice/update</url-pattern>
   </filter-mapping>
+  <filter>
+    <display-name>PermissionFilter</display-name>
+    <filter-name>PermissionFilter</filter-name>
+    <filter-class>com.picmap.app.filter.PermissionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>PermissionFilter</filter-name>
+    <url-pattern>/travel/addPlus</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>PermissionFilter</filter-name>
+    <url-pattern>/travel/update</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>PermissionFilter</filter-name>
+    <url-pattern>/travel/delete</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>PermissionFilter</filter-name>
+    <url-pattern>/notice/update</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>PermissionFilter</filter-name>
+    <url-pattern>/notice/delete</url-pattern>
+  </filter-mapping>
 </web-app>

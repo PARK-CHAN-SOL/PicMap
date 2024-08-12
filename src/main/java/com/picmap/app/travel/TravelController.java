@@ -2,6 +2,7 @@ package com.picmap.app.travel;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
@@ -18,6 +20,7 @@ import com.picmap.app.member.MemberDTO;
 import com.picmap.app.member.MemberService;
 import com.picmap.app.ping.PingDTO;
 import com.picmap.app.ping.PingService;
+import com.picmap.app.util.Scroller;
 
 @Controller
 @RequestMapping("/travel/*")
@@ -36,15 +39,15 @@ public class TravelController {
 		return "Travel";
 	}
 	
-	
 	@GetMapping("list")
-	public String getList(Model model) throws Exception {
-		
-		List<BoardDTO> list = travelService.getList();
-				
-		model.addAttribute("list", list);
-		
+	public String getList() throws Exception {
 		return "board/travel/list";
+	}
+	
+	@PostMapping("list")
+	@ResponseBody
+	public List<BoardDTO> getList(Model model, Scroller scroller) throws Exception {
+		return travelService.getList(scroller);
 	}
 	
 	
@@ -81,7 +84,7 @@ public class TravelController {
 	
 	//자식글 작성
 	@GetMapping("addPlus")
-	public String addPlus(TravelDTO travelDTO, Model model) throws Exception {
+	public String addPlus(TravelDTO travelDTO, Model model) throws Exception {	
 		
 		model.addAttribute("dto", travelDTO);
 		
@@ -91,7 +94,7 @@ public class TravelController {
 	public String addPlus(TravelDTO travelDTO, MultipartFile[] files, HttpSession session, PingDTO pingDTO) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		travelDTO.setMemberNum(memberDTO.getMemberNum());
-		
+			
 		// add메서드와 거의 비슷하게 따라감
 		// 1. 게시글번호를 매기고,
 		Long boardNum = travelService.makeBoardNum();
@@ -131,7 +134,9 @@ public class TravelController {
 	
 	//게시글 디테일
 	@GetMapping
-	public String detail(TravelDTO travelDTO, Model model) throws Exception {
+	public String detail(TravelDTO travelDTO, Model model, HttpSession session, HttpServletRequest request) throws Exception {
+		MemberDTO memberDTO= (MemberDTO)session.getAttribute("member");
+		model.addAttribute("login", memberDTO); 
 		
 		TravelDTO travelDetail = travelService.detail(travelDTO);
 		model.addAttribute("dto", travelDetail);
@@ -143,6 +148,11 @@ public class TravelController {
 		boardWriter = memberService.detail(boardWriter);
 		model.addAttribute("member", boardWriter);
 		
+		
+		//게시글 수정 및 삭제, 자식글 작성할 때 작성자의 계정과 일치하는 계정인지 판별하는 필터를 걸어두기 위해
+		//작성자 memberNum을 세션에 올림
+		session.setAttribute("writer", travelDetail.getMemberNum());
+		System.out.println(travelDetail.getMemberNum());
 		
 		
 		return "board/travel/detail";

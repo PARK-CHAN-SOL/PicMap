@@ -71,7 +71,7 @@ body {
 	padding: 0 10px;
 }
 
-@media (max-width: 1750px) {
+@media (max-width: 1640px) {
     .nav-buttons {
         visibility: hidden;
     }
@@ -82,7 +82,7 @@ body {
 	height: 50px;
 	font-size: 50px;
 	text-align: center;
-	margin-left: 250px;
+	margin-left: 200px;
 	border-radius: 25px;
 	padding: 0 0 90px 0;
 }
@@ -92,7 +92,7 @@ body {
 	height: 50px;
 	font-size: 50px;
 	text-align: center;
-	margin-right: 250px;
+	margin-right: 200px;
 	border-radius: 25px;
 	padding: 0 0 90px 0;
 }
@@ -102,7 +102,7 @@ body {
 	height: 50px;
 	font-size: 50px;
 	text-align: center;
-	margin-right: 250px;
+	margin-right: 200px;
 	border-radius: 25px;
 	padding: 0 0 90px 0;
 }

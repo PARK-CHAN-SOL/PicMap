@@ -89,48 +89,10 @@ by Awe7 (http://awe7.com/freebies)
 							</ul>
 						</div>
 						<div class="grid__inner">
-							<div class="grid-sizer"></div>
-							
-							
-							<c:forEach items="${list}" var="dto">
-								<div class="grid-item cat1">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-	
-											<!-- box-image2 -->
-											<div class="box-image2">
-												<div>
-													<c:if test="${empty dto.fileName}">
-														<a class="box-image2__bg" href="detail?boardNum=${dto.boardNum}#boardStartLocation"
-														style="background-image: url('/resources/upload/travels/default.png');">
-															<!-- <img src="/resources/assets/img/image_box_2/1.jpg" alt="" /> -->
-														</a>
-													</c:if>
-													<c:if test="${not empty dto.fileName}">
-														<a class="box-image2__bg" href="detail?boardNum=${dto.boardNum}#boardStartLocation"
-														style="background-image: url('/resources/upload/travels/${dto.fileName}');">
-															<!-- <img src="/resources/assets/img/image_box_2/1.jpg" alt="" /> -->
-														</a>
-													</c:if>
-													<div class="box-image2__info">
-														<p class="box-image2__writer">${dto.memberNickname}</p>
-														<p class="box-image2__title">${dto.boardTitle}</p>
-													</div>
-													<div class="box-image2__info_bot">
-														<span class="box-image2__date">${dto.createDate}</span>
-														<span class="box-image2__like">좋아요</span> 
-													</div>
-												</div>
-											</div>
-											<!-- End / box-image2 -->
-	
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-
-
+							<div class="grid-sizer" id="travelList">
+							</div>
 						</div>
+						<div id="travelObserverTarget" data-start-row="1" data-end-row="9"></div>
 					</div>
 					
 				</div>
@@ -164,6 +126,7 @@ by Awe7 (http://awe7.com/freebies)
 	</div>
 
 	<c:import url="../../template/footer.jsp"></c:import>
+	<script src="/resources/assets/js/board/travelList.js"></script>
 </body>
 </html>
 

@@ -3,10 +3,10 @@
  */
 const commentsList = document.getElementById("commentsList"); // 댓글 목록을 담는 요소를 가져옴
 
-const commentsObserverTarget = document.getElementById("commentsObserverTarget"); // IntersectionObserver가 관찰할 대상 요소를 가져옴
+const travelObserverTarget = document.getElementById("commentsObserverTarget"); // IntersectionObserver가 관찰할 대상 요소를 가져옴
 
 let totalCount; // 총 댓글 수를 저장할 변수
-fetch('/comments/getTotalCount?boardNum=' + commentsObserverTarget.dataset.boardNum, { // 서버에 총 댓글 수를 요청
+fetch('/comments/getTotalCount?boardNum=' + travelObserverTarget.dataset.boardNum, { // 서버에 총 댓글 수를 요청
     method: "GET" // GET 메서드를 사용하여 요청
 })
 .then((res)=>{return res.json();}) // 응답을 JSON 형식으로 변환
@@ -16,11 +16,11 @@ fetch('/comments/getTotalCount?boardNum=' + commentsObserverTarget.dataset.board
     const observer = new IntersectionObserver((items)=>{ // IntersectionObserver를 생성, items는 관찰된 요소의 배열
         items.forEach((item)=>{ // 관찰된 각 요소에 대해 반복
             if(!item.isIntersecting) return; // 요소가 뷰포트에 들어오지 않았으면 함수 종료
-            if(commentsObserverTarget.dataset.startRow <= totalCount){ // startRow가 totalCount보다 작거나 같을 때만 실행
+            if(travelObserverTarget.dataset.startRow <= totalCount){ // startRow가 totalCount보다 작거나 같을 때만 실행
                 const formData = new FormData(); // 폼 데이터를 생성
-                formData.append("boardNum", commentsObserverTarget.dataset.boardNum); // 폼 데이터에 게시글 번호 추가
-                formData.append("startRow", commentsObserverTarget.dataset.startRow); // 폼 데이터에 시작 행 번호 추가
-                formData.append("endRow", commentsObserverTarget.dataset.endRow); // 폼 데이터에 끝 행 번호 추가
+                formData.append("boardNum", travelObserverTarget.dataset.boardNum); // 폼 데이터에 게시글 번호 추가
+                formData.append("startRow", travelObserverTarget.dataset.startRow); // 폼 데이터에 시작 행 번호 추가
+                formData.append("endRow", travelObserverTarget.dataset.endRow); // 폼 데이터에 끝 행 번호 추가
                 const url = '/comments/list'; // 댓글 목록을 가져올 URL
                 fetch(url, { // fetch API를 사용해 서버에 POST 요청
                     method: "POST", // POST 메서드를 사용하여 요청
@@ -38,7 +38,7 @@ fetch('/comments/getTotalCount?boardNum=' + commentsObserverTarget.dataset.board
                             '<p>작성자: ' + commentDTO.memberNum + '</p>' + // 댓글 작성자의 회원 번호를 표시
                             '<p id="' + commentDTO.commentNum + '" class="comment-content">' + commentDTO.content + '</p>' + // 댓글 내용을 표시
                             '<p>작성일: ' + createDate + '</p>'; // 댓글 작성일을 표시
-                        if(commentsObserverTarget.dataset.memberNum == commentDTO.memberNum){ // 현재 사용자가 댓글 작성자인 경우
+                        if(travelObserverTarget.dataset.memberNum == commentDTO.memberNum){ // 현재 사용자가 댓글 작성자인 경우
                             comment = comment +
                                 '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button update-button">수정</button>' + // 수정 버튼 추가
                                 '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button delete-button">삭제</button>'; // 삭제 버튼 추가
@@ -54,14 +54,14 @@ fetch('/comments/getTotalCount?boardNum=' + commentsObserverTarget.dataset.board
                         comment += '</div>'; // 댓글 컨테이너 종료
                         commentsList.innerHTML = commentsList.innerHTML + comment; // 댓글 리스트에 새 댓글 추가
                     });
-                    commentsObserverTarget.dataset.startRow += 10; // startRow 값을 10 증가
-                    commentsObserverTarget.dataset.endRow += 10; // endRow 값을 10 증가
+                    travelObserverTarget.dataset.startRow += 10; // startRow 값을 10 증가
+                    travelObserverTarget.dataset.endRow += 10; // endRow 값을 10 증가
                 })
             }
         })
     });
     
-    observer.observe(commentsObserverTarget); // commentsObserverTarget 요소를 관찰 시작
+    observer.observe(travelObserverTarget); // commentsObserverTarget 요소를 관찰 시작
 })
 
 document.addEventListener("DOMContentLoaded", () => {
