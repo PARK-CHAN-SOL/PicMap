@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.picmap.app.member.MemberDTO;
+import com.picmap.app.util.Scroller;
 
 @Controller
 @RequestMapping("/replies")
@@ -21,10 +22,16 @@ public class ReplyController {
 	private ReplyService replyService;
 
 	@PostMapping("/list")
-	public String getReplies(@RequestParam Long commentNum, Model model) {
-		List<ReplyDTO> replies = replyService.getRepliesByCommentNum(commentNum);
+	public String getReplies(@RequestParam Long commentNum, @RequestParam int startRow, Model model) {
+		Scroller scroller = new Scroller();
+		scroller.setStartRow((long) startRow);
+		scroller.setEndRow(scroller.getStartRow() + 9);
+
+		List<ReplyDTO> replies = replyService.getRepliesByCommentNum(commentNum, scroller);
 		model.addAttribute("replies", replies);
 		model.addAttribute("commentNum", commentNum);
+		model.addAttribute("nextStartRow", scroller.getEndRow() + 1);
+
 		return "replies/list";
 	}
 

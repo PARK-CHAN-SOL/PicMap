@@ -137,11 +137,11 @@
    
 <div class="col-md-6">
     <label for="inputEmail4" class="form-label fs-4">이름</label>
-    <input type="text" class="form-control"  name="memberName"  id="memberName"  >
+    <input type="text" class="form-control"  name="memberName"  id="memberName" >
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label fs-4">아이디</label>
-    <input type="text" class="form-control"  name="memberId" id="memberId" placeholder="아이디입력" >
+    <input type="text" class="form-control"  name="memberId" id="memberId"  placeholder="※8-16자 소문자+숫자">
   </div>
 <div class="col-md-6">
     <label for="inputEmail4" class="form-label fs-4">비밀번호</label>

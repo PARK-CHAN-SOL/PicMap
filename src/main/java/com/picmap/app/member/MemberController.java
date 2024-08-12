@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.picmap.app.board.BoardDTO;
 import com.picmap.app.follow.FollowDTO;
+import com.picmap.app.travel.TravelDTO;
 import com.picmap.app.util.Scroller;
 
 
@@ -105,7 +107,8 @@ public class MemberController {
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public void mypage(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
 		memberDTO = memberService.detail(memberDTO);
-
+		List<TravelDTO> list = memberService.getList(memberDTO);
+		model.addAttribute("list", list);
 		Long following = memberService.countFromFollow(memberDTO);
 		Long follower = memberService.countToFollow(memberDTO);
 		model.addAttribute("member", memberDTO);
@@ -199,5 +202,9 @@ public class MemberController {
 	public Long toFollow (MemberDTO memberDTO) throws Exception {
 		return memberService.countToFollow(memberDTO);
 	}
+	
+	}
+	
+	
+	
 
-}

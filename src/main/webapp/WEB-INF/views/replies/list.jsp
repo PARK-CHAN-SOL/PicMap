@@ -4,7 +4,9 @@
 
 <c:forEach var="reply" items="${replies}">
 	<div class="reply">
-		<img src="${reply.profilePath}" alt="프로필 이미지" class="profile-image" />
+		<a href="/member/mypage?memberNum=${reply.memberNum}" title="프로필 보기">
+		<img src="${reply.profilePath}" alt="프로필 이미지" class="profile-image"/>
+		</a>
 		<p>작성자: ${reply.memberNum}</p>
 		<p id="reply-${reply.replyNum}" class="replyContents">${reply.content}</p>
 		<p>작성일: ${reply.createDate}</p>
@@ -14,3 +16,10 @@
 		</c:if>
  	</div>
 </c:forEach>
+
+<c:if test="${replies.size() == 10}">
+    <button class="load-more-replies" data-comment-num="${commentNum}" data-start-row="${nextStartRow}">더보기</button>
+</c:if>
+
+
+

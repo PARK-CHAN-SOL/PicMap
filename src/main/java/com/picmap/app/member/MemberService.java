@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.picmap.app.board.BoardDTO;
 import com.picmap.app.files.FileManager;
 import com.picmap.app.follow.FollowDTO;
+import com.picmap.app.travel.TravelDTO;
 import com.picmap.app.util.Scroller;
 
 
@@ -24,7 +26,7 @@ public class MemberService {
 	@Autowired
 	private FileManager fileManager;
 
-	private String name = "members";
+	private String name = "members/";
 
 	public int idCheck(MemberDTO memberDTO) throws Exception {
 		return memberDAO.idCheck(memberDTO);
@@ -94,10 +96,10 @@ public class MemberService {
 		System.out.println(path);
 		FileManager fm = new FileManager();
 
-		if (null == files) {
+		if (null == files.getOriginalFilename() ||  files.getOriginalFilename().equals("")) {
 			memberDTO.setProfilePath("default");
 		} else {
-			memberDTO.setProfilePath(fm.fileSave(files, path));
+			memberDTO.setProfilePath("/resources/upload/" + name + fm.fileSave(files, path));
 		}
 		int result = memberDAO.update(memberDTO);
 		return result;
@@ -154,4 +156,9 @@ public class MemberService {
 		map.put("scroller", scroller);
 		return memberDAO.toFollowList(map);
 	}
+	//게시판(게시글 리스트)
+	public List<TravelDTO> getList(MemberDTO memberDTO) throws Exception {
+		return memberDAO.getList(memberDTO);
+	}
+	
 }

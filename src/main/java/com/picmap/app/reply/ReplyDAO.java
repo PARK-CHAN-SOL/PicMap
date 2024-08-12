@@ -1,6 +1,7 @@
 package com.picmap.app.reply;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class ReplyDAO {
 	}
 
 	// 답글 조회
-	public List<ReplyDTO> findRepliesByCommentNum(Long commentNum) {
-		return sqlSession.selectList(NAMESPACE + "findRepliesByCommentNum", commentNum);
+	public List<ReplyDTO> findRepliesByCommentNum(Map<String, Object> map) {
+		return sqlSession.selectList(NAMESPACE + "findRepliesByCommentNum", map);
 	}
 
 	// 답글 수정

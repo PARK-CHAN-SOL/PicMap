@@ -11,7 +11,7 @@ fetch('/comments/getTotalCount?boardNum=' + travelObserverTarget.dataset.boardNu
 })
 .then((res)=>{return res.json();}) // 응답을 JSON 형식으로 변환
 .then((res)=>{
-    console.log(res); // 응답 결과(총 댓글 수)를 콘솔에 출력
+    
     totalCount = res; // 총 댓글 수를 totalCount 변수에 저장
     const observer = new IntersectionObserver((items)=>{ // IntersectionObserver를 생성, items는 관찰된 요소의 배열
         items.forEach((item)=>{ // 관찰된 각 요소에 대해 반복
@@ -28,13 +28,15 @@ fetch('/comments/getTotalCount?boardNum=' + travelObserverTarget.dataset.boardNu
                 })
                 .then((res) => {return res.json();}) // 응답을 JSON 형식으로 변환
                 .then((res) => {
-                    console.log(res); // 응답 결과(댓글 목록)를 콘솔에 출력
+                    
                     res.forEach((commentDTO)=>{ // 각 댓글에 대해 반복
                         let createDate = new Date(commentDTO.createDate); // 댓글 작성일을 Date 객체로 변환
                         createDate = createDate.getFullYear() + '-' +  String(createDate.getMonth() + 1).padStart(2, '0') + '-' + String(createDate.getDate()).padStart(2, '0'); // 작성일을 YYYY-MM-DD 형식으로 변환
                         let comment =
                         '<div class="comment">' + // 댓글 컨테이너 시작
+                            '<a href="/member/mypage?memberNum=' + commentDTO.memberNum + '" title="프로필보기">' + // 프로필 이미지 링크 추가
                             '<img src="' + commentDTO.profilePath + '" alt="프로필 이미지" class="profile-image" />' + // 프로필 이미지 추가
+                            '</a>'+
                             '<p>작성자: ' + commentDTO.memberNum + '</p>' + // 댓글 작성자의 회원 번호를 표시
                             '<p id="' + commentDTO.commentNum + '" class="comment-content">' + commentDTO.content + '</p>' + // 댓글 내용을 표시
                             '<p>작성일: ' + createDate + '</p>'; // 댓글 작성일을 표시
@@ -54,8 +56,10 @@ fetch('/comments/getTotalCount?boardNum=' + travelObserverTarget.dataset.boardNu
                         comment += '</div>'; // 댓글 컨테이너 종료
                         commentsList.innerHTML = commentsList.innerHTML + comment; // 댓글 리스트에 새 댓글 추가
                     });
-                    travelObserverTarget.dataset.startRow += 10; // startRow 값을 10 증가
-                    travelObserverTarget.dataset.endRow += 10; // endRow 값을 10 증가
+
+                    commentsObserverTarget.dataset.startRow = parseInt(commentsObserverTarget.dataset.startRow)+10; // startRow 값을 10 증가
+                    commentsObserverTarget.dataset.endRow = parseInt(commentsObserverTarget.dataset.endRow)+10; // endRow 값을 10 증가
+                  
                 })
             }
         })

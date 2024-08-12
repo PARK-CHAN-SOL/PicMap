@@ -2233,8 +2233,9 @@ ul {
 }
 
 [data-gap="30"].grid-css .grid__inner {
-    margin: -15px;
+    margin: 50px;
 }
+
 
 [data-gap="30"].grid-css .grid__inner .grid-item .grid-item__content-wrapper {
     margin: 15px;
