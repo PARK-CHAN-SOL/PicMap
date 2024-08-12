@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.picmap.app.board.BoardDTO;
 import com.picmap.app.files.FileManager;
 import com.picmap.app.follow.FollowDTO;
+import com.picmap.app.travel.TravelDTO;
 import com.picmap.app.util.Scroller;
 
 
@@ -154,4 +156,9 @@ public class MemberService {
 		map.put("scroller", scroller);
 		return memberDAO.toFollowList(map);
 	}
+	//게시판(게시글 리스트)
+	public List<TravelDTO> getList(MemberDTO memberDTO) throws Exception {
+		return memberDAO.getList(memberDTO);
+	}
+	
 }

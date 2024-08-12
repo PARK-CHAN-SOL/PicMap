@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.picmap.app.board.BoardDTO;
 import com.picmap.app.follow.FollowDTO;
+import com.picmap.app.travel.TravelDTO;
 
 
 
@@ -74,4 +76,9 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	public List<MemberDTO> toFollowList(Map<String, Object> map)throws Exception {
 		return sqlSession.selectList(NAMESPACE + "toFollowList", map);
 	}	
+	//게시판(게시글 리스트)
+	public List<TravelDTO> getList(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+"getList",memberDTO);
+	}
 }
