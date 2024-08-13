@@ -74,7 +74,7 @@ by Awe7 (http://awe7.com/freebies)
 
 					<!-- title -->
 					<div class="title title__style-02">
-						<h2 class="title__title">${board}게시판</h2>
+						<h2 class="title__title">${board}게시판 🚩 🚗💨</h2>
 					</div>
 					<!-- End / title -->
 
@@ -92,7 +92,7 @@ by Awe7 (http://awe7.com/freebies)
 							<div class="grid-sizer" id="travelList">
 							</div>
 						</div>
-						<div id="travelObserverTarget" data-start-row="1" data-end-row="9"></div>
+						<div id="travelObserverTarget" data-start-row="1" data-end-row="9" data-total-count="${15}"></div>
 					</div>
 					
 				</div>

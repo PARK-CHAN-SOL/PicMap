@@ -107,7 +107,7 @@ if (follow) {
 
 // 팔로우 리스트에서 팔로우(팔로잉) 버튼을 클릭할 경우 호출 (이벤트 위임)
 followerList.addEventListener("click", (event) => {
-   if(event.target.dataset.toFollow != null){ // toFollow 속성은 팔로우(팔로잉) 버튼에만 존재함
+   if(event.target.dataset.toFollow != null){
       let follow = event.target;
       let toFollow = follow.getAttribute("data-to-follow")
       followBtnToggle(follow, toFollow, true); // 팔로우, 언팔로우 및 버튼 토글 함수
@@ -116,10 +116,10 @@ followerList.addEventListener("click", (event) => {
 
 // 팔로잉 리스트에서 팔로우(팔로잉) 버튼을 클릭할 경우 호출 (이벤트 위임)
 followingList.addEventListener("click", (event) => {
-   if(event.target.dataset.fromFollow != null){ // fromFollow 속성은 팔로우(팔로잉) 버튼에만 존재함
+   if(event.target.dataset.toFollow != null){
       let follow = event.target;
-      let fromFollow = follow.getAttribute("data-from-follow")
-      followBtnToggle(follow, fromFollow, true); // 팔로우, 언팔로우 및 버튼 토글 함수
+      let toFollow = follow.getAttribute("data-to-follow")
+      followBtnToggle(follow, toFollow, true); // 팔로우, 언팔로우 및 버튼 토글 함수
    }
    
 })
