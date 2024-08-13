@@ -124,8 +124,9 @@ by Awe7 (http://awe7.com/freebies)
 											<span style="margin-left: 10px;">${member.memberNickName}</span>
 											<span style="margin-left: 10px;"> • ${dto.writeDate}</span>
 										</div>
-
-										<span style="text-align: right;">좋아요(추후 수정)</span>
+										
+										<span class="box-image2__like_detail" id="heartBtn" data-id="${dto.boardNum}" >${heart}</span>										
+										
 									</div>
 								</div>
 
@@ -169,8 +170,11 @@ by Awe7 (http://awe7.com/freebies)
 		<!-- End / Content-->
 	</div>
 	
-	
 
 	<c:import url="../../template/footer.jsp"></c:import>
+	<script src="/resources/assets/js/board/heart.js"></script>
+	
+	
+	
 </body>
 </html>

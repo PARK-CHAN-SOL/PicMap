@@ -18,7 +18,7 @@
 				ORDER BY BOARDNUM DESC
 			)TM
 		)
-		WHERE ROWNUM BETWEEN #{startRow} AND #{endRow}
+		WHERE R BETWEEN #{startRow} AND #{endRow}
 	</select>
 	
 	
@@ -26,7 +26,7 @@
   		INSERT INTO TRAVEL
   		VALUES
   		(#{boardNum}, #{memberNum}, #{boardTitle}, #{boardContent}, SYSDATE, SYSDATE, 0,
-  		#{fileName, jdbcType=VARCHAR}, 0, #{rootBoard}, #{parentBoard, jdbcType=BIGINT}, #{childBoard, jdbcType=BIGINT}, #{pingNum, jdbcType=BIGINT})
+  		#{fileName, jdbcType=VARCHAR}, #{rootBoard}, #{parentBoard, jdbcType=BIGINT}, #{childBoard, jdbcType=BIGINT}, #{pingNum, jdbcType=BIGINT})
 	</insert>
 	
 	

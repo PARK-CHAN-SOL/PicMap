@@ -3,19 +3,18 @@ package com.picmap.app.travel;
 import com.picmap.app.board.BoardDTO;
 
 public class TravelDTO extends BoardDTO{
-	private Long boardLike;
+	private Long heartCount;
 	private Long rootBoard;
 	private Long parentBoard;
 	private Long childBoard;
 	private Long pingNum;
 	private String writeDate; //createDate에 년,월,일을 붙인 값
-
-
-	public Long getBoardLike() {
-		return boardLike;
+	
+	public Long getHeartCount() {
+		return heartCount;
 	}
-	public void setBoardLike(Long boardLike) {
-		this.boardLike = boardLike;
+	public void setHeartCount(Long heartCount) {
+		this.heartCount = heartCount;
 	}
 	public Long getRootBoard() {
 		return rootBoard;
