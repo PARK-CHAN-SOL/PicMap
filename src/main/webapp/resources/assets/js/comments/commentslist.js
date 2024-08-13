@@ -34,10 +34,10 @@ fetch('/comments/getTotalCount?boardNum=' + travelObserverTarget.dataset.boardNu
                         createDate = createDate.getFullYear() + '-' +  String(createDate.getMonth() + 1).padStart(2, '0') + '-' + String(createDate.getDate()).padStart(2, '0'); // 작성일을 YYYY-MM-DD 형식으로 변환
                         let comment =
                         '<div class="comment">' + // 댓글 컨테이너 시작
-                            '<a href="/member/mypage?memberNum=' + commentDTO.memberNum + '" title="프로필보기">' + // 프로필 이미지 링크 추가
-                            '<img src="' + commentDTO.profilePath + '" alt="프로필 이미지" class="profile-image" />' + // 프로필 이미지 추가
+                            '<a href="/member/mypage?memberNum=' + commentDTO.memberNum + '" class="link-tmp" title="프로필보기">' + // 프로필 이미지 링크 추가
+                            '<img src="' + commentDTO.profilePath + '" alt="' + commentDTO.memberNickName + '" class="profile-image profile-link" />' + // 프로필 이미지 추가
                             '</a>'+
-                            '<p>작성자: ' + commentDTO.memberNum + '</p>' + // 댓글 작성자의 회원 번호를 표시
+                            '<p>작성자: ' + commentDTO.memberNickName + '</p>' + // 댓글 작성자의 회원 번호를 표시
                             '<p id="' + commentDTO.commentNum + '" class="comment-content">' + commentDTO.content + '</p>' + // 댓글 내용을 표시
                             '<p>작성일: ' + createDate + '</p>'; // 댓글 작성일을 표시
                         if(travelObserverTarget.dataset.memberNum == commentDTO.memberNum){ // 현재 사용자가 댓글 작성자인 경우
@@ -103,7 +103,37 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => console.error("Error adding comment:", error)); // 에러 처리
         });
+    }})
+        document.addEventListener("click", (event) => {
+        const profilePopup = document.getElementById("profilePopup"); // 팝업 요소
+    
+        if (event.target && event.target.classList.contains("profile-link")) {
+            
+            event.preventDefault(); // 기본 링크 동작 방지
+    
+            const link = event.target.closest('.profile-link'); // 클릭된 링크를 가져옴
+            const rect = link.getBoundingClientRect(); // 클릭된 링크의 위치 정보 가져오기
+            profilePopup.style.top = `${rect.bottom + window.scrollY}px`; // 팝업의 위치 설정
+            profilePopup.style.left = `${rect.left + window.scrollX}px`;
+    
+            // 닉네임 설정
+            const nickname = link.getAttribute('alt'); // 이미지의 alt 텍스트를 닉네임으로 사용
+            const path = event.target.src;
+            profilePopup.querySelector('b').innerText = nickname;
+            profilePopup.querySelector('img').src = path;
+            profilePopup.querySelector('.view-profile-button').onclick = ()=>{
+                location.href = event.target.closest('.link-tmp').href;
+            };
+            profilePopup.style.display = "block"; // 팝업 보이기
     }
+    
+        // 팝업 외부 클릭 시 닫기
+        if (!profilePopup.contains(event.target) && !event.target.classList.contains("profile-link")) {
+            profilePopup.style.display = "none"; // 팝업 숨기기
+        }
+    });
+    
+
     
     let updateButton; // 업데이트 요소를 저장할 변수
     // 댓글 수정 버튼 클릭 이벤트
@@ -194,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
-});
+
 
 '<div class="comment">' + // 댓글 컨테이너 시작
     '<p>작성자: ${comment.memberNum}</p>' + // 댓글 작성자의 회원 번호를 표시
@@ -212,4 +242,4 @@ document.addEventListener("DOMContentLoaded", () => {
             '<div id="replyList${comment.commentNum}" class="reply-list"></div>' + // 답글 리스트를 표시할 요소
         '</div>' + // 답글 작성 폼 종료
     '</c:if>' +
-'</div>'; // 댓글 컨테이너 종료
+'</div>'; // 댓글 컨테이너 종

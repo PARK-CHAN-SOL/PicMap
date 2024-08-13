@@ -4,10 +4,10 @@
 
 <c:forEach var="reply" items="${replies}">
 	<div class="reply">
-		<a href="/member/mypage?memberNum=${reply.memberNum}" title="프로필 보기">
-		<img src="${reply.profilePath}" alt="프로필 이미지" class="profile-image"/>
+		<a href="/member/mypage?memberNum=${reply.memberNum}" class='link-tmp' title="프로필 보기">
+		<img src="${reply.profilePath}" alt="${reply.memberNickName}" class="profile-image profile-link"/>
 		</a>
-		<p>작성자: ${reply.memberNum}</p>
+		<p>작성자: ${reply.memberNickName}</p>
 		<p id="reply-${reply.replyNum}" class="replyContents">${reply.content}</p>
 		<p>작성일: ${reply.createDate}</p>
 		<c:if test="${member.memberNum == reply.memberNum}">
