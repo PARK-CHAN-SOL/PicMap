@@ -59,19 +59,19 @@ public class KakaoMemberController {
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, kakaoTokenRequest, String.class);
         
         ObjectMapper objectMapper = new ObjectMapper();
-        OAuthToken oaythToken = null;
+        OAuthToken oauthToken = null;
         try {
-            oaythToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
+        	oauthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
         } catch (JsonMappingException e) {
             e.printStackTrace();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        System.out.println(oaythToken.getAccess_token());
+        System.out.println(oauthToken.getAccess_token());
         
         // 프로필 요청을 위한 헤더 설정
         HttpHeaders headers2 = new HttpHeaders();
-        headers2.add("Authorization", "Bearer " + oaythToken.getAccess_token());
+        headers2.add("Authorization", "Bearer " + oauthToken.getAccess_token());
         headers2.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
         
         // HttpEntity 생성 (헤더만 포함, 본문은 null)
