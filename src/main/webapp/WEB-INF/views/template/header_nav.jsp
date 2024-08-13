@@ -18,12 +18,12 @@
 
 						<!-- onepage-menu -->
 						<ul class="onepage-menu mt-4">
-							<li ><a href="/">Home</a></li>
-							<li><a href="/notice/list">공지사항</a></li>
-							<li><a href="city.html">베스트 게시글</a></li>
-							<li><a href="/travel/list">전체 게시글</a></li>
+							<li ><a href="/">🏠홈</a></li>
+							<li><a href="/notice/list">📌공지사항</a></li>
+							<li><a href="city.html">💡베스트 게시글</a></li>
+							<li><a href="/travel/list">📢전체 게시글</a></li>
 							 <c:if test="${not empty sessionScope.member}">
-							<li><a href="/member/mypage?memberNum=${sessionScope.member.memberNum}">마이페이지</a></li>
+							<li><a href="/member/mypage?memberNum=${sessionScope.member.memberNum}">✨마이페이지</a></li>
 							</c:if>
 				
 						</ul>
@@ -44,7 +44,7 @@
         	<p>로그인을 해주세요</p>
 			</c:if>
 				<c:if test="${not empty sessionScope.member}">
-					 <p>${sessionScope.member.memberName} 님 </p>
+					 <p>${sessionScope.member.memberName} 님 🙋‍♂️</p>
 			</c:if>
 				</div>
 
