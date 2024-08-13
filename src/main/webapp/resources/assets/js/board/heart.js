@@ -8,12 +8,8 @@ function heartCount() {
 }
 
 heartBtn.addEventListener("click", ()=> {
-    fetch("/heart/click", {
-		method:"GET",
-		headers:{
-			"Content-type":"application/x-www-form-urlencoded"
-		},
-		body:"boardNum=" + heartBtn.getAttribute("data-id")
+    fetch("/heart/click?boardNum=" + heartBtn.getAttribute("data-id"), {
+		method:"GET"
 	})
     .then(r=>r.text())
     .then(r=>{
