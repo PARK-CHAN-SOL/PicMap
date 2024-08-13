@@ -1042,7 +1042,41 @@ ul {
     position: absolute;
     top: 6.5px;
     right: 0;
-    /* border: 2px solid; */
+    height: 20px;
+    width: 20px;
+    line-height: 14px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.box-image2__like_detail {
+    float: right;
+    position: relative;
+    padding-right: 30px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+@media (min-width: 320px) {
+    .box-image2__like_detail {
+        font-size: calc(.22727vw + 13.27273px);
+    }
+}
+
+@media (min-width: 1200px) {
+    .box-image2__like_detail {
+        font-size: 16px;
+    }
+}
+
+.box-image2__like_detail:before {
+    content: "\F004";
+    font-family: Fontawesome;
+    color: #DB555A;
+    font-size: 25px;
+    position: absolute;
+    top: 6.5px;
+    right: 0;
     height: 20px;
     width: 20px;
     line-height: 14px;
@@ -1051,7 +1085,6 @@ ul {
 }
 
 .box-image2__like:hover {
-    color: #fff;
     opacity: .8;
 }
 

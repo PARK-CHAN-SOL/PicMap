@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
+import com.picmap.app.heart.HeartDTO;
+import com.picmap.app.heart.HeartService;
 import com.picmap.app.member.MemberDTO;
 import com.picmap.app.member.MemberService;
 import com.picmap.app.ping.PingDTO;
@@ -32,6 +34,8 @@ public class TravelController {
 	private PingService pingService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private HeartService heartService;
 	
 	
 	@ModelAttribute("board")
@@ -134,13 +138,13 @@ public class TravelController {
 	
 	//게시글 디테일
 	@GetMapping
-	public String detail(TravelDTO travelDTO, Model model, HttpSession session, HttpServletRequest request) throws Exception {
+	public String detail(HeartDTO heartDTO, TravelDTO travelDTO, Model model,
+			HttpSession session, HttpServletRequest request) throws Exception {
 		MemberDTO memberDTO= (MemberDTO)session.getAttribute("member");
 		model.addAttribute("login", memberDTO); 
 		
 		TravelDTO travelDetail = travelService.detail(travelDTO);
 		model.addAttribute("dto", travelDetail);
-		System.out.println(travelDetail.getMemberNum());
 		
 		//작성자 프로필 사진 가져올거임
 		MemberDTO boardWriter = new MemberDTO();
@@ -148,11 +152,16 @@ public class TravelController {
 		boardWriter = memberService.detail(boardWriter);
 		model.addAttribute("member", boardWriter);
 		
+		//좋아요
+		heartDTO.setBoardNum(travelDetail.getBoardNum());
+		System.out.println(travelDetail.getBoardNum());
+		Long heartCount = heartService.heartCount(heartDTO);
+		model.addAttribute("heart", heartCount);
+		
 		
 		//게시글 수정 및 삭제, 자식글 작성할 때 작성자의 계정과 일치하는 계정인지 판별하는 필터를 걸어두기 위해
 		//작성자 memberNum을 세션에 올림
 		session.setAttribute("writer", travelDetail.getMemberNum());
-		System.out.println(travelDetail.getMemberNum());
 		
 		
 		return "board/travel/detail";

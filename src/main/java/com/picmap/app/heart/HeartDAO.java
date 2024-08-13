@@ -9,7 +9,7 @@ public class HeartDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	private final String NAMESPACE = "com.picmap.app.heart.HeatDAO.";
+	private final String NAMESPACE = "com.picmap.app.heart.HeartDAO.";
 
 	public Integer heartUp(HeartDTO heartDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "heartUp", heartDTO);

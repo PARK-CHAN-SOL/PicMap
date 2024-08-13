@@ -25,7 +25,7 @@ public class HeartController {
 	public Integer heartCheck(HeartDTO heartDTO, HttpSession session) throws Exception {
 		return heartService.heartCheck(heartDTO, session);
 	}
-
+	
 	@GetMapping("count")
 	@ResponseBody
 	public Long heartCount(HeartDTO heartDTO) throws Exception {
