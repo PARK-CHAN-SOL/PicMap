@@ -35,6 +35,15 @@
 
 </div>    
 
+<!-- 팝업 레이아웃 -->
+<div id="profilePopup" class="profile-popup">
+    <div class="profile-popup-content">
+        <img src="">
+        <p><b>작성자</b></p>
+        <button class="like-button">팔로우</button>
+        <button class="view-profile-button">프로필 보기</button>
+    </div>
+</div>
 
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/reply.js"></script>

@@ -21,6 +21,7 @@
     margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-family: 'Arial', sans-serif;
 }
 
 .comment p {
@@ -79,5 +80,80 @@
     width: 50px; /* 프로필 이미지의 너비 */
     height: 50px; /* 프로필 이미지의 높이 */
     border-radius: 50%; /* 원형으로 만들기 */
-    margin-right: 15px; /* 이미지와 텍스트 사이의 간격 */
+    vertical-align: middle;
+}
+
+
+
+/* 팝업 컨테이너 스타일 */
+#profilePopup {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* 더 부드러운 그림자 */
+    padding: 15px;
+    z-index: 1000;
+    width: 220px; /* 팝업의 너비를 약간 늘림 */
+}
+
+/* 팝업 내부 컨텐츠 스타일 */
+.profile-popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* 프로필 이미지 스타일 */
+.profile-popup-content img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease-in-out; /* 호버 시 애니메이션 추가 */
+}
+
+.profile-popup-content img:hover {
+    transform: scale(1.8); /* 호버 시 크기 증가 효과 */
+}
+
+/* 닉네임 스타일 */
+.profile-popup-content p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* 버튼 스타일 */
+.profile-popup-content button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 100%; /* 버튼이 팝업의 너비에 맞게 확장 */
+}
+
+/* 버튼 호버 스타일 */
+.profile-popup-content button:hover {
+    background-color: #0056b3;
+}
+
+.like-button, .view-profile-button {
+    display: block;
+    margin-top: 5px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.like-button:hover, .view-profile-button:hover {
+    background-color: #0056b3;
 }

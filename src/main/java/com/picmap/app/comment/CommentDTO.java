@@ -9,6 +9,15 @@ public class CommentDTO {
 	private Date createDate;
 	private Date updateDate;
 	private String profilePath;
+	private String memberNickName;
+
+	public String getMemberNickName() {
+		return memberNickName;
+	}
+
+	public void setMemberNickName(String memberNickName) {
+		this.memberNickName = memberNickName;
+	}
 
 	public String getProfilePath() {
 		return profilePath;
