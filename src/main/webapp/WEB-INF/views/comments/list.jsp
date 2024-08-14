@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>댓글 목록</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/comments.css">
     <link rel="stylesheet" type="text/css" id="app-stylesheet" href="/resources/assets/css/main.css">
     <c:import url="../template/header_css.jsp"></c:import>
@@ -40,10 +41,13 @@
     <div class="profile-popup-content">
         <img src="">
         <p><b>작성자</b></p>
-        <button class="like-button">팔로우</button>
+        <button id="followButton" class="like-button">팔로우</button>
         <button class="view-profile-button">프로필 보기</button>
     </div>
 </div>
+
+
+
 
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/reply.js"></script>

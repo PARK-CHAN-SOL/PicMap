@@ -15,6 +15,8 @@
  		
  		<typeAlias type="com.picmap.app.heart.HeartDTO" alias="HeartDTO"/>
  		
+ 		<typeAlias type="com.picmap.app.heartComments.HeartCommentsDTO" alias="HeartCommentsDTO"/>
+ 		
  		<typeAlias type="com.picmap.app.kakaomember.KakaoMemberDTO" alias="KakaoMemberDTO"/>
  		
  		<typeAlias type="com.picmap.app.member.MemberDTO" alias="MemberDTO"/>

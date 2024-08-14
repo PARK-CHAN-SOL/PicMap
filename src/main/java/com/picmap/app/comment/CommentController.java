@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.picmap.app.comments.CommentsDTO;
+import com.picmap.app.follow.FollowDTO;
 import com.picmap.app.member.MemberDTO;
+import com.picmap.app.member.MemberService;
 import com.picmap.app.util.Scroller;
 
 @Controller
@@ -22,6 +24,9 @@ import com.picmap.app.util.Scroller;
 public class CommentController {
 	@Autowired
 	private CommentService commentService; // CommentService 클래스의 객체를 주입받음
+
+	@Autowired
+	private MemberService memberService; // MemberService 주입
 
 	// 특정 게시글의 댓글 목록을 조회하는 메서드
 	@PostMapping("/list")
@@ -130,4 +135,20 @@ public class CommentController {
 		// 결과를 반환할 페이지로 이동
 		return "commons/result";
 	}
+
+	// 팔로우 기능 가져오기
+	@GetMapping("/followCheck")
+	@ResponseBody
+	public Integer followCheck(@RequestParam("toFollow") Long toFollow, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		if (memberDTO != null) {
+			FollowDTO followDTO = new FollowDTO();
+			followDTO.setFromFollow(memberDTO.getMemberNum());
+			followDTO.setToFollow(toFollow);
+			return memberService.followCheck(followDTO);
+		} else {
+			return 0;
+		}
+	}
+
 }

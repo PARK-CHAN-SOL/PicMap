@@ -138,22 +138,50 @@
     width: 100%; /* 버튼이 팝업의 너비에 맞게 확장 */
 }
 
-/* 버튼 호버 스타일 */
-.profile-popup-content button:hover {
-    background-color: #0056b3;
-}
-
-.like-button, .view-profile-button {
-    display: block;
-    margin-top: 5px;
-    padding: 5px 10px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
+/* 프로필 보기 버튼 스타일 */
+.profile-popup-content .view-profile-button {
+    border: 1px solid #3897f0;
     border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    background: #3897f0;
+    padding: 8px 12px;
+    font-size: 14px;
     cursor: pointer;
+    width: 100%; /* 버튼 너비를 팝업 너비에 맞춤 */
+    box-sizing: border-box;
+    transition: all .5s ease-in-out;
 }
 
-.like-button:hover, .view-profile-button:hover {
-    background-color: #0056b3;
+
+
+
+/* 팔로우 상태 버튼 (파란색) */
+.profile-popup-content .follow_btn {
+    border: 1px solid #3897f0;
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    background: #3897f0;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%; /* 버튼 너비를 팝업 너비에 맞춤 */
+    box-sizing: border-box;
+    transition: all .5s ease-in-out;
+}
+
+/* 팔로잉 상태 버튼 (흰색) */
+.profile-popup-content .following_btn {
+    border: 1px solid #3897f0;
+    border-radius: 3px;
+    color: black;
+    font-weight: 600;
+    background: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%; /* 버튼 너비를 팝업 너비에 맞춤 */
+    box-sizing: border-box;
+    transition: all .5s ease-in-out;
 }
