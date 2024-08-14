@@ -75,7 +75,7 @@ public class KakaoMemberController {
         headers2.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
         
         // HttpEntity 생성 (헤더만 포함, 본문은 null)
-        HttpEntity<Void> kakaoProfileRequest = new HttpEntity<>(headers2);
+        HttpEntity<String>kakaoProfileRequest = new HttpEntity<String>(headers2);
         
         // 카카오 프로필 요청
         String url2 = "https://kapi.kakao.com/v2/user/me";
