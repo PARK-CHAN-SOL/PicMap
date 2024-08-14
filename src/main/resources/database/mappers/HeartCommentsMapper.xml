@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.picmap.app.heartComments.HeartCommentsDAO">
+
+    <!-- 댓글 좋아요 확인 -->
+    <select id="heartCommentsCheck" parameterType="HeartCommentsDTO" resultType="java.lang.Long">
+        SELECT HEARTCOMMENTNUM
+        FROM HEARTCOMMENTS
+        WHERE COMMENTNUM = #{commentNum} AND MEMBERNUM = #{memberNum}
+    </select>
+
+    <!-- 댓글 좋아요 추가 -->
+    <insert id="heartCommentsUp" parameterType="HeartCommentsDTO">
+        INSERT INTO HEARTCOMMENTS (HEARTCOMMENTNUM, COMMENTNUM, MEMBERNUM)
+        VALUES (HEARTCOMMENT_SEQ.NEXTVAL, #{commentNum}, #{memberNum})
+    </insert>
+
+    <!-- 댓글 좋아요 삭제 -->
+    <delete id="heartCommentsDown" parameterType="HeartCommentsDTO">
+        DELETE FROM HEARTCOMMENTS
+        WHERE HEARTCOMMENTNUM = #{heartCommentNum}
+    </delete>
+
+    <!-- 댓글 좋아요 수 카운트 -->
+    <select id="heartCommentsCount" parameterType="Long" resultType="java.lang.Long">
+        SELECT COUNT(HEARTCOMMENTNUM)
+        FROM HEARTCOMMENTS
+        WHERE COMMENTNUM = #{commentNum}
+    </select>
+
+</mapper>
