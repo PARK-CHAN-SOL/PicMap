@@ -125,9 +125,20 @@ by Awe7 (http://awe7.com/freebies)
 											<span style="margin-left: 10px;"> • ${dto.writeDate}</span>
 										</div>
 										
-										<span class="box-image2__like_detail" id="heartBtn" data-id="${dto.boardNum}" >${heart}</span>										
+										<button class="btn_like" id="heartBtn" data-id="${dto.boardNum}" >${heart}</button>
 										
 									</div>
+									
+									
+									
+									<div class="d-flex align-items-center justify-content-between mt-3" style="width: 100%;">
+										<div class="d-flex align-items-center">
+											<button class="btn_like" id="heartBtn" data-id="${dto.boardNum}" >${heart}</button><span> 명이 좋아합니다</span>
+										</div>
+									</div>
+									
+									
+									
 								</div>
 
 
@@ -172,7 +183,7 @@ by Awe7 (http://awe7.com/freebies)
 	
 
 	<c:import url="../../template/footer.jsp"></c:import>
-	<script src="/resources/assets/js/board/heart.js"></script>
+	<script src="/resources/assets/js/heart/heart.js"></script>
 	
 	
 	

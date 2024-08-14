@@ -112,7 +112,7 @@ by Awe7 (http://awe7.com/freebies)
                 </tr>
                 <tr>
                   <th><span class="fs-4">작성자</span></th>
-                  <td><span class="fs-4">${member.memberId}</span></td>
+                  <td><span class="fs-4">${member.memberNickName}</span></td>
                 </tr>
                 <tr>
                   <th rowspan="3"><span class="fs-4">내용</span></th>
