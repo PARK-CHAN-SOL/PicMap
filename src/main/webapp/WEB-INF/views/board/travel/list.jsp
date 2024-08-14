@@ -55,16 +55,28 @@ by Awe7 (http://awe7.com/freebies)
 				</div>
 			</div>
 			<!-- End / hero -->
-
-
-
-			<!-- 글 작성 버튼 -->
-			<div>
+ <c:choose>
+                <c:when test="${empty member}">
+                    <div>
+				<div class="nav-buttons">
+					<button type="button" class="btn btn-danger" id="addBoard"onclick="modalBtn.click()"id="modalBtn"  data-bs-toggle="modal" data-bs-target="#exampleModal"
+					onclick = "location.href = 'add'">글 작성</button>
+				</div>      
+			</div>
+                </c:when>
+                <c:otherwise>
+                    <div>
 				<div class="nav-buttons">
 					<button type="button" class="btn btn-danger" id="addBoard"
 					onclick = "location.href = 'add'">글 작성</button>
 				</div>      
 			</div>
+                </c:otherwise>
+            </c:choose>
+
+
+			<!-- 글 작성 버튼 -->
+			
 
 
 
