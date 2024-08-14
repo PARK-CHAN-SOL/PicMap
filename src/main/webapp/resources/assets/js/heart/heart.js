@@ -1,7 +1,9 @@
+
+const heartCount = document.getElementById("heartCount");
+
 document.addEventListener("click", (event) => {
     if (event.target.dataset.boardNum != null || event.target.dataset.boardNum != '') {
         let heartBtn = event.target;
-        let heartCount = event.target;
         fetch('/heart/click?boardNum=' + heartBtn.getAttribute("data-id"), {
             method: "GET"
         })
@@ -18,14 +20,12 @@ document.addEventListener("click", (event) => {
                 } else {// 좋아요 또는 좋아요 취소 성공
                     if(res == -1){
                         //좋아요 표시 취소
-                        //heartBtn.classList.remove('liked');
-                        $(this).toggleClass("liked")
+                        heartBtn.classList.remove('liked');
                     }else {
                         //좋아요 표시
-                        //heartBtn.classList.add('liked');
-                        $(this).toggleClass("liked")
+                        heartBtn.classList.add('liked');
                     }
-                    heartBtn.innerHTML = parseInt(heartBtn.innerHTML) + res;
+                    heartCount.innerHTML = parseInt(heartCount.innerHTML) + res + '명이 좋아합니다';
                 }
             })
             .catch((e) => {// 에러 발생
@@ -41,12 +41,7 @@ fetch('/heart/count?boardNum=' + heartBtn.getAttribute("data-id"), {
     .then((res) => { return res.json(); })
     .then((res) => {
         //res 값을 좋아요 숫자 태그 내부에 넣어줘야함
-        heartBtn.innerHTML = res
-
-        // <div class="box-image2__info_bot">
-        //     <span class="box-image2__date">${dto.createDate}</span>
-        //     <span class="box-image2__like"> ------->> res <<------- </span> 
-        // </div>
+        heartCount.innerHTML = res + '명이 좋아합니다'
     })
     .catch((e) => {// 에러 발생
         console.log(e);
@@ -60,13 +55,10 @@ fetch('/heart/check?boardNum=' + heartBtn.getAttribute("data-id"), {
 })
     .then((res) => { return res.json(); })
     .then((res) => {
-		if(res == 1){
-    		//좋아요를 누르지 않았음
-    		heartBtn.classList.remove('liked');
-    	}else {
+		if(res == 0){
         	//이미 좋아요를 누름
         	heartBtn.classList.add('liked');
-        }
+    	}
     })
     .catch((e) => {// 에러 발생
         console.log(e);

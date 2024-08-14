@@ -11,6 +11,7 @@ by Awe7 (http://awe7.com/freebies)
 -->
 <c:import url="../../template/header_css.jsp"></c:import>
 <link rel="stylesheet" href="/resources/assets/css/boardDetail.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/comments.css">
 
 </head>
 
@@ -125,7 +126,7 @@ by Awe7 (http://awe7.com/freebies)
 											<span style="margin-left: 10px;"> • ${dto.writeDate}</span>
 										</div>
 										
-										<button class="btn_like" id="heartBtn" data-id="${dto.boardNum}" >${heart}</button>
+										<button>조회수 예정</button>
 										
 									</div>
 									
@@ -133,7 +134,8 @@ by Awe7 (http://awe7.com/freebies)
 									
 									<div class="d-flex align-items-center justify-content-between mt-3" style="width: 100%;">
 										<div class="d-flex align-items-center">
-											<button class="btn_like" id="heartBtn" data-id="${dto.boardNum}" >${heart}</button><span> 명이 좋아합니다</span>
+											<button class="btn_like" id="heartBtn" data-id="${dto.boardNum}"></button>
+											<span id="heartCount">${heart}명이 좋아합니다</span>
 										</div>
 									</div>
 									
@@ -152,20 +154,47 @@ by Awe7 (http://awe7.com/freebies)
 							
 							
 							
+							<!-- 댓글 -->
 							
+							<div class="comments-container" style="margin-top: 200px;">
+						        <h2>댓글 목록</h2>
+						        <div id="commentForm">
+						            <c:choose>
+						                <c:when test="${empty member}">
+						                	<textarea id="commentContents" name="comment" placeholder="댓글을 입력하세요" class="comment-textarea" onclick="modalBtn.click()"></textarea>
+						                    <button id="modalBtn" type="button" class="md-btn md-btn--primary" data-bs-toggle="modal" data-bs-target="#exampleModal">로그인 후 댓글을 남겨주세요</button>
+						                </c:when>
+						                <c:otherwise>
+						                    <textarea id="commentContents" name="comment" placeholder="댓글을 입력하세요" class="comment-textarea"></textarea>
+						
+						                    <button id="commentButton" type="button" class="comment-button" data-id="${param.boardNum}">댓글 남기기</button>
+						                </c:otherwise>
+						            </c:choose>
+						    </div>
+						    
+						    <div id="commentsList">
+						
+							</div>
 							
+							<div id="commentsObserverTarget" data-start-row="1" data-end-row="10" data-member-num="${member.memberNum}" data-board-num="${param.boardNum}"></div>
+						
+						
+							</div>    
 							
-							
-							
-							<!-- 여기에 댓글 작성 넣으시면 됩니다 -->							
-							<!-- 댓글 리스트 넣으시면 됩니다 -->
-							
-							
-							
-							
-							
-							
-							
+							<!-- 팝업 레이아웃 -->
+							<div id="profilePopup" class="profile-popup">
+							    <div class="profile-popup-content">
+							        <img src="">
+							        <p><b>작성자</b></p>
+							        <button id="followButton" class="like-button">팔로우</button>
+							        <button class="view-profile-button">프로필 보기</button>
+							    </div>
+							</div>
+
+
+
+
+					
 							
 						</div>
 
@@ -184,7 +213,8 @@ by Awe7 (http://awe7.com/freebies)
 
 	<c:import url="../../template/footer.jsp"></c:import>
 	<script src="/resources/assets/js/heart/heart.js"></script>
-	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/reply.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/commentslist.js"></script>
 	
 	
 </body>
