@@ -1049,77 +1049,6 @@ ul {
     border-radius: 4px;
 }
 
-.heartBtn {
-	width: 50px;
-	height: 50px;
-	background: url(https://umings.github.io/images/i_like_off.png) no-repeat center / 50px;
-	cursor: pointer;
-	border:0;
-	font-size:0;
-	margin:50px auto;
-	display:block;
-}
-.heartBtn.liked {
-	background: url(https://umings.github.io/images/i_like_on.png) no-repeat center / 50px;
-	animation: beating .5s 1 alternate;
-}
-@keyframes beating {
-    0% {transform: scale(1);}
-    40% {transform: scale(1.25);}
-    70% {transform: scale(0.9);}
-    100% {transform: scale(1);}
-  }
-
-.box-image2__like_detail {
-    float: right;
-    position: relative;
-    padding-right: 28px;
-    margin-right: 10px;
-    font-size: 14px;
-    border : none;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-@media (min-width: 320px) {
-    .box-image2__like_detail {
-        font-size: calc(.22727vw + 13.27273px);
-    }
-}
-
-@media (min-width: 1200px) {
-    .box-image2__like_detail {
-        font-size: 16px;
-    }
-}
-
-.box-image2__like_detail:before {
-    content: "\F004";
-    font-family: Fontawesome;
-    font-size: 24px;
-    color: #000000;
-    position: absolute;
-    top: 5.0px;
-    right: 0;
-    height: 20px;
-    width: 20px;
-    line-height: 14px;
-    text-align: center;
-}
-
-.box-image2__like_detail.liked:before {
-    content: "\F004";
-    font-family: Fontawesome;
-    color: #DB555A;
-    font-size: 24px;
-    position: absolute;
-    top: 5.0px;
-    right: 0;
-    height: 20px;
-    width: 20px;
-    line-height: 14px;
-    text-align: center;
-}
-
 .box-image2__like:hover {
     opacity: .8;
 }
@@ -1127,7 +1056,7 @@ ul {
 .btn_like {
 	width: 30px;
 	height: 30px;
-	background: url(https://umings.github.io/images/i_like_off.png) no-repeat center / 30px;
+	background: url(https://kksaten.github.io/images/heartBtn/i_like_off.png) no-repeat center / 30px;
 	cursor: pointer;
 	border: 0;
 	font-size: 15px;
@@ -1136,7 +1065,7 @@ ul {
 }
 
 .btn_like.liked {
-	background: url(https://umings.github.io/images/i_like_on.png) no-repeat center / 30px;
+	background: url(https://kksaten.github.io/images/heartBtn/i_like_on.png) no-repeat center / 30px;
 	animation: beating .5s 1 alternate;
 }
 
