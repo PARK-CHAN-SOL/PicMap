@@ -22,10 +22,12 @@
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
     font-family: 'Arial', sans-serif;
+    font-size: 1.5rem; /* 댓글 입력란의 글자 크기 조정 */
 }
 
 .comment p {
-    margin: 5px 0;
+    margin: 8px 0; /* 상하 간격을 좀 더 넓게 조정 */
+    font-size: 1.5rem; /* 글자 크기를 좀 더 크게 조정 */
 }
 
 .comment-form {
@@ -39,16 +41,20 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
+    font-size: 1.5rem; /* 댓글 입력란의 글자 크기 조정 */
 }
 
 .comment-button, .reply-button {
-    padding: 5px 15px;
+    padding: 7px 20px; /* 버튼 크기 조정 */
     border-radius: 5px;
     background-color: #007bff;
     color: white;
     cursor: pointer;
-    margin-right: 5px;
+    margin-right: 10px; /* 버튼 간의 간격 조정 */
     border: none; /* 테두리 제거 */
+    font-size: 1.5rem; /* 버튼의 글자 크기 조정 */
+    margin-top: 10px; /* 하트와 버튼들 사이에 간격 추가 */
+    
 }
 
 .comment-button:hover, .reply-button:hover {
@@ -77,8 +83,8 @@
 }
 
 .profile-image {
-    width: 50px; /* 프로필 이미지의 너비 */
-    height: 50px; /* 프로필 이미지의 높이 */
+    width: 60px; /* 프로필 이미지의 너비 */
+    height: 60px; /* 프로필 이미지의 높이 */
     border-radius: 50%; /* 원형으로 만들기 */
     vertical-align: middle;
 }
@@ -185,3 +191,39 @@
     box-sizing: border-box;
     transition: all .5s ease-in-out;
 }
+
+.heart-btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 10px; /* 하트 아이콘과 답글 버튼 사이 간격 조절 */
+}
+
+.heart-btn i {
+    font-size: 2rem; /* 하트 아이콘 크기 */
+    margin-right: 5px; /* 아이콘과 숫자 사이의 간격 */
+}
+
+.heart-count {
+    font-size: 1.5rem; /* 좋아요 숫자 크기 더 크게 */
+    margin-right: 15px; /* 좋아요 숫자와 답글 버튼 사이 간격 조절 */
+}
+
+/*댓글리스트 로딩 이미지*/
+.loader {
+    width: 30px;
+    aspect-ratio: 10;
+    --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+    background:
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 50%;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {
+      20%{background-position:0%   0%, 50%  50%,100%  50%}
+      40%{background-position:0% 100%, 50%   0%,100%  50%}
+      60%{background-position:0%  50%, 50% 100%,100%   0%}
+      80%{background-position:0%  50%, 50%  50%,100% 100%}
+  }

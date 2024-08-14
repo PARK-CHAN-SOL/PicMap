@@ -16,14 +16,14 @@
         <h2>댓글 목록</h2>
         <div id="commentForm">
             <c:choose>
-                <c:when test="${empty member}">
+                <c:when test="${empty sessionScope.member}">
                 	<textarea id="commentContents" name="comment" placeholder="댓글을 입력하세요" class="comment-textarea" onclick="modalBtn.click()"></textarea>
-                    <button id="modalBtn" type="button" class="md-btn md-btn--primary" data-bs-toggle="modal" data-bs-target="#exampleModal">로그인 후 댓글을 남겨주세요</button>
+                    <button id="modalBtn" type="button" class="md-btn md-btn--primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">로그인 후 댓글을 남겨주세요</button>
                 </c:when>
                 <c:otherwise>
                     <textarea id="commentContents" name="comment" placeholder="댓글을 입력하세요" class="comment-textarea"></textarea>
 
-                    <button id="commentButton" type="button" class="comment-button" data-id="${param.boardNum}">댓글 남기기</button>
+                    <button id="commentButton" type="button" class="comment-button mb-3" data-id="${param.boardNum}">댓글 남기기</button>
                 </c:otherwise>
             </c:choose>
        
@@ -31,7 +31,7 @@
     <div id="commentsList">
 
 </div>
-<div id="commentsObserverTarget" data-start-row="1" data-end-row="10" data-member-num="${member.memberNum}" data-board-num="${param.boardNum}"></div>
+<div id="commentsObserverTarget" data-start-row="1" data-end-row="10" data-member-num="${sessionScope.member.memberNum}" data-board-num="${param.boardNum}" class="container"></div>
 
 
 </div>    

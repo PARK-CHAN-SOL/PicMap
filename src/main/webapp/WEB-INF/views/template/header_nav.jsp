@@ -66,7 +66,9 @@
 </header>
 
 <!-- Modal -->
-<div class="modal fade" tabindex="-1" id="exampleModal"   aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" tabindex="-1" id="exampleModal"   aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static"
+											data-bs-keyboard="false" aria-labelledby="staticBackdropLabel"
+											aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
      <div class="modal-content">
 
@@ -115,7 +117,9 @@
 
 
 <!-- Modal -->
-<div class="modal fade" tabindex="-1" id="exampleModal1"   aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" tabindex="-1" id="exampleModal1"   aria-labelledby="exampleModalLabel" aria-hidden="true"data-bs-backdrop="static"
+											data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+											aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
      <div class="modal-content">
 
@@ -158,7 +162,7 @@
    
 <div class="col-md-6 ">
     <label for="inputEmail4" class="form-label fs-4">닉네임</label>
-    <input type="text" class="form-control "  name="memberNickName"  id="memberNickName" placeholder="중복 불가능" >
+    <input type="text" class="form-control "  name="memberNickName"  id="memberNickName" placeholder="중복 가능" >
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label fs-4">Email</label>

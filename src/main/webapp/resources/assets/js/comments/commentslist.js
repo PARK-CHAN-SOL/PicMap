@@ -17,6 +17,7 @@ fetch('/comments/getTotalCount?boardNum=' + travelObserverTarget.dataset.boardNu
         items.forEach((item)=>{ // 관찰된 각 요소에 대해 반복
             if(!item.isIntersecting) return; // 요소가 뷰포트에 들어오지 않았으면 함수 종료
             if(travelObserverTarget.dataset.startRow <= totalCount){ // startRow가 totalCount보다 작거나 같을 때만 실행
+                travelObserverTarget.classList.add('loader');
                 const formData = new FormData(); // 폼 데이터를 생성
                 formData.append("boardNum", travelObserverTarget.dataset.boardNum); // 폼 데이터에 게시글 번호 추가
                 formData.append("startRow", travelObserverTarget.dataset.startRow); // 폼 데이터에 시작 행 번호 추가
@@ -27,36 +28,9 @@ fetch('/comments/getTotalCount?boardNum=' + travelObserverTarget.dataset.boardNu
                     body: formData // 요청 본문에 폼 데이터 추가
                 })
                 .then((res) => {return res.json();}) // 응답을 JSON 형식으로 변환
-                .then((res) => {
+                .then((commentDTOs) => {
                     
-                    res.forEach((commentDTO)=>{ // 각 댓글에 대해 반복
-                        let createDate = new Date(commentDTO.createDate); // 댓글 작성일을 Date 객체로 변환
-                        createDate = createDate.getFullYear() + '-' +  String(createDate.getMonth() + 1).padStart(2, '0') + '-' + String(createDate.getDate()).padStart(2, '0'); // 작성일을 YYYY-MM-DD 형식으로 변환
-                        let comment =
-                        '<div class="comment">' + // 댓글 컨테이너 시작
-                            '<a href="/member/mypage?memberNum=' + commentDTO.memberNum + '" class="link-tmp" title="프로필보기">' + // 프로필 이미지 링크 추가
-                            '<img src="' + commentDTO.profilePath + '" alt="' + commentDTO.memberNickName + '" class="profile-image profile-link" />' + // 프로필 이미지 추가
-                            '</a>'+
-                            '<p>작성자: ' + commentDTO.memberNickName + '</p>' + // 댓글 작성자의 회원 번호를 표시
-                            '<p id="' + commentDTO.commentNum + '" class="comment-content">' + commentDTO.content + '</p>' + // 댓글 내용을 표시
-                            '<p>작성일: ' + createDate + '</p>'; // 댓글 작성일을 표시
-                        if(travelObserverTarget.dataset.memberNum == commentDTO.memberNum){ // 현재 사용자가 댓글 작성자인 경우
-                            comment = comment +
-                                '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button update-button">수정</button>' + // 수정 버튼 추가
-                                '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button delete-button">삭제</button>'; // 삭제 버튼 추가
-                        } 
-                        // 모든 댓글에 답글 버튼 추가
-                        comment += 
-                        '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button reply-button">답글</button>' + // 답글 버튼 추가
-                        '<div id="replyForm' + commentDTO.commentNum + '" class="reply-form" style="display:none;">' + // 답글 작성 폼, 기본적으로 숨겨져 있음
-                            '<textarea id="replyContents' + commentDTO.commentNum + '" name="reply" placeholder="답글을 입력하세요" class="comment-textarea"></textarea>' + // 답글 입력란
-                            '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button reply-submit-button">답글 남기기</button>' + // 답글 남기기 버튼
-                            '<div id="replyList' + commentDTO.commentNum + '" class="reply-list"></div>' + // 답글 리스트를 표시할 요소
-                        '</div>'; // 답글 작성 폼 종료
-                        comment += '</div>'; // 댓글 컨테이너 종료
-                        commentsList.innerHTML = commentsList.innerHTML + comment; // 댓글 리스트에 새 댓글 추가
-                    });
-
+                    commentDTOLoop(commentDTOs);
                     commentsObserverTarget.dataset.startRow = parseInt(commentsObserverTarget.dataset.startRow)+10; // startRow 값을 10 증가
                     commentsObserverTarget.dataset.endRow = parseInt(commentsObserverTarget.dataset.endRow)+10; // endRow 값을 10 증가
                   
@@ -67,6 +41,85 @@ fetch('/comments/getTotalCount?boardNum=' + travelObserverTarget.dataset.boardNu
     
     observer.observe(travelObserverTarget); // commentsObserverTarget 요소를 관찰 시작
 })
+
+async function commentDTOLoop(commentDTOs) {
+    try{
+        let commentsTmp = '';
+        for(let commentDTO of commentDTOs){
+            const heartCommentsCount = await getHeartCommentsCount(commentDTO);
+            const heartCommentsCheck = await getHeartCommentsCheck(commentDTO);
+
+            let createDate = new Date(commentDTO.createDate); // 댓글 작성일을 Date 객체로 변환
+            createDate = createDate.getFullYear() + '-' +  String(createDate.getMonth() + 1).padStart(2, '0') + '-' + String(createDate.getDate()).padStart(2, '0'); // 작성일을 YYYY-MM-DD 형식으로 변환
+            let comment =
+            '<div class="comment">' + // 댓글 컨테이너 시작
+                '<a href="/member/mypage?memberNum=' + commentDTO.memberNum + '" class="link-tmp" title="프로필보기">' + // 프로필 이미지 링크 추가
+                '<img src="' + commentDTO.profilePath + '" alt="' + commentDTO.memberNickName + '" class="profile-image profile-link" data-member-num="' + commentDTO.memberNum + '" />' + // 프로필 이미지 추가
+                '</a>'+
+                '<p>작성자: ' + commentDTO.memberNickName + '</p>' + // 댓글 작성자의 회원 번호를 표시
+                '<p id="' + commentDTO.commentNum + '" class="comment-content">' + commentDTO.content + '</p>' + // 댓글 내용을 표시
+                '<p>작성일: ' + createDate + '</p>'; // 댓글 작성일을 표시
+                
+                // 하트 아이콘 추가
+                comment +=
+                '<div class="heart-section">' +
+                    '<span id="heartBtn-' + commentDTO.commentNum + '" class="heart-btn" style="width:21px;" data-id="' + commentDTO.commentNum + '">' +
+                        '<i class="fas fa-heart" style="color: ' + (heartCommentsCheck == 0 ? 'red' : 'gray') + ';"></i> ' + // 하트 아이콘 색상을 좋아요 여부에 따라 다르게 설정
+                        '<span class="heart-count">' + heartCommentsCount + '</span>' +  // heartCount가 undefined일 경우 0으로 대체
+                    '</span>' +
+                '</div>';
+
+
+            if(travelObserverTarget.dataset.memberNum == commentDTO.memberNum){ // 현재 사용자가 댓글 작성자인 경우
+                comment = comment +
+                    '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button update-button">수정</button>' + // 수정 버튼 추가
+                    '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button delete-button">삭제</button>'; // 삭제 버튼 추가
+            } 
+            // 모든 댓글에 답글 버튼 추가
+            comment += 
+            '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button reply-button">답글</button>' + // 답글 버튼 추가
+            '<div id="replyForm' + commentDTO.commentNum + '" class="reply-form" style="display:none;">' + // 답글 작성 폼, 기본적으로 숨겨져 있음
+                '<textarea id="replyContents' + commentDTO.commentNum + '" name="reply" placeholder="답글을 입력하세요" class="comment-textarea"></textarea>' + // 답글 입력란
+                '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button reply-submit-button">답글 남기기</button>' + // 답글 남기기 버튼
+                '<div id="replyList' + commentDTO.commentNum + '" class="reply-list"></div>' + // 답글 리스트를 표시할 요소
+            '</div>'; // 답글 작성 폼 종료
+            comment += '</div>'; // 댓글 컨테이너 종료
+            commentsTmp += comment;
+            
+        }
+        travelObserverTarget.classList.remove('loader');
+        commentsList.innerHTML = commentsList.innerHTML + commentsTmp; // 댓글 리스트에 새 댓글 추가
+    } catch (error) {
+        console.error('Error CommentDTOLoop', error);
+    }
+    
+}
+
+async function getHeartCommentsCount(commentDTO){
+    try{
+        const response = await fetch('/heartComments/count?commentNum=' + commentDTO.commentNum,{
+            method:"GET"
+        });
+
+        return await response.json();
+
+    } catch (error) {
+        console.error('Error GetHeartCommentCount', error);
+    }
+}
+
+async function getHeartCommentsCheck(commentDTO){
+    try{
+        const response = await fetch('/heartComments/check?commentNum=' + commentDTO.commentNum,{
+            method:"GET"
+        });
+
+        return await response.json();
+
+    } catch (error) {
+        console.error('Error GetHeartCommentCheck', error);
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const commentButton = document.getElementById("commentButton"); // 댓글 등록 버튼 요소를 가져옴
@@ -104,6 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => console.error("Error adding comment:", error)); // 에러 처리
         });
     }})
+
+    let memberNum;
         document.addEventListener("click", (event) => {
         const profilePopup = document.getElementById("profilePopup"); // 팝업 요소
     
@@ -121,6 +176,39 @@ document.addEventListener("DOMContentLoaded", () => {
             const path = event.target.src;
             profilePopup.querySelector('b').innerText = nickname;
             profilePopup.querySelector('img').src = path;
+
+            // 팔로우 버튼과 회원 번호 설정
+            const followButton = profilePopup.querySelector('#followButton');
+            memberNum = link.getAttribute('data-member-num');
+
+            
+
+              // 현재 팔로우 상태를 확인하고 버튼 텍스트를 설정
+            fetch(`/member/followCheck?toFollow=${memberNum}`)
+            .then(response => response.json())
+            .then(followCheck => {
+                if (followCheck === -1) {
+                    followButton.innerText = '팔로잉';
+                    followButton.classList.remove('follow_btn');
+                    followButton.classList.add('following_btn');
+                    followButton.disabled = false;
+                } else if (followCheck === 1){
+                    followButton.innerText = '팔로우';
+                    followButton.classList.remove('following_btn');
+                    followButton.classList.add('follow_btn');
+                    followButton.disabled = false;
+                } else {
+                    followButton.innerText = '팔로우';
+                    followButton.classList.remove('following_btn');
+                    followButton.classList.add('follow_btn');
+                    followButton.disabled = true;
+                }
+            });
+
+              
+
+
+             // 프로필 보기 버튼 클릭 시 해당 사용자의 프로필로 이동
             profilePopup.querySelector('.view-profile-button').onclick = ()=>{
                 location.href = event.target.closest('.link-tmp').href;
             };
@@ -133,6 +221,77 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     
+ // 팔로우 버튼 클릭 이벤트 처리
+ followButton.onclick = () => {
+    fetch(`/member/follow?toFollow=${memberNum}`)
+        .then(response => response.json())
+        .then(result => {
+            if (result > 0) {
+                if (followButton.innerText === '팔로우') {
+                    followButton.innerText = '팔로잉';
+                    followButton.classList.remove('follow_btn');
+                    followButton.classList.add('following_btn');
+                } else {
+                    followButton.innerText = '팔로우';
+                    followButton.classList.remove('following_btn');
+                    followButton.classList.add('follow_btn');
+                }
+            }
+        });
+};
+
+// 좋아요 하트 이벤트
+document.addEventListener("click", (event) => {
+    const heartBtn = event.target.closest('.heart-btn'); // 이벤트가 발생한 요소 중 .heart-btn 클래스가 포함된 가장 가까운 부모 요소를 찾습니다.
+
+    if (heartBtn) { // heartBtn이 존재하는 경우에만 실행합니다.
+        heartBtn.disabled = true; // 버튼 비활성화
+        const commentNum = heartBtn.getAttribute("data-id");
+
+        fetch('/heartComments/click?commentNum=' + commentNum, {
+            method: "GET"
+        })
+        .then((res) => res.json())
+        .then((res) => {
+            console.log("Response data: ", res); // 추가: 서버에서 반환된 데이터 로그
+            if (res === 0) {
+                // 좋아요 또는 좋아요 취소 실패
+                alert("좋아요 처리에 실패했습니다.");
+            } else if (res === -1000) {
+                // 로그인하지 않은 경우
+                alert("로그인이 필요합니다.");
+            } else {
+                // 성공적으로 좋아요 또는 취소 처리
+                let heartCountSpan = heartBtn.querySelector('.heart-count');
+                let currentCount = parseInt(heartCountSpan.innerHTML);
+                    if (res === -1) {
+                        // 좋아요 취소된 경우
+                        heartCountSpan.innerHTML = currentCount - 1;
+                    } else if (res === 1) {
+                        // 좋아요 추가된 경우
+                        heartCountSpan.innerHTML = currentCount + 1;
+                    }
+                
+                
+                // 하트 아이콘 색상 변경
+                const heartIcon = heartBtn.querySelector('i');
+                if (res === -1) {
+                    heartIcon.style.color = 'gray'; // 좋아요 취소 시 색상 변경
+                } else if(res === 1){
+                    heartIcon.style.color = 'red'; // 좋아요 시 색상 변경
+                }
+            }
+            heartBtn.disabled = false; // 처리 완료 후 버튼 활성화
+        })
+        .catch((error) => {
+            console.error("오류가 발생했습니다:", error);
+            alert("오류가 발생했습니다. 다시 시도해주세요.");
+            
+        });
+    }
+});
+    
+
 
     
     let updateButton; // 업데이트 요소를 저장할 변수

@@ -10,7 +10,7 @@
 		<p>작성자: ${reply.memberNickName}</p>
 		<p id="reply-${reply.replyNum}" class="replyContents">${reply.content}</p>
 		<p>작성일: ${reply.createDate}</p>
-		<c:if test="${member.memberNum == reply.memberNum}">
+		<c:if test="${sessionScope.member.memberNum == reply.memberNum}">
 		<button data-reply-num="${reply.replyNum}" class="comment-button reply-update-button">수정</button>
 		<button data-reply-num="${reply.replyNum}" class="comment-button reply-delete-button">삭제</button>
 		</c:if>
