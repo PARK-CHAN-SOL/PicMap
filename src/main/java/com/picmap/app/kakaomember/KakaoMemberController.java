@@ -114,8 +114,8 @@ public class KakaoMemberController {
             memberDTO.setMemberPhone("010-0000-0000");
             memberDTO.setProfilePath(kakaoProfile.getProperties().getProfile_image());
             memberService.join(memberDTO);
+            memberDTO = memberService.login(memberDTO, session);
             kakaoMemberService.kakaoMemberJoin(memberDTO);
-            memberService.login(memberDTO, session);
         } else {
             memberDTO = memberService.detail(memberDTO);
             System.out.println(memberDTO.getMemberId());
