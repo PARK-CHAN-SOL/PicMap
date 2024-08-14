@@ -45,14 +45,14 @@ public class KakaoMemberController {
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
         
         // 파라미터 설정
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String> ();
         params.add("grant_type", "authorization_code");
         params.add("client_id", "580555887802ff728f2d9f964d6ad050");
         params.add("redirect_uri", "http://localhost/auth/kakao/callback");
         params.add("code", code);
         
         // HttpEntity 생성 (헤더와 본문 포함)
-        HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
+        HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<MultiValueMap<String, String>> (params, headers);
         
         // 카카오 토큰 요청
         String url = "https://kauth.kakao.com/oauth/token";
