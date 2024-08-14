@@ -17,6 +17,7 @@ fetch('/comments/getTotalCount?boardNum=' + travelObserverTarget.dataset.boardNu
         items.forEach((item)=>{ // 관찰된 각 요소에 대해 반복
             if(!item.isIntersecting) return; // 요소가 뷰포트에 들어오지 않았으면 함수 종료
             if(travelObserverTarget.dataset.startRow <= totalCount){ // startRow가 totalCount보다 작거나 같을 때만 실행
+                travelObserverTarget.classList.add('loader');
                 const formData = new FormData(); // 폼 데이터를 생성
                 formData.append("boardNum", travelObserverTarget.dataset.boardNum); // 폼 데이터에 게시글 번호 추가
                 formData.append("startRow", travelObserverTarget.dataset.startRow); // 폼 데이터에 시작 행 번호 추가
@@ -30,7 +31,6 @@ fetch('/comments/getTotalCount?boardNum=' + travelObserverTarget.dataset.boardNu
                 .then((commentDTOs) => {
                     
                     commentDTOLoop(commentDTOs);
-                    
                     commentsObserverTarget.dataset.startRow = parseInt(commentsObserverTarget.dataset.startRow)+10; // startRow 값을 10 증가
                     commentsObserverTarget.dataset.endRow = parseInt(commentsObserverTarget.dataset.endRow)+10; // endRow 값을 10 증가
                   
@@ -44,6 +44,7 @@ fetch('/comments/getTotalCount?boardNum=' + travelObserverTarget.dataset.boardNu
 
 async function commentDTOLoop(commentDTOs) {
     try{
+        let commentsTmp = '';
         for(let commentDTO of commentDTOs){
             const heartCommentsCount = await getHeartCommentsCount(commentDTO);
             const heartCommentsCheck = await getHeartCommentsCheck(commentDTO);
@@ -62,7 +63,7 @@ async function commentDTOLoop(commentDTOs) {
                 // 하트 아이콘 추가
                 comment +=
                 '<div class="heart-section">' +
-                    '<span id="heartBtn-' + commentDTO.commentNum + '" class="heart-btn" data-id="' + commentDTO.commentNum + '">' +
+                    '<span id="heartBtn-' + commentDTO.commentNum + '" class="heart-btn" style="width:21px;" data-id="' + commentDTO.commentNum + '">' +
                         '<i class="fas fa-heart" style="color: ' + (heartCommentsCheck == 0 ? 'red' : 'gray') + ';"></i> ' + // 하트 아이콘 색상을 좋아요 여부에 따라 다르게 설정
                         '<span class="heart-count">' + heartCommentsCount + '</span>' +  // heartCount가 undefined일 경우 0으로 대체
                     '</span>' +
@@ -83,9 +84,11 @@ async function commentDTOLoop(commentDTOs) {
                 '<div id="replyList' + commentDTO.commentNum + '" class="reply-list"></div>' + // 답글 리스트를 표시할 요소
             '</div>'; // 답글 작성 폼 종료
             comment += '</div>'; // 댓글 컨테이너 종료
-            commentsList.innerHTML = commentsList.innerHTML + comment; // 댓글 리스트에 새 댓글 추가
-
+            commentsTmp += comment;
+            
         }
+        travelObserverTarget.classList.remove('loader');
+        commentsList.innerHTML = commentsList.innerHTML + commentsTmp; // 댓글 리스트에 새 댓글 추가
     } catch (error) {
         console.error('Error CommentDTOLoop', error);
     }
