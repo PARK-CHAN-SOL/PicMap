@@ -16,8 +16,8 @@ public class HeartService {
 	public Integer heartClick(HeartDTO heartDTO, HttpSession session) throws Exception {
 		Integer checker = heartCheck(heartDTO, session);
 		System.out.println(checker);
-		if (checker == 2) { //로그인 안하고 눌렀으면 -1000 리턴
-			return 2;
+		if (checker == -1000) { //로그인 안하고 눌렀으면 -1000 리턴
+			return -1000;
 		} else if (checker == 0) { //좋아요를 이미 누른 상태에서 좋아요를 누르면 좋아요 수를 내림. 1 리턴
 			return ~heartDAO.heartDown(heartDTO) + 1;
 		} else {//좋아요 킹애 1 리턴
@@ -36,7 +36,7 @@ public class HeartService {
 				return 1; //좋아요를 안눌렀으면 1 리턴
 		} else {
 			System.out.println("2.m,n.,mniu");
-			return 2; //session에 담긴 member키의 밸류값이 비어있으면(로그인 안했음)
+			return -1000; //session에 담긴 member키의 밸류값이 비어있으면(로그인 안했음)
 		}
 	}
 	

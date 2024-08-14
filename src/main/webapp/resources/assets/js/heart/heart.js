@@ -3,25 +3,17 @@ const heartCount = document.getElementById("heartCount");
 
 document.addEventListener("click", (event) => {
     if (event.target.dataset.idHeart != null && event.target.dataset.idHeart != '') {
-        let heartButton = event.target;
+        let heartButton = event.target; 
         fetch('/heart/click?boardNum=' + heartButton.getAttribute("data-id-heart"), {
             method: "GET"
         })
-            .then((res) => { 
-                console.log(res);
-                return res.json();
-            })
+            .then((res) => { return res.json(); })
             .then((res) => {
-            	console.log('여기');
                 if (res == 0) {// 좋아요 또는 좋아요 취소 실패
 
-                } else if (res == 2) {//로그인 하지 않음
+                } else if (res == -1000) {//로그인 하지 않음
                     //로그인 모달 표시
-                    let loginModalHit = document.createElement('button');
-                    loginModalHit.setAttribute('data-bs-toggle', 'modal');
-                    loginModalHit.setAttribute('data-bs-target', '#exampleModal');
-                    console.log(loginModalHit);
-                    loginModalHit.click();
+                    document.querySelector('button[data-bs-target="#exampleModal" ]').click();
                 } else {// 좋아요 또는 좋아요 취소 성공
                     if(res == -1){
                         //좋아요 표시 취소
