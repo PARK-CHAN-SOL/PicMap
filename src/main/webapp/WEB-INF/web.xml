@@ -73,6 +73,10 @@
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/notice/update</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/heart/click</url-pattern>
+  </filter-mapping>
   <filter>
     <display-name>PermissionFilter</display-name>
     <filter-name>PermissionFilter</filter-name>
