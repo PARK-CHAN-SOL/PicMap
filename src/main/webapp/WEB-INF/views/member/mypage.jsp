@@ -259,6 +259,73 @@ by Awe7 (http://awe7.com/freebies)
 						</div>
 
 					</div>
+					<div class="tab-pane fade show active" id="pills-friends" role="tabpanel"
+							aria-labelledby="pills-friends-tab" tabindex="0">
+							<div class="d-sm-flex align-items-center justify-content-between mt-3 mb-4">
+								
+								<form class="position-relative">
+									<i class="ti ti-search position-absolute top-50 start-0 translate-middle-y text-dark ms-3"></i>
+								</form>
+							</div>
+										<!-- Section -->
+		
+				<div class="container">
+
+					<!-- title -->
+			
+					<!-- End / title -->
+
+					<div class="grid-css grid_css_style_02 grid-css--masonry"
+						data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1"
+						data-gap="30">
+					
+						<div class="grid__inner">
+							<div class="grid-sizer"></div>
+							
+							
+							<c:forEach items="${list}" var="dto">
+								<div class="grid-item cat1">
+									<div class="grid-item__inner">
+										<div class="grid-item__content-wrapper">
+	
+											<!-- box-image2 -->
+											<div class="box-image2">
+												<div>
+													<c:if test="${empty dto.fileName}">
+														<a class="box-image2__bg" href="/travel/detail?boardNum=${dto.boardNum}"
+														style="background-image: url('/resources/upload/travels/default.png');">
+															<!-- <img src="/resources/assets/img/image_box_2/1.jpg" alt="" /> -->
+														</a>
+													</c:if>
+													<c:if test="${not empty dto.fileName}">
+														<a class="box-image2__bg" href="/travel/detail?boardNum=${dto.boardNum}"
+														style="background-image: url('/resources/upload/travels/${dto.fileName}');">
+															<!-- <img src="/resources/assets/img/image_box_2/1.jpg" alt="" /> -->
+														</a>
+													</c:if>
+													<div class="box-image2__info">
+														<p class="box-image2__writer">${dto.memberNickname}</p>
+														<p class="box-image2__title">${dto.boardTitle}</p>
+													</div>
+													<div class="box-image2__info_bot">
+														<span class="box-image2__date">${dto.createDate}</span>
+														<span class="box-image2__like">좋아요</span> 
+													</div>
+												</div>
+											</div>
+											<!-- End / box-image2 -->
+	
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+
+
+						</div>
+					</div>
+						</div>
+
+					</div>
 				</div>
 			</div>
 </div>

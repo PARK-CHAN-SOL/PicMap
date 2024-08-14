@@ -45,14 +45,14 @@ public class KakaoMemberController {
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
         
         // 파라미터 설정
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String> ();
         params.add("grant_type", "authorization_code");
         params.add("client_id", "580555887802ff728f2d9f964d6ad050");
         params.add("redirect_uri", "http://localhost/auth/kakao/callback");
         params.add("code", code);
         
         // HttpEntity 생성 (헤더와 본문 포함)
-        HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
+        HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<MultiValueMap<String, String>> (params, headers);
         
         // 카카오 토큰 요청
         String url = "https://kauth.kakao.com/oauth/token";
@@ -75,7 +75,7 @@ public class KakaoMemberController {
         headers2.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
         
         // HttpEntity 생성 (헤더만 포함, 본문은 null)
-        HttpEntity<Void> kakaoProfileRequest = new HttpEntity<>(headers2);
+        HttpEntity<String>kakaoProfileRequest = new HttpEntity<String>(headers2);
         
         // 카카오 프로필 요청
         String url2 = "https://kapi.kakao.com/v2/user/me";
@@ -114,8 +114,8 @@ public class KakaoMemberController {
             memberDTO.setMemberPhone("010-0000-0000");
             memberDTO.setProfilePath(kakaoProfile.getProperties().getProfile_image());
             memberService.join(memberDTO);
+            memberDTO = memberService.login(memberDTO, session);
             kakaoMemberService.kakaoMemberJoin(memberDTO);
-            memberService.login(memberDTO, session);
         } else {
             memberDTO = memberService.detail(memberDTO);
             System.out.println(memberDTO.getMemberId());
