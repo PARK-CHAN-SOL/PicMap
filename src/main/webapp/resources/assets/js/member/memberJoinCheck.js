@@ -79,53 +79,58 @@ btn.addEventListener("click", function () {
 //memberId 영문자 포함 
 
     memberId.addEventListener("change", function () {
-        var regId = /^[0-9a-z]{8,16}$/;
+        var regId = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d]{8,16}$/;
         console.log(memberId.value);
-        fetch("/member/idCheck?memberId=" + memberId.value, {
-            method: "GET"
-        })
-        .then((res) => { return res.text(); })
-        .then((res) => {
-            if (res == 0) {
-                return;
-            }
-                //1. 아이디 체크
-                if(!regId.exec(frm.memberId.value)){
-                    alert("아이디: 8-16자 소문자+숫자로 작성하세요.");
-                    frm.memberId.focus();
+        //1. 아이디 체크
+        if(!regId.test(frm.memberId.value)){
+            alert("아이디: 8-16자 소문자+숫자로 작성하세요.");
+            frm.memberId.focus();
+            frm.memberId.value = '';
+            return;
+        } else{
+            fetch("/member/idCheck?memberId=" + memberId.value, {
+                method: "GET"
+            })
+            .then((res) => { return res.text(); })
+            .then((res) => {
+                if (res == 0) {
                     return;
+                } else {
+                    alert("중복된 ID 입니다");
+                    memberId.value = "";
+                    memberId.focus();
                 }
-             else {
-                alert("중복된 ID 입니다");
-                memberId.value = "";
-                memberId.focus();
-            }
-        })
-        .catch((e) => {
-            console.log(e);
-            alert("오류");
-        })
+            })
+            .catch((e) => {
+                console.log(e);
+                alert("오류");
+            })
+        }
 });
 
-memberNickName.addEventListener("change", function () {
-    console.log(memberNickName.value);
-    fetch("/member/memberNickName?memberNickName=" + memberNickName.value, {
-        method: "GET"
-    })
-        .then((res) => { return res.text(); })
-        .then((res) => {
-            if (res == 0) {
-                return;
-            } else {
-                alert("중복된 닉네임 입니다");
-                memberNickName.value = "";
-                memberNickName.focus();
-            }
-        })
-        .catch((e) => {
-            console.log(e);
-            alert("오류");
-        })
+
+memberEmail.addEventListener("change", function () {
+    var regEmail = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/ ;
+   
+    if(!regEmail.test(frm.memberEmail.value)){
+        alert("이메일을 올바르게 입력해주세요 ex)rlagofls0824@gmail.com");
+        frm.memberEmail.focus();
+        frm.memberEmail.value = '';
+        return;
+    } 
+    
+});
+
+memberPhone.addEventListener("change", function () {
+    var regPhone =  /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+   
+    if(!regPhone.test(frm.memberPhone.value)){
+        alert("ex) 010-1234-1234");
+        frm.memberPhone.focus();
+        frm.memberPhone.value = '';
+        return;
+    } 
+    
 });
 const passwordEqError = document.getElementById("password-eqError");
 
