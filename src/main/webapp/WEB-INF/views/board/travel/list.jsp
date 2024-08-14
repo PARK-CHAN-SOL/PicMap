@@ -59,8 +59,9 @@ by Awe7 (http://awe7.com/freebies)
                 <c:when test="${empty member}">
                     <div>
 				<div class="nav-buttons">
-					<button type="button" class="btn btn-danger" id="addBoard"onclick="modalBtn.click()"id="modalBtn"  data-bs-toggle="modal" data-bs-target="#exampleModal"
-					onclick = "location.href = 'add'">글 작성</button>
+					<button type="button" class="btn btn-danger" id="addBoard" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						글 작성
+					</button>
 				</div>      
 			</div>
                 </c:when>

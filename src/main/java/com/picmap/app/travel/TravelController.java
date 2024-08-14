@@ -154,7 +154,6 @@ public class TravelController {
 		
 		//좋아요
 		heartDTO.setBoardNum(travelDetail.getBoardNum());
-		System.out.println(travelDetail.getBoardNum());
 		Long heartCount = heartService.heartCount(heartDTO);
 		model.addAttribute("heart", heartCount);
 		

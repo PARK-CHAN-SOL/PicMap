@@ -31,7 +31,7 @@ by Awe7 (http://awe7.com/freebies)
 		        	<c:choose>
 		        		<c:when test="${dto.boardNum ne dto.rootBoard}">
 		        			<button type="button" class="btn btn-outline-secondary" id="detailPrevPageBtn"
-		        			onclick = "location.href = '/travel/detail?boardNum=${dto.parentBoard}'">&lt;</button>
+		        			onclick = "location.href = '/travel/detail?boardNum=${dto.parentBoard}&rootBoard=${dto.rootBoard}'">&lt;</button>
 		        		</c:when>
 		        		<c:otherwise>
 		        			<button type="button" class="btn btn-outline-secondary" id="detailPrevPageBtn" style="visibility: hidden;">&lt;</button>
@@ -42,7 +42,7 @@ by Awe7 (http://awe7.com/freebies)
 		        	<c:choose>
 		        		<c:when test="${not empty dto.childBoard}">
 		        			<button type="button" class="btn btn-outline-secondary" id="detailNextPageBtn"
-		        			onclick = "location.href = '/travel/detail?boardNum=${dto.childBoard}'">&gt;</button>
+		        			onclick = "location.href = '/travel/detail?boardNum=${dto.childBoard}&rootBoard=${dto.rootBoard}'">&gt;</button>
 		        		</c:when>
 		        		<c:when test="${empty dto.childBoard && login.memberNum == dto.memberNum}">
 			        			<button type="button" class="btn btn-outline-secondary" id="addPlusBoard"
@@ -50,7 +50,7 @@ by Awe7 (http://awe7.com/freebies)
 		        		</c:when>
 		        		<c:otherwise>
 		        			<button type="button" class="btn btn-outline-secondary" id="detailNextPageBtn"
-		        			onclick = "location.href = '/travel/detail?boardNum=${dto.childBoard}'" style="visibility: hidden;">&gt;</button>
+		        			style="visibility: hidden;">&gt;</button>
 		        		</c:otherwise>
 		        	</c:choose>
 		        </div>      
@@ -134,7 +134,15 @@ by Awe7 (http://awe7.com/freebies)
 									
 									<div class="d-flex align-items-center justify-content-between mt-3" style="width: 100%;">
 										<div class="d-flex align-items-center">
-											<button class="btn_like" id="heartBtn" data-id="${dto.boardNum}"></button>
+											<c:choose>
+												<c:when test="${dto.boardNum eq dto.rootBoard}">
+													<button class="btn_like" id="heartButton" data-id-heart="${dto.boardNum}"></button>
+												</c:when>
+												<c:otherwise>
+													<button class="btn_like" id="heartButton" data-id-heart="${dto.rootBoard}"></button>
+												</c:otherwise>
+											</c:choose>
+											
 											<span id="heartCount">${heart}명이 좋아합니다</span>
 										</div>
 									</div>
