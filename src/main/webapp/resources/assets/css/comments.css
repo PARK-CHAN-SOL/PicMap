@@ -211,7 +211,7 @@
 
 /*댓글리스트 로딩 이미지*/
 .loader {
-    width: 30px;
+    width: 600px;
     aspect-ratio: 10;
     --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
     background:
