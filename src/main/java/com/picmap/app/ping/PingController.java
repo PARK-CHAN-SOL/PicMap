@@ -1,6 +1,7 @@
 package com.picmap.app.ping;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +11,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.picmap.app.member.MemberDTO;
+import com.picmap.app.member.MemberService;
+import com.picmap.app.travel.TravelDTO;
+
 @Controller
 @RequestMapping("/ping/")
 public class PingController {
 	@Autowired
 	private PingService pingService;
+	
+	@Autowired
+	private MemberService memberService;
 
 	@GetMapping("map")
 	public void map() throws Exception {
+
+	}
+	
+	@GetMapping("map2")
+	public void map2() throws Exception {
 
 	}
 
@@ -40,6 +53,16 @@ public class PingController {
 		System.out.println(pingDTO.getAddress());
 
 		return pingService.getPingList(pingDTO);
+	}
+	
+	// 검색한 지번과 유사한 지역의 지도를 띄움
+	@PostMapping("getMyPingList")
+	@ResponseBody
+	public Map<String, Object> getMyPingList(MemberDTO memberDTO) throws Exception {
+		memberDTO = memberService.detail(memberDTO);
+		List<TravelDTO> list = memberService.getList(memberDTO);
+
+		return pingService.getMyPingList(list);
 	}
 	
 	

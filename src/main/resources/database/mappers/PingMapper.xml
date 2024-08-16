@@ -17,9 +17,26 @@
 
 	<select id="getPingList" parameterType="PingDTO"
 		resultType="PingDTO">
+		SELECT		p.PINGNUM ,p.LONGITUDE, p.LATITUDE, p.ADDRESS, COUNT(p.PINGNUM) tc 
+		FROM		PING p LEFT JOIN TRAVEL t
+					ON p.PINGNUM = t.PINGNUM
+					INNER JOIN HEART h
+					ON t.BOARDNUM = h.BOARDNUM 
+		WHERE		p.ADDRESS LIKE '%'||#{address}||'%'
+					OR t.BOARDTITLE LIKE '%'||#{address}||'%'
+					OR t.BOARDCONTENT LIKE '%'||#{address}||'%'
+		GROUP BY 	p.PINGNUM, p.LONGITUDE, p.LATITUDE, p.ADDRESS
+		ORDER BY	tc DESC
+	</select>
+	
+	<select id="getMyPingList" resultType="PingDTO">
 		SELECT	*
-		FROM	PING
-		WHERE	ADDRESS LIKE '%'||#{address}||'%'
+		FROM	PING p
+		<where>
+			<foreach item="travelDTO" index="index" collection="list" open="PINGNUM IN (" separator="," close=")">
+				#{travelDTO.pingNum}
+			</foreach>
+		</where>
 	</select>
 
 	<select id="getTravelList" resultType="TravelDTO">
@@ -28,11 +45,10 @@
 			SELECT 		ROWNUM r, t.*
 			FROM 		TRAVEL t
 			<where>
-				<foreach item="pingDTO" index="index" collection="list" open="AND PINGNUM IN (" separator="," close=")">
+				<foreach item="pingDTO" index="index" collection="list" open="PINGNUM IN (" separator="," close=")">
 					#{pingDTO.pingNum}
 				</foreach>
 			</where>
-			ORDER BY	HIT DESC
 		)
 		WHERE 15 >= r
 	</select>

@@ -22,11 +22,12 @@ const target = document.getElementById('mapModal');
 
 // 2. 옵저버 콜백 생성
 const callback = (mutationList, observer) => {
-    map.relayout();
+    map.relayout(); 
+    if(keywordMarkers){searchPlaces();}
 };
 
 // 3. 옵저버 인스턴스 생성
-const observer = new MutationObserver(callback); // 타겟에 변화가 일어나면 콜백함수를 실행하게 된다.
+const mutationObserver = new MutationObserver(callback); // 타겟에 변화가 일어나면 콜백함수를 실행하게 된다.
 
 // 4. DOM의 어떤 부분을 감시할지를 옵션 설정
 const config = { 
@@ -36,4 +37,4 @@ const config = {
 };
 
 // 5. 감지 시작
-observer.observe(target, config);
+mutationObserver.observe(target, config);

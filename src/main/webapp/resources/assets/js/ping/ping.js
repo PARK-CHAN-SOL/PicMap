@@ -11,10 +11,12 @@ const lat = document.getElementById('lat');
 // longitude input(hidden)
 const lon = document.getElementById('lon');
 
+var keywordMarkers;
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 1 // 지도의 확대 레벨
+        level: 3 // 지도의 확대 레벨
     };
 
 // 지도를 생성합니다    
@@ -37,14 +39,15 @@ searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
     searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
-            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+            // var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+            var detailAddr = result[0].address.address_name;
 
-            var content = '<div class="bAddr">' +
+            var content = '<div class="bAddr" style="padding:5px;">' +
                 detailAddr +
                 '</div>';
 
             // 마커를 클릭한 위치에 표시합니다 
+            marker.setMap(null);
             marker.setPosition(mouseEvent.latLng);
             marker.setMap(map);
 
@@ -80,12 +83,13 @@ function searchDetailAddrFromCoords(coords, callback) {
 function displayCenterInfo(result, status) {
     if (status === kakao.maps.services.Status.OK) {
         var infoDiv = document.getElementById('centerAddr');
-
-        for (var i = 0; i < result.length; i++) {
-            // 행정동의 region_type 값은 'H' 이므로
-            if (result[i].region_type === 'H') {
-                infoDiv.innerHTML = result[i].address_name;
-                break;
+        if(infoDiv){
+            for (var i = 0; i < result.length; i++) {
+                // 행정동의 region_type 값은 'H' 이므로
+                if (result[i].region_type === 'H') {
+                    infoDiv.innerHTML = result[i].address_name;
+                    break;
+                }
             }
         }
     }

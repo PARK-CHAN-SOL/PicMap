@@ -27,6 +27,10 @@ public class PingDAO {
 		return sqlSession.selectList(NAMESPACE + "getPingList", pingDTO);
 	}
 	
+	public List<PingDTO> getMyPingList(List<TravelDTO> travelList) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getMyPingList", travelList);
+	}
+	
 	public List<TravelDTO> getTravelList (List<PingDTO> list) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "getTravelList", list);
 	}

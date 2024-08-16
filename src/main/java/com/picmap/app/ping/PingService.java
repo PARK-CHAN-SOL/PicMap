@@ -17,7 +17,7 @@ public class PingService {
 	public int addPing(PingDTO pingDTO) throws Exception {
 		return pingDAO.addPing(pingDTO);
 	}
-	
+
 	public Long savePingNum() throws Exception {
 		return pingDAO.savePingNum();
 	}
@@ -28,6 +28,47 @@ public class PingService {
 		List<PingDTO> pingList = pingDAO.getPingList(pingDTO);
 		List<TravelDTO> travelList = pingDAO.getTravelList(pingList);
 
+		return setMap(pingList, travelList);
+	}
+
+	// 마이페이지에 띄울 맵,
+	// memberNum으로 게시글 검색, 게시글로 핑 검색
+	public Map<String, Object> getMyPingList(List<TravelDTO> travelList) throws Exception {
+		List<PingDTO> pingList = pingDAO.getMyPingList(travelList);
+		
+		return setMap(pingList, travelList);
+	}
+
+	// 추천 게시글 리스트 검색
+	public String getRecommendList(PingDTO pingDTO) throws Exception {
+		pingDTO = getDetail(pingDTO);
+		List<TravelDTO> list = pingDAO.getRecommendList(pingDTO);
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("");
+		// 최대 4개 까지 추천 게시글 이미지(<img>) 출력,
+		// a태그로 각 img태그를 묶어서 /travel/detail ... 으로 링크
+		if (list.size() != 0) {
+			for (TravelDTO dto : list) {
+				System.out.println(dto.getBoardNum());
+				sb.append("<a href=\"/travel/detail?boardNum=").append(dto.getBoardNum())
+						.append("\"><img src=\"/resources/assets/img/")
+						.append(dto.getFileName() == null ? "default1.png" : dto.getFileName()).append("\" /></a>");
+			}
+		}
+
+		return sb.toString();
+	}
+
+	public PingDTO getDetail(PingDTO pingDTO) throws Exception {
+		return pingDAO.getDetail(pingDTO);
+	}
+
+	
+	public Map<String, Object> setMap(List<PingDTO> pingList, List<TravelDTO> travelList) throws Exception {
+
+		// 리턴 값을 담을 맵 선언
+		Map<String, Object> map = new HashMap<String, Object>();
 		Map<Long, PingDTO> pingMap = new HashMap<Long, PingDTO>();
 
 		Double lat = 0.0;
@@ -56,8 +97,8 @@ public class PingService {
 
 		}
 
-		pingDTO.setLatitude(lat);
-		pingDTO.setLongitude(lon);
+		map.put("lat", lat);
+		map.put("lon", lon);
 
 		// 가장 먼 핑들 간의 거리 계산 (lat, lon 변수 재활용)
 		// 위도 37도에서 경도 1도 : 88.804km
@@ -70,8 +111,7 @@ public class PingService {
 		Integer level;
 		if (length < 80) level = 1;
 		else if (length < 120) level = 2;
-		else if (length < 200) level = 3;
-		else if (length < 400) level = 4;
+		else if (length < 400) level = 3;
 
 		int lengthTmp = 1000;
 		while (lengthTmp <= length) {
@@ -80,34 +120,34 @@ public class PingService {
 
 		switch (lengthTmp) {
 		case 1000:
-			level = 5;
+			level = 4;
 			break;
 		case 2000:
-			level = 6;
+			level = 5;
 			break;
 		case 4000:
-			level = 7;
+			level = 6;
 			break;
 		case 8000:
-			level = 8;
+			level = 7;
 			break;
 		case 16000:
-			level = 9;
+			level = 8;
 			break;
 		case 32000:
-			level = 10;
+			level = 9;
 			break;
 		case 64000:
-			level = 11;
+			level = 10;
 			break;
 		case 128000:
-			level = 12;
+			level = 11;
 			break;
 		case 256000:
-			level = 13;
+			level = 12;
 			break;
 		case 512000:
-			level = 14;
+			level = 13;
 			break;
 		default:
 			level = 14;
@@ -115,39 +155,12 @@ public class PingService {
 		}
 
 		// 지도정보를 맵에 담아서 리턴
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("lat", pingDTO.getLatitude());
-		map.put("lon", pingDTO.getLongitude());
 		map.put("level", level);
 		map.put("pingMap", pingMap);
 		map.put("travelList", travelList);
 
 		return map;
+
 	}
 
-	// 추천 게시글 리스트 검색
-	public String getRecommendList(PingDTO pingDTO) throws Exception {
-		pingDTO = getDetail(pingDTO);
-		List<TravelDTO> list = pingDAO.getRecommendList(pingDTO);
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("");
-		// 최대 4개 까지 추천 게시글 이미지(<img>) 출력,
-		// a태그로 각 img태그를 묶어서 /travel/detail ... 으로 링크
-		if (list.size() != 0) {
-			for (TravelDTO dto : list) {
-				System.out.println(dto.getBoardNum());
-				sb.append("<a href=\"/travel/detail?boardNum=").append(dto.getBoardNum())
-						.append("\"><img src=\"/resources/assets/img/").append(dto.getFileName() == null ? "default1.png" : dto.getFileName()).append("\" /></a>");
-			}
-		}
-
-		return sb.toString();
-	}
-
-	public PingDTO getDetail(PingDTO pingDTO) throws Exception {
-		return pingDAO.getDetail(pingDTO);
-	}
-	
-	
 }

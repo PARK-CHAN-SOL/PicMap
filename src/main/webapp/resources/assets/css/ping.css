@@ -27,7 +27,6 @@
 }
 
 .bAddr {
-	padding: 5px;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;

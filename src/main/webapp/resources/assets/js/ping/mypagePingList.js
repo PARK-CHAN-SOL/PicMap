@@ -3,17 +3,10 @@ const searchPing = document.getElementById("searchPing");
 // 검색 버튼
 const searchButton = document.getElementById("searchButton");
 
+const mypageBack = document.getElementById('mypageBack');
+
 var keywordMarkers;
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        //서울 시청 37.566826 126.9786567
-        center: new kakao.maps.LatLng(36.71053726279515, 127.39318958702651), // 지도의 중심좌표
-        level: 13 // 지도의 확대 레벨
-    };
-
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption);
 
 // 마커를 담을 배열
 let markers = [];
@@ -26,25 +19,40 @@ function removeMarker() {
     markers = [];
 }
 
-searchButton.addEventListener("click", () => {
+if(searchButton){
+    searchButton.addEventListener("click", () => {
 
-    // 지도 위에 표시되고 있는 마커를 모두 제거
-    removeMarker();
+        // 지도 위에 표시되고 있는 마커를 모두 제거
+        removeMarker();
 
-    getPingList(searchPing.value);
-    
-})
+        getPingList(searchPing.value);
+        
+    })
+}
 
-function getPingList(address) {
+function getPingList() {
     let searchForm = new FormData();
-    searchForm.append("address", address);
-    fetch('/ping/getPingList', {
+    searchForm.append("memberNum", followerDiv.dataset.toFollow);
+    fetch('/ping/getMyPingList', {
         method: "POST",
         body: searchForm
     })
         .then(r => r.json())
         .then(r => {
-            if (r.lat != 0.0) {
+            if (r.lat != 0.0 && r.travelList.length != 0) {
+                mypageBack.src = '';
+
+                document.getElementById('mapWrap').style.display = 'block';
+
+                var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = {
+                    //서울 시청 37.566826 126.9786567
+                    center: new kakao.maps.LatLng(36.71053726279515, 127.39318958702651), // 지도의 중심좌표
+                    level: 13 // 지도의 확대 레벨
+                };
+
+                // 지도를 생성합니다    
+                var map = new kakao.maps.Map(mapContainer, mapOption);
 
                 // 검색 결과를 바탕으로 지도 중심 좌표 재설정
                 var bounds = new kakao.maps.LatLngBounds();
@@ -98,10 +106,9 @@ function getPingList(address) {
                     });
 
                     markers.push(marker);
+                    map.relayout();
                 }
 
-            } else {
-                alert('검색 결과가 존재하지 않습니다');
             }
         })
         .catch((e) => {
@@ -111,5 +118,4 @@ function getPingList(address) {
 };
 
 
-getPingList('');
-map.relayout();
+getPingList();

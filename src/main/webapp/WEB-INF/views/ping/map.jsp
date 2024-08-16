@@ -79,7 +79,6 @@
                 <%-- <c:import url="../template/footer.jsp"></c:import> --%>
                     <script type="text/javascript"
                         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
-                    <script src="/resources/assets/js/ping/ping.js"></script>
                     <script src="/resources/assets/js/ping/pingList.js"></script>
                     <script src="/resources/assets/js/ping/modal.js"></script>
                     <script src="/resources/assets/js/ping/recommendList.js"></script>
