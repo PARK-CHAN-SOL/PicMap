@@ -10,6 +10,15 @@ public class CommentDTO {
 	private Date updateDate;
 	private String profilePath;
 	private String memberNickName;
+	private int replyCount;
+
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
 
 	public String getMemberNickName() {
 		return memberNickName;

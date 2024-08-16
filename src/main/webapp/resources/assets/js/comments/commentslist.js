@@ -75,17 +75,20 @@ async function commentDTOLoop(commentDTOs) {
                     '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button update-button">수정</button>' + // 수정 버튼 추가
                     '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button delete-button">삭제</button>'; // 삭제 버튼 추가
             } 
-            // 모든 댓글에 답글 버튼 추가
-            comment += 
-            '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button reply-button">답글</button>' + // 답글 버튼 추가
-            '<div id="replyForm' + commentDTO.commentNum + '" class="reply-form" style="display:none;">' + // 답글 작성 폼, 기본적으로 숨겨져 있음
-                '<textarea id="replyContents' + commentDTO.commentNum + '" name="reply" placeholder="답글을 입력하세요" class="comment-textarea"></textarea>' + // 답글 입력란
-                '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button reply-submit-button">답글 남기기</button>' + // 답글 남기기 버튼
-                '<div id="replyList' + commentDTO.commentNum + '" class="reply-list"></div>' + // 답글 리스트를 표시할 요소
-            '</div>'; // 답글 작성 폼 종료
-            comment += '</div>'; // 댓글 컨테이너 종료
-            commentsTmp += comment;
             
+            // 모든 댓글에 답글 버튼 추가
+                comment += 
+                '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button reply-button">답글 ' +
+                    (commentDTO.replyCount > 0 ? '(' + commentDTO.replyCount + ')' : '') + // 답글 수를 표시, 답글이 있는 경우만 숫자를 표시
+                '</button>' + 
+                '<div id="replyForm' + commentDTO.commentNum + '" class="reply-form" style="display:none;">' + // 답글 작성 폼, 기본적으로 숨겨져 있음
+                    '<textarea id="replyContents' + commentDTO.commentNum + '" name="reply" placeholder="답글을 입력하세요" class="comment-textarea"></textarea>' + // 답글 입력란
+                    '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button reply-submit-button">답글 남기기</button>' + // 답글 남기기 버튼
+                    '<div id="replyList' + commentDTO.commentNum + '" class="reply-list"></div>' + // 답글 리스트를 표시할 요소
+                '</div>'; // 답글 작성 폼 종료
+                comment += '</div>'; // 댓글 컨테이너 종료
+                commentsTmp += comment;
+                            
         }
         travelObserverTarget.classList.remove('loader');
         commentsList.innerHTML = commentsList.innerHTML + commentsTmp; // 댓글 리스트에 새 댓글 추가
@@ -163,13 +166,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const profilePopup = document.getElementById("profilePopup"); // 팝업 요소
     
         if (event.target && event.target.classList.contains("profile-link")) {
-            
             event.preventDefault(); // 기본 링크 동작 방지
     
             const link = event.target.closest('.profile-link'); // 클릭된 링크를 가져옴
             const rect = link.getBoundingClientRect(); // 클릭된 링크의 위치 정보 가져오기
-            profilePopup.style.top = `${rect.bottom + window.scrollY}px`; // 팝업의 위치 설정
-            profilePopup.style.left = `${rect.left + window.scrollX}px`;
+           
+            profilePopup.style.top = `${event.layerY}px`; // 팝업의 위치 설정
+            profilePopup.style.left = `${event.layerX}px`;
     
             // 닉네임 설정
             const nickname = link.getAttribute('alt'); // 이미지의 alt 텍스트를 닉네임으로 사용
@@ -253,7 +256,7 @@ document.addEventListener("click", (event) => {
         })
         .then((res) => res.json())
         .then((res) => {
-            console.log("Response data: ", res); // 추가: 서버에서 반환된 데이터 로그
+            //console.log("Response data: ", res); // 추가: 서버에서 반환된 데이터 로그
             if (res === 0) {
                 // 좋아요 또는 좋아요 취소 실패
                 alert("좋아요 처리에 실패했습니다.");
