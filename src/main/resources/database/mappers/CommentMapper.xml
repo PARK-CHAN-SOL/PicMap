@@ -13,21 +13,26 @@
 	</select>
 
     
-   <!-- 특정 게시글의 댓글 목록을 조회하는 SQL -->
-	<select id="findByBoardNum" parameterType="java.util.Map" resultType="CommentsDTO">
-    SELECT *
-    FROM (
-    SELECT ROWNUM r, c2.*
-    FROM 	(
-        SELECT c.*, m.PROFILEPATH, m.MEMBERNICKNAME  <!-- 댓글 데이터와 프로필 이미지 경로를 선택 -->
-        FROM COMMENTS c 
-        JOIN MEMBER m ON c.MEMBERNUM = m.MEMBERNUM  <!-- 댓글 작성자와 회원을 조인 -->
-        WHERE c.BOARDNUM = #{commentsDTO.boardNum}  <!-- 특정 게시글의 댓글만 선택 -->
-        ORDER BY c.CREATEDATE DESC, c.UPDATEDATE DESC  <!-- 최신 댓글 순으로 정렬 -->
-    		) c2
-    	)	
-    WHERE r BETWEEN #{scroller.startRow} AND #{scroller.endRow}  <!-- 페이징 처리 -->
-	</select>
+	<!-- 특정 게시글의 댓글 목록을 조회하고 각 댓글의 답글 수를 포함하는 SQL -->
+		<select id="findByBoardNum" parameterType="java.util.Map" resultType="CommentsDTO">
+		    SELECT c.*, 
+		           m.PROFILEPATH, 
+		           m.MEMBERNICKNAME,
+		           (SELECT COUNT(*) FROM REPLY r WHERE r.COMMENTNUM = c.COMMENTNUM) AS replyCount
+		    FROM (
+		        SELECT c.*, ROWNUM r
+		        FROM (
+		            SELECT * 
+		            FROM COMMENTS 
+		            WHERE BOARDNUM = #{commentsDTO.boardNum}
+		            ORDER BY CREATEDATE DESC, UPDATEDATE DESC
+		        ) c
+		    ) c
+		    JOIN MEMBER m ON c.MEMBERNUM = m.MEMBERNUM
+		    WHERE c.r BETWEEN #{scroller.startRow} AND #{scroller.endRow}
+		    ORDER BY c.CREATEDATE DESC, c.UPDATEDATE DESC
+		</select>
+
    
   
     <!-- 특정 댓글을 ID로 조회하는 SQL -->
