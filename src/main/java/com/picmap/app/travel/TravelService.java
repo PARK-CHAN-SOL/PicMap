@@ -79,7 +79,20 @@ public class TravelService {
 		return travelDAO.detail(travelDTO);
 	}
 	
+	//자식글 삭제
+	public int delete(TravelDTO travelDTO) throws Exception {
+		return travelDAO.delete(travelDTO);
+	}
 	
+	//최상위 부모글 삭제(자식글 모두 삭제)
+	public int deleteAll(TravelDTO travelDTO) throws Exception {
+		return travelDAO.deleteAll(travelDTO);
+	}
+	
+	//조회수
+	public int hit(TravelDTO travelDTO) throws Exception {
+		return travelDAO.hit(travelDTO);
+	}
 	
 	
 }

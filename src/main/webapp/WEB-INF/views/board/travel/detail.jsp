@@ -121,13 +121,14 @@ by Awe7 (http://awe7.com/freebies)
 														<img src="/resources/upload/members/default.png" alt="" class="w-100 h-100">
 													</c:if>
 												</span>
-											</span>
+											</span>										
 											
 											<span style="margin-left: 10px;">${member.memberNickName}</span>
 											<span style="margin-left: 10px;"> • ${dto.writeDate}</span>
 										</div>
 										
-										<button>조회수 예정</button>
+										
+										<span style="margin-right: 10px;">조회수 ${hit}</span>
 										
 									</div>
 									
@@ -146,6 +147,15 @@ by Awe7 (http://awe7.com/freebies)
 											
 											<span id="heartCount">${heart}명이 좋아합니다</span>
 										</div>
+										
+										<c:choose>
+											<c:when test="${dto.boardNum eq dto.rootBoard}">
+												<button class="btn_save" id="savePostButton" data-id-savepost="${dto.boardNum}"></button>
+											</c:when>
+											<c:otherwise>
+												<button class="btn_save" id="savePostButton" data-id-savepost="${dto.rootBoard}"></button>
+											</c:otherwise>
+										</c:choose>											
 									</div>
 									
 									
@@ -158,7 +168,18 @@ by Awe7 (http://awe7.com/freebies)
 									<div style="margin-left: 10px;">${dto.boardContent}</div>
 								</div>
 								
-
+								<!-- 수정,삭제 버튼 -->
+								<div class="d-grid gap-2 d-md-flex justify-content-end mt-5" style="margin:0 auto; max-width: 720px;">
+									<c:if test="${login.memberNum == dto.memberNum}">
+										<button type = "submit" class="btn btn-primary" id="updateBtn" onclick="location.href ='./update?boardNum=${dto.boardNum}' ">수정</button>
+										<form action="./delete?boardNum=${dto.boardNum}" method="post">
+											<button type="submit" class="btn btn-danger" id="deleteBtn">삭제</button>
+										</form>
+									</c:if>
+								</div>			
+								
+								
+								
 							</div>
 							
 							
@@ -221,6 +242,7 @@ by Awe7 (http://awe7.com/freebies)
 
 	<c:import url="../../template/footer.jsp"></c:import>
 	<script src="/resources/assets/js/heart/heart.js"></script>
+	<script src="/resources/assets/js/savepost/savePost.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/reply.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/commentslist.js"></script>
 	

@@ -59,7 +59,13 @@ body {
 	max-width: 720px;
 }
 
-
+#updateBtn, #deleteBtn{
+	width: 70px;
+	height: 35px;
+	font-size: 16px;
+	margin-top: 40px;
+	margin-right: 5px;
+}
 
 .nav-buttons {
 	position: fixed;

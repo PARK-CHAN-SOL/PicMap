@@ -49,7 +49,37 @@
 		WHERE BOARDNUM=#{boardNum}
 	</select>
 
-
+	<update id="hit" parameterType="TravelDTO">
+		UPDATE TRAVEL
+		SET HIT = HIT + 1
+		WHERE BOARDNUM = #{boardNum}
+	</update>
+	
+	<delete id="delete" parameterType="TravelDTO">
+		DELETE TRAVEL
+		WHERE BOARDNUM = #{boardNum}
+	</delete>
+	<update id="adoption1" parameterType="TravelDTO">
+		UPDATE TRAVEL
+		SET CHILDBOARD=#{childBoard}
+		WHERE BOARDNUM=#{parentBoard}
+	</update>
+	<update id="adoption2" parameterType="TravelDTO">
+		UPDATE TRAVEL
+		SET PARENTBOARD=#{parentBoard}
+		WHERE BOARDNUM=#{childBoard}
+	</update>
+	<update id="adoption3" parameterType="TravelDTO">
+		UPDATE TRAVEL
+		SET CHILDBOARD=NULL
+		WHERE BOARDNUM=#{parentBoard}
+	</update>
+	
+	
+	<delete id="deleteAll" parameterType="TravelDTO">
+		DELETE TRAVEL
+		WHERE ROOTBOARD = #{rootBoard}
+	</delete>	
 
 
 
