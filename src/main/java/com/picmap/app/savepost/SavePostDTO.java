@@ -1,8 +1,15 @@
 package com.picmap.app.savepost;
 
 public class SavePostDTO {
+	private Long savePostNum;
 	private Long memberNum;
 	private Long boardNum;
+	public Long getSavePostNum() {
+		return savePostNum;
+	}
+	public void setSavePostNum(Long savePostNum) {
+		this.savePostNum = savePostNum;
+	}
 	public Long getMemberNum() {
 		return memberNum;
 	}

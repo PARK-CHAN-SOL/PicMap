@@ -123,10 +123,10 @@ public class TravelController {
 	}
 	
 	
-
-	
+	//게시글 수정
 	@GetMapping("update")
 	public String update() throws Exception {
+		
 		
 		return "board/travel/write";
 	}
@@ -136,17 +136,41 @@ public class TravelController {
 	}
 	
 	
+	//게시글 삭제
+	@PostMapping("delete")
+	public String delete(TravelDTO travelDTO) throws Exception {
+		TravelDTO travelDetail = travelService.detail(travelDTO);
+		if(travelDetail.getBoardNum() != travelDetail.getRootBoard() ) { //자식글이라면 그 글만 삭제		
+			int result = travelService.delete(travelDetail);
+		}else { //최상위 부모글이라면 그 아래로 싹 다 삭제
+			int result = travelService.deleteAll(travelDTO);
+		}
+
+		
+		return "redirect:./list";
+	}
+	
 	//게시글 디테일
 	@GetMapping
 	public String detail(HeartDTO heartDTO, TravelDTO travelDTO, Model model,
 			HttpSession session, HttpServletRequest request) throws Exception {
 		MemberDTO memberDTO= (MemberDTO)session.getAttribute("member");
-		model.addAttribute("login", memberDTO); 
-		
+		model.addAttribute("login", memberDTO);
+		//조건문을 위해 일단 디테일을 먼저 땡겨오고
 		TravelDTO travelDetail = travelService.detail(travelDTO);
 		model.addAttribute("dto", travelDetail);
 		
-		//작성자 프로필 사진 가져올거임
+		//조회수(최상위 부모글 기준)
+		if(travelDetail.getBoardNum() == travelDetail.getRootBoard() ) {
+			travelService.hit(travelDTO);
+		}else { //자식글은 최상위부모글 조회수를 그대로 가져오고, 조회수를 올리지 않는다
+			travelDTO.setBoardNum(travelDetail.getRootBoard());
+		}
+		TravelDTO h = travelService.detail(travelDTO);
+		model.addAttribute("hit", h.getHit());
+		
+		
+		//작성자 프로필 사진
 		MemberDTO boardWriter = new MemberDTO();
 		boardWriter.setMemberNum(travelDetail.getMemberNum());
 		boardWriter = memberService.detail(boardWriter);
@@ -158,6 +182,7 @@ public class TravelController {
 		model.addAttribute("heart", heartCount);
 		
 		
+		
 		//게시글 수정 및 삭제, 자식글 작성할 때 작성자의 계정과 일치하는 계정인지 판별하는 필터를 걸어두기 위해
 		//작성자 memberNum을 세션에 올림
 		session.setAttribute("writer", travelDetail.getMemberNum());
@@ -165,6 +190,7 @@ public class TravelController {
 		
 		return "board/travel/detail";
 	}
+	
 	
 	
 }

@@ -50,11 +50,34 @@ public class TravelDAO {
 	
 	//게시글 수정 (미완)
 	public int update(TravelDTO travelDTO) throws Exception {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 	
+	//자식글 삭제
+	public int delete(TravelDTO travelDTO) throws Exception {
+		int result = 0;
+		if(travelDTO.getChildBoard() != null) { //자식글이 존재한다면 자식글의 부모글을 자신의 부모글로
+			result += sqlSession.delete(NAMESPACE+"adoption1", travelDTO);// 부모글의 자식글을 자신의 자식글로
+			result += sqlSession.delete(NAMESPACE+"adoption2", travelDTO);
+		}else {//최하위 자식글이면 부모글의 자식글을 null처리
+			result += sqlSession.delete(NAMESPACE+"adoption3", travelDTO);
+		}
+		
+		result += sqlSession.delete(NAMESPACE+"delete", travelDTO);
+		
+		return result;
+	}
 	
+	//최상위부모글 삭제(자식글 모두 삭제)
+	public int deleteAll(TravelDTO travelDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"deleteAll", travelDTO);
+	}
+	
+	//조회수
+	public int hit(TravelDTO travelDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"hit", travelDTO);
+	}
 
 	
 	
