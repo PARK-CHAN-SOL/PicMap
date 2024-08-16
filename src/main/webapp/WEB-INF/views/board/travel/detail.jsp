@@ -11,6 +11,7 @@ by Awe7 (http://awe7.com/freebies)
 -->
 <c:import url="../../template/header_css.jsp"></c:import>
 <link rel="stylesheet" href="/resources/assets/css/boardDetail.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/css/comments.css">
 
 </head>
