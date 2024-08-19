@@ -64,7 +64,7 @@ function getPingList(address) {
                     let position = {
                         title: element.boardTitle,
                         latlng: new kakao.maps.LatLng(ping.latitude, ping.longitude),
-                        image: element.fileName == null ? '/resources/assets/img/default1.png' : element.fileName,
+                        image: element.fileName == null ? '/resources/assets/img/default1.png' : '/resources/upload/travels/' + element.fileName,
                         board: '/travel/detail?boardNum=' + element.boardNum
                     };
                     positions.push(position); // 배열에 추가

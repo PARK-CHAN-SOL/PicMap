@@ -26,6 +26,10 @@ public class TravelService {
 	
 	private String name = "travels";
 	
+	public Long getTotalCount() throws Exception {
+		return travelDAO.getTotalCount();
+	}
+	
 	//게시판(게시글 리스트)
 	public List<BoardDTO> getList(Scroller scroller) throws Exception {
 		return travelDAO.getList(scroller);

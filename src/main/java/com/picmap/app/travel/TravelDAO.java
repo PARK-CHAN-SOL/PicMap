@@ -17,7 +17,9 @@ public class TravelDAO {
 	
 	private final String NAMESPACE = "com.picmap.app.travel.TravelDAO.";
 	
-	
+	public Long getTotalCount() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getTotalCount");
+	}
 	
 	//게시판(게시글 리스트)
 	public List<BoardDTO> getList(Scroller scroller) throws Exception {

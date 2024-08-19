@@ -1,14 +1,21 @@
+let travelTotalCount = 9;
+
+fetch('/travel/travelTotalCount', {
+    method:"GET"
+})
+    .then((res)=>{return res.json();})
+    .then((res)=>{travelTotalCount = res;})
+
 const travelList = document.getElementById("travelList");
 const travelObserverTarget = document.getElementById("travelObserverTarget");
 const travelObserver = new IntersectionObserver((items)=>{ // IntersectionObserver를 생성, items는 관찰된 요소의 배열
     items.forEach(async (item)=>{ // 관찰된 각 요소에 대해 반복
         if(!item.isIntersecting) return; // 요소가 뷰포트에 들어오지 않았으면 함수 종료
-        if(travelObserverTarget.dataset.startRow <= travelObserverTarget.dataset.totalCount){ // startRow가 travelTotalCount보다 작거나 같을 때만 실행
+
+        if(travelObserverTarget.dataset.startRow <= travelTotalCount){ // startRow가 travelTotalCount보다 작거나 같을 때만 실행
             const formData = new FormData(); // 폼 데이터를 생성
             formData.append("startRow", travelObserverTarget.dataset.startRow); // 폼 데이터에 시작 행 번호 추가
-            console.log(travelObserverTarget.dataset.startRow);
             formData.append("endRow", travelObserverTarget.dataset.endRow); // 폼 데이터에 끝 행 번호 추가
-            console.log(travelObserverTarget.dataset.endRow);
             const url = '/travel/list'; // 게시글 목록을 가져올 URL
 
             await makeTravelList(url, formData);
@@ -97,7 +104,6 @@ async function getHeartCount(boardDTO) {
         $('.grid__inner').masonry('addItems', gridItemDiv); // 게시글 리스트 형태 재정렬
         $('.grid__inner').masonry('layout');
 
-        console.log(boardDTO.boardNum);
     } catch (error) {
         console.error('Error fetching heartCount', error);
     }

@@ -105,7 +105,7 @@ by Awe7 (http://awe7.com/freebies)
 							<div class="grid-sizer" id="travelList">
 							</div>
 						</div>
-						<div id="travelObserverTarget" data-start-row="1" data-end-row="9" data-total-count="${15}"></div>
+						<div id="travelObserverTarget" data-start-row="1" data-end-row="9"></div>
 					</div>
 					
 				</div>

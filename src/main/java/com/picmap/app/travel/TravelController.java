@@ -43,6 +43,12 @@ public class TravelController {
 		return "Travel";
 	}
 	
+	@GetMapping("travelTotalCount")
+	@ResponseBody
+	public Long getTotalCount() throws Exception {
+		return travelService.getTotalCount();
+	}
+	
 	@GetMapping("list")
 	public String getList() throws Exception {
 		return "board/travel/list";

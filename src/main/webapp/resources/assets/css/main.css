@@ -1056,8 +1056,7 @@ ul {
 .btn_like {
 	width: 32px;
 	height: 32px;
-	background: url(https://kksaten.github.io/images/heartBtn/heart_button_off.png) no-repeat center / 32px;
-	cursor: pointer;
+	background: url(/resources/assets/img/heart_button_off.png) no-repeat center / 32px;
 	border: 0;
 	font-size: 15px;
 	display: block;
@@ -1065,7 +1064,7 @@ ul {
 }
 
 .btn_like.liked {
-	background: url(https://kksaten.github.io/images/heartBtn/heart_button_on.png) no-repeat center / 32px;
+	background: url(/resources/assets/img/heart_button_on.png) no-repeat center / 32px;
 	animation: beating .5s 1 alternate;
 }
 
@@ -1079,8 +1078,7 @@ ul {
 .btn_save {
 	width: 26px;
 	height: 26px;
-	background: url(https://kksaten.github.io/images/postSaveBtn/save_post_button.png) no-repeat center / 26px;
-	cursor: pointer;
+	background: url(/resources/assets/img/save_post_button.png) no-repeat center / 26px;
 	border: 0;
 	font-size: 15px;
 	display: block;
@@ -1088,7 +1086,7 @@ ul {
 }
 
 .btn_save.saved {
-	background: url(https://kksaten.github.io/images/postSaveBtn/save_post_button_saved2.png) no-repeat center / 26px;
+	background: url(/resources/assets/img/save_post_button_saved2.png) no-repeat center / 26px;
 	animation: beating .5s 1 alternate;
 }
 

@@ -13,7 +13,7 @@ document.addEventListener("click", (event) => {
 
                 } else if (res == -1000) {//로그인 하지 않음
                     //로그인 모달 표시
-                    document.querySelector('button[data-bs-target="#exampleModal" ]').click();
+                    document.querySelectorAll('button[data-bs-target="#exampleModal" ]')[0].click();
                 } else {// 좋아요 또는 좋아요 취소 성공
                     if(res == -1){
                         //좋아요 표시 취소
