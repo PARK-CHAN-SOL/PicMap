@@ -3,13 +3,13 @@
  */
 const modalButton = document.getElementById("modalButton");
 const mapModal = document.getElementById("mapModal");
-
 const mapButton = document.getElementById("mapButton");
+const mapModalCloseBtn = document.getElementById("mapModalCloseBtn");
 const pingFrm = document.getElementById("pingFrm");
 
-mapButton.addEventListener("click", ()=>{
-    // pingFrm.submit();
-})
+// mapButton.addEventListener("click", ()=>{
+//     // pingFrm.submit();
+// })
 
 // modalButton.addEventListener("click", function(){
 // 	setTimeout(() => {

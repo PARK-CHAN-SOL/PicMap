@@ -74,30 +74,53 @@ function getPingList(address) {
 
                 for (var i = 0; i < positions.length; i++) {
 
-                    // 마커 이미지의 이미지 크기 입니다
-                    var imageSize = new kakao.maps.Size(64, 64);
+                    // // 마커 이미지의 이미지 크기 입니다
+                    // var imageSize = new kakao.maps.Size(64, 64);
 
-                    // 마커 이미지를 생성합니다    
-                    var markerImage = new kakao.maps.MarkerImage(positions[i].image, imageSize);
+                    // // 마커 이미지를 생성합니다    
+                    // var markerImage = new kakao.maps.MarkerImage(positions[i].image, imageSize);
 
-                    // 마커를 생성합니다
-                    var marker = new kakao.maps.Marker({
-                        map: map, // 마커를 표시할 지도
-                        position: positions[i].latlng, // 마커를 표시할 위치
-                        title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                        image: markerImage, // 마커 이미지 
-                        clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-                    });
+
+
+
+                    // // 마커를 생성합니다
+                    // var marker = new kakao.maps.Marker({
+                    //     map: map, // 마커를 표시할 지도
+                    //     position: positions[i].latlng, // 마커를 표시할 위치
+                    //     title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                    //     image: markerImage, // 마커 이미지 
+                    //     clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+                    // });
 
                     let board = positions[i].board;
 
-                    // 마커에 클릭이벤트를 등록, 클릭시 travel detail로 redirect
-                    kakao.maps.event.addListener(marker, 'click', function () {
-                        console.log(board);
-                        location.href = board;
+
+                    var content =
+                    '<div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden">' +
+                    '   <a href="' + board + '"><img src="' + positions[i].image + '" style="max-width:120px; height:64px;"></a>'
+                    '</div>';
+
+                    var customOverlay = new kakao.maps.CustomOverlay({
+                        position: positions[i].latlng,
+                        content: content,
+                        xAnchor: 0,
+                        yAnchor: 1
                     });
 
-                    markers.push(marker);
+                    // // 마커에 클릭이벤트를 등록, 클릭시 travel detail로 redirect
+                    // kakao.maps.event.addListener(marker, 'click', function () {
+                    //     console.log(board);
+                    //     location.href = board;
+                    // });
+
+                    // 마커에 클릭이벤트를 등록, 클릭시 travel detail로 redirect
+                    // kakao.maps.event.addListener(customOverlay, 'click', function () {
+                    //     console.log(board);
+                    //     location.href = board;
+                    // });
+
+                    // markers.push(marker);
+                    customOverlay.setMap(map);
                 }
 
             } else {

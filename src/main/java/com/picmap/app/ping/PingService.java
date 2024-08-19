@@ -50,10 +50,9 @@ public class PingService {
 		// a태그로 각 img태그를 묶어서 /travel/detail ... 으로 링크
 		if (list.size() != 0) {
 			for (TravelDTO dto : list) {
-				System.out.println(dto.getBoardNum());
 				sb.append("<a href=\"/travel/detail?boardNum=").append(dto.getBoardNum())
-						.append("\"><img src=\"/resources/assets/img/")
-						.append(dto.getFileName() == null ? "default1.png" : dto.getFileName()).append("\" /></a>");
+						.append("\"><img src=\"/resources/upload/travels/")
+						.append(dto.getFileName() == null ? "default.png" : dto.getFileName()).append("\" class=\"rounded m-4\" style=\"width:150px; height:150px;\" /></a>");
 			}
 		}
 

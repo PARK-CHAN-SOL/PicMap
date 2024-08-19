@@ -56,16 +56,22 @@
 	<select id="getRecommendList" parameterType="PingDTO" resultType="TravelDTO">
 		SELECT	*
 		FROM 	(
-			SELECT		ROWNUM r, t.BOARDNUM, t.FILENAME
-			FROM		TRAVEL t
-			WHERE		CHILDBOARD IS NOT NULL
-						AND PINGNUM IN (
-					SELECT	PINGNUM
-					FROM	PING
-					WHERE	LATITUDE BETWEEN (#{latitude}-0.0011) AND (#{latitude}+0.0011)
-							AND LONGITUDE BETWEEN (#{longitude}-0.0014) AND (#{longitude}+0.0014)
-			)
-			ORDER BY	HIT DESC
+			SELECT	ROWNUM r, reco.*
+			FROM 	(
+				SELECT		t.BOARDNUM, t.FILENAME, COUNT(t.BOARDNUM) tc
+				FROM		TRAVEL t INNER JOIN HEART h
+							ON t.BOARDNUM = h.BOARDNUM 
+				WHERE		CHILDBOARD IS NOT NULL
+							AND PINGNUM IN (
+						SELECT	PINGNUM
+						FROM	PING
+						WHERE	LATITUDE BETWEEN (#{latitude}-0.0044) AND (#{latitude}+0.0044)
+								AND LONGITUDE BETWEEN (#{longitude}-0.0056) AND (#{longitude}+0.0056)
+								AND PINGNUM NOT IN (#{pingNum})
+					)
+				GROUP BY	t.BOARDNUM, t.FILENAME, t.HIT
+				ORDER BY	tc DESC, t.HIT DESC
+			) reco
 		)
 		WHERE 4 >= r
 	</select>

@@ -27,34 +27,32 @@ by Awe7 (http://awe7.com/freebies)
 	
 			<!-- 자식글 부모글 페이징 버튼 -->
 		    <div>
-		        <div class="nav-buttons">
 		        	<!-- 부모글로 가는 버튼 -->
 		        	<c:choose>
 		        		<c:when test="${dto.boardNum ne dto.rootBoard}">
-		        			<button type="button" class="btn btn-outline-secondary" id="detailPrevPageBtn"
+		        			<button type="button" class="btn btn-outline-secondary nav-leftButton" id="detailPrevPageBtn"
 		        			onclick = "location.href = '/travel/detail?boardNum=${dto.parentBoard}&rootBoard=${dto.rootBoard}'">&lt;</button>
 		        		</c:when>
 		        		<c:otherwise>
-		        			<button type="button" class="btn btn-outline-secondary" id="detailPrevPageBtn" style="visibility: hidden;">&lt;</button>
+		        			<button type="button" class="btn btn-outline-secondary nav-leftButton" id="detailPrevPageBtn" style="visibility: hidden;">&lt;</button>
 		        		</c:otherwise>
 		        	</c:choose>
 		        	
 		        	<!-- 자식글로 가거나 자식글을 추가하는 버튼 -->
 		        	<c:choose>
 		        		<c:when test="${not empty dto.childBoard}">
-		        			<button type="button" class="btn btn-outline-secondary" id="detailNextPageBtn"
+		        			<button type="button" class="btn btn-outline-secondary nav-rightButton" id="detailNextPageBtn"
 		        			onclick = "location.href = '/travel/detail?boardNum=${dto.childBoard}&rootBoard=${dto.rootBoard}'">&gt;</button>
 		        		</c:when>
 		        		<c:when test="${empty dto.childBoard && login.memberNum == dto.memberNum}">
-			        			<button type="button" class="btn btn-outline-secondary" id="addPlusBoard"
+			        			<button type="button" class="btn btn-outline-secondary nav-rightButton" id="addPlusBoard"
 			        			onclick = "location.href = '/travel/addPlus?rootBoard=${dto.rootBoard}&parentBoard=${dto.boardNum}'">&#43;</button>
 		        		</c:when>
 		        		<c:otherwise>
-		        			<button type="button" class="btn btn-outline-secondary" id="detailNextPageBtn"
+		        			<button type="button" class="btn btn-outline-secondary nav-rightButton" id="detailNextPageBtn"
 		        			style="visibility: hidden;">&gt;</button>
 		        		</c:otherwise>
 		        	</c:choose>
-		        </div>      
 		    </div>			
 			
 
@@ -74,7 +72,7 @@ by Awe7 (http://awe7.com/freebies)
 						</div>
 
 						<!-- 게시글 전체 내용 -->
-						<div class="col-md-12 col-lg-12 ">
+						<div class="col-md-12 col-lg-12">
 							<div class="boardContent">
 								<!-- 게시한 사진 -->
 								<div class="picture">
@@ -96,7 +94,11 @@ by Awe7 (http://awe7.com/freebies)
 								
 								
 								<!-- 여기에 추천 관광지 넣으시면 됩니다 -->
-								
+                                <div class="row justify-content-center">
+  					  			  <div id="recommendTravelList" class="col-7 align-self-center border border-4 p-2 text-center mt-4" data-ping-num="${dto.pingNum}">
+                                    <div><b class="fs-4">다음 여행지 추천</b></div>
+                                  </div>
+                                </div>
 								
 								
 								
@@ -245,6 +247,8 @@ by Awe7 (http://awe7.com/freebies)
 	<script src="/resources/assets/js/savepost/savePost.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/reply.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/commentslist.js"></script>
+    <script src="/resources/assets/js/ping/recommendList.js"></script>
+    
 	
 	
 </body>

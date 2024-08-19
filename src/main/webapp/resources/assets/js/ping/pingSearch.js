@@ -91,11 +91,22 @@ function displayPlaces(places) {
                 loc.value = title;
                 locSpan.innerText = loc.value;
                 marker.setMap(null);
+
+                mapModalCloseBtn.click(); // 모달창 닫기
                 // console.log(marker.getPosition())
                 // console.log(marker.getPosition().getLat())
                 // console.log(marker.getPosition().getLng())
                 // console.log(title);
             });
+            itemEl.onclick = function () {
+                lat.value = keywordMarker.getPosition().getLat();
+                lon.value = keywordMarker.getPosition().getLng();
+                loc.value = title;
+                locSpan.innerText = loc.value;
+                marker.setMap(null);
+
+                mapModalCloseBtn.click(); // 모달창 닫기
+            }
         })(keywordMarker, places[i].address_name);
 
         // 마커와 검색결과 항목에 mouseover 했을때
@@ -117,6 +128,7 @@ function displayPlaces(places) {
             itemEl.onmouseout =  function () {
                 infowindow.close();
             };
+
         })(keywordMarker, places[i].place_name);
 
         fragment.appendChild(itemEl);

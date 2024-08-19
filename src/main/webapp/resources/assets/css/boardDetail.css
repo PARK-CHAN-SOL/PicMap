@@ -66,7 +66,7 @@ body {
 	margin-top: 40px;
 	margin-right: 5px;
 }
-
+/* 
 .nav-buttons {
 	position: fixed;
 	z-index: 100;
@@ -75,10 +75,38 @@ body {
 	display: flex;
 	justify-content: space-between;
 	padding: 0 10px;
+} */
+
+.nav-leftButton {
+	position: fixed;
+	z-index: 100;
+	top: 50%;
+	left: 15%;
+	display: flex;
+}
+
+.nav-rightButton {
+	position: fixed;
+	z-index: 100;
+	top: 50%;
+	left: 85%;
+	display: flex;
+}
+
+/* @media (max-width: 1640px) {
+    .nav-buttons {
+        visibility: hidden;
+    }
+} */
+
+@media (max-width: 1640px) {
+    .nav-leftButton {
+        visibility: hidden;
+    }
 }
 
 @media (max-width: 1640px) {
-    .nav-buttons {
+    .nav-rightButton {
         visibility: hidden;
     }
 }
@@ -88,7 +116,6 @@ body {
 	height: 50px;
 	font-size: 50px;
 	text-align: center;
-	margin-left: 200px;
 	border-radius: 25px;
 	padding: 0 0 90px 0;
 }
@@ -98,9 +125,8 @@ body {
 	height: 50px;
 	font-size: 50px;
 	text-align: center;
-	margin-right: 200px;
 	border-radius: 25px;
-	padding: 0 0 90px 0;
+	padding: 0 0 90px 6px;
 }
 
 #addPlusBoard {
@@ -108,8 +134,7 @@ body {
 	height: 50px;
 	font-size: 50px;
 	text-align: center;
-	margin-right: 200px;
 	border-radius: 25px;
-	padding: 0 0 90px 0;
+	padding: 0 0 90px 6px;
 }
 

@@ -7,7 +7,7 @@
 	<select id="getTotalCount" resultType="java.lang.Long">
 		SELECT	COUNT(BOARDNUM)
 		FROM	TRAVEL
-		WHERE	BOARDNUM = ROOTBOARD
+		WHERE	PARENTBOARD IS NULL
 	</select>
 	
 	<select id="getList" resultType="TravelDTO" parameterType="Scroller">
