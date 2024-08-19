@@ -1,11 +1,17 @@
 package com.picmap.app.savepost;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.picmap.app.member.MemberDTO;
+import com.picmap.app.travel.TravelDTO;
+import com.picmap.app.util.Scroller;
 
 @Service
 public class SavePostService {
@@ -38,5 +44,13 @@ public class SavePostService {
 			return -1000; //session에 담긴 member키의 밸류값이 비어있으면(로그인 안했음)
 		}
 	}
-
+	public List<TravelDTO> savePostList(SavePostDTO SavePostDTO,Scroller scroller) throws Exception {
+		Map<String, Object> map =new HashMap<String, Object>();
+		map.put("memberDTO", SavePostDTO);
+		map.put("scroller", scroller);
+		return savePostDAO.savePostList(map);
+	}
+	
+	
+	
 }

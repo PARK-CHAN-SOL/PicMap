@@ -164,6 +164,70 @@
 	}
 	work();
 
+		/**
+   * MasonrySave
+   */
+		$('.grid__innerSave').masonry({
+			itemSelector: '.grid-itemSave',
+			columnWidth: '.grid-sizerSave'
+		});
+	
+		/**
+	   * grid css
+	   */
+	
+		function workSave() {
+			$('.grid-css').each(function () {
+				var workWrapper = $(this),
+						workContainer = $('.grid__innerSave', workWrapper),
+						filters = $('.filter', workWrapper),
+						filterCurrent = $('.current a', filters),
+						filterLiCurrent = $('.current', filters),
+						duration = 0.3;
+				workContainer.imagesLoaded(function () {
+	
+					// Fix Height
+					if (workWrapper.hasClass('grid-css--fixheight')) {
+						workContainer.find('.grid-item__content-wrapper').matchHeight();
+					}
+	
+					// 이거 지우니까 리스트가 잘 나옴
+					// 왜 잘 나오는지는 모름 ㅋ
+					// workContainer.isotope({
+					// 	layoutMode: 'masonry',
+					// 	itemSelector: '.grid-item',
+					// 	transitionDuration: duration + 's',
+					// 	masonry: {
+					// 		columnWidth: '.grid-sizer'
+					// 	}
+					// 	// hiddenStyle: {},
+					// 	// visibleStyle: {}
+					// });
+				});
+				filters.on('click', 'a', function (e) {
+					e.preventDefault();
+					var $el = $(this);
+					var selector = $el.attr('data-filter');
+					filters.find('.current').removeClass('current');
+					$el.parent().addClass('current');
+					workContainer.isotope({
+						filter: selector
+					});
+				});
+	
+				filters.find('.select-filter').change(function () {
+					var $el = $(this);
+					var selector = $el.val();
+					workContainer.isotope({
+						filter: selector
+					});
+				});
+	
+				$('.grid-itemSave', workWrapper).reCalWidth();
+			});
+		}
+		workSave();
+
 	/**
    * Swiper
    */

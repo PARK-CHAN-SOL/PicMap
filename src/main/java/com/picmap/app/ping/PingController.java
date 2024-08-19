@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.picmap.app.member.MemberDTO;
 import com.picmap.app.member.MemberService;
 import com.picmap.app.travel.TravelDTO;
+import com.picmap.app.util.Scroller;
 
 @Controller
 @RequestMapping("/ping/")
@@ -60,7 +61,10 @@ public class PingController {
 	@ResponseBody
 	public Map<String, Object> getMyPingList(MemberDTO memberDTO) throws Exception {
 		memberDTO = memberService.detail(memberDTO);
-		List<TravelDTO> list = memberService.getList(memberDTO);
+		Scroller scroller = new Scroller();
+		scroller.setStartRow(1L);
+		scroller.setEndRow(10L);
+		List<TravelDTO> list = memberService.getList(memberDTO,scroller);
 
 		return pingService.getMyPingList(list);
 	}

@@ -21,4 +21,30 @@
 		DELETE 	SAVEPOST
 		WHERE	SAVEPOSTNUM = #{savePostNum}
 	</delete>
+	<select id="savePostList" resultType="TravelDTO" parameterType="java.util.Map">
+SELECT 	*
+		FROM 	(
+			SELECT  ROWNUM R, SM.*,M2.MEMBERID, M2.MEMBERNICKNAME 
+			FROM 	(
+				SELECT T.*
+				FROM SAVEPOST S
+					 LEFT JOIN
+					 MEMBER M
+					 ON S.MEMBERNUM = M.MEMBERNUM
+					 LEFT JOIN
+					TRAVEL T
+					ON T.BOARDNUM = S.BOARDNUM
+				WHERE   S.MEMBERNUM=#{memberDTO.memberNum}
+				ORDER BY SAVEPOSTNUM DESC
+			)SM
+			LEFT JOIN
+			MEMBER M2
+			 ON SM.MEMBERNUM = M2.MEMBERNUM
+		)
+		WHERE R BETWEEN #{scroller.startRow} AND #{scroller.endRow} 
+	</select>
+	
+	
+	
+	
 </mapper>
