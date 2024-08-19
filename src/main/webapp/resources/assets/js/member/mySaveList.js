@@ -50,10 +50,10 @@ async function makeTravelListSave (url, formData) {
         });
         const boardDTOs = await response.json();
         
-        await boardDTOLoopSave(boardDTOs);
-        
         mypageObserverTargetSave.dataset.startRow = parseInt(mypageObserverTargetSave.dataset.startRow)+9; // startRow 값을 9 증가
         mypageObserverTargetSave.dataset.endRow = parseInt(mypageObserverTargetSave.dataset.endRow)+9; // endRow 값을 9 증가
+        await boardDTOLoopSave(boardDTOs);
+        
     } catch (error) {
         console.error('Error fetching data', error);
     }
@@ -101,14 +101,16 @@ async function getHeartCountSave(boardDTO) {
         }
 
         travel = travel +
-                                '<div class="box-image2__info">' + 
-                                    '<p class="box-image2__writer">' + boardDTO.memberNickname + '</p>' +
-                                    '<p class="box-image2__title">' + boardDTO.boardTitle + '</p>' +
-                                '</div>' +
-                                '<div class="box-image2__info_bot">'+
-                                    '<span class="box-image2__date">' + createDate + '</span>'+
-                                    '<span class="box-image2__like" data-board-num="' + boardDTO.boardNum + '">' + heartCount + '</span> '+
-                                '</div>'+
+                                '<a href="/travel/detail?boardNum=' + boardDTO.boardNum + '#boardStartLocation">' +
+                                    '<div class="box-image2__info">' + 
+                                        '<p class="box-image2__writer">' + boardDTO.memberNickname + '</p>' +
+                                        '<p class="box-image2__title">' + boardDTO.boardTitle + '</p>' +
+                                    '</div>' +
+                                    '<div class="box-image2__info_bot">'+
+                                        '<span class="box-image2__date">' + createDate + '</span>'+
+                                        '<span class="box-image2__like" data-board-num="' + boardDTO.boardNum + '">' + heartCount + '</span> '+
+                                    '</div>'+
+                                '</a>';
                             '</div>'+
                         '</div>'+
                     '</div>'+

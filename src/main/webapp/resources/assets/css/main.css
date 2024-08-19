@@ -907,6 +907,7 @@ ul {
     position: relative;
     overflow: hidden;
     max-width: 400px;
+    max-height: 500px;
     margin: auto;
 }
 
@@ -920,7 +921,7 @@ ul {
 
 .box-image2 :hover .box-image2__info {
     padding: 10px 30px;
-    top: 71%;
+    top: 65%;
 }
 
 .box-image2 :hover .box-image2__info_bot {
