@@ -177,17 +177,14 @@ by Awe7 (http://awe7.com/freebies)
 									</c:if>
 								</c:if>
 
-								<c:if
-									test="${sessionScope.member.memberNum eq member.memberNum}">
-									<li><a href="/travel/add"><button
-												class="btn btn-secondary fs-4">게시글 쓰기</button></a></li>
+								<c:if	test="${sessionScope.member.memberNum eq member.memberNum}">
+									<li><a href="/travel/add"><button class="btn btn-secondary fs-4">게시글 쓰기</button></a></li>
 
 									<li><a href="/member/delete"><button
 												class="btn btn-danger fs-4">탈퇴하기</button></a></li>
 									<!-- 조건에 맞지 않는 경우에만 버튼을 표시 -->
 									<c:choose>
-										<c:when
-											test="${ !sessionScope.member.memberId.matches('[0-9]*')}">
+										<c:when test="${ !sessionScope.member.memberId.matches('[0-9]*')}">
 											<li><a href="/member/update"><button
 														class="btn btn-secondary fs-4">프로필 편집</button></a></li>
 										</c:when>
@@ -207,12 +204,14 @@ by Awe7 (http://awe7.com/freebies)
             <span class="d-none d-md-block">내 게시글</span>
         </button>
     </li>
+    	<c:if	test="${sessionScope.member.memberNum eq member.memberNum}">
     <li class="nav-item" role="presentation">
         <button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-6" id="pills-friends-tab" data-bs-toggle="pill" data-bs-target="#pills-friends" type="button" role="tab" aria-controls="pills-friends" aria-selected="false" tabindex="-1">
             <i class="fa fa-users me-2 fs-6"></i>
             <span class="d-none d-md-block">저장한 글</span>
         </button>
     </li>
+    </c:if>
 </ul>
 
 <div class="tab-content" id="pills-tabContent">
