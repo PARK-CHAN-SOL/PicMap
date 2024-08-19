@@ -124,14 +124,21 @@ FROM
 WHERE R BETWEEN #{scroller.startRow} AND #{scroller.endRow}
 
 </select>
-<select id="getList" resultType="TravelDTO">
-		SELECT T.*, M.MEMBERID, M.MEMBERNICKNAME 
-		FROM TRAVEL T
-			 LEFT JOIN
-			 MEMBER M
-			 ON T.MEMBERNUM = M.MEMBERNUM
-			 WHERE M.MEMBERNUM=#{memberNum}
-		ORDER BY BOARDNUM DESC
+<select id="getList" resultType="TravelDTO" parameterType="java.util.Map">
+SELECT 	*
+		FROM 	(
+			SELECT  ROWNUM R, TM.*
+			FROM 	(
+				SELECT T.*, M.MEMBERID, M.MEMBERNICKNAME 
+				FROM TRAVEL T
+					 LEFT JOIN
+					 MEMBER M
+					 ON T.MEMBERNUM = M.MEMBERNUM
+				WHERE PARENTBOARD IS NULL AND  M.MEMBERNUM=#{memberDTO.memberNum}
+				ORDER BY BOARDNUM DESC
+			)TM
+		)
+		WHERE R BETWEEN #{scroller.startRow} AND #{scroller.endRow} 
 	</select>
 
 

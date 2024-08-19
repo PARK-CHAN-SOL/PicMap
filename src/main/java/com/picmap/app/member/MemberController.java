@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -102,13 +103,16 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	}
-
+	@PostMapping("list")
+	@ResponseBody
+	public List<TravelDTO> getList(MemberDTO memberDTO, Scroller scroller) throws Exception {
+		return memberService.getList(memberDTO, scroller);
+	}
 //마이페이지
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public void mypage(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
 		memberDTO = memberService.detail(memberDTO);
-		List<TravelDTO> list = memberService.getList(memberDTO);
-		model.addAttribute("list", list);
+	
 		Long following = memberService.countFromFollow(memberDTO);
 		Long follower = memberService.countToFollow(memberDTO);
 		model.addAttribute("member", memberDTO);

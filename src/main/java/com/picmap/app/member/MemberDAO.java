@@ -77,8 +77,8 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "toFollowList", map);
 	}	
 	//게시판(게시글 리스트)
-	public List<TravelDTO> getList(MemberDTO memberDTO) throws Exception {
+	public List<TravelDTO> getList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"getList",memberDTO);
+		return sqlSession.selectList(NAMESPACE+"getList",map);
 	}
 }

@@ -157,8 +157,11 @@ public class MemberService {
 		return memberDAO.toFollowList(map);
 	}
 	//게시판(게시글 리스트)
-	public List<TravelDTO> getList(MemberDTO memberDTO) throws Exception {
-		return memberDAO.getList(memberDTO);
+	public List<TravelDTO> getList(MemberDTO memberDTO,Scroller scroller) throws Exception {
+		Map<String, Object> map =new HashMap<String, Object>();
+		map.put("memberDTO", memberDTO);
+		map.put("scroller", scroller);
+		return memberDAO.getList(map);
 	}
 	
 }
