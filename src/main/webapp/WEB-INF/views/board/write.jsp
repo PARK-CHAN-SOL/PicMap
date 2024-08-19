@@ -122,7 +122,7 @@ by Awe7 (http://awe7.com/freebies)
                   <td colspan="2"><button id="modalButton" type="button" class="btn btn-secondary me-2 fs-4" data-bs-toggle="modal" data-bs-target="#mapModal">위치</button><span id="locSpan" class="fs-4"></span></td>
                 </tr>
                 <tr>
-                  <td colspan="2"><textarea class="form-control fs-4" id="editor" name="boardContents" style="height: 100px;">${dto.boardContents}</textarea></td>
+                  <td colspan="2"><textarea class="form-control fs-4" id="editor" name="boardContents" style="height: 410px;">${dto.boardContents}</textarea></td>
                 </tr>
               </tbody>
             </table>
@@ -178,7 +178,7 @@ by Awe7 (http://awe7.com/freebies)
 					{
 						placeholder : '게시글을 입력하세요',
 						tabsize : 3,
-						height : 200,
+						height : 415,
 						toolbar : [ [ 'style', [] ],
 								[ 'fontsize', [ 'fontsize' ] ],
 								[ 'font', [ 'bold', 'underline', 'clear' ] ],
