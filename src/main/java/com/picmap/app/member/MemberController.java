@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
 import com.picmap.app.follow.FollowDTO;
+import com.picmap.app.kakaomember.KakaoMemberDAO;
 import com.picmap.app.kakaomember.KakaoMemberDTO;
 import com.picmap.app.travel.TravelDTO;
 import com.picmap.app.util.Scroller;
@@ -46,6 +47,8 @@ public class MemberController {
 		return "/commons/result";
 	}
 
+	
+	
 //로그인
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public void login(Model model, @CookieValue(name = "remember ", required = false, defaultValue = "") String value)
@@ -114,7 +117,17 @@ public class MemberController {
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public void mypage(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
 		memberDTO = memberService.detail(memberDTO);
-	
+		 MemberDTO dto = (MemberDTO) session.getAttribute("member");
+
+
+	        // 회원의 게시글 수 가져오기
+	        Long postCount = memberService.getPostCountByMember(memberDTO);
+	        // 게시글 수를 모델에 담기
+	        model.addAttribute("postCount", postCount);
+	        // 회원의 게시글 수 가져오기
+	        Long savePostCount = memberService.getSavePostCountByMember(memberDTO);
+	        // 게시글 수를 모델에 담기
+	        model.addAttribute("savePostCount", savePostCount);
 		Long following = memberService.countFromFollow(memberDTO);
 		Long follower = memberService.countToFollow(memberDTO);
 		model.addAttribute("member", memberDTO);
@@ -151,20 +164,22 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public String delete(Model model, HttpSession httpSession) throws Exception {
-		MemberDTO dto = (MemberDTO) httpSession.getAttribute("member");
-		int num = memberService.delete(dto);
-		if (num > 0) {
-			model.addAttribute("result", "계정이 삭제되었습니다.");
-			model.addAttribute("url", "/");
-			httpSession.setAttribute("member", null);
-		} else {
-			model.addAttribute("result", "계정 삭제실패.");
-			model.addAttribute("url", "/");
-		}
-		return "/commons/message";
-	}
+
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    public String delete(Model model, HttpSession httpSession) throws Exception {
+        MemberDTO dto = (MemberDTO) httpSession.getAttribute("member");
+
+        // 회원 삭제 및 결과 메시지 처리
+        String resultMessage = memberService.deleteMember(dto, httpSession);
+        model.addAttribute("result", resultMessage);
+        model.addAttribute("url", "/");
+
+        if ("계정이 삭제되었습니다.".equals(resultMessage)) {
+            httpSession.setAttribute("member", null);
+        }
+
+        return "/commons/message";
+    }
 
 	@GetMapping("follow")
 	public String follow(FollowDTO followDTO, HttpSession session, Model model) throws Exception {
@@ -209,24 +224,6 @@ public class MemberController {
 		return memberService.countToFollow(memberDTO);
 	}
 
-	@RequestMapping(value = "kakaoDelete", method = RequestMethod.GET)
-	public String kakaoDelete(Model model, HttpSession httpSession) throws Exception {
-		MemberDTO dto = (MemberDTO) httpSession.getAttribute("member");
-	
-		int num = memberService.kakaoDelete(dto);
-		if (num > 0) {
-			model.addAttribute("result", "계정이 삭제되었습니다.");
-			model.addAttribute("url", "/");
-			httpSession.setAttribute("member", null);
-		} else {
-			model.addAttribute("result", "계정 삭제실패.");
-			model.addAttribute("url", "/");
-		}
-		return "/commons/message";
-	}
-
-	}
-	
-	
+}
 	
 

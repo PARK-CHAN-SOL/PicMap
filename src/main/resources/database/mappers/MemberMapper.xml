@@ -42,7 +42,7 @@
    
    <select id="login" parameterType="MemberDTO" resultType="MemberDTO">
    	
-   	SELECT MEMBERNUM,MEMBERID,MEMBERPASSWORD,MEMBERNAME 
+   	SELECT MEMBERNUM,MEMBERID,MEMBERPASSWORD,MEMBERNAME ,MEMBERNICKNAME
    	FROM MEMBER 
    		WHERE MEMBERID= #{memberId} 
    
@@ -106,7 +106,7 @@ FROM
 WHERE R BETWEEN #{scroller.startRow} AND #{scroller.endRow}
 	
 </select>
-		<select id="toFollowList" resultType="MemberDTO" parameterType="java.util.Map">
+		<select id="toFollowList" resultType="MemberDTO" parameterType="java.lang.Long">
 		
 			SELECT *
 FROM
@@ -149,5 +149,18 @@ SELECT 	*
 	</select>
 
 
-
+    <!-- 회원의 게시글 수를 가져오는 SQL 쿼리 -->
+    <select id="getPostCountByMember" parameterType="MemberDTO" resultType="java.lang.Long">
+    	
+	SELECT COUNT(BOARDNUM) 
+        FROM  TRAVEL
+        WHERE MEMBERNUM = #{memberNum}
+    </select> 
+    
+<select id="getSavePostCountByMember" parameterType="MemberDTO" resultType="java.lang.Long">
+        SELECT COUNT(SAVEPOSTNUM) 
+        FROM  SAVEPOST
+        WHERE MEMBERNUM = #{memberNum}
+    </select> 
+	
   </mapper>

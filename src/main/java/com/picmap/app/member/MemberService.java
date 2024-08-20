@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.picmap.app.board.BoardDTO;
 import com.picmap.app.files.FileManager;
 import com.picmap.app.follow.FollowDTO;
+import com.picmap.app.kakaomember.KakaoMemberService;
 import com.picmap.app.travel.TravelDTO;
 import com.picmap.app.util.Scroller;
 
@@ -108,15 +109,41 @@ public class MemberService {
 		return result;
 
 	}
+	
+
+    @Autowired
+    private KakaoMemberService kakaoMemberService;
+
+    public String deleteMember(MemberDTO memberDTO, HttpSession httpSession) throws Exception {
+        // 카카오 회원일 경우 세션 초기화
+        if (memberDTO.getMemberId().matches("\\d+")) {
+        	kakaoMemberService.kakaoLogout(httpSession);  // 카카오 로그아웃 및 세션 초기화
+        }
+
+        int num = delete(memberDTO);
+        if (num > 0) {
+            return "계정이 삭제되었습니다.";
+        } else {
+            return "계정 삭제 실패.";
+        }
+    }
 
 	public int delete(MemberDTO memberDTO) throws Exception {
-		 UUID landom = UUID.randomUUID();
-         String landomNum = landom.toString();
-         memberDTO.setMemberPassword(landomNum);
-         memberDTO.setMemberId(landomNum);
-         memberDTO.setMemberName(landomNum);
-   
-		return memberDAO.delete(memberDTO);
+	    // memberId가 모두 숫자로 이루어졌는지 확인
+	    if (memberDTO.getMemberId().matches("\\d+")) {
+	        // memberId가 숫자만으로 이루어진 경우 kakaoDelete 메서드 실행
+	        memberDAO.kakaoDelete(memberDTO);
+	    }
+	    
+	    // 랜덤 UUID 생성하여 멤버 정보 수정
+	    UUID random = UUID.randomUUID();
+	    String randomNum = random.toString();
+	    memberDTO.setMemberPassword(randomNum);
+	    memberDTO.setMemberId(randomNum);
+	    memberDTO.setMemberName(randomNum);
+
+	    // 기본 delete 메서드 실행
+	    return memberDAO.delete(memberDTO);
 	}
 	
 	
@@ -175,7 +202,13 @@ public class MemberService {
 		map.put("scroller", scroller);
 		return memberDAO.getList(map);
 	}
-	public int kakaoDelete(MemberDTO memberDTO) throws Exception {
-		return memberDAO.kakaoDelete(memberDTO);
+
+	public Long getPostCountByMember(MemberDTO memberDTO) throws Exception {
+		return memberDAO.getPostCountByMember(memberDTO);
 	}
+
+	public Long getSavePostCountByMember(MemberDTO memberDTO) throws Exception {
+		return memberDAO.getSavePostCountByMember(memberDTO);
+	}
+
 }

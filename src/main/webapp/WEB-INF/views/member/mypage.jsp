@@ -222,7 +222,7 @@ by Awe7 (http://awe7.com/freebies)
 					<div class="grid__inner">
 						<div class="grid-sizer"></div>
 					</div>
-						<div id="mypageObserverTarget" data-start-row="1" data-end-row="9" data-total-count="${15}"></div>
+						<div id="mypageObserverTarget" data-start-row="1" data-end-row="9" data-total-count="${postCount}"></div>
     </div>
 </div>
     <!-- 저장한 글 -->
@@ -232,7 +232,7 @@ by Awe7 (http://awe7.com/freebies)
 					<div class="grid__innerSave">
 						<div class="grid-sizerSave"></div>
 					</div>
-						<div id="mypageObserverTargetSave" data-start-row="1" data-end-row="9" data-total-count="${15}" style="display:none;"></div>
+						<div id="mypageObserverTargetSave" data-start-row="1" data-end-row="9" data-total-count="${savePostCount}" style="display:none;"></div>
     </div>
 </div>
 <script>
