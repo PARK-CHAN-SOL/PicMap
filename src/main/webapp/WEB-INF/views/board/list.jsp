@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -14,90 +13,73 @@ by Awe7 (http://awe7.com/freebies)
 </head>
 
 <body>
-	<div class="page-wrap" id="root">
+  <div class="page-wrap" id="root">
 
-		<c:import url="../template/header_nav.jsp"></c:import>
+    <c:import url="../template/header_nav.jsp"></c:import>
 
-		<!-- Content-->
-		<div class="md-content">
+    <!-- Content-->
+    <div class="md-content">
 
-			<!-- hero -->
-			<div class="hero" id="id-1">
-				<div class="hero__wrapper">
+      <!-- hero -->
+      <div class="hero" id="id-1">
+        <div class="hero__wrapper">
+          <div style="height: 400px;" class="bg-primary bg-gradient bg-opacity-25">
+            <div class="container-fluid col-8 justify-contents-center fs-4">
+            <table style="height: 300px;">
+              <tbody>
+                <tr>
+                  <td class="align-bottom"><h1 style="font-style: italic; font-weight: 900; font-size: 80px;">공지사항 📰📢</h1></td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="font-family: Spiegel, sans-serif; font-weight: 400; font-size: 18px; line-height: 26px;">여행과 관련된 모든 업데이트 소식을 한눈에</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End / hero -->
+      <div class="container-fluid col-8 justify-contents-center fs-4 mt-4">
+        <div>
+          <table class="table mt-4">
+            <thead>
+              <tr>
+                <th>글번호</th>
+                <th>글제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>수정일</th>
+                <th>조회수</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <c:forEach items="${list}" var="dto">
+                <tr>
+                  <td>${dto.boardNum}</td>
+                  <th><a href="./detail?boardNum=${dto.boardNum}" class="list-group-item list-group-item-action list-group-item-light" style="text-decoration: none; color: black;">${dto.boardTitle}</a></th>
+                  <td>${dto.memberNickname}</td>
+                  <td>${dto.createDate}</td>
+                  <td>${dto.updateDate}</td>
+                  <td>${dto.hit}</td>
+                </tr>
+              </c:forEach>
+            </tbody>
+          </table>
+        </div>
 
-					<!-- swiper__module swiper-container -->
-					<div
-						class="swiper__module swiper-container awe-skin-dark hero__main_slider"
-						data-options='{"spaceBetween":0}'>
-						<div class="swiper-wrapper">
-							<div class="hero__item"
-								style="background-image: url('/resources/assets/img/hero/1.jpg');">
-								<img src="/resources/assets/img/hero/1.jpg" alt="" />
-								<div class="hero__box_info">
-									<div class="container">
-										<h2 class="hero__title">지도</h2>
-										<p class="hero__info">
-											<span>3 Day 2 Night</span><span>Tokyo</span><span>709
-												Review</span>
-										</p>
-									</div>
-								</div>
-							</div>
-
-						</div>
-						<div class="swiper-button-custom">
-							<div class="swiper-button-prev-custom"></div>
-							<div class="swiper-button-next-custom"></div>
-						</div>
-					</div>
-					<!-- End / swiper__module swiper-container -->
-				</div>
-			</div>
-			<!-- End / hero -->
-            <div class="container-fluid col-6 justify-contents-center">
-			<h1>${board}게시판</h1>
-
-			<div style="margin-left: 50px;">
-				<table style="width: 800px;" class="table mt-4">
-					<thead>
-						<tr>
-							<th>글번호</th>
-							<th>글제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>수정일</th>
-							<th>조회수</th>
-						</tr>
-					</thead>
-					<tbody class="table-group-divider">
-						<c:forEach items="${list}" var="dto">
-							<tr>
-								<td>${dto.boardNum}</td>
-								<td>${dto.boardTitle}</td>
-								<td>${dto.memberNickname}</td>
-								<td>${dto.createDate}</td>
-								<td>${dto.updateDate}</td>
-								<td>${dto.hit}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-
-			<h5>
-				<a href="add">${board}게시글 작성</a>
-			</h5>
+        <div class="d-md-flex justify-content-md-end">
+          <a class="btn btn-secondary mb-3 fs-4" href="./add" role="button">게시글추가</a>
+        </div>
 
 
 
 
-
+        <!-- container end -->
+      </div>
+    </div>
+    <!-- End / Content-->
   </div>
-		</div>
-		<!-- End / Content-->
-	</div>
 
-	<c:import url="../template/footer.jsp"></c:import>
+  <c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>
 

@@ -37,34 +37,21 @@ by Awe7 (http://awe7.com/freebies)
       <div class="hero" id="id-1">
         <div class="hero__wrapper">
 
-          <!-- swiper__module swiper-container -->
-          <div class="swiper__module swiper-container awe-skin-dark hero__main_slider" data-options='{"spaceBetween":0}'>
-            <div class="swiper-wrapper">
-              <div class="hero__item" style="background-image: url('/resources/assets/img/hero/1.jpg');">
-                <img src="/resources/assets/img/hero/1.jpg" alt="" />
-                <div class="hero__box_info">
-                  <div class="container">
-                    <h2 class="hero__title">지도</h2>
-                    <p class="hero__info">
-                      <span>3 Day 2 Night</span><span>Tokyo</span><span>709 Review</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="swiper-button-custom">
-              <div class="swiper-button-prev-custom"></div>
-              <div class="swiper-button-next-custom"></div>
+          <div style="height: 400px;" class="bg-primary bg-gradient bg-opacity-25">
+            <div class="container-fluid col-8 justify-contents-center fs-4">
+              <table style="height: 300px;">
+                <tbody>
+                  <tr>
+                    <td class="align-bottom"><h1 style="font-style: italic; font-weight: 900; font-size: 80px;">공지사항 작성 📰📢</h1></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style="font-family: Spiegel, sans-serif; font-weight: 400; font-size: 18px; line-height: 26px;"> </div>
             </div>
           </div>
-          <!-- End / swiper__module swiper-container -->
         </div>
       </div>
       <!-- End / hero -->
-
-
-      <h5>${board}게시글write페이지</h5>
 
 
     </div>
@@ -104,34 +91,6 @@ by Awe7 (http://awe7.com/freebies)
     </div>
   </div>
   <div>
-    <!-- Modal -->
-    <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-
-            <div>
-              <div class="map_wrap">
-                <div id="map" style="width: 100%; height: 100%;"></div>
-                <div class="hAddr">
-                  <span id="centerAddr"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer text-end">
-            <div>
-              <input type="text" id="searchPing">
-              <button type="button" class="btn btn-primary mt-3" id="searchButton">검색</button>
-              <button type="button" class="btn btn-primary mt-3" id="mapButton" data-bs-dismiss="modal">등록</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <c:import url="../template/footer.jsp"></c:import>
@@ -143,7 +102,7 @@ by Awe7 (http://awe7.com/freebies)
 					{
 						placeholder : '게시글을 입력하세요',
 						tabsize : 3,
-						height : 415,
+						height : 200,
 						toolbar : [ [ 'style', [] ],
 								[ 'fontsize', [ 'fontsize' ] ],
 								[ 'font', [ 'bold', 'underline', 'clear' ] ],
