@@ -146,10 +146,12 @@ public class TravelController {
 	@PostMapping("delete")
 	public String delete(TravelDTO travelDTO) throws Exception {
 		TravelDTO travelDetail = travelService.detail(travelDTO);
-		if(travelDetail.getBoardNum() != travelDetail.getRootBoard() ) { //자식글이라면 그 글만 삭제		
+		System.out.println(travelDetail.getBoardNum());
+		System.out.println(travelDetail.getRootBoard());
+		if(!travelDetail.getBoardNum().equals(travelDetail.getRootBoard()) ) { //자식글이라면 그 글만 삭제		
 			int result = travelService.delete(travelDetail);
 		}else { //최상위 부모글이라면 그 아래로 싹 다 삭제
-			int result = travelService.deleteAll(travelDTO);
+			int result = travelService.deleteAll(travelDetail);
 		}
 
 		

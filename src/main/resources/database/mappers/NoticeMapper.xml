@@ -11,13 +11,17 @@
 	<select id="getList" resultType="NoticeDTO">
 		SELECT N.*, M.MEMBERID, M.MEMBERNICKNAME 
 		FROM NOTICE N
-			 RIGHT JOIN
+			 LEFT JOIN
 			 MEMBER M
 			 ON N.MEMBERNUM = M.MEMBERNUM
 		ORDER BY BOARDNUM DESC
 	</select>
 	
-
+	<insert id="add" parameterType="BoardDTO">
+  		INSERT INTO NOTICE
+  		VALUES
+  		(BOARDNUM_SEQ.NEXTVAL, #{memberNum}, #{boardTitle}, #{boardContent}, SYSDATE, SYSDATE, 0, #{fileName, jdbcType=VARCHAR})
+	</insert>
 
 
 
