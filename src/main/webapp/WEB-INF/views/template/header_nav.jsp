@@ -41,19 +41,21 @@
 			</div>
 			<div class="header__hotline_book_wrap">
 				<div class="header__lang">
+
+			<div class="header__booking">
 					<c:if test="${empty sessionScope.member}">
 						<p>로그인을 해주세요</p>
 					</c:if>
 				<c:if test="${not empty sessionScope.member}">
     <ul>
         <li>
-            <a href="/member/mypage?memberNum=${sessionScope.member.memberNum}" style="color: white; text-decoration: none; display: flex; align-items: center; margin-left: +0px;">
+            <a href="/member/mypage?memberNum=${sessionScope.member.memberNum}" style="color: white; text-decoration: none; display: flex; align-items: center; margin-left: +0px;" class="me-4">
                 <span style="margin-right: 10px;">${sessionScope.member.memberName}님</span>
                 <c:if test="${not empty member.profilePath}">
-                    <img id="profileImage" src="${member.profilePath}" onerror="this.src='/resources/upload/members/default.png'" alt="" style="width: 30px; height: 30px;">
+                    <img id="profileImage" src="${member.profilePath}" onerror="this.src='/resources/upload/members/default.png'" alt="" style="max-width: 96px; height: 48px;" class="border border-2 border-white rounded-circle">
                 </c:if>
                 <c:if test="${empty member.profilePath}">
-                    <img id="profileImage" src="/resources/upload/members/default.png" alt="" style="width: 30px; height: 30px;">
+                    <img id="profileImage" src="/resources/upload/members/default.png" alt="" style="max-width: 96px; height: 48px;" class="border border-2 border-white rounded-circle">
                 </c:if>
             </a>
         </li>
@@ -61,8 +63,6 @@
 </c:if>
 				</div>
 			</div>
-
-			<div class="header__booking">
 				<c:if test="${empty sessionScope.member}">
 					<button type="button" class="md-btn md-btn--primary md-btn--pill "
 						data-bs-toggle="modal" data-bs-target="#exampleModal">로그인</button>
