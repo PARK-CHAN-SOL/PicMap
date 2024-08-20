@@ -21,12 +21,18 @@ public class TravelDAO {
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount");
 	}
 	
+
+	//베스트 게시글
+	public List<TravelDTO> bestList() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"bestList");
+	}
+	
+	
 	//게시판(게시글 리스트)
 	public List<BoardDTO> getList(Scroller scroller) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"getList", scroller);
 	}
-	
 	
 	
 	//게시글 디테일

@@ -976,6 +976,20 @@ ul {
     font-weight: 300;
 }
 
+.box-image2__info_mid {
+    position: absolute;
+    bottom: 100px;
+    right: 20px;
+    transition: all .5s ease-in-out;
+}
+
+.box-image2__child {
+    color: #fff;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 300;
+}
+
 .box-image2__info_bot {
     position: absolute;
     padding: 30px;
