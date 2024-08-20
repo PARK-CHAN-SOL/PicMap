@@ -16,6 +16,11 @@
   	VALUES (KAKAOMEMBER_SEQ.NEXTVAL, #{memberId}, #{memberNum})
   </insert>
   
+  <delete id="kakaoDelete" parameterType="MemberDTO">
+  	DELETE KAKAOMEMBER WHERE MEMBERNUM=#{memberNum}
+  </delete>
+  
+  
   <select id="idCheck" parameterType="MemberDTO" resultType="java.lang.Integer">
   		SELECT	COUNT(MEMBERID)
   		FROM	MEMBER
@@ -56,9 +61,11 @@
 		WHERE MEMBERNUM = #{memberNum} 
 </select>
 		
- 	<delete id="delete" parameterType="MemberDTO">
-		DELETE MEMBER 	WHERE MEMBERNUM = #{memberNum} 
-	</delete> 
+ 	<update id="delete" parameterType="MemberDTO">
+UPDATE MEMBER SET  MEMBERNICKNAME ='탈퇴한 회원', MEMBEREMAIL =NULL, MEMBERPHONE =NULL,PROFILEPATH =NULL, 
+MEMBERBIRTH ='1900/01/01',MEMBERID =#{memberId},MEMBERNAME =#{memberName},MEMBERPASSWORD =#{memberPassword}
+WHERE MEMBERNUM = #{memberNum}
+	</update> 
 	
 	<insert id="follow" parameterType="FollowDTO"	>
 		INSERT INTO FOLLOW

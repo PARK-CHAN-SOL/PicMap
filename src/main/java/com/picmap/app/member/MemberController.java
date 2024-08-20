@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -206,7 +207,22 @@ public class MemberController {
 	public Long toFollow (MemberDTO memberDTO) throws Exception {
 		return memberService.countToFollow(memberDTO);
 	}
-	
+
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String kakaoDelete(Model model, HttpSession httpSession) throws Exception {
+		MemberDTO dto = (MemberDTO) httpSession.getAttribute("member");
+		int num = memberService.kakaoDelete(dto);
+		if (num > 0) {
+			model.addAttribute("result", "계정이 삭제되었습니다.");
+			model.addAttribute("url", "/");
+			httpSession.setAttribute("member", null);
+		} else {
+			model.addAttribute("result", "계정 삭제실패.");
+			model.addAttribute("url", "/");
+		}
+		return "/commons/message";
+	}
+
 	}
 	
 	

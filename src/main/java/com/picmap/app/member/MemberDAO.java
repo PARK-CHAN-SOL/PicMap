@@ -52,7 +52,7 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	}
 
 	public int delete(MemberDTO memberDTO) throws Exception {
-		return sqlSession.delete(NAMESPACE + "delete", memberDTO);
+		return sqlSession.update(NAMESPACE + "delete", memberDTO);
 	}
 	
 	public int follow(FollowDTO followDTO)throws Exception {
@@ -81,4 +81,9 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"getList",map);
 	}
+	public int kakaoDelete(MemberDTO memberDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "kakaoDelete", memberDTO);
+	}
+
+
 }

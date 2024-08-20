@@ -1,10 +1,13 @@
 package com.picmap.app.member;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,8 +110,17 @@ public class MemberService {
 	}
 
 	public int delete(MemberDTO memberDTO) throws Exception {
+		 UUID landom = UUID.randomUUID();
+         String landomNum = landom.toString();
+         memberDTO.setMemberPassword(landomNum);
+         memberDTO.setMemberId(landomNum);
+         memberDTO.setMemberName(landomNum);
+   
 		return memberDAO.delete(memberDTO);
 	}
+	
+	
+	
 
 	public int follow(FollowDTO followDTO, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
@@ -163,5 +175,7 @@ public class MemberService {
 		map.put("scroller", scroller);
 		return memberDAO.getList(map);
 	}
-	
+	public int kakaoDelete(MemberDTO memberDTO) throws Exception {
+		return memberDAO.kakaoDelete(memberDTO);
+	}
 }

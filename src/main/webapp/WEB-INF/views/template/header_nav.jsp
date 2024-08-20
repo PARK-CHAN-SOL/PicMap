@@ -8,7 +8,7 @@
 		<div class="header__inner">
 			<div class="header__logo_menu_wrap">
 				<div class="header__logo">
-					<a href="/"><img src="/resources/assets/img/logopm1.png"
+					<a href="/"><img src="/resources/assets/img/bg/logopmSize.png"
 						alt="" /></a>
 				</div>
 				<div class="header__menu">
@@ -99,7 +99,7 @@
               </div>
   
               <div class="find_password my-div1 fs-5">
-                  <a href="/forgot-password">아이디 또는 비밀번호를 잊으셨나요?</a>
+                  <a href="/member/forgot-password">아이디 또는 비밀번호를 잊으셨나요?</a>
               </div>
   
               <div class="login_api my-div">
