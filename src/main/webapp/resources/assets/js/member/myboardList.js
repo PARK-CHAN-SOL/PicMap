@@ -6,9 +6,7 @@ const travelObserver = new IntersectionObserver((items)=>{ // IntersectionObserv
         if(mypageObserverTarget.dataset.startRow <= mypageObserverTarget.dataset.totalCount){ // startRow가 travelTotalCount보다 작거나 같을 때만 실행
             const formData = new FormData(); // 폼 데이터를 생성
             formData.append("startRow", mypageObserverTarget.dataset.startRow); // 폼 데이터에 시작 행 번호 추가
-            console.log(mypageObserverTarget.dataset.startRow);
             formData.append("endRow", mypageObserverTarget.dataset.endRow); // 폼 데이터에 끝 행 번호 추가
-            console.log(mypageObserverTarget.dataset.endRow);
             const url = '/member/list'; // 게시글 목록을 가져올 URL
             formData.append("memberNum",followerDiv.dataset.toFollow);
             await makeTravelList(url, formData);
@@ -99,7 +97,6 @@ async function getHeartCount(boardDTO) {
         $('.grid__inner').masonry('addItems', gridItemDiv); // 게시글 리스트 형태 재정렬
         $('.grid__inner').masonry('layout');
 
-        console.log(boardDTO.boardNum);
     } catch (error) {
         console.error('Error fetching heartCount', error);
     }

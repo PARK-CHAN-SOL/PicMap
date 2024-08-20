@@ -11,8 +11,6 @@ const followerList = document.getElementById("followerList"); // 팔로잉 모�
 const totalFollower = document.getElementById("follower").innerText;
 const totalFollowing = document.getElementById("following").innerText;
 
-console.log(totalFollower);
-
 // 피감시자 선언 (모달창 내부에 내용 없는 div로서 존재)
 const followerObserverTarget = document.getElementById("followerObserverTarget");
 const followingObserverTarget = document.getElementById("followingObserverTarget");

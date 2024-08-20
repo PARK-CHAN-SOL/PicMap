@@ -22,6 +22,11 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption);
 
+// 지도가 확대 또는 축소되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+kakao.maps.event.addListener(map, 'zoom_changed', function() {        
+    if(map.getLevel() == 14) map.setLevel(13);
+});
+
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(); 
 

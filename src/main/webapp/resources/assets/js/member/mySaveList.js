@@ -30,9 +30,7 @@ const travelObserverSave = new IntersectionObserver((items)=>{ // IntersectionOb
         if(mypageObserverTargetSave.dataset.startRow <= mypageObserverTargetSave.dataset.totalCount){ // startRow가 travelTotalCount보다 작거나 같을 때만 실행
             const formData = new FormData(); // 폼 데이터를 생성
             formData.append("startRow", mypageObserverTargetSave.dataset.startRow); // 폼 데이터에 시작 행 번호 추가
-            console.log(mypageObserverTargetSave.dataset.startRow);
             formData.append("endRow", mypageObserverTargetSave.dataset.endRow); // 폼 데이터에 끝 행 번호 추가
-            console.log(mypageObserverTargetSave.dataset.endRow);
             const url = '/savepost/list'; // 게시글 목록을 가져올 URL
             formData.append("memberNum",followerDiv.dataset.toFollow);
             await makeTravelListSave(url, formData);
@@ -123,7 +121,6 @@ async function getHeartCountSave(boardDTO) {
         $('.grid__innerSave').masonry('addItems', gridItemDiv); // 게시글 리스트 형태 재정렬
         $('.grid__innerSave').masonry('layout');
 
-        console.log(boardDTO.boardNum);
     } catch (error) {
         console.error('Error fetching heartCount', error);
     }

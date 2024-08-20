@@ -1,16 +1,10 @@
-/**
- * 
- */
-
 //모달 close 버튼에 뒷 배경 삭제하는 이벤트 리스너 생성
-const btnClose = document.getElementsByClassName("btn-close");
+const btnClose = document.getElementsByClassName("btn-close"); 
 
 const modalBackdrop = document.getElementsByClassName("modal-backdrop fade show");
 
 for(let btn of btnClose){
     btn.addEventListener("click", ()=>{
-        console.log('me');
-        console.log(modalBackdrop);
         for(let child of modalBackdrop){
             child.remove();
         }
@@ -80,7 +74,6 @@ btn.addEventListener("click", function () {
 
     memberId.addEventListener("change", function () {
         var regId = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d]{8,16}$/;
-        console.log(memberId.value);
         //1. 아이디 체크
         if(!regId.test(frm.memberId.value)){
             alert("아이디: 8-16자 소문자+숫자로 작성하세요.");

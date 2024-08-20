@@ -93,10 +93,6 @@ function displayPlaces(places) {
                 marker.setMap(null);
 
                 mapModalCloseBtn.click(); // 모달창 닫기
-                // console.log(marker.getPosition())
-                // console.log(marker.getPosition().getLat())
-                // console.log(marker.getPosition().getLng())
-                // console.log(title);
             });
             itemEl.onclick = function () {
                 lat.value = keywordMarker.getPosition().getLat();

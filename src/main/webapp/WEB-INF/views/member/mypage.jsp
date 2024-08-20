@@ -258,7 +258,6 @@ by Awe7 (http://awe7.com/freebies)
 		
 <script type="text/javascript" src="/resources/assets/js/member/myboardList.js"></script>
 		<script type="text/javascript" src="/resources/assets/js/member/mySaveList.js"></script>
-	<script type="text/javascript" src="/resources/assets/js/member/memberJoinCheck.js"></script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
 	<script src="/resources/assets/js/ping/mypagePingList.js"></script>
