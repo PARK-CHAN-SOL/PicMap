@@ -27,4 +27,26 @@
 		FROM	HEART
 		WHERE	BOARDNUM = #{boardNum}
 	</select>
+	
+	<select id="noticeHeartCheck" parameterType="HeartDTO" resultType="java.lang.Long">
+		SELECT	HEARTNUM
+		FROM	NOTICEHEART
+		WHERE	BOARDNUM = #{boardNum} AND MEMBERNUM = #{memberNum}
+	</select>
+	
+	<insert id="noticeHeartUp" parameterType="HeartDTO">
+		INSERT	INTO NOTICEHEART
+		VALUES 	(HEART_SEQ.NEXTVAL, #{boardNum}, #{memberNum})
+	</insert>
+	
+	<delete id="noticeHeartDown" parameterType="HeartDTO">
+		DELETE 	NOTICEHEART
+		WHERE	HEARTNUM = #{heartNum}
+	</delete>
+	
+	<select id="noticeHeartCount" parameterType="HeartDTO" resultType="java.lang.Long">
+		SELECT	COUNT(HEARTNUM)
+		FROM	NOTICEHEART
+		WHERE	BOARDNUM = #{boardNum}
+	</select>
 </mapper>

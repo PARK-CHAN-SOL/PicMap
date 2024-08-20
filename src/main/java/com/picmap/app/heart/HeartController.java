@@ -31,4 +31,22 @@ public class HeartController {
 	public Long heartCount(HeartDTO heartDTO) throws Exception {
 		return heartService.heartCount(heartDTO);
 	}
+	
+	@GetMapping("noticeClick")
+	@ResponseBody
+	public Integer noticeHeartClick(HeartDTO heartDTO, HttpSession session) throws Exception {
+		return heartService.noticeHeartClick(heartDTO, session);
+	}
+
+	@GetMapping("noticeCheck")
+	@ResponseBody
+	public Integer noticeHeartCheck(HeartDTO heartDTO, HttpSession session) throws Exception {
+		return heartService.noticeHeartCheck(heartDTO, session);
+	}
+	
+	@GetMapping("noticeCount")
+	@ResponseBody
+	public Long noticeHeartCount(HeartDTO heartDTO) throws Exception {
+		return heartService.noticeHeartCount(heartDTO);
+	}
 }

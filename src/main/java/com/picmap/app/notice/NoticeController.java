@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
+import com.picmap.app.heart.HeartDTO;
+import com.picmap.app.heart.HeartService;
 import com.picmap.app.member.MemberDTO;
 
 @Controller
@@ -22,6 +24,9 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService noticeService;
+	
+	@Autowired
+	private HeartService heartService;
 	
 	@ModelAttribute("board")
 	public String getBoard() {
@@ -71,9 +76,15 @@ public class NoticeController {
 	}
 	
 	@GetMapping("detail")
-	public void getDetail(NoticeDTO noticeDTO, Model model) throws Exception {
+	public String getDetail(NoticeDTO noticeDTO, Model model) throws Exception {
 		noticeDTO = noticeService.getDetail(noticeDTO);
 		model.addAttribute("dto", noticeDTO);
+		//좋아요
+		HeartDTO heartDTO = new HeartDTO();
+		heartDTO.setBoardNum(noticeDTO.getBoardNum());
+		Long heartCount = heartService.noticeHeartCount(heartDTO);
+		model.addAttribute("heart", heartCount);
+		return "/board/detail";
 	}
 	
 	

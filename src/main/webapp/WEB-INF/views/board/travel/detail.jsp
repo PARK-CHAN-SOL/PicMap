@@ -60,37 +60,39 @@ by Awe7 (http://awe7.com/freebies)
 			<!-- 메인 -->
 			<section class="awe-section">
 				<div class="container">
-					<div class="row mainContent">
+					<div class="row mainContent justify-content-center" style="position: relative;">
 
-						<!-- 게시글 제목 -->
-						<div class="col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1 ">
-							<!-- title -->
-							<div class="boardTitle">
-								<h2 class="boardTitle__title">${dto.boardTitle}</h2>
-							</div>
-							<!-- End / title -->
-						</div>
+						<!-- 블러 처리된 배경을 위한 div -->
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;
+                        background-image: url(${empty dto.fileName? ('/resources/upload/travels/default.png') : ('/resources/upload/travels/'+= '' += dto.fileName)});
+                        background-size: 500px 500px; background-position: top; background-repeat: repeat-x;
+                        filter: blur(32px);">
+            </div>
+            <!-- 게시글 제목 -->
+            <div class="col-md-10 col-lg-10">
+              <!-- 게시한 사진 -->
+              <div class="picture">
+                <c:if test="${empty dto.fileName}">
+                  <img src="/resources/upload/travels/default.png" style="position: relative;" alt="" class="img-fluid" />
+                </c:if>
+                <c:if test="${not empty dto.fileName}">
+                  <img src="/resources/upload/travels/${dto.fileName}" style="position: relative;" alt="" class="img-fluid" />
+                </c:if>
+              </div>
+              <br>
+              <br>
+              <!-- title -->
+              <div class="boardTitle">
+                <h2 class="boardTitle__title">${dto.boardTitle}</h2>
+              </div>
+              <!-- End / title -->
+            </div>
 
 						<!-- 게시글 전체 내용 -->
 						<div class="col-md-12 col-lg-12">
 							<div class="boardContent">
-								<!-- 게시한 사진 -->
-								<div class="picture">
-									<c:if test="${empty dto.fileName}">
-										<img src="/resources/upload/travels/default.png" alt=""
-											class="img-fluid" />
-									</c:if>
-									<c:if test="${not empty dto.fileName}">
-										<img src="/resources/upload/travels/${dto.fileName}" alt=""
-											class="img-fluid" />
-									</c:if>
-								</div>
 								
-								
-								
-								
-								
-								
+
 								
 								
 								<!-- 여기에 추천 관광지 넣으시면 됩니다 -->
