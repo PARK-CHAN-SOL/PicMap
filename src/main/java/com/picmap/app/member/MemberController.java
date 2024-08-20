@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
 import com.picmap.app.follow.FollowDTO;
+import com.picmap.app.kakaomember.KakaoMemberDTO;
 import com.picmap.app.travel.TravelDTO;
 import com.picmap.app.util.Scroller;
 
@@ -208,9 +209,10 @@ public class MemberController {
 		return memberService.countToFollow(memberDTO);
 	}
 
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "kakaoDelete", method = RequestMethod.GET)
 	public String kakaoDelete(Model model, HttpSession httpSession) throws Exception {
 		MemberDTO dto = (MemberDTO) httpSession.getAttribute("member");
+	
 		int num = memberService.kakaoDelete(dto);
 		if (num > 0) {
 			model.addAttribute("result", "계정이 삭제되었습니다.");
