@@ -34,8 +34,7 @@ public class NoticeDAO implements BoardDAO{
 	//게시글 작성
 	@Override
 	public int add(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(NAMESPACE+"add", boardDTO);
 	}
 
 	@Override

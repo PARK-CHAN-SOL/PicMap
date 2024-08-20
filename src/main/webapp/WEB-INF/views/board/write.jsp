@@ -67,35 +67,6 @@ by Awe7 (http://awe7.com/freebies)
       <h5>${board}게시글write페이지</h5>
 
 
-      <%-- 			<div>
-				<form method="post">
-					<div>
-						<table>
-							<thead>
-								<input type="text" value="${memberNum}" id="" name="" hidden>
-								<tr>
-									<th>제목</th>
-									<th><input type="text" id="boardTitle" name="boardTitle" value="${dto.boardTitle}"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><textarea id="boardContent" name="boardContent">${dto.boardContent}</textarea></td>
-								</tr>
-							</tbody>
-						</table>
-						<button type="submit">작성</button>
-					</div>
-				</form>
-			</div> --%>
-
-
-
-
-
-
-
-
     </div>
     <!-- End / Content-->
 
@@ -118,11 +89,9 @@ by Awe7 (http://awe7.com/freebies)
                   <th rowspan="3"><span class="fs-4">내용</span></th>
                   <th colspan="2"><input type="file" class="form-control fs-4" id="travelFiles" name="files" onchange="readURL(this)" style="display:none;"style="display:none;"> <label for="travelFiles" class="fs-4 btn btn-secondary">게시글 사진을 추가하세요</label> <img id="travelPreview" class="mt-3" style="width: 100%; height: 100%; object-fit: cover;" /></th>
                 </tr>
+
                 <tr>
-                  <td colspan="2"><button id="modalButton" type="button" class="btn btn-secondary me-2 fs-4" data-bs-toggle="modal" data-bs-target="#mapModal">위치</button><span id="locSpan" class="fs-4"></span></td>
-                </tr>
-                <tr>
-                  <td colspan="2"><textarea class="form-control fs-4" id="editor" name="boardContents" style="height: 410px;">${dto.boardContents}</textarea></td>
+                  <td colspan="2"><textarea class="form-control fs-4" id="editor" name="boardContent" style="height: 410px;">${dto.boardContent}</textarea></td>
                 </tr>
               </tbody>
             </table>
@@ -164,11 +133,7 @@ by Awe7 (http://awe7.com/freebies)
       </div>
     </div>
   </div>
-  <form action="/ping/addPing" method="post" id="pingFrm">
-    <div>
-      <input type="hidden" id="loc" name="address"> <input type="hidden" id="lat" name="latitude"> <input type="hidden" id="lon" name="longitude">
-    </div>
-  </form>
+
   <c:import url="../template/footer.jsp"></c:import>
   <script type="text/javascript" src="/resources/assets/js/board/boardImage.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
@@ -200,9 +165,6 @@ by Awe7 (http://awe7.com/freebies)
 		</script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> 
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
-  <script src="/resources/assets/js/ping/ping.js"></script>
-  <script src="/resources/assets/js/ping/pingList.js"></script>
-  <script src="/resources/assets/js/ping/modal.js"></script>
 </body>
 </html>
 

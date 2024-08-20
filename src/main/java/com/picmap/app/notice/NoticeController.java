@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.picmap.app.board.BoardDTO;
 import com.picmap.app.member.MemberDTO;
@@ -48,10 +49,13 @@ public class NoticeController {
 		
 	}
 	@PostMapping("add")
-	public void add(NoticeDTO noticeDTO, HttpSession session) throws Exception {
+	public String add(NoticeDTO noticeDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		noticeDTO.setMemberNum(memberDTO.getMemberNum());
 		
+		int result = noticeService.add(noticeDTO, files, session);
+		
+		return "redirect:./list";
 	}
 	
 	
