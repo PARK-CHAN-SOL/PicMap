@@ -101,7 +101,6 @@
 		WHERE BOARDNUM=#{parentBoard}
 	</update>
 	
-	
 	<delete id="deleteAll" parameterType="TravelDTO">
 		DELETE TRAVEL
 		WHERE ROOTBOARD = #{rootBoard}
