@@ -54,33 +54,6 @@ by Awe7 (http://awe7.com/freebies)
       <!-- End / hero -->
 
 
-      <%-- 			<div>
-				<form method="post">
-					<div>
-						<table>
-							<thead>
-								<input type="text" value="${memberNum}" id="" name="" hidden>
-								<tr>
-									<th>제목</th>
-									<th><input type="text" id="boardTitle" name="boardTitle" value="${dto.boardTitle}"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><textarea id="boardContent" name="boardContent">${dto.boardContent}</textarea></td>
-								</tr>
-							</tbody>
-						</table>
-						<button type="submit">작성</button>
-					</div>
-				</form>
-			</div> --%>
-
-
-
-
-
-
 
 
     </div>
@@ -103,11 +76,22 @@ by Awe7 (http://awe7.com/freebies)
                 </tr>
                 <tr>
                   <th rowspan="3"><span class="fs-4">내용</span></th>
-                  <th colspan="2"><input type="file" class="form-control fs-4" id="travelFiles" name="files" onchange="readURL(this)" style="display: none;" style="display:none;"> <label for="travelFiles" class="fs-4 btn btn-secondary">게시글 사진을 추가하세요</label> <img id="travelPreview" class="mt-3" style="width: 100%; height: 100%; object-fit: cover;" /></th>
+                  <th colspan="2">
+                  	<input type="file" class="form-control fs-4" id="travelFiles" name="files" onchange="readURL(this)" style="display: none;" style="display:none;">
+                  	<label for="travelFiles" class="fs-4 btn btn-secondary">게시글 사진을 추가하세요</label>
+                  	<c:choose>
+                  		<c:when test="${dto.fileName != null}">
+		                  	<img id="travelPreview" class="mt-3" style="width: 100%; height: 100%; object-fit: cover;" src="/resources/upload/travels/${dto.fileName}"/>
+                  		</c:when>
+                  		<c:otherwise>
+                  			<img id="travelPreview" class="mt-3" style="width: 100%; height: 100%; object-fit: cover;"/>
+                  		</c:otherwise>
+                  	</c:choose>
+                  </th>
                 </tr>
                 <tr>
                   <td colspan="2"><button id="modalButton" type="button" class="btn btn-secondary me-2 fs-4" data-bs-toggle="modal" data-bs-target="#mapModal">위치</button>
-                    <span id="locSpan" class="fs-4"></span></td>
+                    <span id="locSpan" class="fs-4">${pingDTO.address}</span></td>
                 </tr>
                 <tr>
                   <td colspan="2"><textarea class="form-control fs-4" id="editor" name="boardContent" style="height: 100px;">${dto.boardContent}</textarea></td>
@@ -115,7 +99,7 @@ by Awe7 (http://awe7.com/freebies)
               </tbody>
             </table>
             <div id="pingFrm">
-              <input type="hidden" id="loc" name="address"> <input type="hidden" id="lat" name="latitude"> <input type="hidden" id="lon" name="longitude">
+              <input type="hidden" id="loc" name="address" value="${pingDTO.address}"> <input type="hidden" id="lat" name="latitude" value="${pingDTO.latitude}"> <input type="hidden" id="lon" name="longitude" value="${pingDTO.address}">
             </div>
             <div>
               <input type="hidden" name="rootBoard" value="${dto.rootBoard}"> <input type="hidden" name="parentBoard" value="${dto.parentBoard}"> <input type="hidden" name="childBoard" value="${dto.childBoard}">

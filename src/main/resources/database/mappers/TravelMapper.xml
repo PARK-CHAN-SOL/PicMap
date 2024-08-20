@@ -24,7 +24,7 @@
 		    	LEFT JOIN
 		    	MEMBER M
 		    	ON T.MEMBERNUM = M.MEMBERNUM
-		    ORDER BY H.HEARTCOUNT DESC
+		    ORDER BY H.HEARTCOUNT DESC, T.HIT DESC
 		)
 		WHERE ROWNUM <= 6
 		]]>
@@ -75,12 +75,14 @@
 		WHERE BOARDNUM=#{boardNum}
 	</select>
 
+
 	<update id="hit" parameterType="TravelDTO">
 		UPDATE TRAVEL
 		SET HIT = HIT + 1
 		WHERE BOARDNUM = #{boardNum}
 	</update>
-	
+
+
 	<delete id="delete" parameterType="TravelDTO">
 		DELETE TRAVEL
 		WHERE BOARDNUM = #{boardNum}
@@ -100,11 +102,76 @@
 		SET CHILDBOARD=NULL
 		WHERE BOARDNUM=#{parentBoard}
 	</update>
+	<delete id="deletePing" parameterType="TravelDTO">
+		DELETE PING
+		WHERE PINGNUM = #{pingNum}
+	</delete>
+	<select id="getCommentNum" resultType="CommentsDTO" parameterType="TravelDTO">
+    	SELECT COMMENTNUM
+    	FROM COMMENTS
+    	WHERE BOARDNUM = ${boardNum}
+	</select>
+	
+
+	<delete id="deleteHeart" parameterType="TravelDTO">
+		DELETE HEART
+		WHERE BOARDNUM = #{boardNum}
+	</delete>
+	<delete id="deleteSavePost" parameterType="TravelDTO">
+		DELETE SAVEPOST
+		WHERE BOARDNUM = #{boardNum}
+	</delete>
+	
+	
+	<select id="getCommentNums" resultType="CommentsDTO" parameterType="java.util.List">
+    	SELECT COMMENTNUM
+    	FROM COMMENTS
+    	WHERE BOARDNUM IN
+    	<foreach collection="list" item="item" open="(" separator="," close=")">
+	        #{item.boardNum}
+	    </foreach>
+	</select>
+	<delete id="deleteHeartComments" parameterType="java.util.List">
+		DELETE HEARTCOMMENTS
+		WHERE COMMENTNUM IN
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+	        #{item.commentNum}
+	    </foreach>
+	</delete>
+	<delete id="deleteReply" parameterType="java.util.List">
+		DELETE REPLY
+		WHERE COMMENTNUM IN
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+	        #{item.commentNum}
+	    </foreach>
+	</delete>
+	<delete id="deleteComments" parameterType="java.util.List">
+		DELETE COMMENTS
+		WHERE COMMENTNUM IN
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+	        #{item.commentNum}
+	    </foreach>
+	</delete>
+	
+
 	
 	<delete id="deleteAll" parameterType="TravelDTO">
 		DELETE TRAVEL
 		WHERE ROOTBOARD = #{rootBoard}
 	</delete>	
+	<select id="getChildInfo" resultType="TravelDTO" parameterType="TravelDTO">
+    	SELECT PINGNUM, BOARDNUM
+    	FROM TRAVEL
+    	WHERE ROOTBOARD = #{rootBoard}
+	</select>
+	<delete id="deleteAllPing" parameterType="java.util.List">
+		DELETE PING
+	    WHERE PINGNUM IN
+	    <foreach collection="list" item="item" open="(" separator="," close=")">
+	        #{item.pingNum}
+	    </foreach>
+	</delete>	
+	
 
 
 
