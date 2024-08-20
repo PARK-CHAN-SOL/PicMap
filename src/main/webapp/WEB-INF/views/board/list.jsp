@@ -54,11 +54,11 @@ by Awe7 (http://awe7.com/freebies)
 				</div>
 			</div>
 			<!-- End / hero -->
-
+            <div class="container-fluid col-6 justify-contents-center">
 			<h1>${board}게시판</h1>
 
 			<div style="margin-left: 50px;">
-				<table style="width: 800px;">
+				<table style="width: 800px;" class="table mt-4">
 					<thead>
 						<tr>
 							<th>글번호</th>
@@ -69,7 +69,7 @@ by Awe7 (http://awe7.com/freebies)
 							<th>조회수</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="table-group-divider">
 						<c:forEach items="${list}" var="dto">
 							<tr>
 								<td>${dto.boardNum}</td>
@@ -92,7 +92,7 @@ by Awe7 (http://awe7.com/freebies)
 
 
 
-
+  </div>
 		</div>
 		<!-- End / Content-->
 	</div>
