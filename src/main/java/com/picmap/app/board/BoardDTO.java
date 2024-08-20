@@ -14,6 +14,7 @@ public class BoardDTO {
 	private Date updateDate;
 	private Long hit;
 	private String fileName;
+
 	private List<BoardFileDTO> boardFileDTOs;
 
 

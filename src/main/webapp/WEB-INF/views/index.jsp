@@ -245,172 +245,77 @@ by Awe7 (http://awe7.com/freebies)
       </div>
     </section>
     <!-- End / Section -->
+	
+	<!-- Section -->
+	<section class="awe-section">
+		<div class="container">
+
+			<!-- title -->
+			<div class="title title__style-02">
+				<h2 class="title__title">요즘 뜨는 <span class='main-color' style="font-weight: bold; font-size:52px;">BEST</span> 픽</h2>
+			</div>
+			<!-- End / title -->
+
+			<div class="grid-css grid_css_style_02 grid-css--masonry"
+				data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1"
+				data-gap="30">
+
+				<div class="grid__inner">
+					<div class="grid-sizer"></div>
 
 
-    <!-- Section -->
-    <section class="awe-section">
-      <div class="container">
+					<c:forEach items="${bestList}" var="dto">
+						<div class="grid-item cat1">
+							<div class="grid-item__inner">
+								<div class="grid-item__content-wrapper">
 
-        <!-- title -->
-        <div class="title title__style-02">
-          <h2 class="title__title">베스트 픽플</h2>
-        </div>
-        <!-- End / title -->
+									<!-- box-image2 -->
+									<div class="box-image2">
+										<div>
+											<c:if test="${empty dto.fileName}">
+												<a class="box-image2__bg" href="/travel/detail?boardNum=${dto.boardNum}#boardStartLocation"
+												style="background-image: url('/resources/upload/travels/default.png');">
+												</a>
+											</c:if>
+											<c:if test="${not empty dto.fileName}">
+												<a class="box-image2__bg" href="/travel/detail?boardNum=${dto.boardNum}#boardStartLocation"
+												style="background-image: url('/resources/upload/travels/${dto.fileName}');">
+												</a>
+											</c:if>
+											<div class="box-image2__info">
+												<p class="box-image2__writer">${dto.memberNickname}</p>
+												<p class="box-image2__title">${dto.boardTitle}</p>
+											</div>
+											<div class="box-image2__info_bot">
+												<span class="box-image2__date">${dto.createDate}</span>
+												<span class="box-image2__like">${dto.heartCount}</span> 
+											</div>
+										</div>
+									</div>
+									<!-- End / box-image2 -->
 
-        <div class="grid-css grid_css_style_02 grid-css--masonry" data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
-          <div class="filter">
-            <ul class="filter__list">
-              <li><a href="#" data-filter="*">All</a></li>
-              <li><a href="#" data-filter=".cat1">추천순</a></li>
-              <li><a href="#" data-filter=".cat2">최신순</a></li>
-            </ul>
-          </div>
-          <div class="grid__inner">
-            <div class="grid-sizer"></div>
-            <div class="grid-item cat1">
-              <div class="grid-item__inner">
-                <div class="grid-item__content-wrapper">
+								</div>
+							</div>
+						</div>
+					</c:forEach>
 
-                  <!-- box-image2 -->
-                  <div class="box-image2">
-                    <div>
-                      <a class="box-image2__bg" href="#" style="background-image: url('/resources/assets/img/image_box_2/1.jpg');"><img src="/resources/assets/img/image_box_2/1.jpg" alt="" /></a>
-                      <div class="box-image2__info">
-                        <p class="box-image2__writer">박찬솔님</p>
-                        <p class="box-image2__title">경주 여행 다녀왔습니다~</p>
-                      </div>
-                      <div class="box-image2__info_bot">
-                        <span class="box-image2__date">2 Days / 3 Nights</span><a class="box-image2__like" href="#">View tour</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End / box-image2 -->
 
-                </div>
-              </div>
-            </div>
-            <div class="grid-item cat2">
-              <div class="grid-item__inner">
-                <div class="grid-item__content-wrapper">
+				</div>
+			</div>
+			<div class="text-center">
+				<a class="md-btn mt-60 md-btn--primary md-btn--pill " href="/travel/list">Explore
+					more </a>
+			</div>
 
-                  <!-- box-image2 -->
-                  <div class="box-image2">
-                    <div>
-                      <a class="box-image2__bg" href="#" style="background-image: url('/resources/assets/img/image_box_2/2.jpg');"><img src="/resources/assets/img/image_box_2/2.jpg" alt="" /></a>
-                      <div class="box-image2__info">
-                        <p class="box-image2__country">Hong Kong</p>
-                        <p class="box-image2__tour">Classic Vietnam from Ho Chi Minh City</p>
-                      </div>
-                      <div class="box-image2__info_bot">
-                        <span class="box-image2__date">7 Days / 8 Nights</span><a class="box-image2__view" href="#">View tour</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End / box-image2 -->
+		</div>
+	</section>
+	<!-- End / Section -->	
 
-                </div>
-              </div>
-            </div>
-            <div class="grid-item cat1">
-              <div class="grid-item__inner">
-                <div class="grid-item__content-wrapper">
 
-                  <!-- box-image2 -->
-                  <div class="box-image2">
-                    <div>
-                      <a class="box-image2__bg" href="#" style="background-image: url('/resources/assets/img/image_box_2/3.jpg');"><img src="/resources/assets/img/image_box_2/3.jpg" alt="" /></a>
-                      <div class="box-image2__info">
-                        <p class="box-image2__country">Ubud</p>
-                        <p class="box-image2__tour">The Silk Road</p>
-                      </div>
-                      <div class="box-image2__info_bot">
-                        <span class="box-image2__date">7 Days / 8 Nights</span><a class="box-image2__view" href="#">View tour</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End / box-image2 -->
 
-                </div>
-              </div>
-            </div>
-            <div class="grid-item cat2">
-              <div class="grid-item__inner">
-                <div class="grid-item__content-wrapper">
 
-                  <!-- box-image2 -->
-                  <div class="box-image2">
-                    <div>
-                      <a class="box-image2__bg" href="#" style="background-image: url('/resources/assets/img/image_box_2/4.jpg');"><img src="/resources/assets/img/image_box_2/4.jpg" alt="" /></a>
-                      <div class="box-image2__info">
-                        <p class="box-image2__country">Phi Phi Islands</p>
-                        <p class="box-image2__tour">Dubai & Maldives Vacation incl. Airfare</p>
-                      </div>
-                      <div class="box-image2__info_bot">
-                        <span class="box-image2__date">7 Days / 8 Nights</span><a class="box-image2__view" href="#">View tour</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End / box-image2 -->
-
-                </div>
-              </div>
-            </div>
-            <div class="grid-item cat1">
-              <div class="grid-item__inner">
-                <div class="grid-item__content-wrapper">
-
-                  <!-- box-image2 -->
-                  <div class="box-image2">
-                    <div>
-                      <a class="box-image2__bg" href="#" style="background-image: url('/resources/assets/img/image_box_2/5.jpg');"><img src="/resources/assets/img/image_box_2/5.jpg" alt="" /></a>
-                      <div class="box-image2__info">
-                        <p class="box-image2__country">Istanbul</p>
-                        <p class="box-image2__tour">Discover Hong Kong and Bangkok incl. Airfare</p>
-                      </div>
-                      <div class="box-image2__info_bot">
-                        <span class="box-image2__date">7 Days / 8 Nights</span><a class="box-image2__view" href="#">View tour</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End / box-image2 -->
-
-                </div>
-              </div>
-            </div>
-            <div class="grid-item cat2">
-              <div class="grid-item__inner">
-                <div class="grid-item__content-wrapper">
-
-                  <!-- box-image2 -->
-                  <div class="box-image2">
-                    <div>
-                      <a class="box-image2__bg" href="#" style="background-image: url('/resources/assets/img/image_box_2/6.jpg');"><img src="/resources/assets/img/image_box_2/6.jpg" alt="" /></a>
-                      <div class="box-image2__info">
-                        <p class="box-image2__country">Bangkok</p>
-                        <p class="box-image2__tour">China Odyssey with Yangtze River Cruise</p>
-                      </div>
-                      <div class="box-image2__info_bot">
-                        <span class="box-image2__date">7 Days / 8 Nights</span><a class="box-image2__view" href="#">View tour</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End / box-image2 -->
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="text-center">
-          <a class="md-btn mt-60 md-btn--primary md-btn--pill " href="#">Explore more </a>
-        </div>
-      </div>
-    </section>
-    <!-- End / Section -->
 
     <div class="container">
-
-
 
       <!-- title -->
       <div class="title title__style-03">

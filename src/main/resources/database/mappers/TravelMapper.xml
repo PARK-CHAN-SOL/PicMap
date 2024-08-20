@@ -10,6 +10,26 @@
 		WHERE	PARENTBOARD IS NULL
 	</select>
 	
+	<select id="bestList" resultType="TravelDTO">
+		<![CDATA[
+		SELECT *
+		FROM (
+		    SELECT T.*, H.HEARTCOUNT, M.MEMBERNICKNAME
+		    FROM TRAVEL T
+		    JOIN (
+		        SELECT BOARDNUM, COUNT(HEARTNUM) AS HEARTCOUNT
+		        FROM HEART
+		        GROUP BY BOARDNUM
+		    ) H ON T.BOARDNUM = H.BOARDNUM
+		    	LEFT JOIN
+		    	MEMBER M
+		    	ON T.MEMBERNUM = M.MEMBERNUM
+		    ORDER BY H.HEARTCOUNT DESC
+		)
+		WHERE ROWNUM <= 6
+		]]>
+	</select>
+	
 	<select id="getList" resultType="TravelDTO" parameterType="Scroller">
 		SELECT 	*
 		FROM 	(

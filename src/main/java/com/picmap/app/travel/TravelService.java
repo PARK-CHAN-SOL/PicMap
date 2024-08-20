@@ -30,6 +30,12 @@ public class TravelService {
 		return travelDAO.getTotalCount();
 	}
 	
+	//베스트 게시글
+	public List<TravelDTO> bestList() throws Exception {
+		return travelDAO.bestList();
+	}
+	
+	
 	//게시판(게시글 리스트)
 	public List<BoardDTO> getList(Scroller scroller) throws Exception {
 		return travelDAO.getList(scroller);
