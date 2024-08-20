@@ -3,6 +3,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="format-detection" content="telephone=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<!-- favicon -->
+<link rel="icon" href="/resources/assets/img/favicon.ico" type="image/x-icon">
 <!-- Fonts-->
 <link rel="stylesheet" type="text/css" href="/resources/assets/fonts/fontawesome/font-awesome.min.css">
 <!-- Vendors-->

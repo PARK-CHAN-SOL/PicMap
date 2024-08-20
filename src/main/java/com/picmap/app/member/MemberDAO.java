@@ -37,9 +37,10 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "join", memberDTO);
 	}
 	//로그아웃
-	public MemberDTO logout(MemberDTO memberDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "logout", memberDTO);
-	}
+
+    public MemberDTO logout(MemberDTO memberDTO) throws Exception {
+        return sqlSession.selectOne(NAMESPACE + "logout", memberDTO);
+    }
 //마이페이지
 	public MemberDTO mypage(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "mypage", memberDTO);
@@ -84,6 +85,10 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	public int kakaoDelete(MemberDTO memberDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE + "kakaoDelete", memberDTO);
 	}
-
-
+	public Long getPostCountByMember(MemberDTO memberDTO)throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getPostCountByMember", memberDTO);
+	}	
+	public Long getSavePostCountByMember(MemberDTO memberDTO)throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getSavePostCountByMember", memberDTO);
+	}	
 }
