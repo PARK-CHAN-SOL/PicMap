@@ -58,7 +58,9 @@ public class NoticeService implements BoardService{
 		return result;
 	}
 
-
+	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
+		return noticeDAO.getDetail(noticeDTO);
+	}
 
 	//게시글 수정
 	@Override

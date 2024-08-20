@@ -23,7 +23,11 @@
   		(BOARDNUM_SEQ.NEXTVAL, #{memberNum}, #{boardTitle}, #{boardContent}, SYSDATE, SYSDATE, 0, #{fileName, jdbcType=VARCHAR})
 	</insert>
 
-
+	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+		SELECT	* 
+		FROM	NOTICE
+		WHERE	BOARDNUM = #{boardNum}
+	</select>
 
 
 

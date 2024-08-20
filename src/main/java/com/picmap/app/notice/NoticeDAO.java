@@ -50,7 +50,9 @@ public class NoticeDAO implements BoardDAO{
 		return 0;
 	}
 	
-	
+	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getDetail", noticeDTO);
+	}
 	
 	
 	

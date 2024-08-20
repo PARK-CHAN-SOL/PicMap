@@ -70,7 +70,11 @@ public class NoticeController {
 		
 	}
 	
-	
+	@GetMapping("detail")
+	public void getDetail(NoticeDTO noticeDTO, Model model) throws Exception {
+		noticeDTO = noticeService.getDetail(noticeDTO);
+		model.addAttribute("dto", noticeDTO);
+	}
 	
 	
 	
