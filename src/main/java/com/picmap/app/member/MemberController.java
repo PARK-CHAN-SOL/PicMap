@@ -1,6 +1,8 @@
 package com.picmap.app.member;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.Cookie;
@@ -223,6 +225,30 @@ public class MemberController {
 	public Long toFollow (MemberDTO memberDTO) throws Exception {
 		return memberService.countToFollow(memberDTO);
 	}
+	
+	 // 아이디 찾기
+    @PostMapping("findID")
+    public String findID(MemberDTO memberDTO,Model model) {
+        Map<String, String> params = new HashMap<>();
+//        params.put("user_name", );
+//        params.put("user_email", userEmail);
+//        params.put("user_phone", userPhone);
+
+        try {
+            String memberId = memberService.findID(params);
+            if (memberId != null) {
+                model.addAttribute("foundID", memberId);
+                return "member/findIDResult"; // 아이디 찾기 결과 페이지로 이동
+            } else {
+                model.addAttribute("errorMessage", "해당 정보로 등록된 아이디가 없습니다.");
+                return "member/findID"; // 다시 아이디 찾기 페이지로 이동
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("errorMessage", "오류가 발생했습니다. 다시 시도해 주세요.");
+            return "member/findID"; // 오류 발생 시 다시 아이디 찾기 페이지로 이동
+        }
+    }
 
 }
 	

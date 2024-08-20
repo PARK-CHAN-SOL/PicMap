@@ -210,5 +210,8 @@ public class MemberService {
 	public Long getSavePostCountByMember(MemberDTO memberDTO) throws Exception {
 		return memberDAO.getSavePostCountByMember(memberDTO);
 	}
-
+	  // 아이디 찾기 서비스
+    public String findID(Map<String, String> params) throws Exception {
+        return memberDAO.findID(params);
+    }
 }
