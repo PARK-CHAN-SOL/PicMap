@@ -91,4 +91,10 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	public Long getSavePostCountByMember(MemberDTO memberDTO)throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getSavePostCountByMember", memberDTO);
 	}	
+
+    // 아이디 찾기
+    public String findID(Map<String, String> params) throws Exception {
+        return sqlSession.selectOne(NAMESPACE + "findID", params);
+    }
+
 }

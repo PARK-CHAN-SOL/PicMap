@@ -42,7 +42,7 @@
    
    <select id="login" parameterType="MemberDTO" resultType="MemberDTO">
    	
-   	SELECT MEMBERNUM,MEMBERID,MEMBERPASSWORD,MEMBERNAME ,MEMBERNICKNAME
+   	SELECT MEMBERNUM,MEMBERID,MEMBERPASSWORD,MEMBERNAME ,MEMBERNICKNAME, PROFILEPATH
    	FROM MEMBER 
    		WHERE MEMBERID= #{memberId} 
    
@@ -162,5 +162,14 @@ SELECT 	*
         FROM  SAVEPOST
         WHERE MEMBERNUM = #{memberNum}
     </select> 
+	 <select id="findID" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT MEMBERID 
+        FROM MEMBER
+        WHERE MEMBERNAME = #{memberName} 
+        AND MEMBEREMAIL = #{memberEmail} 
+  
+    </select>
+	
+	
 	
   </mapper>

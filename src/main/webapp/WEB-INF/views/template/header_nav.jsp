@@ -20,8 +20,8 @@
 						<ul class="onepage-menu mt-4">
 							<li><a href="/">🏠홈</a></li>
 							<li><a href="/notice/list">📌공지사항</a></li>
-							<li><a href="city.html">💡베스트 게시글</a></li>
-							<li><a href="/travel/list">📢전체 게시글</a></li>
+							<li><a href="/#bestBoard">💡베스트 리뷰</a></li>
+							<li><a href="/travel/list">📢여행 리뷰</a></li>
 							<c:if test="${not empty sessionScope.member}">
 								<li><a
 									href="/member/mypage?memberNum=${sessionScope.member.memberNum}">✨마이페이지</a></li>
@@ -51,10 +51,10 @@
         <li>
             <a href="/member/mypage?memberNum=${sessionScope.member.memberNum}" style="color: white; text-decoration: none; display: flex; align-items: center; margin-left: +0px;" class="me-4">
                 <span style="margin-right: 10px;">${sessionScope.member.memberName}님</span>
-                <c:if test="${not empty member.profilePath}">
-                    <img id="profileImage" src="${member.profilePath}" onerror="this.src='/resources/upload/members/default.png'" alt="" style="max-width: 96px; height: 48px;" class="border border-2 border-white rounded-circle">
+                <c:if test="${not empty sessionScope.member.profilePath}">
+                    <img id="profileImage" src="${sessionScope.member.profilePath}" onerror="this.src='/resources/upload/members/default.png'" alt="" style="max-width: 96px; height: 48px;" class="border border-2 border-white rounded-circle">
                 </c:if>
-                <c:if test="${empty member.profilePath}">
+                <c:if test="${empty sessionScope.member.profilePath}">
                     <img id="profileImage" src="/resources/upload/members/default.png" alt="" style="max-width: 96px; height: 48px;" class="border border-2 border-white rounded-circle">
                 </c:if>
             </a>
