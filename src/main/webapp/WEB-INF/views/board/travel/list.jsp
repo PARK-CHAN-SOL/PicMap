@@ -24,12 +24,12 @@ by Awe7 (http://awe7.com/freebies)
       <!-- 글 작성 버튼 -->
       <c:choose>
         <c:when test="${empty member}">
-              <button type="button" class="btn btn-danger" id="addBoard" data-bs-toggle="modal" data-bs-target="#exampleModal">글 작성</button>
+              <button type="button" class="btn btn-outline-danger" id="addBoard" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>+</span></button>
 
         </c:when>
         <c:otherwise>
 
-              <button type="button" class="btn btn-danger" id="addBoard" onclick="location.href = 'add'">글 작성</button>
+              <button type="button" class="btn btn-outline-danger" id="addBoard" onclick="location.href = 'add'"><span>+</span></button>
 
         </c:otherwise>
       </c:choose>
@@ -44,7 +44,7 @@ by Awe7 (http://awe7.com/freebies)
               <table style="height: 300px;">
                 <tbody>
                   <tr>
-                    <td class="align-bottom"><h1 style="font-style: italic; font-weight: 900; font-size: 80px;">전체 게시글 🚩 &nbsp&nbsp&nbsp&nbsp&nbsp🚗💨</h1></td>
+                    <td class="align-bottom"><h1 style="font-style: italic; font-weight: 900; font-size: 80px;">여행 리뷰 🚩 &nbsp&nbsp&nbsp&nbsp&nbsp🚗💨</h1></td>
                   </tr>
                 </tbody>
               </table>

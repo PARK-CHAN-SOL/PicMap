@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.picmap.app.board.BoardDTO;
+import com.picmap.app.comments.CommentsDTO;
 import com.picmap.app.util.Scroller;
 
 @Repository
@@ -65,21 +66,44 @@ public class TravelDAO {
 	//자식글 삭제
 	public int delete(TravelDTO travelDTO) throws Exception {
 		int result = 0;
-		if(travelDTO.getChildBoard() != null) { //자식글이 존재한다면 자식글의 부모글을 자신의 부모글로
-			result += sqlSession.delete(NAMESPACE+"adoption1", travelDTO);// 부모글의 자식글을 자신의 자식글로
-			result += sqlSession.delete(NAMESPACE+"adoption2", travelDTO);
+		if(travelDTO.getChildBoard() != null) { //자식글이 존재한다면 
+			result += sqlSession.delete(NAMESPACE+"adoption1", travelDTO); //자식글의 부모글을 자신의 부모글로
+			result += sqlSession.delete(NAMESPACE+"adoption2", travelDTO); // 부모글의 자식글을 자신의 자식글로
 		}else {//최하위 자식글이면 부모글의 자식글을 null처리
 			result += sqlSession.delete(NAMESPACE+"adoption3", travelDTO);
 		}
 		
-		result += sqlSession.delete(NAMESPACE+"delete", travelDTO);
+		List<CommentsDTO> comment = sqlSession.selectList(NAMESPACE+"getCommentNum", travelDTO); //댓글 번호 따놓기
+        if (comment != null && !comment.isEmpty()) {//댓글이 존재하면
+			result += sqlSession.delete(NAMESPACE+"deleteHeartComments", comment); //댓글 좋아요 다 지우고
+			result += sqlSession.delete(NAMESPACE+"deleteReply", comment); //대댓글 다 지우고
+			result += sqlSession.delete(NAMESPACE+"deleteComments", comment); //댓글 다 지우고
+        }
+		
+		result += sqlSession.delete(NAMESPACE+"delete", travelDTO);//글 지우고
+		result += sqlSession.delete(NAMESPACE+"deletePing", travelDTO); //핑 지우고
 		
 		return result;
 	}
 	
 	//최상위부모글 삭제(자식글 모두 삭제)
 	public int deleteAll(TravelDTO travelDTO) throws Exception {
-		return sqlSession.delete(NAMESPACE+"deleteAll", travelDTO);
+		int result = 0;
+		result += sqlSession.delete(NAMESPACE+"deleteHeart", travelDTO); //좋아요 다 지우고
+		List<TravelDTO> child = sqlSession.selectList(NAMESPACE+"getChildInfo", travelDTO); //자식글들의 핑,게시글 번호 따놓기
+		
+		result += sqlSession.delete(NAMESPACE+"deleteSavePost", travelDTO); //저장한 게시글에서 지우고
+		
+		List<CommentsDTO> comments = sqlSession.selectList(NAMESPACE+"getCommentNums", child); //자식글 포함 댓글 번호 따놓기
+		
+        if (comments != null && !comments.isEmpty()) {//댓글이 존재하면
+			result += sqlSession.delete(NAMESPACE+"deleteHeartComments", comments); //댓글 좋아요 다 지우고
+			result += sqlSession.delete(NAMESPACE+"deleteReply", comments); //대댓글 다 지우고
+			result += sqlSession.delete(NAMESPACE+"deleteComments", comments); //댓글 다 지우고
+		}
+		result += sqlSession.delete(NAMESPACE+"deleteAll", travelDTO); //자식글 포함 게시글 다 지우고
+		result += sqlSession.delete(NAMESPACE+"deleteAllPing", child); //자식글 포함 핑 다 지우고
+		return result;
 	}
 	
 	//조회수

@@ -251,7 +251,7 @@ by Awe7 (http://awe7.com/freebies)
 		<div class="container">
 
 			<!-- title -->
-			<div class="title title__style-02">
+			<div class="title title__style-02" id="bestBoard">
 				<h2 class="title__title">요즘 뜨는 <span class='main-color' style="font-weight: bold; font-size:52px;">BEST</span> 픽</h2>
 			</div>
 			<!-- End / title -->

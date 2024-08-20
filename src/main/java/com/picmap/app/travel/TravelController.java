@@ -131,8 +131,14 @@ public class TravelController {
 	
 	//게시글 수정
 	@GetMapping("update")
-	public String update() throws Exception {
+	public String update(Model model, TravelDTO travelDTO) throws Exception {
+		TravelDTO travelDetail = travelService.detail(travelDTO);
+		model.addAttribute("dto", travelDetail);
 		
+		PingDTO pingDTO = new PingDTO();
+		pingDTO.setPingNum(travelDetail.getPingNum());
+		pingDTO = pingService.getDetail(pingDTO);
+		model.addAttribute("pingDTO", pingDTO);
 		
 		return "board/travel/write";
 	}
@@ -146,8 +152,7 @@ public class TravelController {
 	@PostMapping("delete")
 	public String delete(TravelDTO travelDTO) throws Exception {
 		TravelDTO travelDetail = travelService.detail(travelDTO);
-		System.out.println(travelDetail.getBoardNum());
-		System.out.println(travelDetail.getRootBoard());
+		
 		if(!travelDetail.getBoardNum().equals(travelDetail.getRootBoard()) ) { //자식글이라면 그 글만 삭제		
 			int result = travelService.delete(travelDetail);
 		}else { //최상위 부모글이라면 그 아래로 싹 다 삭제
@@ -169,7 +174,7 @@ public class TravelController {
 		model.addAttribute("dto", travelDetail);
 		
 		//조회수(최상위 부모글 기준)
-		if(travelDetail.getBoardNum() == travelDetail.getRootBoard() ) {
+		if(travelDetail.getBoardNum().equals(travelDetail.getRootBoard()) ) {
 			travelService.hit(travelDTO);
 		}else { //자식글은 최상위부모글 조회수를 그대로 가져오고, 조회수를 올리지 않는다
 			travelDTO.setBoardNum(travelDetail.getRootBoard());
