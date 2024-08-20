@@ -79,8 +79,24 @@ public class TravelService {
 	
 	
 	//게시글 수정
-	public int update() throws Exception {
-		return 0;
+	public int update(TravelDTO travelDTO, MultipartFile[] files, HttpSession session) throws Exception {
+		ServletContext servletContext =	session.getServletContext();
+		//파일 수정시 저장경로
+		String path = servletContext.getRealPath("resources/upload/" + name);
+		System.out.println(path);
+
+		if(files != null) {//files==null이면 수정하지 않았다는 것이므로 저장하지 않음
+			for (MultipartFile f : files) {
+				if (f.isEmpty()) {
+					continue;
+				}
+				travelDTO.setFileName(fileManager.fileSave(f, path));
+			}
+		}
+		
+		int result = travelDAO.update(travelDTO); 
+		
+		return result; 
 	}
 	
 	

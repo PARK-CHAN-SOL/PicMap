@@ -81,6 +81,7 @@ by Awe7 (http://awe7.com/freebies)
                   	<label for="travelFiles" class="fs-4 btn btn-secondary">게시글 사진을 추가하세요</label>
                   	<c:choose>
                   		<c:when test="${dto.fileName != null}">
+                  			<input type="hidden" name="fileName" value="${dto.fileName}">
 		                  	<img id="travelPreview" class="mt-3" style="width: 100%; height: 100%; object-fit: cover;" src="/resources/upload/travels/${dto.fileName}"/>
                   		</c:when>
                   		<c:otherwise>
@@ -99,10 +100,15 @@ by Awe7 (http://awe7.com/freebies)
               </tbody>
             </table>
             <div id="pingFrm">
-              <input type="hidden" id="loc" name="address" value="${pingDTO.address}"> <input type="hidden" id="lat" name="latitude" value="${pingDTO.latitude}"> <input type="hidden" id="lon" name="longitude" value="${pingDTO.address}">
+            	<input type="hidden" name="pingNum" value="${pingDTO.pingNum}">
+				<input type="hidden" id="loc" name="address" value="${pingDTO.address}">
+				<input type="hidden" id="lat" name="latitude" value="${pingDTO.latitude}">
+				<input type="hidden" id="lon" name="longitude" value="${pingDTO.longitude}">
             </div>
             <div>
-              <input type="hidden" name="rootBoard" value="${dto.rootBoard}"> <input type="hidden" name="parentBoard" value="${dto.parentBoard}"> <input type="hidden" name="childBoard" value="${dto.childBoard}">
+				<input type="hidden" name="rootBoard" value="${dto.rootBoard}">
+				<input type="hidden" name="parentBoard" value="${dto.parentBoard}">
+				<input type="hidden" name="childBoard" value="${dto.childBoard}">
             </div>
 
             <div class="text-end">
