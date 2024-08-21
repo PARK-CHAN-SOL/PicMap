@@ -8,7 +8,7 @@ var keywordMarkers;
 let mapCenter;
 const recoModalButton = document.getElementById("modalButton");
 
-recommendForm.append("pingNum", recommendTravelList.dataset.pingNum); // 1은 임의로 집어넣은 값임
+recommendForm.append("pingNum", recommendTravelList.dataset.pingNum);
 fetch('/ping/getRecommendList', {
     method: "POST",
     body: recommendForm

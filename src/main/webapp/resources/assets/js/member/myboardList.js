@@ -26,7 +26,10 @@ async function makeTravelList (url, formData) {
         
         mypageObserverTarget.dataset.startRow = parseInt(mypageObserverTarget.dataset.startRow)+9; // startRow 값을 9 증가
         mypageObserverTarget.dataset.endRow = parseInt(mypageObserverTarget.dataset.endRow)+9; // endRow 값을 9 증가
+
+        mypageObserverTarget.style.display = 'none';
         await boardDTOLoop(boardDTOs);
+        mypageObserverTarget.style.display = '';
         
     } catch (error) {
         console.error('Error fetching data', error);
