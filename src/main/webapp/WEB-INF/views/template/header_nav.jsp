@@ -42,9 +42,9 @@
 			<div class="header__hotline_book_wrap">
 				<div class="header__lang">
 
-			<div class="header__booking">
+			<div class="header__booking me-4">
 					<c:if test="${empty sessionScope.member}">
-						<p>로그인을 해주세요</p>
+						<p>로그인을 해주세요     </p>
 					</c:if>
 				<c:if test="${not empty sessionScope.member}">
     <ul>
