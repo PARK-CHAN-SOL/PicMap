@@ -156,11 +156,21 @@ by Awe7 (http://awe7.com/freebies)
       </div>
             <form action="/member/proFileUpdate" method="post" enctype="multipart/form-data">
                 <div class="col-6">
-									<input class="form-control form-control-sm" type="file"
-										style="width: 500px;" name="files" onchange="readURL(this);">
+                
+           <input class="form-control form-control-sm" type="file"style="width: 500px;" name="files" onchange="readURL(this);">
+                 
+                  	<c:choose>
+                  		<c:when test="${member.profilePath != null}">
+                  	<input type="hidden" name="profilePath" value="${member.profilePath}">
+		<img id="previewProfile" class="mt-3" style="width: 100%; height: 100%; object-fit: cover;" src="${member.profilePath}"/>
+                  		</c:when>
+                  		<c:otherwise>
+                  					<img id="previewProfile" style="width: 20%; height: 20%; object-fit: cover;" />
+                  		</c:otherwise>
+                  	</c:choose>
+        
 									<br /> <br />
 								</div>
-								<img id="previewProfile" style="width: 20%; height: 20%; object-fit: cover;" />
        <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">이미지 변경</button>
