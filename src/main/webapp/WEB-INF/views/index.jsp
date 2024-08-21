@@ -56,7 +56,7 @@ by Awe7 (http://awe7.com/freebies)
             <!-- form-item -->
 
 
-            <a class="md-btn md-btn--primary md-btn--pill " href="#" id="searchButton">Search now </a>
+            <a class="md-btn md-btn--primary md-btn--search " href="#" id="searchButton">Search now</a>
           </div>
           <!-- End / box-search -->
 
