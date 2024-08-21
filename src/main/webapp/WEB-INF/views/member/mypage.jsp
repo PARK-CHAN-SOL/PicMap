@@ -146,6 +146,7 @@ by Awe7 (http://awe7.com/freebies)
 </div>
 
 <!-- 새 모달 구조 -->
+<c:if test="${sessionScope.member.memberNum eq member.memberNum}">
 <div class="modal fade" id="profileImageModalNew" tabindex="-1" aria-labelledby="profileImageModalNewLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content position-relative"> <!-- position-relative 추가 -->
@@ -168,7 +169,7 @@ by Awe7 (http://awe7.com/freebies)
         </div>
     </div>
 </div>
-
+</c:if>
 
 
 								</div>
