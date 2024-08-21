@@ -153,7 +153,9 @@ by Awe7 (http://awe7.com/freebies)
                 </div>
 
                 <button class="btn11" type="submit">아이디 찾기</button>
-
+			<div class="find_password my-div1 fs-5 mt-5">
+							<a href="/member/findPasswordS">비밀번호 찾기</a>
+						</div>
                 <c:if test="${not empty errorMessage}">
                     <div class="error-message">
                         ${errorMessage}
