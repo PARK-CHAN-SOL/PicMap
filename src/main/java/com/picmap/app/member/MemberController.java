@@ -282,11 +282,10 @@ public class MemberController {
     }
 
 	@RequestMapping(value = "proFileUpdate", method = RequestMethod.POST)
-	@ResponseBody
 	public String proFileUpdate(MemberDTO memberDTO, MultipartFile files, HttpSession session, Model model) throws Exception {	
 
 		int num = memberService.proFileUpdate(memberDTO, files,session);
-
+		 session.invalidate();
 
 		return "redirect:/";
 	}
