@@ -157,13 +157,13 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(MemberDTO memberDTO, MultipartFile files, HttpSession session, Model model) throws Exception {
+	public String update(MemberDTO memberDTO,  HttpSession session, Model model) throws Exception {
 		MemberDTO dtoTmp = (MemberDTO) session.getAttribute("member");
 		memberDTO.setMemberPassword(dtoTmp.getMemberPassword());
 		memberDTO.setMemberId(dtoTmp.getMemberId());
-
-		int num = memberService.update(memberDTO, files, session);
-		 session.invalidate();
+	
+		int num = memberService.update(memberDTO, session);
+		memberService.login(memberDTO, session);
 		return "redirect:/";
 	}
 
@@ -285,7 +285,9 @@ public class MemberController {
 	public String proFileUpdate(MemberDTO memberDTO, MultipartFile files, HttpSession session, Model model) throws Exception {	
 
 		int num = memberService.proFileUpdate(memberDTO, files,session);
-		 session.invalidate();
+		MemberDTO memberDTOSession = (MemberDTO)session.getAttribute("member");
+		memberService.login(memberDTOSession, session);
+		
 
 		return "redirect:/";
 	}
