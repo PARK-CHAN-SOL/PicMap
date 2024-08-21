@@ -93,8 +93,16 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	}	
 
     // 아이디 찾기
-    public String findID(Map<String, String> params) throws Exception {
-        return sqlSession.selectOne(NAMESPACE + "findID", params);
+    public MemberDTO findID(MemberDTO memberDTO) throws Exception {
+        return sqlSession.selectOne(NAMESPACE + "findID", memberDTO);
     }
+
+    public MemberDTO findPassword(MemberDTO memberDTO) throws Exception {
+        return sqlSession.selectOne(NAMESPACE + "findPassword", memberDTO);
+    }
+    
+	public int proFileUpdate(MemberDTO memberDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "proFileUpdate", memberDTO);
+	}
 
 }

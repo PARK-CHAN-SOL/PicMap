@@ -17,7 +17,6 @@ by Awe7 (http://awe7.com/freebies)
 <c:import url="../template/header_nav.jsp"></c:import>
 </head>
 <body>
-
 <div class="hero" id="id-1">
         <div class="hero__wrapper">
           <div style="height: 400px;" class="bg-primary bg-gradient bg-opacity-25">
@@ -25,7 +24,7 @@ by Awe7 (http://awe7.com/freebies)
             <table style="height: 300px;">
               <tbody>
                 <tr>
-                  <td class="align-bottom"><h1 style="font-style: italic; font-weight: 900; font-size: 80px;">비밀번호를 잊어버리셨나요? </h1></td>
+                  <td class="align-bottom"><h1 style="font-style: italic; font-weight: 900; font-size: 80px;">비밀번호 </h1></td>
                 </tr>
               </tbody>
             </table>
@@ -34,29 +33,45 @@ by Awe7 (http://awe7.com/freebies)
           </div>
         </div>
 </div>
-<form class="form" action="/member/findPassword" method="post">
-
-
-							<div class="form-floating">
-								<input type="text" class="form-control" id="memberId" name="memberId" placeholder="">
-								<label for="memberId">아이디</label>
-							</div>
-							<div class="form-floating">
-								<input type="text" class="form-control" id="memberName" name="memberName" placeholder="">
-								<label for="memberName">이름</label>
-							</div>
-							<div class="form-floating">
-								<input type="text" class="form-control" id="memberEmail" name="memberEmail" placeholder="">
-								<label for="memberEmail">이메일</label>
-							</div>
-							
-							<button class="btn btn-primary w-100 py-2" type="submit">패스워드 찾기</button>
- <c:if test="${not empty errorMessage}">
-            <div style="color: red; margin-top: 10px;">
-                ${errorMessage}
-            </div>
-        </c:if>
-						</form>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+			
+            	<div class="container mt-5">
+					<div class="row tm-content-row">
+					  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
+						<div class="tm-bg-primary-dark tm-block tm-block-products">
+							<div class="tm-product-table-container">
+							<table class="table table-hover tm-table-small tm-product-table">
+							  <thead>
+								<tr>
+								  <th scope="col"></th>
+								  <th scope="col">아이디</th>
+								  <th scope="col">비밀번호</th>
+								  <th scope="col"></th>
+								</tr>
+							  </thead>
+							  <tbody>
+									
+										<tr>
+											<td></td>
+											<td>${memberDTO.memberId}</td>
+											<td>${memberDTO.memberPassword}</td>
+											<td><a href="/">홈으로가기</a></td>
+										</tr>
+									
+								</tbody>
+							</table>
+						  </div>
+						  <!-- table container -->
+						</div>
+					  </div>
+					  </div>
+					</div>
+				  </div>         	
+    		</div>
+		</div>
+	
 <c:import url="../template/footer.jsp"></c:import>
  <script type="text/javascript" src="/resources/assets/js/member/memberUpdate.js"></script>
 </body>

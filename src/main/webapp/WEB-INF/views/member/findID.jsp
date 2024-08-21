@@ -17,20 +17,31 @@ by Awe7 (http://awe7.com/freebies)
 <c:import url="../template/header_nav.jsp"></c:import>
 </head>
 <body>
-    <form class="form" action="/memberI/findID" method="post">
-        <h1 class="h3 mb-3 fw-normal">아이디를 잊어버리셨나요? 유감이에요</h1>
-
+<div class="hero" id="id-1">
+        <div class="hero__wrapper">
+          <div style="height: 400px;" class="bg-primary bg-gradient bg-opacity-25">
+            <div class="container-fluid col-8 justify-contents-center fs-4">
+            <table style="height: 300px;">
+              <tbody>
+                <tr>
+                  <td class="align-bottom"><h1 style="font-style: italic; font-weight: 900; font-size: 80px;">아이디 찾기</h1></td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="font-family: Spiegel, sans-serif; font-weight: 400; font-size: 18px; line-height: 26px;"></div>
+            </div>
+          </div>
+        </div>
+</div>
+    <form class="form" action="/member/findID" method="post">
+   
         <div class="form-floating">
-            <input type="text" class="form-control" id="user_name" name="user_name" placeholder="">
-            <label for="user_name">이름</label>
+            <input type="text" class="form-control" id="memberName" name="memberName" placeholder="">
+            <label for="memberName">이름</label>
         </div>
         <div class="form-floating">
-            <input type="text" class="form-control" id="user_email" name="user_email" placeholder="">
-            <label for="user_email">이메일</label>
-        </div>
-        <div class="form-floating">
-            <input type="text" class="form-control" id="user_phone" name="user_phone" placeholder="">
-            <label for="user_phone">전화번호</label>
+            <input type="text" class="form-control" id="memberEmail" name="memberEmail" placeholder="">
+            <label for="memberEmail">이메일</label>
         </div>
 
         <button class="btn btn-primary w-100 py-2" type="submit">아이디 찾기</button>

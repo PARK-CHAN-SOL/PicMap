@@ -162,14 +162,23 @@ SELECT 	*
         FROM  SAVEPOST
         WHERE MEMBERNUM = #{memberNum}
     </select> 
-	 <select id="findID" parameterType="java.util.Map" resultType="java.lang.String">
-        SELECT MEMBERID 
+	 <select id="findID" parameterType="MemberDTO" resultType="MemberDTO">
+        SELECT MEMBERID ,MEMBERNAME
         FROM MEMBER
         WHERE MEMBERNAME = #{memberName} 
         AND MEMBEREMAIL = #{memberEmail} 
-  
+ 
     </select>
-	
-	
+	<select id="findPassword" parameterType="MemberDTO" resultType="MemberDTO">
+        SELECT MEMBERPASSWORD,MEMBERID
+        FROM MEMBER
+        WHERE MEMBERNAME = #{memberName} 
+        AND MEMBERID = #{memberId} 
+         AND MEMBEREMAIL = #{memberEmail} 
+    </select>
+	<update id="proFileUpdate" parameterType="MemberDTO" >
+		UPDATE MEMBER SET PROFILEPATH=#{profilePath}
+			WHERE MEMBERNUM = #{memberNum} 
+	</update>
 	
   </mapper>
