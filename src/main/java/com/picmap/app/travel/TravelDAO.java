@@ -57,10 +57,10 @@ public class TravelDAO {
 
 	
 	
-	//게시글 수정 (미완)
+	//게시글 수정
 	public int update(TravelDTO travelDTO) throws Exception {
 
-		return 0;
+		return sqlSession.update(NAMESPACE+"update", travelDTO);
 	}
 	
 	//자식글 삭제

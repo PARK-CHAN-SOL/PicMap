@@ -17,6 +17,10 @@ public class PingService {
 	public int addPing(PingDTO pingDTO) throws Exception {
 		return pingDAO.addPing(pingDTO);
 	}
+	
+	public int updatePing(PingDTO pingDTO) throws Exception {
+		return pingDAO.updatePing(pingDTO);
+	}
 
 	public Long savePingNum() throws Exception {
 		return pingDAO.savePingNum();

@@ -11,6 +11,14 @@
 		(#{pingNum}, #{longitude}, #{latitude}, #{address})
 	</insert>
 	
+	<update id="updatePing" parameterType="PingDTO" >
+		UPDATE PING
+		SET	LONGITUDE=#{longitude},
+			LATITUDE=#{latitude},
+			ADDRESS=#{address}
+		WHERE PINGNUM=#{pingNum}
+	</update>
+	
 	<select id="savePingNum" resultType="java.lang.Long">
 		SELECT PING_SEQ.NEXTVAL FROM DUAL
 	</select>

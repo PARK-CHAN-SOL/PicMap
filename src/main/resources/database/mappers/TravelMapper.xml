@@ -81,6 +81,16 @@
 		SET HIT = HIT + 1
 		WHERE BOARDNUM = #{boardNum}
 	</update>
+	
+	
+	<update id="update" parameterType="TravelDTO">
+		UPDATE TRAVEL
+		SET BOARDTITLE = #{boardTitle},
+			BOARDCONTENT = #{boardContent},
+			UPDATEDATE = SYSDATE,
+			FILENAME = #{fileName, jdbcType=VARCHAR}
+		WHERE BOARDNUM = #{boardNum}
+	</update>
 
 
 	<delete id="delete" parameterType="TravelDTO">

@@ -143,7 +143,12 @@ public class TravelController {
 		return "board/travel/write";
 	}
 	@PostMapping("update")
-	public void update(HttpSession session) throws Exception {
+	public String update(TravelDTO travelDTO, MultipartFile[] files, HttpSession session, PingDTO pingDTO) throws Exception {
+		
+		pingService.updatePing(pingDTO);
+		travelService.update(travelDTO, files, session);
+		
+		return "redirect:./list";
 		
 	}
 	
