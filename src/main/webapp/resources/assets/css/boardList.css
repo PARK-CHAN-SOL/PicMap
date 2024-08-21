@@ -32,3 +32,8 @@
 	font-size: 45px;
 	transform: translateX(5.5px) translateY(-13px);
 }
+
+.form-select {
+	width: 120px;
+	font-size: 16px;
+}
