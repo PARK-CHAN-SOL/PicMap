@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -211,7 +212,42 @@ public class MemberService {
 		return memberDAO.getSavePostCountByMember(memberDTO);
 	}
 	  // 아이디 찾기 서비스
-    public String findID(Map<String, String> params) throws Exception {
-        return memberDAO.findID(params);
+    public MemberDTO findID(MemberDTO memberDTO) throws Exception {
+        return memberDAO.findID(memberDTO);
     }
+	  // 비번 찾기 서비스
+    public MemberDTO findPassword(MemberDTO memberDTO) throws Exception {
+        return memberDAO.findPassword(memberDTO);
+    }
+	
+
+    public int proFileUpdate(MemberDTO memberDTO, MultipartFile files, HttpSession session) throws Exception {
+        // 세션에서 MemberDTO 가져오기
+        MemberDTO sessionMemberDTO = (MemberDTO) session.getAttribute("member");
+        
+        if (sessionMemberDTO != null) {
+            // 세션에서 가져온 MemberDTO의 memberNum 설정
+            memberDTO.setMemberNum(sessionMemberDTO.getMemberNum());
+        } else {
+            throw new Exception("세션에 회원 정보가 없습니다.");
+        }
+        System.out.println("세션에서 가져온 memberNum: " + sessionMemberDTO.getMemberNum());
+        // 파일 저장 경로 설정
+        ServletContext servletContext = session.getServletContext();
+        String path = servletContext.getRealPath("resources/upload/");
+
+        FileManager fm = new FileManager();
+
+        // 파일이 있는 경우와 없는 경우 처리
+        if (files == null || files.getOriginalFilename().isEmpty()) {
+            memberDTO.setProfilePath("default");
+        } else {
+            String fileName = fm.fileSave(files, path);
+            memberDTO.setProfilePath("/resources/upload/" + fileName);
+        }
+
+        // DB 업데이트
+        return memberDAO.proFileUpdate(memberDTO);
+    }
+    
 }

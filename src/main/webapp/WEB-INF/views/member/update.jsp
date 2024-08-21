@@ -94,13 +94,7 @@ by Awe7 (http://awe7.com/freebies)
 										style="width: 500px;" name="memberPhone"
 										value="${member.memberPhone}">
 								</div>
-								<div class="col-6">
-									<label for="formFileSm" class="form-label fs-4">프로필 사진</label>
-									<input class="form-control form-control-sm" type="file"
-										style="width: 500px;" name="files" onchange="readURL(this);">
-									<br /> <br />
-								</div>
-								<img id="previewProfile" style="width: 20%; height: 20%; object-fit: cover;" />
+					
 							</div>
 
 							</div>

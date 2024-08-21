@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -162,7 +163,7 @@ public class MemberController {
 		memberDTO.setMemberId(dtoTmp.getMemberId());
 
 		int num = memberService.update(memberDTO, files, session);
-
+		 session.invalidate();
 		return "redirect:/";
 	}
 
@@ -226,18 +227,21 @@ public class MemberController {
 		return memberService.countToFollow(memberDTO);
 	}
 	
-	 // 아이디 찾기
-    @PostMapping("findID")
-    public String findID(MemberDTO memberDTO,Model model) {
-        Map<String, String> params = new HashMap<>();
-//        params.put("user_name", );
-//        params.put("user_email", userEmail);
-//        params.put("user_phone", userPhone);
+	@RequestMapping(value = "findID", method = RequestMethod.GET)
+	public void findID(HttpSession session, Model model) throws Exception {
+	}
 
+	
+	 // 아이디 찾기
+	@RequestMapping(value = "findID", method = RequestMethod.POST)
+    public String findID(MemberDTO memberDTO,Model model,HttpSession session) throws Exception {
+		memberDTO = memberService.findID(memberDTO);
+		model.addAttribute("member", memberDTO);
+    
         try {
-            String memberId = memberService.findID(params);
-            if (memberId != null) {
-                model.addAttribute("foundID", memberId);
+            
+            if (memberDTO != null) {
+                model.addAttribute("memberDTO", memberDTO);
                 return "member/findIDResult"; // 아이디 찾기 결과 페이지로 이동
             } else {
                 model.addAttribute("errorMessage", "해당 정보로 등록된 아이디가 없습니다.");
@@ -250,6 +254,43 @@ public class MemberController {
         }
     }
 
+	@RequestMapping(value = "findPassword", method = RequestMethod.GET)
+	public void findPassword(HttpSession session, Model model) throws Exception {
+	}
+
+	
+	 // 아이디 찾기
+	@RequestMapping(value = "findPassword", method = RequestMethod.POST)
+    public String findPassword(MemberDTO memberDTO,Model model,HttpSession session) throws Exception {
+		memberDTO = memberService.findPassword(memberDTO);
+		model.addAttribute("member", memberDTO);
+    
+        try {
+            
+            if (memberDTO != null) {
+                model.addAttribute("memberDTO", memberDTO);
+                return "/member/findPasswordResult"; // 아이디 찾기 결과 페이지로 이동
+            } else {
+                model.addAttribute("errorMessage", "해당 정보로 등록된 비밀번호가 없습니다.");
+                return "/member/findPassword"; // 다시 아이디 찾기 페이지로 이동
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("errorMessage", "오류가 발생했습니다. 다시 시도해 주세요.");
+            return "/member/findPassword"; // 오류 발생 시 다시 아이디 찾기 페이지로 이동
+        }
+    }
+
+	@RequestMapping(value = "proFileUpdate", method = RequestMethod.POST)
+	@ResponseBody
+	public String proFileUpdate(MemberDTO memberDTO, MultipartFile files, HttpSession session, Model model) throws Exception {	
+
+		int num = memberService.proFileUpdate(memberDTO, files,session);
+
+
+		return "redirect:/";
+	}
+	
 }
 	
 
