@@ -1,6 +1,5 @@
 .comments-container {
-    max-width: 600px;
-    margin: 200px auto 0; /* 헤더의 높이를 고려하여 상단 마진 추가 */
+    margin: 100px auto 0; /* 헤더의 높이를 고려하여 상단 마진 추가 */
     padding: 20px;
     background: #f9f9f9;
     border-radius: 10px;

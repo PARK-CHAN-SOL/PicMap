@@ -17,7 +17,7 @@ fetch('/ping/getRecommendList', {
     .then(r => {
         let travelListLen = r.travelList.length-1;
         recoModalButton.innerText = r.pingList[travelListLen].address;
-        if(travelListLen == -1 || r == null){
+        if(travelListLen == 0 || r == null){
             recommendTravelList.innerHTML = '<b class="fs-4">해당 여행지 근처 추천 게시글이 없습니다</b>';
         } else {
             let listTmp = '';
