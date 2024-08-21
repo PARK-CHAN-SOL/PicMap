@@ -12,6 +12,7 @@ const lat = document.getElementById('lat');
 const lon = document.getElementById('lon');
 
 var keywordMarkers;
+let mapCenter;
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {

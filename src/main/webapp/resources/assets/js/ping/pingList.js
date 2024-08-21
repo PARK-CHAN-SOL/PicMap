@@ -4,6 +4,7 @@ const searchPing = document.getElementById("searchPing");
 const searchButton = document.getElementById("searchButton");
 
 var keywordMarkers;
+let mapCenter;
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {

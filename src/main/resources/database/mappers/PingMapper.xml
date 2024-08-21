@@ -25,16 +25,23 @@
 
 	<select id="getPingList" parameterType="PingDTO"
 		resultType="PingDTO">
-		SELECT		p.PINGNUM ,p.LONGITUDE, p.LATITUDE, p.ADDRESS, COUNT(p.PINGNUM) tc 
-		FROM		PING p LEFT JOIN TRAVEL t
-					ON p.PINGNUM = t.PINGNUM
-					INNER JOIN HEART h
-					ON t.BOARDNUM = h.BOARDNUM 
-		WHERE		p.ADDRESS LIKE '%'||#{address}||'%'
-					OR t.BOARDTITLE LIKE '%'||#{address}||'%'
-					OR t.BOARDCONTENT LIKE '%'||#{address}||'%'
-		GROUP BY 	p.PINGNUM, p.LONGITUDE, p.LATITUDE, p.ADDRESS
-		ORDER BY	tc DESC
+		SELECT *
+		FROM(
+			SELECT BESTLIST.*, ROWNUM r
+			FROM(
+				SELECT		p.PINGNUM ,p.LONGITUDE, p.LATITUDE, p.ADDRESS, COUNT(p.PINGNUM) tc 
+				FROM		PING p LEFT JOIN TRAVEL t
+							ON p.PINGNUM = t.PINGNUM
+							INNER JOIN HEART h
+							ON t.BOARDNUM = h.BOARDNUM 
+				WHERE		p.ADDRESS LIKE '%'||#{address}||'%'
+							OR t.BOARDTITLE LIKE '%'||#{address}||'%'
+							OR t.BOARDCONTENT LIKE '%'||#{address}||'%'
+				GROUP BY 	p.PINGNUM, p.LONGITUDE, p.LATITUDE, p.ADDRESS
+				ORDER BY	tc DESC
+			)BESTLIST
+		)
+		WHERE 15 >= r
 	</select>
 	
 	<select id="getMyPingList" resultType="PingDTO">
@@ -66,7 +73,7 @@
 		FROM 	(
 			SELECT	ROWNUM r, reco.*
 			FROM 	(
-				SELECT		t.BOARDNUM, t.FILENAME, COUNT(t.BOARDNUM) tc
+				SELECT		t.BOARDNUM, t.FILENAME, t.PINGNUM, COUNT(t.BOARDNUM) tc
 				FROM		TRAVEL t INNER JOIN HEART h
 							ON t.BOARDNUM = h.BOARDNUM 
 				WHERE		CHILDBOARD IS NOT NULL
@@ -77,7 +84,7 @@
 								AND LONGITUDE BETWEEN (#{longitude}-0.0056) AND (#{longitude}+0.0056)
 								AND PINGNUM NOT IN (#{pingNum})
 					)
-				GROUP BY	t.BOARDNUM, t.FILENAME, t.HIT
+				GROUP BY	t.BOARDNUM, t.FILENAME, t.HIT, t.PINGNUM
 				ORDER BY	tc DESC, t.HIT DESC
 			) reco
 		)
@@ -89,5 +96,11 @@
 		FROM	PING
 		WHERE	PINGNUM = #{pingNum}
 	</select>
-
+	
+	<select id="getTravelDetail" parameterType="PingDTO" resultType="TravelDTO">
+		SELECT	t.BOARDNUM, t.FILENAME, t.PINGNUM
+		FROM	TRAVEL t
+		WHERE	PINGNUM = #{pingNum}
+	</select>
+ 
 </mapper>

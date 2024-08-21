@@ -43,7 +43,6 @@ public class PingController {
 		int result = pingService.addPing(pingDTO);
 		String s = "성공";
 		if (result == 0) s = "실패";
-		System.out.println(s);
 		return "/ping/map";
 	}
 
@@ -51,8 +50,6 @@ public class PingController {
 	@PostMapping("getPingList")
 	@ResponseBody
 	public Map<String, Object> getPingList(PingDTO pingDTO) throws Exception {
-		System.out.println(pingDTO.getAddress());
-
 		return pingService.getPingList(pingDTO);
 	}
 	
@@ -75,7 +72,7 @@ public class PingController {
 	// 리턴은 HTML 형식(String), 비동기 형식으로 호출됨
 	@PostMapping("getRecommendList")
 	@ResponseBody
-	public String getRecommendList(PingDTO pingDTO) throws Exception {
+	public Map<String, Object> getRecommendList(PingDTO pingDTO) throws Exception {
 		return pingService.getRecommendList(pingDTO);
 	}
 	

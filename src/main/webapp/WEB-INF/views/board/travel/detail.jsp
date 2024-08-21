@@ -64,7 +64,7 @@ by Awe7 (http://awe7.com/freebies)
 
 						<!-- 블러 처리된 배경을 위한 div -->
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;
-                        background-image: url(${empty dto.fileName? ('/resources/upload/travels/default.png') : ('/resources/upload/travels/'+= '' += dto.fileName)});
+                        background-image: url(${empty dto.fileName? ('\'/resources/upload/travels/default.png\'') : ('\'/resources/upload/travels/'+= '' += dto.fileName += '\'')});
                         background-size: 500px 500px; background-position: top; background-repeat: repeat-x;
                         filter: blur(32px);">
             </div>
@@ -101,11 +101,12 @@ by Awe7 (http://awe7.com/freebies)
                                     <div><b class="fs-4">다음 여행지 추천</b></div>
                                   </div>
                                 </div>
-								
-								
-								
-								
-								
+                                
+								<div class="row justify-content-center mt-3">
+								  <div class="col-7 text-end p-0" >
+                                      <button id="modalButton" type="button" class="border-0 fs-4" data-bs-toggle="modal" data-bs-target="#mapModal">위치</button>
+                                   </div>
+                                 </div>
 								
 								
 								<!-- 작성자, 작성날짜, 좋아요 -->
@@ -139,7 +140,6 @@ by Awe7 (http://awe7.com/freebies)
 										<span style="margin-right: 10px;">조회수 ${hit}</span>
 										
 									</div>
-									
 									
 									
 									<div class="d-flex align-items-center justify-content-between mt-3" style="width: 100%;">
@@ -245,6 +245,35 @@ by Awe7 (http://awe7.com/freebies)
 
 		</div>
 		<!-- End / Content-->
+    
+        <!-- Modal -->
+   <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+      <div class="modal-dialog" style="--bs-modal-width: 840px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <div>
+              <div class="map_wrap">
+                <div id="map" style="width: 100%; height: 600px; position: relative; z-index:1000; overflow: hidden;"></div>
+                <div class="hAddr"></div>
+
+                <div id="menu_wrap" class="bg_white">
+                  <div class="option">
+                    <div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
 	</div>
 	
 
@@ -253,9 +282,9 @@ by Awe7 (http://awe7.com/freebies)
 	<script src="/resources/assets/js/savepost/savePost.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/reply.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/commentslist.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
     <script src="/resources/assets/js/ping/recommendList.js"></script>
-    
-	
+	<script src="/resources/assets/js/ping/modal.js"></script>
 	
 </body>
 </html>

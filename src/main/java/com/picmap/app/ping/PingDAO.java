@@ -46,4 +46,8 @@ public class PingDAO {
 	public PingDTO getDetail(PingDTO pingDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getDetail", pingDTO);
 	}
+	
+	public TravelDTO getTravelDetail(PingDTO pingDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getTravelDetail", pingDTO);
+	}
 }

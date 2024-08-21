@@ -23,6 +23,9 @@ const target = document.getElementById('mapModal');
 // 2. 옵저버 콜백 생성
 const callback = (mutationList, observer) => {
     map.relayout(); 
+    if(mapCenter){
+        map.setCenter(mapCenter);
+    }
     if(keywordMarkers){searchPlaces();}
 };
 

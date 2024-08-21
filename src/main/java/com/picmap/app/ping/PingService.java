@@ -1,5 +1,6 @@
 package com.picmap.app.ping;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,29 +45,41 @@ public class PingService {
 	}
 
 	// 추천 게시글 리스트 검색
-	public String getRecommendList(PingDTO pingDTO) throws Exception {
-		pingDTO = getDetail(pingDTO);
-		List<TravelDTO> list = pingDAO.getRecommendList(pingDTO);
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("");
-		// 최대 4개 까지 추천 게시글 이미지(<img>) 출력,
-		// a태그로 각 img태그를 묶어서 /travel/detail ... 으로 링크
-		if (list.size() != 0) {
-			for (TravelDTO dto : list) {
-				sb.append("<a href=\"/travel/detail?boardNum=").append(dto.getBoardNum())
-						.append("\"><img src=\"/resources/upload/travels/")
-						.append(dto.getFileName() == null ? "default.png" : dto.getFileName()).append("\" class=\"rounded m-4\" style=\"width:150px; height:150px;\" /></a>");
-			}
+	public Map<String, Object> getRecommendList(PingDTO pingDTO) throws Exception {
+		pingDTO = pingDAO.getDetail(pingDTO);
+//		List<TravelDTO> list = pingDAO.getRecommendList(pingDTO);
+		TravelDTO travelDTO = pingDAO.getTravelDetail(pingDTO);
+		
+		List<TravelDTO> travelList = pingDAO.getRecommendList(pingDTO);
+		List<PingDTO> pingList = new ArrayList<PingDTO>();
+		if(travelList.size() != 0) {
+			pingList = pingDAO.getMyPingList(travelList);
 		}
-
-		return sb.toString();
+		
+		pingList.add(pingDTO);
+		travelList.add(travelDTO);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pingList", pingList);
+		map.put("travelList", travelList);
+		
+//		StringBuilder sb = new StringBuilder();
+//
+//		sb.append("");
+//		// 최대 4개 까지 추천 게시글 이미지(<img>) 출력,
+//		// a태그로 각 img태그를 묶어서 /travel/detail ... 으로 링크
+//		if (list.size() != 0) {
+//			for (TravelDTO dto : list) {
+//				sb.append("<a href=\"/travel/detail?boardNum=").append(dto.getBoardNum())
+//						.append("\"><img src=\"/resources/upload/travels/")
+//						.append(dto.getFileName() == null ? "default.png" : dto.getFileName()).append("\" class=\"rounded m-4\" style=\"width:150px; height:150px;\" /></a>");
+//			}
+//		}
+//
+//		return sb.toString();
+		
+		return map;
 	}
-
-	public PingDTO getDetail(PingDTO pingDTO) throws Exception {
-		return pingDAO.getDetail(pingDTO);
-	}
-
 	
 	public Map<String, Object> setMap(List<PingDTO> pingList, List<TravelDTO> travelList) throws Exception {
 

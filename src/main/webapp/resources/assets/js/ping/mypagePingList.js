@@ -6,7 +6,7 @@ const searchButton = document.getElementById("searchButton");
 const mypageBack = document.getElementById('mypageBack');
 
 var keywordMarkers;
-
+let mapCenter;
 
 // 마커를 담을 배열
 let markers = [];
