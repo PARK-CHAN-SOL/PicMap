@@ -40,6 +40,10 @@ public class TravelService {
 	public List<BoardDTO> getList(Scroller scroller) throws Exception {
 		return travelDAO.getList(scroller);
 	}
+	//게시판(게시글 좋아요순 정렬 리스트)
+	public List<BoardDTO> getListSortByLikes(Scroller scroller) throws Exception {
+		return travelDAO.getListSortByLikes(scroller);
+	}
 
 	
 	//게시글 번호 boardNum 매기기 (부모글, 최상위 부모글 만들기용)

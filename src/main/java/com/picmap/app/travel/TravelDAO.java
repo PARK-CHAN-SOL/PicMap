@@ -31,8 +31,11 @@ public class TravelDAO {
 	
 	//게시판(게시글 리스트)
 	public List<BoardDTO> getList(Scroller scroller) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"getList", scroller);
+	}
+	//게시판(게시글 좋아요순 정렬 리스트)
+	public List<BoardDTO> getListSortByLikes(Scroller scroller) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getListSortByLikes", scroller);
 	}
 	
 	

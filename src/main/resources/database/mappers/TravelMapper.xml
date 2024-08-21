@@ -24,6 +24,7 @@
 		    	LEFT JOIN
 		    	MEMBER M
 		    	ON T.MEMBERNUM = M.MEMBERNUM
+		    WHERE PARENTBOARD IS NULL
 		    ORDER BY H.HEARTCOUNT DESC, T.HIT DESC
 		)
 		WHERE ROWNUM <= 6
@@ -35,7 +36,7 @@
 		FROM 	(
 			SELECT  ROWNUM R, TM.*
 			FROM 	(
-				SELECT T.*, M.MEMBERID, M.MEMBERNICKNAME 
+				SELECT T.*, M.MEMBERID, M.MEMBERNICKNAME
 				FROM TRAVEL T
 					 LEFT JOIN
 					 MEMBER M
@@ -44,8 +45,28 @@
 				ORDER BY BOARDNUM DESC
 			)TM
 		)
-		WHERE R BETWEEN #{startRow} AND #{endRow}
+		WHERE R BETWEEN #{startRow} AND #{endRow}	
 	</select>
+	
+	<select id="getListSortByLikes" resultType="TravelDTO" parameterType="Scroller">
+		SELECT *
+		FROM (
+		    SELECT P.*, ROWNUM R
+		    FROM (
+		        SELECT T.*, NVL(H.HEARTCOUNT, 0) AS HEARTCOUNT, M.MEMBERNICKNAME
+		        FROM TRAVEL T
+		        LEFT JOIN (
+		            SELECT BOARDNUM, COUNT(HEARTNUM) AS HEARTCOUNT
+		            FROM HEART
+		            GROUP BY BOARDNUM
+		        ) H ON T.BOARDNUM = H.BOARDNUM
+		        LEFT JOIN MEMBER M ON T.MEMBERNUM = M.MEMBERNUM
+		        WHERE PARENTBOARD IS NULL
+		        ORDER BY NVL(H.HEARTCOUNT, 0) DESC, T.HIT DESC
+		    ) P
+		) 
+		WHERE R BETWEEN #{startRow} AND #{endRow}
+	</select>	
 	
 	
 	<insert id="add" parameterType="TravelDTO">

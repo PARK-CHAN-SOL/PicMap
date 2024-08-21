@@ -60,6 +60,12 @@ public class TravelController {
 		return travelService.getList(scroller);
 	}
 	
+	@PostMapping("listSortByLikes")
+	@ResponseBody
+	public List<BoardDTO> getListSortByLikes(Model model, Scroller scroller) throws Exception {
+		return travelService.getListSortByLikes(scroller);
+	}
+	
 	
 	//게시글 작성(최상위 부모글)
 	@GetMapping("add")

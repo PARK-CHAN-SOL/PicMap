@@ -10,6 +10,7 @@ by Awe7 (http://awe7.com/freebies)
 -->
 <c:import url="../../template/header_css.jsp"></c:import>
 <link rel="stylesheet" href="/resources/assets/css/boardList.css">
+<link rel="stylesheet" href="/resources/assets/css/gridSave.css">
 
 </head>
 
@@ -60,37 +61,47 @@ by Awe7 (http://awe7.com/freebies)
 
 
       <!-- Section -->
-      <section class="awe-section">
-        <div class="container">
-
-          <div class="grid-css grid_css_style_02 grid-css--masonry" data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
-            <div class="filter">
-              <ul class="filter__list">
-                <li><a href="#" data-filter="*">All</a></li>
-                <li><a href="#" data-filter=".cat1">추천순</a></li>
-                <li><a href="#" data-filter=".cat2">최신순</a></li>
-              </ul>
-            </div>
-            <div class="grid__inner">
-              <div class="grid-sizer" id="travelList"></div>
-            </div>
-            <div id="travelObserverTarget" data-start-row="1" data-end-row="9"></div>
-          </div>
-
-        </div>
-      </section>
+		<section class="awe-section">
+			<div class="container">
+	
+				<div class="grid-css grid_css_style_02 grid-css--masonry" data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
+					<div class="filter">
+						<ul class="filter__list" id="pills-tab" role="tablist">
+							<li class="current"><a href="#" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true" class="active">최신순</a></li>
+							<li class><a href="#" id="pills-friends-tab" data-bs-toggle="pill" data-bs-target="#pills-friends" role="tab" aria-controls="pills-friends" aria-selected="false" class tabindex="-1">추천순</a></li>
+						</ul>
+					</div>
+				</div>
+	            
+	            
+				<div class="tab-content" id="pills-tabContent">
+				
+	            	<div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+	            		<div class="grid-css grid_css_style_02 grid-css--masonry" data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
+							<div class="grid__inner">
+								<div class="grid-sizer"></div>
+							</div>
+	            			<div id="travelObserverTarget" data-start-row="1" data-end-row="18"></div>
+	            		</div>
+	            	</div>
+	            	
+					<div class="tab-pane fade" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab" tabindex="0">
+	    				<div class="grid-css grid_css_style_02 grid-css--masonry" data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
+							<div class="grid__innerSave">
+								<div class="grid-sizerSave"></div>
+							</div>
+							<div id="mypageObserverTargetSave" data-start-row="1" data-end-row="18" style="display:none;"></div>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+				
+			</div>
+		
+		</section>
       <!-- End / Section -->
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -109,6 +120,9 @@ by Awe7 (http://awe7.com/freebies)
 
   <c:import url="../../template/footer.jsp"></c:import>
   <script src="/resources/assets/js/board/travelList.js"></script>
+  <script type="text/javascript" src="/resources/assets/js/board/sort_likes.js"></script>
+  
+  
 </body>
 </html>
 
