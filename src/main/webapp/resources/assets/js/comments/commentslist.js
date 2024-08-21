@@ -170,9 +170,9 @@ document.addEventListener("DOMContentLoaded", () => {
     
             const link = event.target.closest('.profile-link'); // 클릭된 링크를 가져옴
             const rect = link.getBoundingClientRect(); // 클릭된 링크의 위치 정보 가져오기
-           
-            profilePopup.style.top = `${event.layerY}px`; // 팝업의 위치 설정
-            profilePopup.style.left = `${event.layerX}px`;
+           console.log(event);
+            profilePopup.style.top = `${event.pageY}px`; // 팝업의 위치 설정
+            profilePopup.style.left = `${event.pageX}px`;
     
             // 닉네임 설정
             const nickname = link.getAttribute('alt'); // 이미지의 alt 텍스트를 닉네임으로 사용

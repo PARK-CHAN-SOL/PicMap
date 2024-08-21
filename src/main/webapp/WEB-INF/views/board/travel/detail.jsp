@@ -170,6 +170,7 @@ by Awe7 (http://awe7.com/freebies)
 
                   </div>
 
+
                   <!-- 댓글 -->
                   <div class="row justify-content-center">
                     <div class="col-lg-7 col-md-10 col-sm-12 p-0">
@@ -196,29 +197,14 @@ by Awe7 (http://awe7.com/freebies)
                     </div>
                   </div>
                   <!-- 댓글END -->
+
+
+
                 </div>
+
               </div>
-
-              <!-- 팝업 레이아웃 -->
-              <div id="profilePopup" class="profile-popup">
-                <div class="profile-popup-content">
-                  <img src="">
-                  <p>
-                    <b>작성자</b>
-                  </p>
-                  <button id="followButton" class="like-button">팔로우</button>
-                  <button class="view-profile-button">프로필 보기</button>
-                </div>
-              </div>
-
-
-
-
-
-
 
             </div>
-
 
           </div>
         </div>
@@ -229,6 +215,19 @@ by Awe7 (http://awe7.com/freebies)
 
     </div>
     <!-- End / Content-->
+
+    <!-- 팝업 레이아웃 -->
+    <div id="profilePopup" class="profile-popup" style="position: absolute;">
+      <div class="profile-popup-content">
+        <img src="">
+        <p>
+          <b>작성자</b>
+        </p>
+        <button id="followButton" class="like-button">팔로우</button>
+        <button class="view-profile-button">프로필 보기</button>
+      </div>
+    </div>
+    <!-- 팝업 레이아웃END -->
 
     <!-- Modal -->
     <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
