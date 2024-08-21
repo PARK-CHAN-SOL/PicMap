@@ -386,22 +386,3 @@ document.addEventListener("click", (event) => {
             }
         }
     });
-
-
-'<div class="comment">' + // 댓글 컨테이너 시작
-    '<p>작성자: ${comment.memberNum}</p>' + // 댓글 작성자의 회원 번호를 표시
-    '<p id="${comment.commentNum}" class="comment-content">${comment.content}</p>' + // 댓글 내용을 표시
-    '<p>작성일: ${comment.createDate}</p>' + // 댓글 작성일을 표시
-    '<c:if test="${member.memberNum == comment.memberNum}">' + // 현재 사용자가 댓글 작성자인 경우
-        '<button data-comment-num="${comment.commentNum}" class="comment-button update-button">수정</button>' + // 수정 버튼 추가
-        '<button data-comment-num="${comment.commentNum}" class="comment-button delete-button">삭제</button>' + // 삭제 버튼 추가
-    '</c:if>' +
-    '<c:if test="${member.memberNum != null}">' + // 사용자가 로그인 상태인 경우
-        '<button data-comment-num="${comment.commentNum}" class="comment-button reply-button">답글</button>' + // 답글 버튼 추가
-        '<div id="replyForm${comment.commentNum}" class="reply-form" style="display:none;">' + // 답글 작성 폼, 기본적으로 숨겨져 있음
-            '<textarea id="replyContents${comment.commentNum}" name="reply" placeholder="답글을 입력하세요" class="comment-textarea"></textarea>' + // 답글 입력란
-            '<button data-comment-num="${comment.commentNum}" class="comment-button reply-submit-button">답글 남기기</button>' + // 답글 남기기 버튼
-            '<div id="replyList${comment.commentNum}" class="reply-list"></div>' + // 답글 리스트를 표시할 요소
-        '</div>' + // 답글 작성 폼 종료
-    '</c:if>' +
-'</div>'; // 댓글 컨테이너 종
