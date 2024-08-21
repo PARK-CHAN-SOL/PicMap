@@ -50,8 +50,7 @@
    
 	<update id="update" parameterType="MemberDTO" >
 		UPDATE MEMBER SET MEMBERNAME=#{memberName} ,MEMBERBIRTH=#{memberBirth},
-		MEMBERNICKNAME=#{memberNickName},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},
-		PROFILEPATH=#{profilePath}
+		MEMBERNICKNAME=#{memberNickName},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone}
 			WHERE MEMBERID = #{memberId} 
 	</update>
 	

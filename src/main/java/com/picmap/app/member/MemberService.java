@@ -94,21 +94,11 @@ public class MemberService {
 		return memberDAO.detail(memberDTO);
 	}
 
-	public int update(MemberDTO memberDTO, MultipartFile files, HttpSession session) throws Exception {
-		ServletContext servletContext = session.getServletContext();
-		// 1. 어디에 저장? (운영체제가 알고 있는 경로에 써줘야한다)
-		String path = servletContext.getRealPath("resources/upload/" + name);
-		System.out.println(path);
-		FileManager fm = new FileManager();
+	public int update(MemberDTO memberDTO,  HttpSession session) throws Exception {
 
-		if (null == files.getOriginalFilename() ||  files.getOriginalFilename().equals("")) {
-			memberDTO.setProfilePath("default");
-		} else {
-			memberDTO.setProfilePath("/resources/upload/" + name + fm.fileSave(files, path));
-		}
 		int result = memberDAO.update(memberDTO);
 		return result;
-
+		
 	}
 	
 
@@ -234,7 +224,7 @@ public class MemberService {
         System.out.println("세션에서 가져온 memberNum: " + sessionMemberDTO.getMemberNum());
         // 파일 저장 경로 설정
         ServletContext servletContext = session.getServletContext();
-        String path = servletContext.getRealPath("resources/upload/");
+        String path = servletContext.getRealPath("resources/upload/" + name);
 
         FileManager fm = new FileManager();
 
@@ -243,7 +233,7 @@ public class MemberService {
             memberDTO.setProfilePath("default");
         } else {
             String fileName = fm.fileSave(files, path);
-            memberDTO.setProfilePath("/resources/upload/" + fileName);
+            memberDTO.setProfilePath("/resources/upload/" + name + fm.fileSave(files, path));
         }
 
         // DB 업데이트
