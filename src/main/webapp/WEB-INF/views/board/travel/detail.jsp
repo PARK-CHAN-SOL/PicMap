@@ -110,9 +110,9 @@ by Awe7 (http://awe7.com/freebies)
                     <div class="d-flex align-items-center justify-content-between" style="width: 100%;">
                       <div class="d-flex align-items-center">
                         <span class="linear-gradient d-flex align-items-center justify-content-center rounded-circle" style="width: 70px; height: 70px; display: inline-block;"> <span class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden" style="width: 60px; height: 60px;"> <c:if test="${not empty member.profilePath}">
-                              <img src="${member.profilePath}" onerror="this.src='/resources/upload/members/default.png'" alt="${member.memberNickName}" class="w-100 h-100 profile-image profile-link" data-member-num="${dto.memberNum}">
+                              <img src="${member.profilePath}" onerror="this.src='/resources/upload/members/default.png'" alt="${member.memberNickName}" class="w-100 h-100 profile-image profile-link" data-member-num="${dto.memberNum}" style="cursor: pointer;">
                             </c:if> <c:if test="${empty member.profilePath}">
-                              <img src="/resources/upload/members/default.png" alt="${member.memberNickName}" class="w-100 h-100 profile-image profile-link" data-member-num="${dto.memberNum}">
+                              <img src="/resources/upload/members/default.png" alt="${member.memberNickName}" class="w-100 h-100 profile-image profile-link" data-member-num="${dto.memberNum}" style="cursor: pointer;">
                             </c:if>
                         </span>
                         </span> <span style="margin-left: 10px;">${member.memberNickName}</span> <span style="margin-left: 10px;"> • ${dto.writeDate}</span>

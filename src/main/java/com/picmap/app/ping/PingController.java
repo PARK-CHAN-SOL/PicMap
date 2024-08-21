@@ -67,8 +67,8 @@ public class PingController {
 	}
 	
 	
-	// 위도 latitude +- 0.0044 만큼 검색 (가로 세로 1000m 범위)
-	// 경도 longitude +- 0.0056
+	// 위도 latitude +- 0.0088 만큼 검색 (가로 세로 2000m 범위)
+	// 경도 longitude +- 0.0112
 	// 리턴은 HTML 형식(String), 비동기 형식으로 호출됨
 	@PostMapping("getRecommendList")
 	@ResponseBody

@@ -32,14 +32,23 @@ function removeMarker() {
     markers = [];
 }
 
-searchButton.addEventListener("click", () => {
 
+searchButton.addEventListener("click", () => {
+    
     // 지도 위에 표시되고 있는 마커를 모두 제거
     removeMarker();
-
+    
     getPingList(searchPing.value);
     
 })
+
+searchPing.addEventListener('keyup', (event)=>enterKeyUp(event))
+
+function enterKeyUp(key) {
+    if(key.code  == 'Enter'){
+        searchButton.click();
+    }
+}
 
 function getPingList(address) {
     let searchForm = new FormData();

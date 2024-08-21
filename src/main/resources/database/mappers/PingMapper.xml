@@ -80,8 +80,8 @@
 							AND PINGNUM IN (
 						SELECT	PINGNUM
 						FROM	PING
-						WHERE	LATITUDE BETWEEN (#{latitude}-0.0044) AND (#{latitude}+0.0044)
-								AND LONGITUDE BETWEEN (#{longitude}-0.0056) AND (#{longitude}+0.0056)
+						WHERE	LATITUDE BETWEEN (#{latitude}-0.0088) AND (#{latitude}+0.0088)
+								AND LONGITUDE BETWEEN (#{longitude}-0.0112) AND (#{longitude}+0.0112)
 								AND PINGNUM NOT IN (#{pingNum})
 					)
 				GROUP BY	t.BOARDNUM, t.FILENAME, t.HIT, t.PINGNUM

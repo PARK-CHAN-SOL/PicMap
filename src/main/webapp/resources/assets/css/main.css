@@ -932,7 +932,8 @@ ul {
     display: block;
     padding-top: 150%;
     background-size: cover;
-    transform: scale(1.2);
+    background-position: center center;
+    transform: scale(1.1);
 }
 
 .box-image2__bg:before {
