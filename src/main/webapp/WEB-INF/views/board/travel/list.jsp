@@ -78,7 +78,15 @@ by Awe7 (http://awe7.com/freebies)
 						<div class="box-search row justify-content-end">
 
 							<!-- form-item -->
-
+							
+							<div class="form-item">
+								<select name="kind" class="form-select" id="inlineFormSelectPref">
+									<option value="title">글제목</option>
+									<option value="contents">글내용</option>
+									<option value="writer">작성자</option>
+									<option value="location">지역</option>
+								</select>
+							</div>
 
 
 							<!-- form-item -->

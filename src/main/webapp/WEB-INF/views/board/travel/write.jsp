@@ -77,7 +77,7 @@ by Awe7 (http://awe7.com/freebies)
                 <tr>
                   <th rowspan="3"><span class="fs-4">내용</span></th>
                   <th colspan="2">
-                  	<input type="file" class="form-control fs-4" id="travelFiles" name="files" onchange="readURL(this)" style="display: none;" style="display:none;">
+                  	<input type="file" class="form-control fs-4" id="travelFiles" name="files" onchange="readURL(this)" style="display: none;">
                   	<label for="travelFiles" class="fs-4 btn btn-secondary">게시글 사진을 추가하세요</label>
                   	<c:choose>
                   		<c:when test="${dto.fileName != null}">
