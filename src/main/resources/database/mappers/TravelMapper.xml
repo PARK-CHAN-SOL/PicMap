@@ -3,6 +3,17 @@
 
 
 <mapper	namespace="com.picmap.app.travel.TravelDAO">
+
+	<sql id="searchSql">
+	
+		<where>
+			(T.BOARDTITLE LIKE '%'||#{search}||'%'
+			OR T.BOARDCONTENT LIKE '%'||#{search}||'%'
+			OR P.ADDRESS LIKE '%'||#{search}||'%')
+			AND PARENTBOARD IS NULL
+		</where>
+		
+	</sql>
 	
 	<select id="getTotalCount" resultType="java.lang.Long">
 		SELECT	COUNT(BOARDNUM)
@@ -41,7 +52,10 @@
 					 LEFT JOIN
 					 MEMBER M
 					 ON T.MEMBERNUM = M.MEMBERNUM
-				WHERE PARENTBOARD IS NULL
+					 LEFT JOIN
+					 PING P
+					 ON T.PINGNUM = P.PINGNUM
+				<include refid="searchSql"></include>
 				ORDER BY BOARDNUM DESC
 			)TM
 		)
@@ -51,7 +65,7 @@
 	<select id="getListSortByLikes" resultType="TravelDTO" parameterType="Scroller">
 		SELECT *
 		FROM (
-		    SELECT P.*, ROWNUM R
+		    SELECT A.*, ROWNUM R
 		    FROM (
 		        SELECT T.*, NVL(H.HEARTCOUNT, 0) AS HEARTCOUNT, M.MEMBERNICKNAME
 		        FROM TRAVEL T
@@ -60,10 +74,15 @@
 		            FROM HEART
 		            GROUP BY BOARDNUM
 		        ) H ON T.BOARDNUM = H.BOARDNUM
-		        LEFT JOIN MEMBER M ON T.MEMBERNUM = M.MEMBERNUM
-		        WHERE PARENTBOARD IS NULL
+		        LEFT JOIN
+		        MEMBER M
+		        ON T.MEMBERNUM = M.MEMBERNUM
+		        LEFT JOIN
+		        PING P
+		        ON T.PINGNUM = P.PINGNUM
+		        <include refid="searchSql"></include>
 		        ORDER BY NVL(H.HEARTCOUNT, 0) DESC, T.HIT DESC
-		    ) P
+		    ) A
 		) 
 		WHERE R BETWEEN #{startRow} AND #{endRow}
 	</select>	

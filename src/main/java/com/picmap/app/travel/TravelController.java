@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,16 +51,24 @@ public class TravelController {
 	}
 	
 	@GetMapping("list")
-	public String getList() throws Exception {
-		return "board/travel/list";
+	public String getList(@RequestParam(required = false) String search,
+	                      @RequestParam(required = false, defaultValue = "1") int startRow,
+	                      @RequestParam(required = false, defaultValue = "18") int endRow,
+	                      Model model) throws Exception {
+	    // 검색 조건과 시작 및 종료 행 번호를 모델에 추가
+	    model.addAttribute("search", search);
+	    model.addAttribute("startRow", startRow);
+	    model.addAttribute("endRow", endRow);
+	    return "board/travel/list";
 	}
 	
 	@PostMapping("list")
 	@ResponseBody
 	public List<BoardDTO> getList(Model model, Scroller scroller) throws Exception {
+
 		return travelService.getList(scroller);
 	}
-	
+
 	@PostMapping("listSortByLikes")
 	@ResponseBody
 	public List<BoardDTO> getListSortByLikes(Model model, Scroller scroller) throws Exception {
@@ -89,6 +98,11 @@ public class TravelController {
 		travelDTO.setPingNum(pingNum);
 		pingDTO.setPingNum(pingNum);
 		pingService.addPing(pingDTO);
+		
+		String boardTitleTmp = travelDTO.getBoardTitle();
+		boardTitleTmp = boardTitleTmp.replaceAll("<", "&lt");
+		boardTitleTmp = boardTitleTmp.replaceAll(">", "&gt");
+		travelDTO.setBoardTitle(boardTitleTmp);
 		
 		//4. 게시글 추가
 		int result = travelService.add(travelDTO, files, session);
@@ -152,6 +166,12 @@ public class TravelController {
 	public String update(TravelDTO travelDTO, MultipartFile[] files, HttpSession session, PingDTO pingDTO) throws Exception {
 		
 		pingService.updatePing(pingDTO);
+		
+		String boardTitleTmp = travelDTO.getBoardTitle();
+		boardTitleTmp = boardTitleTmp.replaceAll("<", "&lt");
+		boardTitleTmp = boardTitleTmp.replaceAll(">", "&gt");
+		travelDTO.setBoardTitle(boardTitleTmp);
+		
 		travelService.update(travelDTO, files, session);
 		
 		return "redirect:./list";

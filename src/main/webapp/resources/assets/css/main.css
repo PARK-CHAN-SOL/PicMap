@@ -935,7 +935,7 @@ ul {
     position: relative;
     overflow: hidden;
     max-width: 400px;
-    max-height: 500px;
+    max-height: 400px;
     margin: auto;
 }
 
@@ -949,7 +949,7 @@ ul {
 
 .box-image2 :hover .box-image2__info {
     padding: 10px 30px;
-    top: 65%;
+    top: 55%;
 }
 
 .box-image2 :hover .box-image2__info_bot {
@@ -2402,7 +2402,7 @@ ul {
 .filter a {
     display: block;
     position: relative;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     text-transform: capitalize;
     color: #696969;

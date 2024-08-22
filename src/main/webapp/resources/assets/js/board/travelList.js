@@ -1,3 +1,4 @@
+
 let travelTotalCount = 18;
 
 fetch('/travel/travelTotalCount', {
@@ -16,6 +17,9 @@ const travelObserver = new IntersectionObserver((items)=>{ // IntersectionObserv
             const formData = new FormData(); // 폼 데이터를 생성
             formData.append("startRow", travelObserverTarget.dataset.startRow); // 폼 데이터에 시작 행 번호 추가
             formData.append("endRow", travelObserverTarget.dataset.endRow); // 폼 데이터에 끝 행 번호 추가
+            if(search) {
+	            formData.append("search", search);
+            }
             const url = '/travel/list'; // 게시글 목록을 가져올 URL
 
             await makeTravelList(url, formData);

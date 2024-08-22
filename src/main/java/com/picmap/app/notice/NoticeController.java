@@ -58,6 +58,11 @@ public class NoticeController {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		noticeDTO.setMemberNum(memberDTO.getMemberNum());
 		
+		String boardTitleTmp = noticeDTO.getBoardTitle();
+		boardTitleTmp = boardTitleTmp.replaceAll("<", "&lt");
+		boardTitleTmp = boardTitleTmp.replaceAll(">", "&gt");
+		noticeDTO.setBoardTitle(boardTitleTmp);
+		
 		int result = noticeService.add(noticeDTO, files, session);
 		
 		return "redirect:./list";

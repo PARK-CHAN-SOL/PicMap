@@ -70,38 +70,24 @@ by Awe7 (http://awe7.com/freebies)
 
 
 			<!-- 검색 -->
-			<section class="awe-section pd-0" id="box-search">
-				<div class="box-search-wrapper">
+			<section class="awe-section pd-0" id="search-box">
+				<div class="search-box-wrapper">
 					<div class="container">
 
-						<!-- box-search -->
-						<div class="box-search row justify-content-end">
-
-							<!-- form-item -->
+						<!-- search-box -->
+						<form method="GET">
+							<div class="search-box row justify-content-end">
 							
-							<div class="form-item">
-								<select name="kind" class="form-select" id="inlineFormSelectPref">
-									<option value="title">글제목</option>
-									<option value="contents">글내용</option>
-									<option value="writer">작성자</option>
-									<option value="location">지역</option>
-								</select>
+								<!-- form-item -->
+								<div class="form-item">
+									<input class="form-control" type="text" name="search" id="searchPost" placeholder="여행 리뷰를 검색해보세요"/>
+								</div>
+								<!-- End / form-item -->
+								
+								<button type="submit" class="md-btn md-btn--primary md-btn--searchList " id="searchButton">Search</button>
 							</div>
-
-
-							<!-- form-item -->
-							<div class="form-item">
-								<input class="form-control" type="text" name="input" id="searchPost" placeholder="여행 리뷰를 검색해보세요"/>
-							</div>
-							<!-- End / form-item -->
-
-
-							<!-- form-item -->
-
-
-							<a class="md-btn md-btn--primary md-btn--searchList " href="#" id="searchButton">Search</a>
-						</div>
-						<!-- End / box-search -->
+						</form>
+						<!-- End / search-box -->
 
 					</div>
 				</div>
@@ -114,12 +100,12 @@ by Awe7 (http://awe7.com/freebies)
 
 
 			<!-- Section -->
-			<section class="awe-section">
+			<section class="awe-section" style="padding-top:80px !important;">
 				<div class="container">
 
 					<div class="grid-css grid_css_style_02 grid-css--masonry" data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
 						<div class="filter">
-							<ul class="filter__list" id="pills-tab" role="tablist">
+							<ul class="filter__list" id="pills-tab" role="tablist" style="padding-right:40px !important;">
 								<li class="current">
 									<a href="#" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"role="tab"
 									aria-controls="pills-profile" aria-selected="true" class="active">최신순</a>
@@ -138,20 +124,20 @@ by Awe7 (http://awe7.com/freebies)
 						<div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 							<div class="grid-css grid_css_style_02 grid-css--masonry"
 							data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
-								<div class="grid__inner">
+								<div class="grid__inner" style="margin-top: 10px !important;">
 									<div class="grid-sizer"></div>
 								</div>
-								<div id="travelObserverTarget" data-start-row="1" data-end-row="18"></div>
+								<div id="travelObserverTarget" data-start-row="1" data-end-row="18"></div> <!-- 최신순 -->
 							</div>
 						</div>
 
 						<div class="tab-pane fade" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab" tabindex="0">
 							<div class="grid-css grid_css_style_02 grid-css--masonry"
 							data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
-								<div class="grid__innerSave">
+								<div class="grid__innerSave" style="margin-top: 10px !important;">
 									<div class="grid-sizerSave"></div>
 								</div>
-								<div id="mypageObserverTargetSave" data-start-row="1" data-end-row="18" style="display: none;"></div>
+								<div id="mypageObserverTargetSave" data-start-row="1" data-end-row="18" style="display: none;"></div> <!-- 추천순 -->
 							</div>
 						</div>
 
@@ -184,6 +170,12 @@ by Awe7 (http://awe7.com/freebies)
 
 
 	<c:import url="../../template/footer.jsp"></c:import>
+	<script>
+	    const search = '${param.search}';
+	    
+	    // 이 값을 입력 필드에 다시 설정
+	    document.getElementById('searchPost').value = search;
+	</script>
 	<script src="/resources/assets/js/board/travelList.js"></script>
 	<script type="text/javascript" src="/resources/assets/js/board/sort_likes.js"></script>
 </body>
