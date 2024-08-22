@@ -38,10 +38,16 @@ public class TravelService {
 	
 	//게시판(게시글 리스트)
 	public List<BoardDTO> getList(Scroller scroller) throws Exception {
+		if(scroller.getSearch() == null) {
+			scroller.setSearch("");
+		}
 		return travelDAO.getList(scroller);
 	}
 	//게시판(게시글 좋아요순 정렬 리스트)
 	public List<BoardDTO> getListSortByLikes(Scroller scroller) throws Exception {
+		if(scroller.getSearch() == null) {
+			scroller.setSearch("");
+		}
 		return travelDAO.getListSortByLikes(scroller);
 	}
 
