@@ -53,6 +53,8 @@ public class ReplyController {
 		ReplyDTO replyDTO = new ReplyDTO();
 		replyDTO.setCommentNum(commentNum);
 		replyDTO.setMemberNum(memberNum);
+		content = content.replace("<", "&lt");
+		content = content.replace(">", "&gt");
 		replyDTO.setContent(content);
 
 		int result = replyService.addReply(replyDTO);
@@ -74,6 +76,8 @@ public class ReplyController {
 		ReplyDTO replyDTO = new ReplyDTO();
 		replyDTO.setReplyNum(replyNum);
 		replyDTO.setMemberNum(memberNum);
+		content = content.replace("<", "&lt");
+		content = content.replace(">", "&gt");
 		replyDTO.setContent(content);
 
 		int result = replyService.updateReply(replyDTO);

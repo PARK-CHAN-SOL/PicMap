@@ -72,6 +72,8 @@ public class CommentController {
 		CommentsDTO commentsDTO = new CommentsDTO();
 		commentsDTO.setBoardNum(boardNum);
 		commentsDTO.setMemberNum(memberNum);
+		content = content.replace("<", "&lt");
+		content = content.replace(">", "&gt");
 		commentsDTO.setContent(content);
 
 		// 서비스 계층을 호출하여 댓글을 추가함
@@ -99,7 +101,8 @@ public class CommentController {
 		if (memberNum == null) {
 			return "회원 정보가 잘못되었습니다."; // 회원 정보가 없는 경우
 		}
-
+		content = content.replace("<", "&lt");
+		content = content.replace(">", "&gt");
 		// 서비스 계층을 호출하여 댓글을 수정함
 		CommentDTO updatedComment = commentService.updateComment(commentNum, memberNum, content);
 		if (updatedComment == null) {

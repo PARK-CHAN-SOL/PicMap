@@ -6,7 +6,7 @@
 	<div class="reply">
 		<a href="/member/mypage?memberNum=${reply.memberNum}" class='link-tmp' title="프로필 보기">
 			<c:choose>
-				<c:when test="${not empty reply.profilePath || reply.profilePath eq null || reply.profilePath eq ''}">
+				<c:when test="${empty reply.profilePath || reply.profilePath eq null || reply.profilePath eq ''}">
 					<img src="/resources/upload/members/default.png" alt="${reply.memberNickName}" class="profile-image profile-link" data-member-num="${reply.memberNum}"/>
 				</c:when>
 				<c:otherwise>
