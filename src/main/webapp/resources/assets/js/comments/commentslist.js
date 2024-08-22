@@ -51,6 +51,11 @@ async function commentDTOLoop(commentDTOs) {
 
             let createDate = new Date(commentDTO.createDate); // 댓글 작성일을 Date 객체로 변환
             createDate = createDate.getFullYear() + '-' +  String(createDate.getMonth() + 1).padStart(2, '0') + '-' + String(createDate.getDate()).padStart(2, '0'); // 작성일을 YYYY-MM-DD 형식으로 변환
+
+            if(commentDTO.profilePath == 'default' || commentDTO.profilePath == null || commentDTO.profilePath == '') {
+                commentDTO.profilePath = '/resources/upload/members/default.png'
+            }
+
             let comment =
             '<div class="comment">' + // 댓글 컨테이너 시작
                 '<a href="/member/mypage?memberNum=' + commentDTO.memberNum + '" class="link-tmp" title="프로필보기">' + // 프로필 이미지 링크 추가

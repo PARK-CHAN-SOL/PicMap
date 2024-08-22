@@ -161,6 +161,7 @@ by Awe7 (http://awe7.com/freebies)
                  
                   	<c:choose>
                   		<c:when test="${member.profilePath != null}">
+                  		
                   	<input type="hidden" name="profilePath" value="${member.profilePath}">
 		<img id="previewProfile" class="mt-3" style="width: 100%; height: 100%; object-fit: cover;" src="${member.profilePath}"/>
                   		</c:when>

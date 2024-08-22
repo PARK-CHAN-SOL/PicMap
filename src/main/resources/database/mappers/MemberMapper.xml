@@ -175,9 +175,11 @@ SELECT 	*
         AND MEMBERID = #{memberId} 
          AND MEMBEREMAIL = #{memberEmail} 
     </select>
-	<update id="proFileUpdate" parameterType="MemberDTO" >
-		UPDATE MEMBER SET PROFILEPATH=#{profilePath}
-			WHERE MEMBERNUM = #{memberNum} 
-	</update>
+<update id="proFileUpdate" parameterType="MemberDTO">
+    UPDATE MEMBER 
+    SET PROFILEPATH = #{profilePath, jdbcType=VARCHAR}
+    WHERE MEMBERNUM = #{memberNum}
+ 
+</update>
 	
   </mapper>
