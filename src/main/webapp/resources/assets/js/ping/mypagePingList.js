@@ -8,22 +8,22 @@ const mypageBack = document.getElementById('mypageBack');
 var keywordMarkers;
 let mapCenter;
 
-// 마커를 담을 배열
-let markers = [];
+// 커스텀오버레이를 담을 배열
+let customOverlays = [];
 
-// 지도 위에 표시되고 있는 마커를 모두 제거
-function removeMarker() {
-    for ( var i = 0; i < markers.length; i++ ) {
-        markers[i].setMap(null);
+// 지도 위에 표시되고 있는 커스텀오버레이를 모두 제거
+function removeCustomOverlay() {
+    for ( var i = 0; i < customOverlays.length; i++ ) {
+        customOverlays[i].setMap(null);
     }   
-    markers = [];
+    customOverlays = [];
 }
 
 if(searchButton){
     searchButton.addEventListener("click", () => {
 
-        // 지도 위에 표시되고 있는 마커를 모두 제거
-        removeMarker();
+        // 지도 위에 표시되고 있는 커스텀오버레이를 모두 제거
+        removeCustomOverlay();
 
         getPingList(searchPing.value);
         
@@ -90,9 +90,11 @@ function getPingList() {
                     let board = positions[i].board;
 
                     var content =
-                    '<div class="border border-5 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden">' +
-                    '   <a href="' + board + '"><img src="' + positions[i].image + '" style="max-width:120px; height:64px;"></a>'
-                    '</div>';
+                    '<a href="' + board +'">' +
+                    '    <div class="d-flex align-items-center justify-content-center overflow-hidden"'+
+                    '         style="width:64px; height:64px; background-image: url(\'' + positions[i].image + '\'); background-size: cover; background-position: center center; border: 4px solid white; border-radius: var(--bs-border-radius-xl) !important;">' +
+                    '    </div>'+
+                    '</a>';
 
                     var customOverlay = new kakao.maps.CustomOverlay({
                         position: positions[i].latlng,
@@ -102,6 +104,7 @@ function getPingList() {
                     });
 
                     customOverlay.setMap(map);
+                    customOverlays.push(customOverlay);
 
                     map.relayout();
                 }

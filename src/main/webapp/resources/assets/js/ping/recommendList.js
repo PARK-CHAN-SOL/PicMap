@@ -84,9 +84,11 @@ fetch('/ping/getRecommendList', {
             let board = positions[i].board;
 
             var content =
-            '<div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden">' +
-            '   <a href="' + board + '"><img src="' + positions[i].image + '" style="max-width:120px; height:64px;"></a>'
-            '</div>';
+            '<a href="' + board +'">' +
+            '    <div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-4 overflow-hidden"'+
+            '         style="width:64px; height:64px; background-image: url(\'' + positions[i].image + '\'); background-size: cover; background-position: center center;">' +
+            '    </div>'+
+            '</a>';
 
             var customOverlay = new kakao.maps.CustomOverlay({
                 position: positions[i].latlng,

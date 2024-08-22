@@ -21,22 +21,22 @@ kakao.maps.event.addListener(map, 'zoom_changed', function() {
     if(map.getLevel() == 14) map.setLevel(13);
 });
 
-// 마커를 담을 배열
-let markers = [];
+// 커스텀오버레이를 담을 배열
+let customOverlays = [];
 
-// 지도 위에 표시되고 있는 마커를 모두 제거
-function removeMarker() {
-    for ( var i = 0; i < markers.length; i++ ) {
-        markers[i].setMap(null);
+// 지도 위에 표시되고 있는 커스텀오버레이를 모두 제거
+function removeCustomOverlay() {
+    for ( var i = 0; i < customOverlays.length; i++ ) {
+        customOverlays[i].setMap(null);
     }   
-    markers = [];
+    customOverlays = [];
 }
 
 
 searchButton.addEventListener("click", () => {
     
-    // 지도 위에 표시되고 있는 마커를 모두 제거
-    removeMarker();
+    // 지도 위에 표시되고 있는 커스텀오버레이를 모두 제거
+    removeCustomOverlay();
     
     getPingList(searchPing.value);
     
@@ -91,9 +91,11 @@ function getPingList(address) {
 
 
                     var content =
-                    '<div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden">' +
-                    '   <a href="' + board + '"><img src="' + positions[i].image + '" style="max-width:120px; height:64px;"></a>'
-                    '</div>';
+                    '<a href="' + board +'">' +
+                    '    <div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-4 overflow-hidden"'+
+                    '         style="width:64px; height:64px; background-image: url(\'' + positions[i].image + '\'); background-size: cover; background-position: center center;">' +
+                    '    </div>'+
+                    '</a>';
 
                     var customOverlay = new kakao.maps.CustomOverlay({
                         position: positions[i].latlng,
@@ -103,6 +105,8 @@ function getPingList(address) {
                     });
 
                     customOverlay.setMap(map);
+                    customOverlays.push(customOverlay);
+
                 }
 
             } else {
