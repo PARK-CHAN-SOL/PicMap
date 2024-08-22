@@ -62,7 +62,7 @@ by Awe7 (http://awe7.com/freebies)
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="mb-3 col-8">
-          <form method="post" enctype="multipart/form-data">
+          <form method="post" enctype="multipart/form-data" id="frm">
             <input type="hidden" value="${dto.boardNum}" name="boardNum">
             <table class="table table-bordered">
               <tbody>
@@ -112,7 +112,7 @@ by Awe7 (http://awe7.com/freebies)
             </div>
 
             <div class="text-end">
-              <button type="submit" class="btn btn-primary fs-4">등록</button>
+              <button type="submit" class="btn btn-primary fs-4" id="writeBtn">등록</button>
             </div>
           </form>
         </div>
@@ -201,6 +201,7 @@ by Awe7 (http://awe7.com/freebies)
 				</script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
+    <script src="/resources/assets/js/board/writePingCheck.js"></script>
     <script src="/resources/assets/js/ping/ping.js"></script>
     <script src="/resources/assets/js/ping/modal.js"></script>
     <script src="/resources/assets/js/ping/pingSearch.js"></script>
