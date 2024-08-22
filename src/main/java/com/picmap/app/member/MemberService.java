@@ -142,6 +142,12 @@ public class MemberService {
 
 	public int follow(FollowDTO followDTO, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		MemberDTO memberDTO2 = new MemberDTO();
+		memberDTO2.setMemberNum(followDTO.getToFollow());
+		memberDTO2 = memberDAO.detail(memberDTO2);
+		if(memberDTO2.getMemberEmail() == null) {
+			return  0;
+		}
 		followDTO.setFromFollow(memberDTO.getMemberNum());
 		int result = followCheck(followDTO);
 		if (result == 0) {
@@ -228,16 +234,18 @@ public class MemberService {
 
         FileManager fm = new FileManager();
 
-        // 파일이 있는 경우와 없는 경우 처리
+        
         if (files == null || files.getOriginalFilename().isEmpty()) {
-            memberDTO.setProfilePath("default");
+            // 파일이 업로드되지 않은 경우 기존 경로를 그대로 사용합니다.
+            // 아무 것도 하지 않음으로써 기존 경로를 유지합니다.
         } else {
+            // 파일이 업로드된 경우에만 새로운 파일을 저장하고 경로를 업데이트합니다.
             String fileName = fm.fileSave(files, path);
-            memberDTO.setProfilePath("/resources/upload/" + name + fm.fileSave(files, path));
+            memberDTO.setProfilePath("/resources/upload/members/" + fileName);
         }
 
         // DB 업데이트
         return memberDAO.proFileUpdate(memberDTO);
+
     }
-    
 }

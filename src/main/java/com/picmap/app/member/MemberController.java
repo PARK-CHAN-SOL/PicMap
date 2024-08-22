@@ -95,12 +95,13 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(MemberDTO memberDTO, MultipartFile files, HttpSession session) throws Exception {
+	public String join(MemberDTO memberDTO, MultipartFile files, HttpSession session,Model model) throws Exception {
 
 		int result = memberService.join(memberDTO, files, session);
-		String url = "";
+		String url = "/commons/message";
 		if (result > 0) {
-			url = "redirect:/";
+			model.addAttribute("result", "회원가입 성공");
+			model.addAttribute("url", "/");
 		}
 		return url;
 	}
@@ -118,8 +119,15 @@ public class MemberController {
 	}
 //마이페이지
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
-	public void mypage(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
+	public String mypage(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
 		memberDTO = memberService.detail(memberDTO);
+		if(memberDTO.getMemberEmail() == null) {
+			String url = "/commons/message";
+
+				model.addAttribute("result", "탈퇴한 회원입니다.");
+				model.addAttribute("url", "/");
+			return  url;
+		}
 		 MemberDTO dto = (MemberDTO) session.getAttribute("member");
 
 
@@ -146,6 +154,8 @@ public class MemberController {
 			System.out.println(followCheck);
 			model.addAttribute("followCheck", followCheck);
 		}
+		return "member/mypage";
+	
 
 	}
 
@@ -186,9 +196,11 @@ public class MemberController {
 
 	@GetMapping("follow")
 	public String follow(FollowDTO followDTO, HttpSession session, Model model) throws Exception {
+	      
 		int result = memberService.follow(followDTO, session);
 		model.addAttribute("msg", result);
 		return "commons/result";
+	
 	}
 	@GetMapping("fromFollowList")
 	@ResponseBody
@@ -207,6 +219,13 @@ public class MemberController {
 	public Integer followCheck(FollowDTO followDTO, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		if(memberDTO != null) {
+			MemberDTO memberDTO2 = new MemberDTO();
+			memberDTO2.setMemberNum(followDTO.getToFollow());
+			memberDTO2 = memberService.detail(memberDTO2);
+			if(memberDTO2.getMemberEmail() == null) {
+				
+				return  0;
+			}
 			followDTO.setFromFollow(memberDTO.getMemberNum());			
 			return memberService.followCheck(followDTO);
 		} else {
@@ -291,7 +310,10 @@ public class MemberController {
 
 		return "redirect:/";
 	}
-	
-}
+
+	 
+	    
+	}
+
 	
 
