@@ -3869,7 +3869,7 @@ ul {
 
 .grid_css_style_02 .filter {
     float: right;
-    margin-top: -60px;
+    margin-top: -90px;
     z-index: 3;
     position: relative;
 }
@@ -3877,6 +3877,7 @@ ul {
 @media (max-width: 767px) {
     .grid_css_style_02 .filter {
         margin-top: -30px;
+        margin-left: 35px;
         float: left;
     }
 }

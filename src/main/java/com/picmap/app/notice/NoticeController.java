@@ -71,17 +71,25 @@ public class NoticeController {
 	
 	
 	@GetMapping("update")
-	public String update() throws Exception {
-		
+	public String update(Model model, NoticeDTO noticeDTO) throws Exception {
+		noticeDTO = noticeService.getDetail(noticeDTO);
+		model.addAttribute("dto", noticeDTO);
 		return "board/write";
 	}
 	@PostMapping("update")
-	public void update(HttpSession session) throws Exception {
+	public String update(NoticeDTO noticeDTO, MultipartFile[] files, HttpSession session) throws Exception {
+		String boardTitleTmp = noticeDTO.getBoardTitle();
+		boardTitleTmp = boardTitleTmp.replaceAll("<", "&lt");
+		boardTitleTmp = boardTitleTmp.replaceAll(">", "&gt");
+		noticeDTO.setBoardTitle(boardTitleTmp);
 		
+		noticeService.update(noticeDTO, files, session);
+		
+		return "redirect:./list";
 	}
 	
 	@GetMapping("detail")
-	public String getDetail(NoticeDTO noticeDTO, Model model) throws Exception {
+	public String getDetail(NoticeDTO noticeDTO, Model model, HttpSession session) throws Exception {
 		noticeDTO = noticeService.getDetail(noticeDTO);
 		model.addAttribute("dto", noticeDTO);
 		//좋아요
@@ -89,7 +97,18 @@ public class NoticeController {
 		heartDTO.setBoardNum(noticeDTO.getBoardNum());
 		Long heartCount = heartService.noticeHeartCount(heartDTO);
 		model.addAttribute("heart", heartCount);
+		
+		//게시글 수정 및 삭제, 자식글 작성할 때 작성자의 계정과 일치하는 계정인지 판별하는 필터를 걸어두기 위해
+		//작성자 memberNum을 세션에 올림
+		session.setAttribute("writer", noticeDTO.getMemberNum());
+		
 		return "/board/detail";
+	}
+	
+	@PostMapping("delete")
+	public String delete(NoticeDTO noticeDTO) throws Exception {
+		Integer result = noticeService.delete(noticeDTO);
+		return "redirect:./list";
 	}
 	
 	

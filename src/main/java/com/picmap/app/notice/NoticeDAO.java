@@ -46,8 +46,7 @@ public class NoticeDAO implements BoardDAO{
 
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(NAMESPACE+"update", boardDTO);
 	}
 	
 	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
@@ -55,6 +54,9 @@ public class NoticeDAO implements BoardDAO{
 	}
 	
 	
-	
+	public Integer delete(NoticeDTO noticeDTO) throws Exception {
+		sqlSession.delete(NAMESPACE + "deleteHeart", noticeDTO);
+		return sqlSession.delete(NAMESPACE + "delete", 	noticeDTO);
+	}
 	
 }

@@ -130,18 +130,11 @@ by Awe7 (http://awe7.com/freebies)
 									<!-- 기존 프로필 이미지 -->
 								
  					<div class="linear-gradient d-flex align-items-center justify-content-center rounded-circle" style="width: 110px; height: 110px; z-index: 10;" data-bs-toggle="modal" data-bs-target="#profileImageModalNew">
-	<div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden" style="width: 100px; height: 100px; position: relative; cursor: pointer;">
-
-		<c:if test="${not empty member.profilePath}">
-			<img id="profileImage" src="${member.profilePath}"
-				onerror="this.src='/resources/upload/members/default.png'"
-				alt="" class="w-100 h-100">
-		</c:if>
-		<c:if test="${empty member.profilePath}">
-			<img id="profileImage"
-				src="/resources/upload/members/default.png" alt=""
-				class="w-100 h-100">
-		</c:if>
+	<div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden"
+         style="background-image: url(${not empty member.profilePath ? '\'' += member.profilePath += '\'' : '/resources/upload/members/default.png'});
+                background-size: cover;
+                background-position: center center;
+                width: 100px; height: 100px; position: relative; ${sessionScope.member.memberNum eq member.memberNum ? 'cursor: pointer;' : ''}">
 	</div>
 </div>
 

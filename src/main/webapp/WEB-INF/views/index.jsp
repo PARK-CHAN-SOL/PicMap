@@ -10,6 +10,7 @@ by Awe7 (http://awe7.com/freebies)
 -->
 
 <link rel="stylesheet" href="/resources/assets/css/pingSearch.css">
+<link rel="stylesheet" href="/resources/assets/css/banner.css">
 <c:import url="./template/header_css.jsp"></c:import>
 
 
@@ -75,9 +76,9 @@ by Awe7 (http://awe7.com/freebies)
             <!-- title -->
             <div class="title">
               <h2 class="title__title">
-                Pic Map <span class='main-color'>픽맵</span><br /> 인기 여행지를 골라보세요.<br /> <span class='main-color'>Asia</span> for more than two decades.
+                Pic Map <span class='main-color'>픽맵</span><br /> 인기 여행지를 골라보세요.<br /> <span class='main-color'>Explore</span> and select your top travel with Pic Map.
               </h2>
-              <p class="title__text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+              <p class="title__text"> Discover the most sought-after spots and plan your next adventure!</p>
             </div>
             <!-- End / title -->
 
@@ -319,15 +320,9 @@ by Awe7 (http://awe7.com/freebies)
 
     <div class="container">
 
-      <!-- title -->
-      <div class="title title__style-03">
-        <h5 class="title__title_small">Pic Map 2024</h5>
-        <h2 class="title__title">Dubai & Maldives Vacation incl. Airfare</h2>
-        <p class="title__text">
-          Travel Blocking Period: March 28-30 or March 29-April 01, 2018 <br />Booking Period: Limited Seats <br />Hotel: Fragrance Imperial or similar class<br />Airlines: Via Cebupacific
-        </p>
-      </div>
-      <!-- End / title -->
+
+
+
 
       <!-- End / Section -->
 
@@ -341,6 +336,21 @@ by Awe7 (http://awe7.com/freebies)
     <!-- Section -->
 
     <!-- End / Section -->
+    
+          <!-- title -->
+      <div class="title title__style-03">
+        <h5 class="title__title_small">Pic Map 2024</h5>
+        <div id="wrap">
+          <div class="wrap-box">
+              <div class="rolling-list">
+                  <div class="list">Moments from your travels leave a special mark on our hearts, capturing the essence of your journey.</div>
+                  <div class="list">Moments from your travels leave a special mark on our hearts, capturing the essence of your journey.</div>
+                  <div class="list">Moments from your travels leave a special mark on our hearts, capturing the essence of your journey.</div>
+              </div>
+          </div>
+      </div>
+      </div>
+      <!-- End / title -->
 
   </div>
   <!-- End / Content-->
@@ -348,7 +358,7 @@ by Awe7 (http://awe7.com/freebies)
   <c:import url="./template/footer.jsp"></c:import>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
   <script src="/resources/assets/js/ping/pingList.js"></script>
-
+  <script src="/resources/assets/js/banner.js"></script>
 </body>
 </html>
 

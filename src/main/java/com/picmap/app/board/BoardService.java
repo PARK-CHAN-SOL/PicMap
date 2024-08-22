@@ -15,6 +15,4 @@ public interface BoardService {
 	
 	public int add(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception;
 	
-	public int update() throws Exception;
-
 }

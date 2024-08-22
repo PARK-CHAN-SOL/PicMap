@@ -79,7 +79,7 @@ by Awe7 (http://awe7.com/freebies)
                 </div>
                 <!-- 수정,삭제 버튼 -->
                 <div class="d-grid gap-2 d-md-flex justify-content-end mt-5" style="margin: 0 auto; max-width: 720px;">
-                  <c:if test="${login.memberNum == dto.memberNum}">
+                  <c:if test="${sessionScope.member.memberNum == dto.memberNum}">
                     <button type="submit" class="btn btn-primary" id="updateBtn" onclick="location.href ='./update?boardNum=${dto.boardNum}' ">수정</button>
                     <form action="./delete?boardNum=${dto.boardNum}" method="post">
                       <button type="submit" class="btn btn-danger" id="deleteBtn">삭제</button>

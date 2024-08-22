@@ -74,7 +74,19 @@ by Awe7 (http://awe7.com/freebies)
                 </tr>
                 <tr>
                   <th rowspan="3"><span class="fs-4">내용</span></th>
-                  <th colspan="2"><input type="file" class="form-control fs-4" id="travelFiles" name="files" onchange="readURL(this)" style="display:none;"style="display:none;"> <label for="travelFiles" class="fs-4 btn btn-secondary">게시글 사진을 추가하세요</label> <img id="travelPreview" class="mt-3" style="width: 100%; height: 100%; object-fit: cover;" /></th>
+                  <th colspan="2">
+                    <input type="file" class="form-control fs-4" id="travelFiles" name="files" onchange="readURL(this)" style="display:none;"style="display:none;"> 
+                    <label for="travelFiles" class="fs-4 btn btn-secondary">게시글 사진을 추가하세요</label>
+                    <c:choose>
+                      <c:when test="${dto.fileName != null}">
+                        <input type="hidden" name="fileName" value="${dto.fileName}">
+                        <img id="travelPreview" class="mt-3" style="width: 100%; height: 100%; object-fit: cover;" src="/resources/upload/notices/${dto.fileName}"/>
+                      </c:when>
+                      <c:otherwise>
+                        <img id="travelPreview" class="mt-3" style="width: 100%; height: 100%; object-fit: cover;"/>
+                      </c:otherwise>
+                    </c:choose>
+                  </th>
                 </tr>
 
                 <tr>

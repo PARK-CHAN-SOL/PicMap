@@ -51,12 +51,13 @@
         <li>
             <a href="/member/mypage?memberNum=${sessionScope.member.memberNum}" style="color: white; text-decoration: none; display: flex; align-items: center; margin-left: +0px;" class="me-4">
                 <span style="margin-right: 10px;">${sessionScope.member.memberName}님</span>
-                <c:if test="${not empty sessionScope.member.profilePath}">
-                    <img id="profileImage" src="${sessionScope.member.profilePath}" onerror="this.src='/resources/upload/members/default.png'" alt="" style="max-width: 96px; height: 48px;" class="border border-2 border-white rounded-circle">
-                </c:if>
-                <c:if test="${empty sessionScope.member.profilePath}">
-                    <img id="profileImage" src="/resources/upload/members/default.png" alt="" style="max-width: 96px; height: 48px;" class="border border-2 border-white rounded-circle">
-                </c:if>
+                <div class="d-flex align-items-center justify-content-center rounded-circle overflow-hidden"
+                     style="border: 4px solid white;
+                            background-image: url(${not empty sessionScope.member.profilePath ? '\'' += sessionScope.member.profilePath += '\'' : '/resources/upload/members/default.png'});
+                            background-size: cover;
+                            background-position: center center;
+                            width: 48px; height: 48px; position: relative; ${sessionScope.member.memberNum eq member.memberNum ? 'cursor: pointer;' : ''}">
+	            </div>
             </a>
         </li>
     </ul>

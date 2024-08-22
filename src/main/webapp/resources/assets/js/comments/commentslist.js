@@ -175,7 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
             const link = event.target.closest('.profile-link'); // 클릭된 링크를 가져옴
             const rect = link.getBoundingClientRect(); // 클릭된 링크의 위치 정보 가져오기
-           console.log(event);
             profilePopup.style.top = `${event.pageY}px`; // 팝업의 위치 설정
             profilePopup.style.left = `${event.pageX}px`;
     

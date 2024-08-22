@@ -29,11 +29,25 @@
 		WHERE	BOARDNUM = #{boardNum}
 	</select>
 
+	<update id="update" parameterType="BoardDTO">
+		UPDATE NOTICE
+		SET BOARDTITLE = #{boardTitle},
+			BOARDCONTENT = #{boardContent},
+			UPDATEDATE = SYSDATE,
+			FILENAME = #{fileName, jdbcType=VARCHAR}
+		WHERE BOARDNUM = #{boardNum}
+	</update>
 
 
+	<delete id="deleteHeart" parameterType="BoardDTO">
+		DELETE 	NOTICEHEART
+		WHERE 	BOARDNUM = #{boardNum}
+	</delete>
 
-
-
+	<delete id="delete" parameterType="BoardDTO">
+		DELETE 	NOTICE
+		WHERE	BOARDNUM = #{boardNum}
+	</delete>
 
 
 
