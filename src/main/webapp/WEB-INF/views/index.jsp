@@ -11,6 +11,16 @@ by Awe7 (http://awe7.com/freebies)
 
 <link rel="stylesheet" href="/resources/assets/css/pingSearch.css">
 <link rel="stylesheet" href="/resources/assets/css/banner.css">
+<style>
+.mapContainer {
+    margin-top:96px;
+}
+@media (min-width: 1201px) {
+    .mapContainer {
+        margin-top:116px;
+    }
+}
+</style>
 <c:import url="./template/header_css.jsp"></c:import>
 
 
@@ -25,9 +35,9 @@ by Awe7 (http://awe7.com/freebies)
   <div class="md-content">
 
 
-    <div class="container">
+    <div class="container mapContainer">
       <div>
-        <div class="map_wrap" style="height: calc(30vw + 254.54545px);">
+        <div class="map_wrap" style="height: calc(24vw + 254.54545px);">
           <div id="map" style="width: 100%; height: 100%;"></div>
           <div class="hAddr">
             <span id="centerAddr"></span>
