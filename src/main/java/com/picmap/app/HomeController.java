@@ -1,6 +1,7 @@
 package com.picmap.app;
 
 import java.text.DateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -34,7 +35,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) throws Exception{
+	public String home(Locale locale, Model model, Scroller scroller) throws Exception{
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -47,6 +48,19 @@ public class HomeController {
 
 		List<TravelDTO> bestList = travelService.bestList();
 		model.addAttribute("bestList", bestList);
+		
+		List<String> li = Arrays.asList(new String[]{"서울", "제주도", "부산", "경주", "강릉", "전주", "여수", "속초"});
+		int i = 1;
+		for(String e : li) {
+			scroller.setSearch(e);
+			System.out.println(scroller.getSearch());
+			Long postCount = travelService.getPostCount(scroller);
+			System.out.println(postCount);
+			model.addAttribute("tourList"+i, postCount);
+			i++;
+		}
+		
+		
 
 		
 		return "index";
