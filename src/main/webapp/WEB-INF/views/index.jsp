@@ -415,6 +415,35 @@ by Awe7 (http://awe7.com/freebies)
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
 	<script src="/resources/assets/js/ping/pingList.js"></script>
 	<script src="/resources/assets/js/banner.js"></script>
+	
+    <script>
+        async function fetchImages() {
+            try {
+                const response = await fetch('https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1?MobileOS=ETC&MobileApp=Test&keyword=%EC%84%9C%EC%9A%B8&_type=json&serviceKey=H5W%2FW%2F1cXUq3EEuXX%2BEERNRoB2xQDv57x1Ju%2B8%2BlZGDSZ7uc88F6%2Bdre8ee9F%2FgzkqyzsJHnVc5dQXdtnuTfmA%3D%3D');
+                const data = await response.json();
+                const images = data.response.body.items.item;
+                
+                if (images.length === 0) {
+                    console.error('No images found.');
+                    return;
+                }
+
+                // Randomly select an image
+                const randomIndex = Math.floor(Math.random() * images.length);
+                const selectedImage = images[randomIndex];
+                const imageUrl = selectedImage.galWebImageUrl;
+
+                // Set the background image
+                const boxImageBg = document.querySelector('.box-image__bg');
+                boxImageBg.style.backgroundImage = 'url(${imageUrl})';
+            } catch (error) {
+                console.error('Error fetching images:', error);
+            }
+        }
+
+        // Call the function to fetch images when the page loads
+        window.onload = fetchImages;
+    </script>	
 
 </body>
 </html>
