@@ -22,6 +22,10 @@ public class TravelDAO {
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount");
 	}
 	
+	public Long getPostCount(Scroller scroller) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getPostCount", scroller);
+	}
+	
 
 	//베스트 게시글
 	public List<TravelDTO> bestList() throws Exception {

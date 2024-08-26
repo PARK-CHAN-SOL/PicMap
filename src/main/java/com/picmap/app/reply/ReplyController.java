@@ -29,7 +29,7 @@ public class ReplyController {
 	private MemberService memberService; // MemberService 주입
 
 	@PostMapping("/list")
-	public String getReplies(@RequestParam Long commentNum, @RequestParam int startRow, Model model) {
+	public String getReplies(@RequestParam Long commentNum, @RequestParam Long startRow, @RequestParam Long replyCount, Model model) {
 		Scroller scroller = new Scroller();
 		scroller.setStartRow((long) startRow);
 		scroller.setEndRow(scroller.getStartRow() + 9);
@@ -37,6 +37,7 @@ public class ReplyController {
 		List<ReplyDTO> replies = replyService.getRepliesByCommentNum(commentNum, scroller);
 		model.addAttribute("replies", replies);
 		model.addAttribute("commentNum", commentNum);
+		model.addAttribute("replyCount", replyCount);
 		model.addAttribute("nextStartRow", scroller.getEndRow() + 1);
 
 		return "replies/list";

@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", (event) => {
         if (event.target && event.target.classList.contains("reply-button")) {
             const commentNum = event.target.getAttribute("data-comment-num");
+            const replyCount = event.target.getAttribute("data-reply-count");
             const replyForm = document.getElementById(`replyForm${commentNum}`);
             const replyList = document.getElementById(`replyList${commentNum}`);
 
@@ -44,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const formData = new FormData();
             formData.append("commentNum", commentNum);
             formData.append("startRow", 1); // 초기 startRow를 1로 설정
+            formData.append('replyCount', replyCount);
 
             sendFetchRequest(url, "POST", formData)
                 .then(response => {
@@ -58,12 +60,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.target && event.target.classList.contains("load-more-replies")) {
             const commentNum = event.target.getAttribute("data-comment-num");
             const startRow = event.target.getAttribute("data-start-row");
+            const replyCount = event.target.getAttribute("data-reply-count");
             const replyList = document.getElementById(`replyList${commentNum}`);
 
             const url = "/replies/list";
             const formData = new FormData();
             formData.append('commentNum', commentNum);
             formData.append('startRow', startRow);
+            formData.append('replyCount', replyCount);
 
             sendFetchRequest(url, "POST", formData)
                 .then(response => {

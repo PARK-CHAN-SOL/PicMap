@@ -30,4 +30,8 @@ public class HeartCommentsDAO {
 	public Long heartCommentsCount(Long commentNum) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "heartCommentsCount", commentNum);
 	}
+	
+	public Integer heartCommentsDelete(Long commentNum) throws Exception {
+		return sqlSession.delete(NAMESPACE + "heartCommentsDelete", commentNum);
+	}
 }

@@ -30,7 +30,13 @@
 		    ) c
 		    JOIN MEMBER m ON c.MEMBERNUM = m.MEMBERNUM
 		    WHERE c.r BETWEEN #{scroller.startRow} AND #{scroller.endRow}
-		    ORDER BY c.CREATEDATE DESC, c.UPDATEDATE DESC
+		    ORDER BY c.UPDATEDATE DESC, c.CREATEDATE DESC
+		</select>
+		
+		<select id="countReply" parameterType="CommentsDTO" resultType="java.lang.Long">
+			SELECT	COUNT(*)
+			FROM	REPLY r 
+			WHERE	r.COMMENTNUM = #{commentNum}
 		</select>
 
    

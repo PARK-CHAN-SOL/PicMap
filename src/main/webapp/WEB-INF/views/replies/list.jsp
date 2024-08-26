@@ -16,7 +16,7 @@
 		</a>
 		<p>작성자: ${reply.memberNickName}</p>
 		<p id="reply-${reply.replyNum}" class="replyContents">${reply.content}</p>
-		<p>작성일: ${reply.createDate}</p>
+		<p>${reply.createDate eq reply.updateDate ? '작성일: ' += reply.createDate : '수정일: ' += reply.updateDate}</p>
 		<c:if test="${sessionScope.member.memberNum == reply.memberNum}">
 		<button data-reply-num="${reply.replyNum}" class="comment-button reply-update-button">수정</button>
 		<button data-reply-num="${reply.replyNum}" class="comment-button reply-delete-button">삭제</button>
@@ -24,8 +24,8 @@
  	</div>
 </c:forEach>
 
-<c:if test="${replies.size() == 10}">
-    <button class="load-more-replies" data-comment-num="${commentNum}" data-start-row="${nextStartRow}">더보기</button>
+<c:if test="${replyCount >= nextStartRow}">
+    <button class="btn btn-primary load-more-replies" data-comment-num="${commentNum}" data-reply-count="${replyCount}" data-start-row="${nextStartRow}">더보기</button>
 </c:if>
 
 

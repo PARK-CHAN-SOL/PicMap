@@ -21,6 +21,17 @@
 		WHERE	PARENTBOARD IS NULL
 	</select>
 	
+	<select id="getPostCount" resultType="java.lang.Long" parameterType="Scroller">
+		SELECT	COUNT(ROWNUM)
+		FROM	TRAVEL T
+				JOIN 
+				PING P
+				ON T.PINGNUM = P.PINGNUM
+		WHERE	T.BOARDTITLE LIKE '%'||#{search}||'%'
+				OR T.BOARDCONTENT LIKE '%'||#{search}||'%'
+				OR P.ADDRESS LIKE '%'||#{search}||'%'
+	</select>
+	
 	<select id="bestList" resultType="TravelDTO">
 		<![CDATA[
 		SELECT *

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.picmap.app.comments.CommentsDTO;
+import com.picmap.app.heartComments.HeartCommentsDAO;
 import com.picmap.app.util.Scroller;
 
 @Service
@@ -15,6 +16,9 @@ public class CommentService {
 
 	@Autowired
 	private CommentDAO commentDAO; // CommentDAO 객체를 주입받습니다.
+	
+	@Autowired
+	private HeartCommentsDAO heartCommentDAO;
 
 	// 특정 게시글의 전체 댓글 수를 조회하는 메서드
 	public Long getTotalCount(CommentsDTO commentsDTO) throws Exception {
@@ -60,6 +64,13 @@ public class CommentService {
 		CommentDTO commentDTO = new CommentDTO();
 		commentDTO.setCommentNum(commentNum); // 댓글 ID 설정
 		commentDTO.setMemberNum(memberNum); // 댓글 작성자 ID 설정
+		
+		Long replyCount = commentDAO.countReply(commentDTO);
+		if(replyCount != 0L) {
+			return 0;
+		}
+		
+		heartCommentDAO.heartCommentsDelete(commentDTO.getCommentNum());
 
 		// DAO를 호출하여 댓글을 삭제합니다.
 		return commentDAO.deleteComment(commentDTO);
