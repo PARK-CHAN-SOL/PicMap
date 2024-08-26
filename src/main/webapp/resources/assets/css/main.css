@@ -914,6 +914,7 @@ ul {
 
 .box-image__tour {
     color: #a9a9a9;
+    font-size: 14px;
     transition: all .5s ease-in-out;
     transform: translateY(0);
 }
