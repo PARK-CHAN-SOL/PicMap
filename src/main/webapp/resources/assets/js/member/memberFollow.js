@@ -64,7 +64,8 @@ function appendList(res, observerTarget, listDiv) {
       })
          .then((checker) => { return checker.json(); })
          .then((checker) => {
-            if (element.profilePath == 'default') element.profilePath = '/resources/upload/members/default.png'; 
+            if (element.profilePath == 'default'|| element.profilePath == null || element.profilePath == '')  element.profilePath = '/resources/upload/members/default.png'; 
+         
             let exploreUser =  // 유저 한 명에 해당하는 리스트 생성
             '<li class="explore__user">'+'<a class="followA" href="./mypage?memberNum='+element.memberNum+'">'+
             '<div class="explore__content">'+
@@ -155,3 +156,6 @@ function followBtnToggle(follow, memberNum, isFollowList) {
          alert("오류발생");
       });
 }
+
+
+
