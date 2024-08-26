@@ -48,9 +48,17 @@ async function commentDTOLoop(commentDTOs) {
         for(let commentDTO of commentDTOs){
             const heartCommentsCount = await getHeartCommentsCount(commentDTO);
             const heartCommentsCheck = await getHeartCommentsCheck(commentDTO);
-
-            let createDate = new Date(commentDTO.createDate); // 댓글 작성일을 Date 객체로 변환
-            createDate = createDate.getFullYear() + '-' +  String(createDate.getMonth() + 1).padStart(2, '0') + '-' + String(createDate.getDate()).padStart(2, '0'); // 작성일을 YYYY-MM-DD 형식으로 변환
+            
+            let updateDate = commentDTO.updateDate;
+            let createDate = commentDTO.createDate;
+            if(updateDate != createDate){
+                console.log(updateDate);
+                createDate = new Date(createDate); // 댓글 작성일을 Date 객체로 변환
+                createDate = '수정일: ' + createDate.getFullYear() + '-' +  String(createDate.getMonth() + 1).padStart(2, '0') + '-' + String(createDate.getDate()).padStart(2, '0'); // 작성일을 YYYY-MM-DD 형식으로 변환
+            } else {
+                createDate = new Date(createDate); // 댓글 작성일을 Date 객체로 변환
+                createDate = '작성일: ' + createDate.getFullYear() + '-' +  String(createDate.getMonth() + 1).padStart(2, '0') + '-' + String(createDate.getDate()).padStart(2, '0'); // 작성일을 YYYY-MM-DD 형식으로 변환
+            }
 
             if(commentDTO.profilePath == 'default' || commentDTO.profilePath == null || commentDTO.profilePath == '') {
                 commentDTO.profilePath = '/resources/upload/members/default.png'
@@ -63,7 +71,7 @@ async function commentDTOLoop(commentDTOs) {
                 '</a>'+
                 '<p>작성자: ' + commentDTO.memberNickName + '</p>' + // 댓글 작성자의 회원 번호를 표시
                 '<p id="' + commentDTO.commentNum + '" class="comment-content">' + commentDTO.content + '</p>' + // 댓글 내용을 표시
-                '<p>작성일: ' + createDate + '</p>'; // 댓글 작성일을 표시
+                '<p>' + createDate + '</p>'; // 댓글 작성일을 표시
                 
                 // 하트 아이콘 추가
                 comment +=
@@ -83,7 +91,7 @@ async function commentDTOLoop(commentDTOs) {
             
             // 모든 댓글에 답글 버튼 추가
                 comment += 
-                '<button data-comment-num="' + commentDTO.commentNum + '" class="comment-button reply-button">답글 ' +
+                '<button data-comment-num="' + commentDTO.commentNum + '" data-reply-count="' + commentDTO.replyCount + '" class="comment-button reply-button">답글 ' +
                     (commentDTO.replyCount > 0 ? '(' + commentDTO.replyCount + ')' : '') + // 답글 수를 표시, 답글이 있는 경우만 숫자를 표시
                 '</button>' + 
                 '<div id="replyForm' + commentDTO.commentNum + '" class="reply-form" style="display:none;">' + // 답글 작성 폼, 기본적으로 숨겨져 있음

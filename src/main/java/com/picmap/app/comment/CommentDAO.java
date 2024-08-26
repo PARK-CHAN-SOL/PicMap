@@ -51,4 +51,8 @@ public class CommentDAO {
 		// MyBatis를 사용하여 데이터베이스에서 댓글을 삭제함
 		return sqlSession.delete(NAMESPACE + "deleteComment", commentDTO);
 	}
+	
+	public Long countReply(CommentDTO commentDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "countReply", commentDTO);
+	}
 }

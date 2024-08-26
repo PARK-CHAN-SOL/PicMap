@@ -25,10 +25,15 @@
     </delete>
 
     <!-- 댓글 좋아요 수 카운트 -->
-    <select id="heartCommentsCount" parameterType="Long" resultType="java.lang.Long">
+    <select id="heartCommentsCount" parameterType="java.lang.Long" resultType="java.lang.Long">
         SELECT COUNT(HEARTCOMMENTNUM)
         FROM HEARTCOMMENTS
         WHERE COMMENTNUM = #{commentNum}
     </select>
+    
+    <delete id="heartCommentsDelete" parameterType="java.lang.Long">
+    	DELETE	HEARTCOMMENTS
+    	WHERE	COMMENTNUM = #{commentNum}	
+    </delete>
 
 </mapper>
