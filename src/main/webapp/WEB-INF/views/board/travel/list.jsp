@@ -69,45 +69,47 @@ by Awe7 (http://awe7.com/freebies)
 
 
 
-			
-
-
-
-
-
-
+	
+	
 			<!-- Section -->
-			<section class="awe-section" style="padding-top:40px !important;">
+			<div class="awe-section" style="padding-top:80px !important;">
+				
 				<div class="container">
-        
-                      <!-- 검색 -->
-                    <section class="awe-section pd-0" id="search-box">
-                      <div class="search-box-wrapper">
-                        <div class="container">
-              
-                          <!-- search-box -->
-                          <form method="GET">
-                            <div class="search-box row justify-content-start">
-                            
-                              <!-- form-item -->
-                              <div class="form-item" style="display:inline-block; margin-left:50px;">
-                                <input class="form-control" type="text" name="search" id="searchPost" placeholder="여행 리뷰를 검색해보세요"/>
-                              </div>
-                                  <button type="submit" class="md-btn md-btn--primary md-btn--searchList " id="searchButton">Search</button>
-                              <!-- End / form-item -->
-                              
-                            </div>
-                          </form>
-                          <!-- End / search-box -->
-              
-                        </div>
-                      </div>
-                    </section>
-                    <!-- 검색 -->
+				
+					
+					<!-- 검색 -->
+					<div class="awe-section pd-0" id="search-box">
+						<div class="search-box-wrapper">
+							<div class="container">
+		
+								<!-- search-box -->
+								<form method="GET">
+									<div class="search-box row">
+									
+										<!-- form-item -->
+										<div class="form-item">
+											<input class="form-control" type="text" name="search" id="searchPost" placeholder="여행 리뷰를 검색해보세요"/>
+										</div>
+										<!-- End / form-item -->
+										
+										<button type="submit" class="md-btn md-btn--primary md-btn--searchList " id="searchButton">Search</button>
+									</div>
+								</form>
+								<!-- End / search-box -->
+		
+							</div>
+						</div>
+					</div>
+					<!-- 검색 -->
+					
+					
+					
+					
+					
 
-					<div class="grid-css grid_css_style_02 grid-css--masonry" style="margin-right: 30px;" data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
+					<div class="grid-css grid_css_style_02 grid-css--masonry" data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
 						<div class="filter">
-							<ul class="filter__list" id="pills-tab" role="tablist" style="padding-top:8px; padding-right:40px !important;">
+							<ul class="filter__list" id="pills-tab" role="tablist" style="padding-right:40px !important;">
 								<li class="current">
 									<a href="#" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"role="tab"
 									aria-controls="pills-profile" aria-selected="true" class="active">최신순</a>
@@ -149,10 +151,9 @@ by Awe7 (http://awe7.com/freebies)
 
 				</div>
 
-			</section>
+			</div>
 			<!-- End / Section -->
-
-
+				
 
 
 

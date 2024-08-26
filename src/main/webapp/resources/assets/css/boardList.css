@@ -44,6 +44,7 @@
 	padding-right: 0px !important;
 }
 
+
 /* 8. box_search
 --------------------------------------------------------------------------------*/
 
@@ -52,6 +53,7 @@
     display: flex;
     padding-top: 30px;
     padding-bottom: 30px;
+    padding-left: 40px;
     transition: all 1s;
 }
 
