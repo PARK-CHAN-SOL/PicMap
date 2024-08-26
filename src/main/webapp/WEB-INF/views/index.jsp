@@ -132,7 +132,7 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image" style ="border: 7px solid silver !important; box-shadow: 5px 5px 5px gray !important;">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=강릉"
+													<a class="box-image__bg" href="/travel/list?search=제주도"
 													style="background-image: url('/resources/assets/img/image_box_1/2.jpg');" data-effect="mfp-zoom-in">
 														<img src="/resources/assets/img/image_box_1/2.jpg" alt="" />
 														<div class="box-image__info">
@@ -178,7 +178,7 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=제주도"
+													<a class="box-image__bg" href="/travel/list?search=경주"
 													style="background-image: url('/resources/assets/img/image_box_1/4.jpg');" data-effect="mfp-zoom-in">
 														<img src="/resources/assets/img/image_box_1/4.jpg" alt="" />
 														<div class="box-image__info">
@@ -201,7 +201,7 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=여수"
+													<a class="box-image__bg" href="/travel/list?search=강릉"
 													style="background-image: url('/resources/assets/img/image_box_1/5.jpg');" data-effect="mfp-zoom-in">
 														<img src="/resources/assets/img/image_box_1/5.jpg" alt="" />
 														<div class="box-image__info">
@@ -247,7 +247,7 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=경주"
+													<a class="box-image__bg" href="/travel/list?search=여수"
 													style="background-image: url('/resources/assets/img/image_box_1/7.jpg');" data-effect="mfp-zoom-in">
 														<img src="/resources/assets/img/image_box_1/7.jpg" alt="" />
 														<div class="box-image__info">
@@ -270,7 +270,7 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=가평"
+													<a class="box-image__bg" href="/travel/list?search=속초"
 													style="background-image: url('/resources/assets/img/image_box_1/8.jpg');" data-effect="mfp-zoom-in">
 														<img src="/resources/assets/img/image_box_1/8.jpg" alt="" />
 														<div class="box-image__info">
