@@ -109,9 +109,9 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image" style ="border: 7px solid gold !important; box-shadow: 5px 5px 5px gray !important;">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=서울"
-													style="background-image: url('/resources/assets/img/image_box_1/1.jpg');" data-effect="mfp-zoom-in">
-														<img src="/resources/assets/img/image_box_1/1.jpg" alt="" />
+													<a class="box-image__bg" href="/travel/list?search=서울" data-effect="mfp-zoom-in"
+													style="background-image: url('/resources/assets/img/image_box_1/1.jpg');"
+													data-keyword="서울">
 														<div class="box-image__info">
 															<h4 class="box-image__country">서울</h4>
 															<p class="box-image__tour">${tourList1}</p>
@@ -132,11 +132,11 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image" style ="border: 7px solid silver !important; box-shadow: 5px 5px 5px gray !important;">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=제주도"
-													style="background-image: url('/resources/assets/img/image_box_1/2.jpg');" data-effect="mfp-zoom-in">
-														<img src="/resources/assets/img/image_box_1/2.jpg" alt="" />
+													<a class="box-image__bg" href="/travel/list?search=제주도" data-effect="mfp-zoom-in"
+													style="background-image: url('/resources/assets/img/image_box_1/2.jpg');"
+													data-keyword="제주">
 														<div class="box-image__info">
-															<h4 class="box-image__country">제주도</h4>
+															<h4 class="box-image__country">제주</h4>
 															<p class="box-image__tour">${tourList2}</p>
 														</div>
 													</a>
@@ -155,9 +155,9 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image" style ="border: 7px solid #CD7F32 !important; box-shadow: 5px 5px 5px gray !important;">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=부산"
-													style="background-image: url('/resources/assets/img/image_box_1/3.jpg');" data-effect="mfp-zoom-in">
-														<img src="/resources/assets/img/image_box_1/3.jpg" alt="" />
+													<a class="box-image__bg" href="/travel/list?search=부산" data-effect="mfp-zoom-in"
+													style="background-image: url('/resources/assets/img/image_box_1/3.jpg');"
+													data-keyword="부산">
 														<div class="box-image__info">
 															<h4 class="box-image__country">부산</h4>
 															<p class="box-image__tour">${tourList3}</p>
@@ -178,9 +178,9 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=경주"
-													style="background-image: url('/resources/assets/img/image_box_1/4.jpg');" data-effect="mfp-zoom-in">
-														<img src="/resources/assets/img/image_box_1/4.jpg" alt="" />
+													<a class="box-image__bg" href="/travel/list?search=경주" data-effect="mfp-zoom-in"
+													style="background-image: url('/resources/assets/img/image_box_1/4.jpg');"
+													data-keyword="경주">
 														<div class="box-image__info">
 															<h4 class="box-image__country">경주</h4>
 															<p class="box-image__tour">${tourList4}</p>
@@ -201,9 +201,9 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=강릉"
-													style="background-image: url('/resources/assets/img/image_box_1/5.jpg');" data-effect="mfp-zoom-in">
-														<img src="/resources/assets/img/image_box_1/5.jpg" alt="" />
+													<a class="box-image__bg" href="/travel/list?search=강릉" data-effect="mfp-zoom-in"
+													style="background-image: url('/resources/assets/img/image_box_1/5.jpg');"
+													data-keyword="강릉">
 														<div class="box-image__info">
 															<h4 class="box-image__country">강릉</h4>
 															<p class="box-image__tour">${tourList5}</p>
@@ -224,9 +224,9 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=전주"
-													style="background-image: url('/resources/assets/img/image_box_1/6.jpg');" data-effect="mfp-zoom-in">
-														<img src="/resources/assets/img/image_box_1/6.jpg" alt="" />
+													<a class="box-image__bg" href="/travel/list?search=전주" data-effect="mfp-zoom-in"
+													style="background-image: url('/resources/assets/img/image_box_1/6.jpg');"
+													data-keyword="전주">
 														<div class="box-image__info">
 															<h4 class="box-image__country">전주</h4>
 															<p class="box-image__tour">${tourList6}</p>
@@ -247,9 +247,9 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=여수"
-													style="background-image: url('/resources/assets/img/image_box_1/7.jpg');" data-effect="mfp-zoom-in">
-														<img src="/resources/assets/img/image_box_1/7.jpg" alt="" />
+													<a class="box-image__bg" href="/travel/list?search=여수" data-effect="mfp-zoom-in"
+													style="background-image: url('/resources/assets/img/image_box_1/7.jpg');"
+													data-keyword="여수">
 														<div class="box-image__info">
 															<h4 class="box-image__country">여수</h4>
 															<p class="box-image__tour">${tourList7}</p>
@@ -270,9 +270,9 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=속초"
-													style="background-image: url('/resources/assets/img/image_box_1/8.jpg');" data-effect="mfp-zoom-in">
-														<img src="/resources/assets/img/image_box_1/8.jpg" alt="" />
+													<a class="box-image__bg" href="/travel/list?search=속초" data-effect="mfp-zoom-in"
+													style="background-image: url('/resources/assets/img/image_box_1/8.jpg');"
+													data-keyword="속초">
 														<div class="box-image__info">
 															<h4 class="box-image__country">속초</h4>
 															<p class="box-image__tour">${tourList8}</p>
@@ -415,6 +415,8 @@ by Awe7 (http://awe7.com/freebies)
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
 	<script src="/resources/assets/js/ping/pingList.js"></script>
 	<script src="/resources/assets/js/banner.js"></script>
+	<script src="/resources/assets/js/board/tourApi.js"></script>
+	
 
 </body>
 </html>

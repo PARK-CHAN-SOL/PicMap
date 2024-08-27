@@ -53,16 +53,12 @@ public class HomeController {
 		int i = 1;
 		for(String e : li) {
 			scroller.setSearch(e);
-			System.out.println(scroller.getSearch());
 			Long postCount = travelService.getPostCount(scroller);
-			System.out.println(postCount);
 			model.addAttribute("tourList"+i, postCount);
 			i++;
 		}
 		
-		
 
-		
 		return "index";
 	}
 	

@@ -62,7 +62,7 @@ by Awe7 (http://awe7.com/freebies)
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="mb-3 col-8">
-          <form method="post" enctype="multipart/form-data" id="frm">
+          <form method="post" enctype="multipart/form-data" id="writeFrm">
             <input type="hidden" value="${dto.boardNum}" name="boardNum">
             <table class="table table-bordered">
               <tbody>
@@ -77,7 +77,8 @@ by Awe7 (http://awe7.com/freebies)
                 <tr>
                   <th rowspan="3"><span class="fs-4">내용</span></th>
                   <th colspan="2">
-                  	<input type="file" class="form-control fs-4" id="travelFiles" name="files" onchange="readURL(this)" style="display: none;">
+                  	<input type="file" class="form-control fs-4" id="travelFiles" name="files"
+                  	onchange="javascript:readURL(this); fileTypeCheck(this);" style="display: none;" accept="image/gif, image/jpeg, image/png">
                   	<label for="travelFiles" class="fs-4 btn btn-secondary">게시글 사진을 추가하세요</label>
                   	<c:choose>
                   		<c:when test="${dto.fileName != null}">
@@ -112,7 +113,7 @@ by Awe7 (http://awe7.com/freebies)
             </div>
 
             <div class="text-end">
-              <button type="submit" class="btn btn-primary fs-4" id="writeBtn">등록</button>
+              <button type="button" class="btn btn-primary fs-4" id="writeBtn">등록</button>
             </div>
           </form>
         </div>
@@ -199,6 +200,44 @@ by Awe7 (http://awe7.com/freebies)
 									});
 					$('#editor').summernote('fontSize', 16);
 				</script>
+	
+	
+	
+	
+	<script type="text/javascript">
+	    function fileTypeCheck(obj) {
+	        var pathpoint = obj.value.lastIndexOf('.');
+	        var filepoint = obj.value.substring(pathpoint + 1);
+	        var filetype = filepoint.toLowerCase();
+	        var preview = document.getElementById('travelPreview');
+	
+	        if(filetype === 'jpg' || filetype === 'jpeg' || filetype === 'png' || filetype === 'gif' || filetype === 'bmp') {
+	            // 정상 이미지 파일 첨부
+	            return true;
+	        } else {
+	            alert('이미지 파일만 첨부할 수 있습니다.');
+	            obj.value = ""; // 파일 입력 필드 초기화
+	            preview.src = ""; // 이미지 미리보기 초기화
+	            preview.style.display = "none"; // 이미지 숨기기
+	            return false;
+	        }
+	
+	        if(filetype === 'bmp') {
+	            var upload = confirm('BMP파일은 웹상에서 사용하기에 적절한 이미지 포맷이 아닙니다. \n그래도 계속하시겠습니까?');
+	            if(!upload) {
+	                obj.value = ""; // BMP 파일이 첨부되었을 경우 취소하면 초기화
+	                preview.src = ""; // 이미지 미리보기 초기화
+	                preview.style.display = "none"; // 이미지 숨기기
+	                return false;
+	            }
+	        }
+	        // 정상적인 이미지 파일의 경우, 이미지를 표시
+	        preview.style.display = "block"; 
+	        return true;
+	    }
+	</script>
+	
+	
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
     <script src="/resources/assets/js/board/writePingCheck.js"></script>
