@@ -68,7 +68,7 @@ by Awe7 (http://awe7.com/freebies)
 
         <c:if test="${sessionScope.member.memberNum eq 1 || sessionScope.member.memberNum eq 24}">
           <div class="d-md-flex justify-content-md-end">
-            <a class="btn btn-secondary mb-3 fs-4" href="./add" role="button">게시글추가</a>
+            <a class="btn btn-secondary mb-3 fs-4" href="./add" role="button">공지 추가</a>
           </div>
         </c:if>
 
