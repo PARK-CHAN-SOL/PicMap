@@ -62,7 +62,7 @@ by Awe7 (http://awe7.com/freebies)
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="mb-3 col-8">
-          <form method="post" enctype="multipart/form-data" id="frm">
+          <form method="post" enctype="multipart/form-data" id="writeFrm">
             <input type="hidden" value="${dto.boardNum}" name="boardNum">
             <table class="table table-bordered">
               <tbody>
@@ -112,7 +112,7 @@ by Awe7 (http://awe7.com/freebies)
             </div>
 
             <div class="text-end">
-              <button type="submit" class="btn btn-primary fs-4" id="writeBtn">등록</button>
+              <button type="button" class="btn btn-primary fs-4" id="writeBtn">등록</button>
             </div>
           </form>
         </div>
