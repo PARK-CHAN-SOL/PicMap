@@ -53,7 +53,7 @@ async function commentDTOLoop(commentDTOs) {
             let createDate = commentDTO.createDate;
             if(updateDate != createDate){
                 console.log(updateDate);
-                createDate = new Date(createDate); // 댓글 작성일을 Date 객체로 변환
+                createDate = new Date(updateDate); // 댓글 작성일을 Date 객체로 변환
                 createDate = '수정일: ' + createDate.getFullYear() + '-' +  String(createDate.getMonth() + 1).padStart(2, '0') + '-' + String(createDate.getDate()).padStart(2, '0'); // 작성일을 YYYY-MM-DD 형식으로 변환
             } else {
                 createDate = new Date(createDate); // 댓글 작성일을 Date 객체로 변환
