@@ -165,7 +165,7 @@ SELECT 	*
         SELECT MEMBERID ,MEMBERNAME
         FROM MEMBER
         WHERE MEMBERNAME = #{memberName} 
-        AND MEMBEREMAIL = #{memberEmail} 
+        AND MEMBERPHONE = #{memberPhone} 
  
     </select>
 	<select id="findPassword" parameterType="MemberDTO" resultType="MemberDTO">
@@ -173,7 +173,7 @@ SELECT 	*
         FROM MEMBER
         WHERE MEMBERNAME = #{memberName} 
         AND MEMBERID = #{memberId} 
-         AND MEMBEREMAIL = #{memberEmail} 
+         AND MEMBERPHONE = #{memberPhone} 
     </select>
 <update id="proFileUpdate" parameterType="MemberDTO">
     UPDATE MEMBER 

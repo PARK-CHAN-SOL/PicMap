@@ -147,14 +147,14 @@ by Awe7 (http://awe7.com/freebies)
                 
                 <div class="form-group">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="memberEmail" name="memberEmail" placeholder="">
-                        <label for="memberEmail">이메일</label>
+                        <input type="text" class="form-control" id="memberPhone" name="memberPhone" placeholder="010-2134-1234">
+                        <label for="memberPhone">휴대폰번호</label>
                     </div>
                 </div>
 
                 <button class="btn11" type="submit">아이디 찾기</button>
 			<div class="find_password my-div1 fs-5 mt-5">
-							<a href="/member/findPasswordS">비밀번호 찾기</a>
+							<a href="/member/findPassword">비밀번호 찾기</a>
 						</div>
                 <c:if test="${not empty errorMessage}">
                     <div class="error-message">

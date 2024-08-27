@@ -108,8 +108,8 @@ public class MemberController {
 
 	// 로그아웃
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
-		session.invalidate();
+	public String logout(HttpSession session) throws Exception {
+		memberService.logout(session);
 		return "redirect:/";
 	}
 	@PostMapping("list")

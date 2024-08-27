@@ -36,11 +36,7 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	public int join(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "join", memberDTO);
 	}
-	//로그아웃
 
-    public MemberDTO logout(MemberDTO memberDTO) throws Exception {
-        return sqlSession.selectOne(NAMESPACE + "logout", memberDTO);
-    }
 //마이페이지
 	public MemberDTO mypage(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "mypage", memberDTO);
@@ -104,5 +100,5 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 	public int proFileUpdate(MemberDTO memberDTO) throws Exception {
 		return sqlSession.update(NAMESPACE + "proFileUpdate", memberDTO);
 	}
-
+	
 }

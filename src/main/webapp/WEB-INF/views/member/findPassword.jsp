@@ -163,8 +163,8 @@ by Awe7 (http://awe7.com/freebies)
             </div>
             <div class="form-group">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="memberEmail" name="memberEmail" placeholder="">
-                    <label for="memberEmail">이메일</label>
+                    <input type="text" class="form-control" id="memberPhone" name="memberPhone" placeholder="010-1234-1234">
+                    <label for="memberPhone">휴대폰 번호</label>
                 </div>
             </div>
             <button class="btn11" type="submit">패스워드 찾기</button>
