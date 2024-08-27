@@ -63,7 +63,7 @@
 				FROM REPLY r
 				JOIN MEMBER m ON r.MEMBERNUM = m.MEMBERNUM  <!-- 대댓글 작성자와 회원을 조인 -->
 				WHERE r.COMMENTNUM = #{commentNum}  <!-- 특정 댓글의 대댓글만 선택 -->
-				ORDER BY r.CREATEDATE DESC, r.UPDATEDATE DESC  <!-- 최신 대댓글 순으로 정렬 -->
+				ORDER BY r.UPDATEDATE DESC, r.CREATEDATE DESC  <!-- 최신 대댓글 순으로 정렬 -->
 					) r2
 			)
 		WHERE r BETWEEN #{scroller.startRow} AND #{scroller.endRow}	
