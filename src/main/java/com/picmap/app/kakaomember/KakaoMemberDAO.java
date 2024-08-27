@@ -1,5 +1,7 @@
 package com.picmap.app.kakaomember;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,4 +22,10 @@ public class KakaoMemberDAO {
 	public Integer kakaoMemberJoin(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "kakaoMemberJoin", memberDTO);
 	}
+
+	public int kakaoLogout(MemberDTO memberDTO) {
+		return sqlSession.insert(NAMESPACE + "kakaoMemberJoin", memberDTO);
+	}
+
+
 }

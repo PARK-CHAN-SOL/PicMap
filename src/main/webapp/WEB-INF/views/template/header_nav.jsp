@@ -69,8 +69,8 @@
 						data-bs-toggle="modal" data-bs-target="#exampleModal">로그인</button>
 				</c:if>
 				<c:if test="${not empty sessionScope.member}">
-					<button type="button" class="md-btn md-btn--primary md-btn--pill "
-						onclick="location.href='/member/logout' ">로그아웃</button>
+					<button type="button" class="md-btn md-btn--primary md-btn--pill "  id="logoutbtn"
+						onclick="location.href = '/member/logout'">로그아웃</button>
 				</c:if>
 			</div>
 
@@ -162,9 +162,33 @@
 				<form action="/member/join" method="POST" id="frm"
 					enctype="multipart/form-data">
 					<div class="mb-3">
-						<label for="formFileSm" class="form-label">프로필 사진</label> <input
-							class="form-control form-control-sm" type="file" name="files"
-							onchange="readURL(this);"> <br />
+						<label for="formFileSm" class="form-label">프로필 사진</label><input class="form-control form-control-sm" type="file" name="files"
+       accept="image/*" onchange="validateImage(this); readURL(this);">
+
+<script>
+    function validateImage(input) {
+        const file = input.files[0];
+        const fileType = file.type;
+        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        
+        if (!validImageTypes.includes(fileType)) {
+            alert('이미지 파일만 업로드 가능합니다. (JPEG, PNG, GIF)');
+            input.value = ''; // 파일 입력 초기화
+            return false;
+        }
+        return true;
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script> <br />
 						<br /> <img id="preview"
 							style="width: 20%; height: 20%; object-fit: cover;" />
 					</div>

@@ -150,7 +150,33 @@ by Awe7 (http://awe7.com/freebies)
             <form action="/member/proFileUpdate" method="post" enctype="multipart/form-data">
                 <div class="col-6">
                 
-           <input class="form-control form-control-sm" type="file"style="width: 500px;" name="files" onchange="readURL(this);">
+           <input class="form-control form-control-sm" type="file" name="files"
+       accept="image/*" onchange="validateImage(this); readURL(this);">
+
+<script>
+    function validateImage(input) {
+        const file = input.files[0];
+        const fileType = file.type;
+        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        
+        if (!validImageTypes.includes(fileType)) {
+            alert('이미지 파일만 업로드 가능합니다. (JPEG, PNG, GIF)');
+            input.value = ''; // 파일 입력 초기화
+            return false;
+        }
+        return true;
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
                  
                   	<c:choose>
                   		<c:when test="${member.profilePath != null}">

@@ -147,8 +147,8 @@ by Awe7 (http://awe7.com/freebies)
                 
                 <div class="form-group">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="memberEmail" name="memberEmail" placeholder="">
-                        <label for="memberEmail">이메일</label>
+                        <input type="text" class="form-control" id="memberPhone" name="memberPhone" placeholder="010-2134-1234">
+                        <label for="memberPhone">휴대폰번호</label>
                     </div>
                 </div>
 
