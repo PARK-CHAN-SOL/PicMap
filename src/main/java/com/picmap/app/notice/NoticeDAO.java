@@ -10,6 +10,7 @@ import com.picmap.app.board.BoardDAO;
 import com.picmap.app.board.BoardDTO;
 import com.picmap.app.board.BoardFileDTO;
 import com.picmap.app.travel.TravelDTO;
+import com.picmap.app.util.Pager;
 
 @Repository
 public class NoticeDAO implements BoardDAO{
@@ -26,9 +27,15 @@ public class NoticeDAO implements BoardDAO{
 	
 	//게시판(게시글 리스트)
 	@Override
-	public List<BoardDTO> getList() throws Exception {
+	public List<BoardDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"getList") ;
+	}
+	
+	@Override
+	public Long getTotalCount(Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
 	}
 
 
