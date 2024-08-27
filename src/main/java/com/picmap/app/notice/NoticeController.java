@@ -90,6 +90,11 @@ public class NoticeController {
 	
 	@GetMapping("detail")
 	public String getDetail(NoticeDTO noticeDTO, Model model, HttpSession session) throws Exception {
+		
+		//조회수
+		noticeService.hit(noticeDTO);
+		
+		
 		noticeDTO = noticeService.getDetail(noticeDTO);
 		model.addAttribute("dto", noticeDTO);
 		//좋아요
