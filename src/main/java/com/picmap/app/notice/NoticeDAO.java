@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.picmap.app.board.BoardDAO;
 import com.picmap.app.board.BoardDTO;
 import com.picmap.app.board.BoardFileDTO;
+import com.picmap.app.travel.TravelDTO;
 
 @Repository
 public class NoticeDAO implements BoardDAO{
@@ -57,6 +58,11 @@ public class NoticeDAO implements BoardDAO{
 	public Integer delete(NoticeDTO noticeDTO) throws Exception {
 		sqlSession.delete(NAMESPACE + "deleteHeart", noticeDTO);
 		return sqlSession.delete(NAMESPACE + "delete", 	noticeDTO);
+	}
+	
+	//조회수
+	public int hit(NoticeDTO noticeDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"hit", noticeDTO);
 	}
 	
 }

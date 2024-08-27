@@ -13,6 +13,7 @@ import com.picmap.app.board.BoardDTO;
 import com.picmap.app.board.BoardService;
 import com.picmap.app.files.FileManager;
 import com.picmap.app.member.MemberDTO;
+import com.picmap.app.travel.TravelDTO;
 
 @Service
 public class NoticeService implements BoardService{
@@ -89,6 +90,10 @@ public class NoticeService implements BoardService{
 		return noticeDAO.delete(noticeDTO);
 	}
 	
+	//조회수
+	public int hit(NoticeDTO noticeDTO) throws Exception {
+		return noticeDAO.hit(noticeDTO);
+	}
 	
 
 }

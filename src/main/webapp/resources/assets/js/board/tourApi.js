@@ -1,6 +1,6 @@
 
 const BASE_URL = 'https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1';
-const COMMON_PARAMS = 'numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=Test';
+const COMMON_PARAMS = 'numOfRows=20&pageNo=1&MobileOS=ETC&MobileApp=Test';
 const SERVICE_KEY = 'H5W%2FW%2F1cXUq3EEuXX%2BEERNRoB2xQDv57x1Ju%2B8%2BlZGDSZ7uc88F6%2Bdre8ee9F%2FgzkqyzsJHnVc5dQXdtnuTfmA%3D%3D';
 
 async function fetchImage(keyword) {
@@ -16,6 +16,8 @@ async function fetchImage(keyword) {
             console.error(`No images found for keyword: ${keyword}`);
             return null;
         }
+        
+        console.log(images);
         
         const randomIndex = Math.floor(Math.random() * images.length);
         return images[randomIndex].galWebImageUrl;

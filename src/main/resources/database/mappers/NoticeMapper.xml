@@ -49,7 +49,11 @@
 		WHERE	BOARDNUM = #{boardNum}
 	</delete>
 
-
+	<update id="hit" parameterType="NoticeDTO">
+		UPDATE NOTICE
+		SET HIT = HIT + 1
+		WHERE BOARDNUM = #{boardNum}
+	</update>
 
 
 
