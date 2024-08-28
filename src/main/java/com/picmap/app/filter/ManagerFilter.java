@@ -14,14 +14,14 @@ import javax.servlet.http.HttpSession;
 import com.picmap.app.member.MemberDTO;
 
 /**
- * Servlet Filter implementation class PermissionFilter
+ * Servlet Filter implementation class Manage
  */
-public class PermissionFilter implements Filter {
+public class ManagerFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public PermissionFilter() {
+    public ManagerFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -36,25 +36,34 @@ public class PermissionFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
 		HttpServletRequest req = (HttpServletRequest)request;
 		
 		HttpSession session = req.getSession();
 		
-		Object obj1 = session.getAttribute("writer");
-		String writer = obj1.toString();
+		Object obj = session.getAttribute("member");
 		
-		MemberDTO m = (MemberDTO)session.getAttribute("member");
-		Object obj2 = m.getMemberNum();
-		String loggedInId = obj2.toString(); 
-		
-		if(writer.equals(loggedInId)) {
-			chain.doFilter(request, response);
+		if(obj != null) {		
+			//로그인한 계정이 매니저가 맞나
+			MemberDTO m = (MemberDTO)obj;
+			Long manager = m.getMemberNum();
+			
+			if(manager == 1) {		
+				chain.doFilter(request, response);
+			}else {
+				request.setAttribute("result", "권한이 없습니다.");
+				request.setAttribute("url", "/");
+				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/commons/message.jsp");
+				view.forward(request, response);
+			}
 		}else {
-			request.setAttribute("result", "잘못된 접근입니다.");
+			request.setAttribute("result", "권한이 없습니다.");
 			request.setAttribute("url", "/");
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/commons/message.jsp");
 			view.forward(request, response);
 		}
+			
+
 	}
 
 	/**

@@ -61,14 +61,14 @@
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/travel/update</url-pattern>
   </filter-mapping>
-  <filter-mapping>
+<!--   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/notice/add</url-pattern>
   </filter-mapping>
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/notice/update</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
   <filter>
     <display-name>PermissionFilter</display-name>
     <filter-name>PermissionFilter</filter-name>
@@ -94,6 +94,23 @@
     <filter-name>PermissionFilter</filter-name>
     <url-pattern>/notice/delete</url-pattern>
   </filter-mapping>
+  <filter>
+    <display-name>ManagerFilter</display-name>
+    <filter-name>ManagerFilter</filter-name>
+    <filter-class>com.picmap.app.filter.ManagerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ManagerFilter</filter-name>
+    <url-pattern>/notice/add</url-pattern>
+  </filter-mapping>
+    <filter-mapping>
+    <filter-name>ManagerFilter</filter-name>
+    <url-pattern>/notice/update</url-pattern>
+  </filter-mapping>
+    <filter-mapping>
+    <filter-name>ManagerFilter</filter-name>
+    <url-pattern>/notice/delete</url-pattern>
+  </filter-mapping>
 <error-page>
   	<error-code>404</error-code>
   	<location>/WEB-INF/views/error/error_404.jsp</location>
@@ -103,5 +120,4 @@
   	<error-code>500</error-code>
   	<location>/WEB-INF/views/error/error_500.jsp</location>
 </error-page>
-
 </web-app>

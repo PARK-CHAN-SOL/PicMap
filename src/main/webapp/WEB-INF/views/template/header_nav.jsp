@@ -69,8 +69,8 @@
 						data-bs-toggle="modal" data-bs-target="#exampleModal">로그인</button>
 				</c:if>
 				<c:if test="${not empty sessionScope.member}">
-					<button type="button" class="md-btn md-btn--primary md-btn--pill "  id="logoutbtn"
-						onclick="location.href = '/member/logout'">로그아웃</button>
+					<button type="button" class="md-btn md-btn--primary md-btn--pill " id="logoutbtn"
+					onclick="location.href = '/member/logout'">로그아웃</button>
 				</c:if>
 			</div>
 
@@ -100,7 +100,10 @@
 			<div class="modal-body">
 				<div class="member_login">
 					<form action="/member/login" method="POST">
-						<!--           <form   action="/member/login" method="post" > -->
+					
+						<!-- 기존에 있던 페이지 주소 -->
+						<input type="hidden" name="prevPage" id="prevPageUrl">
+						
 						<div class="member_login_input my-div fs-4">
 							<input type="text" name="memberId" placeholder="아이디"
 								style="border-radius: 30px; width: 400px; height: px;">
@@ -256,3 +259,7 @@
 <!-- End / header -->
 <script type="text/javascript"
 	src="/resources/assets/js/member/memberJoinCheck.js"></script>
+	<script>
+		var prevPage = window.location.href;
+	    document.getElementById('prevPageUrl').value = prevPage;
+	</script>
