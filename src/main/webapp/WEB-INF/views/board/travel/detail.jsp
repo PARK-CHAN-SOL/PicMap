@@ -258,14 +258,14 @@ by Awe7 (http://awe7.com/freebies)
   </div>
 
 
-  <c:import url="../../template/footer.jsp"></c:import>
-  <script src="/resources/assets/js/heart/heart.js"></script>
-  <script src="/resources/assets/js/savepost/savePost.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/reply.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/commentslist.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
-  <script src="/resources/assets/js/ping/recommendList.js"></script>
-  <script src="/resources/assets/js/ping/modal.js"></script>
+	<c:import url="../../template/footer.jsp"></c:import>
+	<script src="/resources/assets/js/heart/heart.js"></script>
+	<script src="/resources/assets/js/savepost/savePost.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/reply.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/comments/commentslist.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e11955080502d1bac37823f6b7f43b6&libraries=services"></script>
+	<script src="/resources/assets/js/ping/recommendList.js"></script>
+	<script src="/resources/assets/js/ping/modal.js"></script>
 
 </body>
 </html>

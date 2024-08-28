@@ -151,7 +151,8 @@ public class TravelController {
 	
 	//게시글 수정
 	@GetMapping("update")
-	public String update(Model model, TravelDTO travelDTO) throws Exception {
+	public String update(HttpServletRequest request, HttpSession session, Model model, TravelDTO travelDTO) throws Exception {
+           
 		TravelDTO travelDetail = travelService.detail(travelDTO);
 		model.addAttribute("dto", travelDetail);
 		
@@ -174,7 +175,9 @@ public class TravelController {
 		
 		travelService.update(travelDTO, files, session);
 		
-		return "redirect:./list";
+		String pr = travelDTO.getBoardNum().toString();
+		
+		return "redirect:/travel/detail?boardNum=" + pr;
 		
 	}
 	

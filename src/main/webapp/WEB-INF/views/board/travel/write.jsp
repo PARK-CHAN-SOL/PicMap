@@ -107,6 +107,7 @@ by Awe7 (http://awe7.com/freebies)
 				<input type="hidden" id="lon" name="longitude" value="${pingDTO.longitude}">
             </div>
             <div>
+            	<input type="hidden" name="boardNum" value="${dto.boardNum}">
 				<input type="hidden" name="rootBoard" value="${dto.rootBoard}">
 				<input type="hidden" name="parentBoard" value="${dto.parentBoard}">
 				<input type="hidden" name="childBoard" value="${dto.childBoard}">

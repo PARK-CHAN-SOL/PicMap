@@ -56,11 +56,12 @@ public class MemberController {
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public void login(Model model, @CookieValue(name = "remember ", required = false, defaultValue = "") String value)
 			throws Exception {
+
 		model.addAttribute("id", value);
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(Model model, MemberDTO memberDTO, String remember, HttpServletResponse response,
+	public String login(Model model, MemberDTO memberDTO, String remember, HttpServletResponse response, String prevPage,
 			HttpSession session) throws Exception {
 		if (remember != null) {
 			Cookie cookie = new Cookie("remember", memberDTO.getMemberId());
@@ -77,11 +78,11 @@ public class MemberController {
 		if (memberDTO != null) {
 
 			model.addAttribute("result", "로그인 성공");
-			model.addAttribute("url", "/");
+			model.addAttribute("url", prevPage);
 
 		} else {
 			model.addAttribute("result", "아이디 혹은 패스워드 확인 바랍니다");
-			model.addAttribute("url", "/");
+			model.addAttribute("url", prevPage);
 		}
 
 		return url;
@@ -110,8 +111,10 @@ public class MemberController {
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 		memberService.logout(session);
+
 		return "redirect:/";
 	}
+	
 	@PostMapping("list")
 	@ResponseBody
 	public List<TravelDTO> getList(MemberDTO memberDTO, Scroller scroller) throws Exception {
