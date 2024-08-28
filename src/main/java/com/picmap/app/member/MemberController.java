@@ -80,7 +80,7 @@ public class MemberController {
 			model.addAttribute("url", "/");
 
 		} else {
-			model.addAttribute("result", "로그인 실패");
+			model.addAttribute("result", "아이디 혹은 패스워드 확인 바랍니다");
 			model.addAttribute("url", "/");
 		}
 
