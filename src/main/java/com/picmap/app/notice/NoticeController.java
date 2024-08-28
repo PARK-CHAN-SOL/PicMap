@@ -17,6 +17,7 @@ import com.picmap.app.board.BoardDTO;
 import com.picmap.app.heart.HeartDTO;
 import com.picmap.app.heart.HeartService;
 import com.picmap.app.member.MemberDTO;
+import com.picmap.app.util.Pager;
 
 @Controller
 @RequestMapping("/notice/*")
@@ -36,9 +37,13 @@ public class NoticeController {
 	
 	
 	@GetMapping("list")
-	public String getList(Model model) throws Exception {
+	public String getList(Model model, Pager pager) throws Exception {
 		
-		List<BoardDTO> list = noticeService.getList();
+		List<BoardDTO> list = noticeService.getList(pager);
+		
+		for (BoardDTO boardDTO : list) {
+		    System.out.println(boardDTO);
+		}
 				
 		model.addAttribute("list", list);
 		

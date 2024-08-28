@@ -32,5 +32,7 @@
  		<typeAlias type="com.picmap.app.travel.TravelDTO" alias="TravelDTO"/>
  		
  		<typeAlias type="com.picmap.app.util.Scroller" alias="Scroller"/>
+ 		
+ 		<typeAlias type="com.picmap.app.util.Pager" alias="Pager"/>
 	</typeAliases>
  </configuration>

@@ -13,7 +13,7 @@ import com.picmap.app.board.BoardDTO;
 import com.picmap.app.board.BoardService;
 import com.picmap.app.files.FileManager;
 import com.picmap.app.member.MemberDTO;
-import com.picmap.app.travel.TravelDTO;
+import com.picmap.app.util.Pager;
 
 @Service
 public class NoticeService implements BoardService{
@@ -29,9 +29,19 @@ public class NoticeService implements BoardService{
 	
 	//게시판(게시글 리스트)
 	@Override
-	public List<BoardDTO> getList() throws Exception {
+	public List<BoardDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return noticeDAO.getList();
+		pager.makeRow();
+
+		long totalCount = noticeDAO.getTotalCount(pager);
+
+		pager.makeNum(totalCount);
+		
+		System.out.println(pager.getPage());
+		System.out.println(pager.getStartRow());
+		System.out.println(pager.getLastRow());
+
+		return noticeDAO.getList(pager); 
 	}
 	
 

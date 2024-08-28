@@ -8,13 +8,24 @@
 		SELECT MEMBERID, MEMBERNAME, MEMBERNICKNAME, PROFILEPATH FROM MEMBER WHERE MEMBERNUM=#{boardNum}
 	</select>
 	
-	<select id="getList" resultType="NoticeDTO">
-		SELECT N.*, M.MEMBERID, M.MEMBERNICKNAME 
-		FROM NOTICE N
-			 LEFT JOIN
-			 MEMBER M
-			 ON N.MEMBERNUM = M.MEMBERNUM
-		ORDER BY BOARDNUM DESC
+	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
+		SELECT B.*
+		FROM	(
+			SELECT A.*, ROWNUM R
+			FROM	(
+				SELECT N.*, M.MEMBERID, M.MEMBERNICKNAME
+				FROM NOTICE N
+					 LEFT JOIN
+					 MEMBER M
+					 ON N.MEMBERNUM = M.MEMBERNUM
+				ORDER BY BOARDNUM DESC
+				)A
+			)B
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
+		SELECT COUNT(BOARDNUM) FROM NOTICE
 	</select>
 	
 	<insert id="add" parameterType="BoardDTO">
