@@ -79,18 +79,18 @@ by Awe7 (http://awe7.com/freebies)
 				<ul class="pagination">
 					<li class="page-item ${pager.pre?'':'disabled'}">
 						<a class="page-link" href="./list?page=${pager.startNum - 1}" aria-label="Previous">
-							<span aria-hidden="true">&laquo;</span>
+							<span aria-hidden="true" style="font-size: 14px;">&laquo;</span>
 						</a>
 					</li>
 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}"
 						step="1" var="i">
 						<li class="page-item"><a class="page-link"
-							href="./list?page=${i}">${i}</a></li>
+							href="./list?page=${i}" style="font-size: 14px;">${i}</a></li>
 					</c:forEach>
 
 					<li class="page-item ${pager.next?'':'disabled'}">
 						<a class="page-link" href="./list?page=${pager.lastNum+1}" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
+							<span aria-hidden="true" style="font-size: 14px;">&raquo;</span>
 						</a>
 					</li>
 				</ul>

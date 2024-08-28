@@ -6,6 +6,7 @@ public class Pager {
 	private Long page;
 
 	private Long startRow;
+
 	private Long lastRow;
 
 	// ------------------------
@@ -126,11 +127,11 @@ public class Pager {
 	public void setPage(Long page) {
 		this.page = page;
 	}
-
+	
 	public Long getStartRow() {
 		return startRow;
 	}
-
+	
 	public void setStartRow(Long startRow) {
 		this.startRow = startRow;
 	}

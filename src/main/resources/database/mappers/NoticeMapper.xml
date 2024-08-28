@@ -9,15 +9,18 @@
 	</select>
 	
 	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
-		SELECT A.* 
+		SELECT B.*
 		FROM	(
-			SELECT N.*, M.MEMBERID, M.MEMBERNICKNAME, ROWNUM R 
-			FROM NOTICE N
-				 LEFT JOIN
-				 MEMBER M
-				 ON N.MEMBERNUM = M.MEMBERNUM
-			ORDER BY BOARDNUM DESC
-			)A
+			SELECT A.*, ROWNUM R
+			FROM	(
+				SELECT N.*, M.MEMBERID, M.MEMBERNICKNAME
+				FROM NOTICE N
+					 LEFT JOIN
+					 MEMBER M
+					 ON N.MEMBERNUM = M.MEMBERNUM
+				ORDER BY BOARDNUM DESC
+				)A
+			)B
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	

@@ -34,10 +34,12 @@ public class NoticeService implements BoardService{
 		pager.makeRow();
 
 		long totalCount = noticeDAO.getTotalCount(pager);
-		
-		System.out.println(totalCount);
 
 		pager.makeNum(totalCount);
+		
+		System.out.println(pager.getPage());
+		System.out.println(pager.getStartRow());
+		System.out.println(pager.getLastRow());
 
 		return noticeDAO.getList(pager); 
 	}
