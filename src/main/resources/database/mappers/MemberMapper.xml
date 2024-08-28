@@ -169,11 +169,11 @@ SELECT 	*
  
     </select>
 	<select id="findPassword" parameterType="MemberDTO" resultType="MemberDTO">
-        SELECT MEMBERPASSWORD,MEMBERID
-        FROM MEMBER
-        WHERE MEMBERNAME = #{memberName} 
-        AND MEMBERID = #{memberId} 
-         AND MEMBERPHONE = #{memberPhone} 
+        SELECT	SUBSTR(MEMBERPASSWORD, 1, 3)||LPAD(SUBSTR(MEMBERPASSWORD, LENGTH(MEMBERPASSWORD)), LENGTH(MEMBERPASSWORD)-3, '*') as "MEMBERPASSWORD", MEMBERID
+        FROM 	MEMBER
+        WHERE 	MEMBERNAME = #{memberName} 
+        		AND MEMBERID = #{memberId} 
+         		AND MEMBERPHONE = #{memberPhone} 
     </select>
 <update id="proFileUpdate" parameterType="MemberDTO">
     UPDATE MEMBER 
