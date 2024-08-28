@@ -94,6 +94,12 @@ by Awe7 (http://awe7.com/freebies)
 										style="width: 500px;" name="memberPhone"
 										value="${member.memberPhone}">
 								</div>
+						<div class="col-6">
+									<label for="inputPhone" class="form-label fs-4">비밀번호</label> <input
+										type="text" class="form-control" id="inputPhone"
+										style="width: 500px;" name="memberPassword"
+										value="${member.memberPassword}">
+								</div>
 					
 							</div>
 
