@@ -94,4 +94,14 @@
     <filter-name>PermissionFilter</filter-name>
     <url-pattern>/notice/delete</url-pattern>
   </filter-mapping>
+<error-page>
+  	<error-code>404</error-code>
+  	<location>/WEB-INF/views/error/error_404.jsp</location>
+</error-page>
+	
+<error-page>
+  	<error-code>500</error-code>
+  	<location>/WEB-INF/views/error/error_500.jsp</location>
+</error-page>
+
 </web-app>
