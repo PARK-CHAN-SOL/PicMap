@@ -111,7 +111,7 @@ public class KakaoMemberController {
             memberDTO.setMemberNickName(kakaoProfile.getProperties().getNickname());
             Date sqlDate = Date.valueOf("1900-01-01");
             memberDTO.setMemberBirth(sqlDate);
-            memberDTO.setMemberPhone("010-0000-0000");
+            memberDTO.setMemberPhone(garbagePasswordString);
             memberDTO.setProfilePath(kakaoProfile.getProperties().getProfile_image());
             memberService.join(memberDTO);
             memberDTO = memberService.login(memberDTO, session);
