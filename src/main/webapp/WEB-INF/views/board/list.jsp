@@ -74,9 +74,9 @@ by Awe7 (http://awe7.com/freebies)
 
 
 
-		<div class="container col-md-3 mt-5 justify-content-center">
+		<div class=" justify-content-center">
 			<nav aria-label="Page navigation example">
-				<ul class="pagination">
+				<ul class="pagination  justify-content-center">
 					<li class="page-item ${pager.pre?'':'disabled'}">
 						<a class="page-link" href="./list?page=${pager.startNum - 1}" aria-label="Previous">
 							<span aria-hidden="true" style="font-size: 14px;">&laquo;</span>
