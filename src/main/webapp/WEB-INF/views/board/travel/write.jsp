@@ -214,9 +214,12 @@ by Awe7 (http://awe7.com/freebies)
 	
 	        if(filetype === 'jpg' || filetype === 'jpeg' || filetype === 'png' || filetype === 'gif' || filetype === 'bmp') {
 	            // 정상 이미지 파일 첨부
+	            preview.style.display = ""; // 이미지 보이기
 	            return true;
 	        } else {
-	            alert('이미지 파일만 첨부할 수 있습니다.');
+	        	if(obj.value){
+	            	alert('이미지 파일만 첨부할 수 있습니다.');
+	        	}
 	            obj.value = ""; // 파일 입력 필드 초기화
 	            preview.src = ""; // 이미지 미리보기 초기화
 	            preview.style.display = "none"; // 이미지 숨기기

@@ -59,8 +59,8 @@ btn.addEventListener("click", function () {
 
     //id validation
     if (memberId.value == "" || pw.value == "" ||
-        memberName.value == "" || phone.value == "" ||
-        email.value == "" || memberBirth.value ==""
+        memberName.value == "" || memberPhone.value == "" ||
+        memberEmail.value == "" || memberBirth.value ==""
     ) {
         alert("missing information");
         return;

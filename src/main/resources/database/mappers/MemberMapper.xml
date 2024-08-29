@@ -69,7 +69,7 @@
 		
  	<update id="delete" parameterType="MemberDTO">
 UPDATE MEMBER SET  MEMBERNICKNAME ='탈퇴한 회원', MEMBEREMAIL =NULL, MEMBERPHONE =NULL,PROFILEPATH =NULL, 
-MEMBERBIRTH ='1900/01/01',MEMBERID =#{memberId},MEMBERNAME =#{memberName},MEMBERPASSWORD =#{memberPassword}
+MEMBERBIRTH =TO_DATE('1900/01/01', 'YYYY-MM-DD'),MEMBERID =#{memberId},MEMBERNAME =#{memberName},MEMBERPASSWORD =#{memberPassword}
 WHERE MEMBERNUM = #{memberNum}
 	</update> 
 	
@@ -92,6 +92,10 @@ WHERE MEMBERNUM = #{memberNum}
 		<delete id="followDelete" parameterType="FollowDTO">
 		DELETE FOLLOW 	WHERE FROMFOLLOW = #{fromFollow} AND TOFOLLOW = #{toFollow}
 	</delete> 
+	<delete id="memberFollowDelete" parameterType="MemberDTO">
+		DELETE FOLLOW
+		WHERE FROMFOLLOW = #{memberNum} OR TOFOLLOW = #{memberNum}
+	</delete>
 	<select id="fromFollowList" resultType="MemberDTO" parameterType="java.util.Map">
 	SELECT *
 FROM

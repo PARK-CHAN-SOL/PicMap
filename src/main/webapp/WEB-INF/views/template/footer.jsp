@@ -85,6 +85,7 @@
 				src="/resources/assets/vendors/jquery-ui/jquery-ui.min.js"></script>
 			<!-- App-->
 			<script type="text/javascript" src="/resources/assets/js/main.js"></script>
+            <script src="/resources/assets/js/developer.js"></script>
 			<script
 				src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
 				integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

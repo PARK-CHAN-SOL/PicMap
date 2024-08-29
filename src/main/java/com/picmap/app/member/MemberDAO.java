@@ -104,4 +104,7 @@ public int memberNickName(MemberDTO memberDTO) throws Exception {
 		return sqlSession.update(NAMESPACE + "proFileUpdate", memberDTO);
 	}
 	
+	public Integer memberFollowDelete(MemberDTO memberDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "memberFollowDelete", memberDTO);
+	}
 }

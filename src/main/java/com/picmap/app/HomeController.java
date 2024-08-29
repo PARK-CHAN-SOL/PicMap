@@ -49,7 +49,7 @@ public class HomeController {
 		List<TravelDTO> bestList = travelService.bestList();
 		model.addAttribute("bestList", bestList);
 		
-		List<String> li = Arrays.asList(new String[]{"서울", "제주도", "부산", "경주", "강릉", "전주", "여수", "속초"});
+		List<String> li = Arrays.asList(new String[]{"서울", "제주", "부산", "경주", "강릉", "전주", "여수", "속초"});
 		int i = 1;
 		for(String e : li) {
 			scroller.setSearch(e);

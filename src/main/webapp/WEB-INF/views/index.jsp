@@ -132,7 +132,7 @@ by Awe7 (http://awe7.com/freebies)
 											<!-- box-image -->
 											<div class="box-image" style ="border: 7px solid silver !important; box-shadow: 5px 5px 5px gray !important;">
 												<div>
-													<a class="box-image__bg" href="/travel/list?search=제주도" data-effect="mfp-zoom-in"
+													<a class="box-image__bg" href="/travel/list?search=제주" data-effect="mfp-zoom-in"
 													style="background-image: url('/resources/assets/img/image_box_1/2.jpg');"
 													data-keyword="제주">
 														<div class="box-image__info">
@@ -416,8 +416,6 @@ by Awe7 (http://awe7.com/freebies)
 	<script src="/resources/assets/js/ping/pingList.js"></script>
 	<script src="/resources/assets/js/banner.js"></script>
 	<script src="/resources/assets/js/board/tourApi.js"></script>
-	<script src="/resources/assets/js/developer.js"></script>
-
 </body>
 </html>
 

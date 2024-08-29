@@ -167,7 +167,9 @@ public class MemberService {
 		memberDTO.setMemberPassword(randomNum);
 		memberDTO.setMemberId(randomNum);
 		memberDTO.setMemberName(randomNum);
-
+		
+		memberDAO.memberFollowDelete(memberDTO);
+		
 		// 기본 delete 메서드 실행
 		return memberDAO.delete(memberDTO);
 	}
