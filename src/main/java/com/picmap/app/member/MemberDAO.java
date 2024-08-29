@@ -25,6 +25,9 @@ private final String NAMESPACE="com.picmap.app.member.MemberDAO.";
 public int idCheck(MemberDTO memberDTO) throws Exception {
 	return sqlSession.selectOne(NAMESPACE + "idCheck", memberDTO);
 }
+public int phoneCheck(MemberDTO memberDTO) throws Exception {
+	return sqlSession.selectOne(NAMESPACE + "phoneCheck", memberDTO);
+}
 public int memberNickName(MemberDTO memberDTO) throws Exception {
 	return sqlSession.selectOne(NAMESPACE + "memberNickName", memberDTO);
 }

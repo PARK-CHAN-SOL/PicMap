@@ -27,6 +27,13 @@
   		WHERE MEMBERID = #{memberId} 
   	</select>
   	
+  	<select id="phoneCheck" parameterType="MemberDTO" resultType="java.lang.Integer">
+  		SELECT	COUNT(MEMBERPHONE)
+  		FROM	MEMBER
+  		WHERE MEMBERPHONE = #{memberPhone} 
+  	</select>
+  	
+  	
   	  <select id="memberNickName" parameterType="MemberDTO" resultType="java.lang.Integer">
   		SELECT	COUNT(MEMBERNICKNAME)
   		FROM	MEMBER

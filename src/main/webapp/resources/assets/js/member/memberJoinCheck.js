@@ -24,8 +24,9 @@ const pw = document.getElementById("memberPassword");
 const pwCheck = document.getElementById("memberPasswordCheck");
 const memberName = document.getElementById("memberName");
 const memberNickName = document.getElementById("memberNickName");
-const phone = document.getElementById("memberPhone");
-const email = document.getElementById("memberEmail");
+const memberPhone = document.getElementById("memberPhone");
+const memberEmail = document.getElementById("memberEmail");
+const memberBirth = document.getElementById("memberBirth");
 
 
 
@@ -48,8 +49,8 @@ btn.addEventListener("click", function () {
         pw.value = "";
         pw.focus();
         return;
-    } else if (pw.value.length < 4) {
-        passwordError.innerHTML = "pw must be over 4 characters";
+    } else if (pw.value.length < 6) {
+        passwordError.innerHTML = "pw must be over 6 characters";
         pw.focus();
         return;
     }
@@ -59,12 +60,11 @@ btn.addEventListener("click", function () {
     //id validation
     if (memberId.value == "" || pw.value == "" ||
         memberName.value == "" || phone.value == "" ||
-        email.value == ""
+        email.value == "" || memberBirth.value ==""
     ) {
         alert("missing information");
         return;
     } else {
-        alert("로그인성공");
         frm.submit();
         return;
     }
@@ -122,9 +122,31 @@ memberPhone.addEventListener("change", function () {
         frm.memberPhone.focus();
         frm.memberPhone.value = '';
         return;
-    } 
-    
+    } else{
+        fetch("/member/phoneCheck?memberPhone=" + memberPhone.value, {
+            method: "GET"
+        })
+        .then((res) => { return res.text(); })
+        .then((res) => {
+            if (res == 0) {
+                return;
+            } else {
+                alert("등록된 전화번호 입니다");
+                memberPhone.value = "";
+                memberPhone.focus();
+            }
+        })
+        .catch((e) => {
+            console.log(e);
+            alert("오류");
+        })
+    }
 });
+
+
+
+
+
 const passwordEqError = document.getElementById("password-eqError");
 
 function pwchk() {
