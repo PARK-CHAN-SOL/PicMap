@@ -416,7 +416,7 @@ by Awe7 (http://awe7.com/freebies)
 	<script src="/resources/assets/js/ping/pingList.js"></script>
 	<script src="/resources/assets/js/banner.js"></script>
 	<script src="/resources/assets/js/board/tourApi.js"></script>
-	
+	<script src="/resources/assets/js/developer.js"></script>
 
 </body>
 </html>
