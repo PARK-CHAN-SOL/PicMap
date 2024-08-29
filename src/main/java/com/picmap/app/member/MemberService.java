@@ -39,7 +39,9 @@ public class MemberService {
 	public int idCheck(MemberDTO memberDTO) throws Exception {
 		return memberDAO.idCheck(memberDTO);
 	}
-
+	public int phoneCheck(MemberDTO memberDTO) throws Exception {
+		return memberDAO.phoneCheck(memberDTO);
+	}
 	public int memberNickName(MemberDTO memberDTO) throws Exception {
 		return memberDAO.memberNickName(memberDTO);
 	}

@@ -50,6 +50,12 @@ public class MemberController {
 		return "/commons/result";
 	}
 
+	@GetMapping("phoneCheck") 
+	public String phoneCheck(MemberDTO memberDTO, Model model) throws Exception {
+		int result = memberService.phoneCheck(memberDTO);
+		model.addAttribute("msg", result);
+		return "/commons/result";
+	}
 	
 	
 //로그인
@@ -77,7 +83,7 @@ public class MemberController {
 
 		if (memberDTO != null) {
 
-			model.addAttribute("result", "로그인 성공");
+			model.addAttribute("result", "로그인성공");
 			model.addAttribute("url", prevPage);
 
 		} else {
@@ -172,7 +178,7 @@ public class MemberController {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String update(MemberDTO memberDTO,  HttpSession session, Model model) throws Exception {
 		MemberDTO dtoTmp = (MemberDTO) session.getAttribute("member");
-		memberDTO.setMemberPassword(dtoTmp.getMemberPassword());
+
 		memberDTO.setMemberId(dtoTmp.getMemberId());
 	
 		int num = memberService.update(memberDTO, session);

@@ -56,9 +56,9 @@ by Awe7 (http://awe7.com/freebies)
 								</div>
 									</div>
 							</div>
-								<form action="/member/update" method="post" enctype="multipart/form-data">
+								<form action="/member/update" method="post" enctype="multipart/form-data" id="frm1">
 									<div class="d-flex align-items-center justify-content-center mb-2">
-										<button style="width: 80px; height: 40px" class="btn btn-primary fs-5 " type="submit">수정하기</button>
+										<button style="width: 80px; height: 40px" id="btn1"class="btn btn-primary fs-5 " type="button">수정하기</button>
 									</div>
 
 
@@ -66,41 +66,50 @@ by Awe7 (http://awe7.com/freebies)
 							<div class="row gy-5">
 								<div class="col-6 ">
 									<label for="inputName" class="form-label fs-4">이름</label> <input
-										type="text" class="form-control " id="inputName"
+										type="text" class="form-control " id="memberName1"
 										style="width: 500px;" name="memberName"
 										value="${member.memberName}">
 								</div>
 								<div class="col-6">
 									<label for="inputPhone" class="form-label fs-4">생년월일</label> <input
-										type="date" class="form-control" id="memberBirth"
+										type="date" class="form-control" id="memberBirth1"
 										style="width: 500px;" name="memberBirth"
 										value="${member.memberBirth}">
 								</div>
 								<div class="col-6">
 									<label for="inputPhone" class="form-label fs-4">닉네임</label> <input
-										type="text" class="form-control" id="memberNickName"
+										type="text" class="form-control" id="memberNickName1"
 										style="width: 500px;" name="memberNickName"
 										value="${member.memberNickName}">
 								</div>
 								<div class="col-6">
 									<label for="inputPhone" class="form-label fs-4">이메일</label> <input
-										type="email" class="form-control" id="memberEmail"
+										type="email" class="form-control" id="memberEmail1"
 										style="width: 500px;" name="memberEmail"
 										value="${member.memberEmail}">
 								</div>
 								<div class="col-6">
 									<label for="inputPhone" class="form-label fs-4">전화번호</label> <input
-										type="text" class="form-control" id="inputPhone"
+										type="text" class="form-control" id="memberPhone1"
 										style="width: 500px;" name="memberPhone"
 										value="${member.memberPhone}">
 								</div>
-						<div class="col-6">
-									<label for="inputPhone" class="form-label fs-4">비밀번호</label> <input
-										type="text" class="form-control" id="inputPhone"
-										style="width: 500px;" name="memberPassword"
-										value="${member.memberPassword}">
-								</div>
-					
+					<div class="col-6">
+						<label for="inputEmail4" class="form-label fs-4">비밀번호</label> <input
+							type="text" class="form-control" name="memberPassword"value="${member.memberPassword}"
+							id="memberPassword1" placeholder="6글자 이상">
+						<div id="password-error1"></div>
+						<div class="invalid-feedback" data-sb-feedback="name:required">Password
+							is required.</div>
+					</div>
+					<div class="col-6">
+						<label for="inputPassword4" class="form-label fs-4">비밀번호
+							확인</label> <input type="password" class="form-control"
+							id="memberPasswordCheck1" placeholder="동일한 비밀번호 입력">
+						<div id="password-eqError1"></div>
+						<div class="invalid-feedback" data-sb-feedback="name:required">Password
+							is required.</div>
+					</div>
 							</div>
 
 							</div>
