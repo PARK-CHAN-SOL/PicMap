@@ -196,10 +196,6 @@ public class MemberController {
         model.addAttribute("result", resultMessage);
         model.addAttribute("url", "/");
 
-        if ("계정이 삭제되었습니다.".equals(resultMessage)) {
-            httpSession.setAttribute("member", null);
-        }
-
         return "/commons/message";
     }
 

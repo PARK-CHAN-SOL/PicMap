@@ -97,15 +97,16 @@ by Awe7 (http://awe7.com/freebies)
 					<div class="col-6">
 						<label for="inputEmail4" class="form-label fs-4">비밀번호</label> <input
 							type="text" class="form-control" name="memberPassword"value="${member.memberPassword}"
-							id="memberPassword1" placeholder="6글자 이상">
+							id="memberPassword1" style="width: 500px;" placeholder="6글자 이상">
 						<div id="password-error1"></div>
 						<div class="invalid-feedback" data-sb-feedback="name:required">Password
 							is required.</div>
 					</div>
-					<div class="col-6">
+                    <div class="col-6"></div>
+					<div class="col-6 mb-5">
 						<label for="inputPassword4" class="form-label fs-4">비밀번호
 							확인</label> <input type="password" class="form-control"
-							id="memberPasswordCheck1" placeholder="동일한 비밀번호 입력">
+							id="memberPasswordCheck1" style="width: 500px;" placeholder="동일한 비밀번호 입력">
 						<div id="password-eqError1"></div>
 						<div class="invalid-feedback" data-sb-feedback="name:required">Password
 							is required.</div>

@@ -48,7 +48,7 @@ public class KakaoMemberController {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String> ();
         params.add("grant_type", "authorization_code");
         params.add("client_id", "580555887802ff728f2d9f964d6ad050");
-        params.add("redirect_uri", "http://43.203.172.227/auth/kakao/callback");
+        params.add("redirect_uri", "https://picmap.o-r.kr/auth/kakao/callback");
         params.add("code", code);
         
         // HttpEntity 생성 (헤더와 본문 포함)

@@ -142,9 +142,7 @@ public class MemberService {
 
 	public String deleteMember(MemberDTO memberDTO, HttpSession httpSession) throws Exception {
 		// 카카오 회원일 경우 세션 초기화
-		if (memberDTO.getMemberId().matches("\\d+")) {
-			kakaoMemberService.kakaoLogout(httpSession, memberDTO); // 카카오 로그아웃 및 세션 초기화
-		}
+		logout(httpSession); // 카카오 로그아웃 및 세션 초기화
 
 		int num = delete(memberDTO);
 		if (num > 0) {

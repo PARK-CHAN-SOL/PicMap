@@ -23,9 +23,5 @@ public class KakaoMemberDAO {
 		return sqlSession.insert(NAMESPACE + "kakaoMemberJoin", memberDTO);
 	}
 
-	public int kakaoLogout(MemberDTO memberDTO) {
-		return sqlSession.insert(NAMESPACE + "kakaoMemberJoin", memberDTO);
-	}
-
 
 }

@@ -20,11 +20,6 @@ public class KakaoMemberService {
 		return kakaoMemberDAO.kakaoMemberJoin(memberDTO);
 	}
 
-	public int kakaoLogout(HttpSession httpSession, MemberDTO memberDTO) {
-		return kakaoMemberDAO.kakaoLogout(memberDTO);
-		
-	}
-
 
 
 }
